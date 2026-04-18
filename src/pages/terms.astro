@@ -1,0 +1,60 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+---
+
+<PageLayout
+  seo={{
+    title: 'Terms of Service',
+    description: 'PoopCheck Terms of Service. Read our terms and conditions for using the PoopCheck app and website.',
+    noindex: true,
+  }}
+>
+  <div class="py-12 md:py-20">
+    <div class="max-w-3xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[{ label: 'Terms of Service', href: '/terms/' }]} />
+      </div>
+
+      <h1 class="text-3xl md:text-4xl font-bold mb-2">Terms of Service</h1>
+      <p class="text-sm text-[var(--color-text-muted)] mb-10">Last updated: April 10, 2025</p>
+
+      <div class="prose prose-invert max-w-none
+        prose-headings:font-bold prose-headings:text-[var(--color-text)]
+        prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-4
+        prose-p:text-[var(--color-text-muted)] prose-p:leading-relaxed
+        prose-li:text-[var(--color-text-muted)]
+        prose-strong:text-[var(--color-text)]
+      ">
+        <p>By using PoopCheck, you agree to these Terms of Service. Please read them carefully.</p>
+
+        <h2>Service Description</h2>
+        <p>PoopCheck is a wellness and health tracking application that uses AI to analyze stool photos and provide gut health insights. PoopCheck is <strong>not a medical device</strong> and is not intended to diagnose, treat, cure, or prevent any disease or medical condition.</p>
+
+        <h2>Medical Disclaimer</h2>
+        <p>The information provided by PoopCheck is for informational and wellness tracking purposes only. It should not be used as a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.</p>
+
+        <h2>User Accounts</h2>
+        <p>You are responsible for maintaining the security of your account credentials. You must provide accurate information when creating an account. You may not use the service for any illegal or unauthorized purpose.</p>
+
+        <h2>Acceptable Use</h2>
+        <p>You agree to use PoopCheck only for its intended purpose of personal health and wellness tracking. You may not upload inappropriate content, attempt to reverse-engineer the AI system, or abuse the community features.</p>
+
+        <h2>Subscriptions and Payments</h2>
+        <p>Premium subscriptions are billed through Apple App Store or Google Play Store. Subscription terms, pricing, and cancellation policies are governed by the respective app store's terms. Refund requests should be directed to the relevant app store.</p>
+
+        <h2>Intellectual Property</h2>
+        <p>PoopCheck and its original content, features, and functionality are owned by PoopCheck and are protected by international copyright, trademark, and other intellectual property laws.</p>
+
+        <h2>Limitation of Liability</h2>
+        <p>PoopCheck shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the service. Our total liability shall not exceed the amount you paid for the service in the 12 months preceding the claim.</p>
+
+        <h2>Changes to Terms</h2>
+        <p>We reserve the right to modify these terms at any time. We will notify users of significant changes through the app or email.</p>
+
+        <h2>Contact</h2>
+        <p>For questions about these Terms, contact us at support@poopcheck.app.</p>
+      </div>
+    </div>
+  </div>
+</PageLayout>

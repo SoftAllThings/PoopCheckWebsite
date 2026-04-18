@@ -1,0 +1,26 @@
+# PoopCheck
+
+> AI-powered stool analysis and gut health tracking app with 80,000+ users worldwide.
+
+PoopCheck uses computer vision and AI to analyze stool photos using the Bristol Stool Scale, providing personalized gut health scores, trend tracking, and actionable health insights. Available free on iOS and Android.
+
+## Key Pages
+
+- [Home](https://poopcheck.app/): AI poop analyzer — scan your stool and track gut health
+- [Features](https://poopcheck.app/features/): Complete feature overview including AI analysis, gut score, and community
+- [AI Stool Analysis](https://poopcheck.app/features/ai-stool-analysis/): How our AI analyzes stool photos using the Bristol Scale
+- [Pricing](https://poopcheck.app/pricing/): Free and Premium plan comparison
+- [Playground](https://poopcheck.app/playground/): Try AI stool analysis online
+- [Download](https://poopcheck.app/download/): Download for iOS and Android
+
+## Guides
+
+- [Blog](https://poopcheck.app/blog/): Latest gut health articles and research
+- [Guides](https://poopcheck.app/guides/): Comprehensive gut health resources
+
+## About
+
+- [About](https://poopcheck.app/about/): Our mission for better gut health
+- [Support](https://poopcheck.app/support/): FAQ and help center
+- [Privacy](https://poopcheck.app/privacy/): Privacy policy
+- [Terms](https://poopcheck.app/terms/): Terms of service

@@ -1,0 +1,109 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import JsonLd from '../../components/seo/JsonLd.astro';
+import { faqSchema } from '../../utils/schema';
+import DownloadCTA from '../../components/home/DownloadCTA.astro';
+
+const faqs = [
+  { question: 'How accurate is the AI stool analysis?', answer: 'Our AI engine has been trained on over 140,000 stool samples and achieves high accuracy in Bristol Stool Scale classification. However, it is a wellness tool, not a medical diagnostic device. Always consult a healthcare professional for medical concerns.' },
+  { question: 'Is my photo stored or shared?', answer: 'Your photos are encrypted in transit and at rest. They are used only for analysis and are never shared with third parties. You can delete your data at any time.' },
+  { question: 'How fast is the analysis?', answer: 'Most analyses complete in under 5 seconds. The AI processes the image, classifies consistency, color, and shape, and returns results almost instantly.' },
+  { question: 'Does it work with any camera?', answer: 'PoopCheck works with any smartphone camera. The app includes an optimized camera mode for best results, but you can also upload photos from your camera roll.' },
+];
+---
+
+<PageLayout
+  seo={{
+    title: 'AI Stool Analysis — Instant Bristol Scale Classification',
+    description: 'Get instant AI-powered stool analysis using the Bristol Stool Scale. PoopCheck classifies consistency, color, shape, and quantity in seconds from a single photo.',
+  }}
+>
+  <JsonLd schema={faqSchema(faqs)} />
+
+  <div class="py-12 md:py-20">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[
+          { label: 'Features', href: '/features/' },
+          { label: 'AI Stool Analysis', href: '/features/ai-stool-analysis/' },
+        ]} />
+      </div>
+
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-primary)] mb-6">
+            <svg class="w-8 h-8 text-[var(--color-text-dark)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold">
+            <span class="gradient-text">AI Stool Analysis</span>
+          </h1>
+          <p class="mt-4 text-lg text-[var(--color-text-muted)] max-w-2xl mx-auto">
+            Snap a photo and get a comprehensive stool analysis in seconds. Our AI engine classifies your stool using the Bristol Stool Scale — the medical standard used by gastroenterologists worldwide.
+          </p>
+        </div>
+
+        <!-- How it works -->
+        <div class="space-y-12 mb-16">
+          <div>
+            <h2 class="text-2xl font-bold mb-4">How It Works</h2>
+            <p class="text-[var(--color-text-muted)] leading-relaxed mb-6">
+              PoopCheck uses advanced computer vision trained on over 140,000 stool samples to analyze your photo. In seconds, you receive a detailed breakdown of:
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { title: 'Bristol Type', desc: 'Classification from Type 1 (hard lumps) to Type 7 (liquid)' },
+                { title: 'Color Analysis', desc: 'Identifies stool color and flags unusual patterns' },
+                { title: 'Consistency', desc: 'Evaluates texture and form for digestive insights' },
+                { title: 'Health Indicators', desc: 'Screens for patterns that may warrant attention' },
+              ].map((item) => (
+                <div class="gradient-border p-4">
+                  <h3 class="font-semibold mb-1">{item.title}</h3>
+                  <p class="text-sm text-[var(--color-text-muted)]">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold mb-4">Privacy First</h2>
+            <p class="text-[var(--color-text-muted)] leading-relaxed">
+              Your photos are encrypted in transit and at rest. Images are processed for analysis only and are never sold or shared with third parties. You maintain full control over your data and can delete it at any time. PoopCheck is built privacy-first because your health data is nobody's business but yours.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold mb-4">Compared With 140,000+ Analyses</h2>
+            <p class="text-[var(--color-text-muted)] leading-relaxed">
+              Your analysis isn't performed in isolation. Our engine compares your results against a global database of over 140,000 anonymized analyses, giving you context for what's typical and what might be worth discussing with your healthcare provider.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            {faqs.map((faq) => (
+              <details class="group rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer list-none font-semibold hover:text-[var(--color-primary)] transition-colors">
+                  <span>{faq.question}</span>
+                  <svg class="w-5 h-5 text-[var(--color-text-muted)] group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div class="px-6 pb-4 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                  {faq.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <DownloadCTA />
+</PageLayout>

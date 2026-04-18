@@ -1,0 +1,99 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import JsonLd from '../../components/seo/JsonLd.astro';
+import { faqSchema } from '../../utils/schema';
+import DownloadCTA from '../../components/home/DownloadCTA.astro';
+
+const faqs = [
+  { question: 'How is the gut health score calculated?', answer: 'Your gut health score is calculated from multiple factors: stool consistency (Bristol Scale type), bowel movement regularity, comfort level, and lifestyle inputs. The algorithm weights these factors to produce a daily score that reflects your overall digestive health.' },
+  { question: 'How often is my score updated?', answer: 'Your gut health score updates daily based on your latest logged data. The more consistently you track, the more accurate and useful your score becomes.' },
+  { question: 'What is a good gut health score?', answer: 'Scores vary by individual, but generally a higher score indicates healthier, more consistent digestive patterns. The score is most useful as a trend indicator — watch for improvements or declines over time rather than focusing on a single number.' },
+];
+---
+
+<PageLayout
+  seo={{
+    title: 'Gut Health Score — Daily Personalized Digestive Health Metric',
+    description: 'Get a personalized daily gut health score based on stool consistency, regularity, comfort, and lifestyle. Track improvements and understand your digestive health.',
+  }}
+>
+  <JsonLd schema={faqSchema(faqs)} />
+
+  <div class="py-12 md:py-20">
+    <div class="max-w-3xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[
+          { label: 'Features', href: '/features/' },
+          { label: 'Gut Health Score', href: '/features/gut-health-score/' },
+        ]} />
+      </div>
+
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-primary)] mb-6">
+          <svg class="w-8 h-8 text-[var(--color-text-dark)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+        </div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold">
+          <span class="gradient-text">Gut Health Score</span>
+        </h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)] max-w-2xl mx-auto">
+          A personalized daily metric that tells you how your digestive system is performing — at a glance.
+        </p>
+      </div>
+
+      <div class="space-y-12 mb-16">
+        <div>
+          <h2 class="text-2xl font-bold mb-4">Your Daily Digestive Dashboard</h2>
+          <p class="text-[var(--color-text-muted)] leading-relaxed">
+            Your gut health score combines multiple factors into a single, easy-to-understand number. It accounts for stool consistency (Bristol Scale type), how regular your bowel movements are, comfort level, and lifestyle inputs you provide. Think of it as a daily check-in for your digestive system.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold mb-4">What Goes Into Your Score</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              { title: 'Consistency', desc: 'Bristol Scale classification — Types 3-4 score highest' },
+              { title: 'Regularity', desc: 'How consistent your bowel movement frequency is day-to-day' },
+              { title: 'Comfort', desc: 'Self-reported comfort level during bowel movements' },
+              { title: 'Lifestyle', desc: 'Diet, hydration, exercise, and sleep inputs' },
+            ].map((item) => (
+              <div class="gradient-border p-4">
+                <h3 class="font-semibold mb-1">{item.title}</h3>
+                <p class="text-sm text-[var(--color-text-muted)]">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold mb-4">Track Trends, Not Just Numbers</h2>
+          <p class="text-[var(--color-text-muted)] leading-relaxed">
+            A single score tells you today's status. But the real power is in the trend. Watch your score over weeks and months to see how dietary changes, stress management, and lifestyle adjustments impact your gut health. PoopCheck visualizes these trends so you can see exactly what's working.
+          </p>
+        </div>
+      </div>
+
+      <div class="mb-16">
+        <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="group rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer list-none font-semibold hover:text-[var(--color-primary)] transition-colors">
+                <span>{faq.question}</span>
+                <svg class="w-5 h-5 text-[var(--color-text-muted)] group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div class="px-6 pb-4 text-sm text-[var(--color-text-muted)] leading-relaxed">{faq.answer}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <DownloadCTA />
+</PageLayout>

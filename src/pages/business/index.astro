@@ -1,0 +1,168 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import { serviceSchema } from '../../utils/schema';
+import { SITE, STATS } from '../../utils/seo';
+
+const schemas = [
+  serviceSchema({
+    name: 'Stool Analysis API',
+    description:
+      'REST API for AI stool analysis — Bristol Stool Scale classification, color analysis, and health screenings. Powers digestive-health apps, telehealth platforms, and clinical tools.',
+    url: `${SITE.url}/business/api/`,
+    serviceType: 'Medical AI API',
+  }),
+  serviceSchema({
+    name: 'Annotated Stool Dataset',
+    description:
+      'High-quality, multi-label annotated stool image dataset for training computer vision models, academic research, and clinical validation.',
+    url: `${SITE.url}/business/data/`,
+    serviceType: 'Medical Imaging Dataset',
+  }),
+];
+
+const apiBullets = [
+  'Bristol Stool Scale classification (Types 1–7)',
+  'Color, consistency, and shape analysis',
+  'Health screenings for mucus, blood, and anomalies',
+];
+
+const dataBullets = [
+  `${STATS.analyses.long} labeled stool images`,
+  'Multi-label annotations: Bristol class, color, pathology flags',
+  'Custom subsets and formats on request',
+];
+---
+
+<PageLayout
+  seo={{
+    title: 'For Business — Stool Analysis API & Annotated Datasets',
+    description:
+      'PoopCheck for Business: integrate our AI stool analysis API into your product, or license our 140,000+ sample annotated stool dataset for ML training and research.',
+    canonical: `${SITE.url}/business/`,
+  }}
+  schema={schemas}
+>
+  <div class="py-12 md:py-20">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[{ label: 'For Business', href: '/business/' }]} />
+      </div>
+
+      <!-- Hero -->
+      <div class="max-w-3xl mb-16">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          The <span class="gradient-text">data & inference layer</span> for gut-health products
+        </h1>
+        <p class="mt-5 text-lg text-[var(--color-text-muted)] leading-relaxed">
+          PoopCheck powers AI stool analysis for consumer apps, telehealth platforms, clinical tools, and research teams.
+          Integrate our API, or license the labeled dataset it was built on.
+        </p>
+      </div>
+
+      <!-- Trust row -->
+      <div class="grid grid-cols-3 gap-4 md:gap-8 mb-16 pb-16 border-b border-[var(--color-border)]/50">
+        <div>
+          <div class="text-3xl md:text-4xl font-bold gradient-text">{STATS.users.short}</div>
+          <div class="mt-1 text-sm text-[var(--color-text-muted)]">Users worldwide</div>
+        </div>
+        <div>
+          <div class="text-3xl md:text-4xl font-bold gradient-text">{STATS.analyses.short}</div>
+          <div class="mt-1 text-sm text-[var(--color-text-muted)]">Annotated samples</div>
+        </div>
+        <div>
+          <div class="text-3xl md:text-4xl font-bold gradient-text">{STATS.rating}★</div>
+          <div class="mt-1 text-sm text-[var(--color-text-muted)]">App Store rating</div>
+        </div>
+      </div>
+
+      <!-- Two offerings -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- API card -->
+        <a href="/business/api/" class="group gradient-border p-8 hover:bg-[var(--color-elevated)] transition-colors flex flex-col">
+          <div class="w-14 h-14 rounded-2xl bg-[var(--color-primary)]/10 flex items-center justify-center mb-6 group-hover:bg-[var(--color-primary)]/20 transition-colors">
+            <svg class="w-7 h-7 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+          </div>
+          <h2 class="text-2xl font-semibold mb-3 group-hover:text-[var(--color-primary)] transition-colors">Stool Analysis API</h2>
+          <p class="text-[var(--color-text-muted)] leading-relaxed mb-5">
+            A REST API that turns a stool photo into a structured health report in seconds — the same engine that powers our live demo.
+          </p>
+          <ul class="space-y-2 mb-6">
+            {apiBullets.map((item) => (
+              <li class="flex items-start gap-2 text-sm">
+                <svg class="w-4 h-4 text-[var(--color-primary)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <div class="mt-auto text-sm font-semibold text-[var(--color-primary)] flex items-center gap-1">
+            Learn more
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </a>
+
+        <!-- Dataset card -->
+        <a href="/business/data/" class="group gradient-border p-8 hover:bg-[var(--color-elevated)] transition-colors flex flex-col">
+          <div class="w-14 h-14 rounded-2xl bg-[var(--color-accent)]/10 flex items-center justify-center mb-6 group-hover:bg-[var(--color-accent)]/20 transition-colors">
+            <svg class="w-7 h-7 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2 1.5 3 4 3h8c2.5 0 4-1 4-3V7c0-2-1.5-3-4-3H8C5.5 4 4 5 4 7zM4 12h16M9 4v16" />
+            </svg>
+          </div>
+          <h2 class="text-2xl font-semibold mb-3 group-hover:text-[var(--color-accent)] transition-colors">Annotated Dataset</h2>
+          <p class="text-[var(--color-text-muted)] leading-relaxed mb-5">
+            Train your own models, validate research, or benchmark against the largest consumer stool image dataset we know of.
+          </p>
+          <ul class="space-y-2 mb-6">
+            {dataBullets.map((item) => (
+              <li class="flex items-start gap-2 text-sm">
+                <svg class="w-4 h-4 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <div class="mt-auto text-sm font-semibold text-[var(--color-accent)] flex items-center gap-1">
+            Learn more
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- Why PoopCheck -->
+      <div class="mt-20 max-w-3xl">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">Why teams build on PoopCheck</h2>
+        <p class="text-[var(--color-text-muted)] leading-relaxed">
+          We've been shipping stool-analysis AI to real users since 2023. Our models are trained on one of the largest consumer
+          stool image datasets in existence, validated against the Bristol Stool Scale, and hardened by millions of in-the-wild
+          photos taken at every angle, lighting, and camera you can imagine. That's the engine you'd be plugging into — or the
+          data you'd be training on.
+        </p>
+      </div>
+
+      <!-- Dual CTA -->
+      <div class="mt-12 flex flex-col sm:flex-row gap-4">
+        <a
+          href="/business/api/#contact"
+          class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold hover:opacity-90 transition-opacity glow-primary"
+        >
+          Request API access
+        </a>
+        <a
+          href="/business/data/#contact"
+          class="inline-flex items-center justify-center px-6 py-3 rounded-full border border-[var(--color-border)] font-semibold hover:bg-[var(--color-elevated)] transition-colors"
+        >
+          Request dataset access
+        </a>
+      </div>
+    </div>
+  </div>
+</PageLayout>

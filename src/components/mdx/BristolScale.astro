@@ -1,0 +1,53 @@
+---
+interface Props {
+  highlight?: number;
+}
+
+const { highlight } = Astro.props;
+
+const types = [
+  { type: 1, label: 'Separate hard lumps', status: 'Severe constipation', color: '#DC2626' },
+  { type: 2, label: 'Lumpy, sausage-shaped', status: 'Mild constipation', color: '#D97706' },
+  { type: 3, label: 'Sausage with cracks', status: 'Normal', color: '#A3FFBF' },
+  { type: 4, label: 'Smooth, snake-like', status: 'Ideal', color: '#A3FFBF' },
+  { type: 5, label: 'Soft blobs, clear edges', status: 'Slightly loose', color: '#D97706' },
+  { type: 6, label: 'Mushy, ragged edges', status: 'Mild diarrhea', color: '#D97706' },
+  { type: 7, label: 'Entirely liquid', status: 'Severe diarrhea', color: '#DC2626' },
+];
+---
+
+<div class="not-prose my-8 rounded-xl border border-[var(--color-border)]/50 overflow-hidden">
+  <div class="px-4 py-3 bg-[var(--color-surface)] border-b border-[var(--color-border)]/50">
+    <h4 class="font-semibold text-sm">Bristol Stool Scale</h4>
+    <p class="text-xs text-[var(--color-text-muted)]">The medical standard for classifying stool consistency</p>
+  </div>
+  <div class="divide-y divide-[var(--color-border)]/30">
+    {types.map((t) => (
+      <div
+        class:list={[
+          'flex items-center gap-4 px-4 py-3 text-sm transition-colors',
+          highlight === t.type ? 'bg-[var(--color-primary)]/10' : 'hover:bg-[var(--color-surface)]',
+        ]}
+      >
+        <div
+          class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm shrink-0"
+          style={`background: ${t.color}20; color: ${t.color}`}
+        >
+          {t.type}
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="font-medium">{t.label}</div>
+        </div>
+        <div
+          class="text-xs font-semibold px-2 py-0.5 rounded-full shrink-0"
+          style={`background: ${t.color}15; color: ${t.color}`}
+        >
+          {t.status}
+        </div>
+      </div>
+    ))}
+  </div>
+  <div class="px-4 py-3 bg-[var(--color-surface)] border-t border-[var(--color-border)]/50 text-xs text-[var(--color-text-muted)]">
+    Types 3-4 are generally considered ideal for healthy digestion.
+  </div>
+</div>

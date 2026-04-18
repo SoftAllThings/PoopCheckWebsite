@@ -1,0 +1,38 @@
+---
+const colors = [
+  { color: '#8B4513', name: 'Brown', meaning: 'Normal — healthy stool color from bilirubin breakdown', safe: true },
+  { color: '#2D5016', name: 'Green', meaning: 'Usually normal — leafy vegetables, food coloring, or fast transit', safe: true },
+  { color: '#C4A33A', name: 'Yellow', meaning: 'May indicate excess fat (steatorrhea) or malabsorption — see a doctor if persistent', safe: false },
+  { color: '#1A1A1A', name: 'Black', meaning: 'Iron supplements or dark foods are common causes — tarry black stool needs medical attention', safe: false },
+  { color: '#B91C1C', name: 'Red', meaning: 'Often from beets or red foods — bright red blood requires medical evaluation', safe: false },
+  { color: '#D4C5A0', name: 'Pale / Clay', meaning: 'Lack of bile — may indicate liver or gallbladder issues, consult a doctor', safe: false },
+];
+---
+
+<div class="not-prose my-8 rounded-xl border border-[var(--color-border)]/50 overflow-hidden">
+  <div class="px-4 py-3 bg-[var(--color-surface)] border-b border-[var(--color-border)]/50">
+    <h4 class="font-semibold text-sm">Stool Color Reference</h4>
+    <p class="text-xs text-[var(--color-text-muted)]">What different stool colors can indicate</p>
+  </div>
+  <div class="divide-y divide-[var(--color-border)]/30">
+    {colors.map((c) => (
+      <div class="flex items-start gap-4 px-4 py-3 text-sm hover:bg-[var(--color-surface)] transition-colors">
+        <div
+          class="w-8 h-8 rounded-lg shrink-0 border border-white/10"
+          style={`background-color: ${c.color}`}
+        />
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2">
+            <span class="font-medium">{c.name}</span>
+            {c.safe ? (
+              <span class="text-xs px-1.5 py-0.5 rounded bg-[var(--color-primary)]/15 text-[var(--color-primary)]">Usually normal</span>
+            ) : (
+              <span class="text-xs px-1.5 py-0.5 rounded bg-[var(--color-warning)]/15 text-[var(--color-warning)]">Monitor</span>
+            )}
+          </div>
+          <p class="text-xs text-[var(--color-text-muted)] mt-1">{c.meaning}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

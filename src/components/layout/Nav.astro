@@ -1,0 +1,28 @@
+---
+interface Props {
+  items: { label: string; href: string }[];
+}
+
+const { items } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="hidden md:flex items-center gap-1" aria-label="Main navigation">
+  {items.map((item) => {
+    const isActive = currentPath.startsWith(item.href);
+    return (
+      <a
+        href={item.href}
+        class:list={[
+          'px-4 py-2 rounded-lg text-sm font-medium transition-colors',
+          isActive
+            ? 'text-[var(--color-primary)] bg-[var(--color-primary)]/10'
+            : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface)]',
+        ]}
+        aria-current={isActive ? 'page' : undefined}
+      >
+        {item.label}
+      </a>
+    );
+  })}
+</nav>

@@ -1,0 +1,28 @@
+---
+import JsonLd from '../seo/JsonLd.astro';
+import { faqSchema, type FAQItem } from '../../utils/schema';
+
+interface Props {
+  items: FAQItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<JsonLd schema={faqSchema(items)} />
+
+<div class="not-prose my-8 space-y-3">
+  {items.map((faq) => (
+    <details class="group rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 overflow-hidden">
+      <summary class="flex items-center justify-between px-5 py-3.5 cursor-pointer list-none text-sm font-semibold hover:text-[var(--color-primary)] transition-colors">
+        <span>{faq.question}</span>
+        <svg class="w-4 h-4 text-[var(--color-text-muted)] group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </summary>
+      <div class="px-5 pb-3.5 text-sm text-[var(--color-text-muted)] leading-relaxed">
+        {faq.answer}
+      </div>
+    </details>
+  ))}
+</div>

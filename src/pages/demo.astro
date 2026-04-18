@@ -1,0 +1,89 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import PlaygroundApp from '../components/playground/PlaygroundApp.tsx';
+import DownloadCTA from '../components/home/DownloadCTA.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
+import { faqSchema } from '../utils/schema';
+
+const faqs = [
+  { question: 'How does the AI stool analysis work?', answer: 'Upload a photo and our AI engine analyzes it using computer vision trained on 140,000+ stool samples. It classifies your stool using the Bristol Stool Scale (Types 1-7), identifies color patterns, and provides health screening results — all in seconds.' },
+  { question: 'Is my photo stored or shared?', answer: 'Photos uploaded through the live demo are processed for analysis only. They are not stored permanently and are never shared with third parties. For full tracking and history, download the PoopCheck app.' },
+  { question: 'What do the results mean?', answer: 'The analysis returns a Bristol Stool Scale type (1-7, where Types 3-4 are ideal), color analysis, consistency assessment, and health screening indicators. Green indicators are normal, yellow suggests monitoring, and red warrants discussion with a doctor.' },
+  { question: 'Is this a medical diagnosis?', answer: 'No. PoopCheck is a wellness tracking tool, not a medical device. Results are for informational purposes only. Always consult a healthcare professional for medical concerns or if you notice persistent changes in your stool.' },
+];
+---
+
+<PageLayout
+  seo={{
+    title: 'Live Demo — Try PoopCheck AI Stool Analysis Free Online',
+    description: 'Try the PoopCheck AI stool analysis live in your browser. Upload a photo and get instant Bristol Scale classification, color analysis, and health insights — free.',
+  }}
+>
+  <JsonLd schema={faqSchema(faqs)} />
+
+  <div class="py-12 md:py-20">
+    <div class="max-w-2xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[{ label: 'Live Demo', href: '/demo/' }]} />
+      </div>
+
+      <div class="text-center mb-10">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold">
+          Try <span class="gradient-text">AI Analysis</span> Free
+        </h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)] max-w-xl mx-auto">
+          Upload a stool photo and get instant AI analysis using the Bristol Stool Scale. No account required.
+        </p>
+      </div>
+
+      <!-- React Island -->
+      <PlaygroundApp client:visible />
+
+      <!-- What you get -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-bold mb-6">What the analysis includes</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[
+            { title: 'Bristol Scale Type', desc: 'Classification from Type 1 (hard lumps) to Type 7 (liquid), with confidence score' },
+            { title: 'Color Analysis', desc: 'Identifies stool color and flags patterns that may need attention' },
+            { title: 'Health Screening', desc: 'Checks for consistency, mucus, blood indicators, and shape anomalies' },
+            { title: 'Actionable Insights', desc: 'AI-generated recommendations based on your specific results' },
+          ].map((item) => (
+            <div class="gradient-border p-4">
+              <h3 class="font-semibold mb-1">{item.title}</h3>
+              <p class="text-sm text-[var(--color-text-muted)]">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+        <div class="space-y-3">
+          {faqs.map((faq) => (
+            <details class="group rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 overflow-hidden">
+              <summary class="flex items-center justify-between px-5 py-3.5 cursor-pointer list-none text-sm font-semibold hover:text-[var(--color-primary)] transition-colors">
+                <span>{faq.question}</span>
+                <svg class="w-4 h-4 text-[var(--color-text-muted)] group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div class="px-5 pb-3.5 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                {faq.answer}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="mt-12 p-4 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 text-xs text-[var(--color-text-muted)] leading-relaxed">
+        <strong class="text-[var(--color-text)]">Medical Disclaimer:</strong> PoopCheck is a wellness tool, not a medical device. Results are for informational purposes only and should not be used for medical diagnosis. Always consult a healthcare professional for medical concerns.
+      </div>
+    </div>
+  </div>
+
+  <DownloadCTA />
+</PageLayout>

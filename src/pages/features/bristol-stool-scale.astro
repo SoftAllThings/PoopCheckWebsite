@@ -1,0 +1,95 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import DownloadCTA from '../../components/home/DownloadCTA.astro';
+
+const types = [
+  { type: 1, label: 'Separate hard lumps', desc: 'Like nuts, difficult to pass', status: 'Severe constipation', color: '#DC2626' },
+  { type: 2, label: 'Lumpy sausage-shaped', desc: 'Sausage-like but lumpy surface', status: 'Mild constipation', color: '#D97706' },
+  { type: 3, label: 'Sausage with cracks', desc: 'Like a sausage with surface cracks', status: 'Normal', color: '#A3FFBF' },
+  { type: 4, label: 'Smooth and snake-like', desc: 'Smooth, soft, sausage or snake-like', status: 'Ideal', color: '#A3FFBF' },
+  { type: 5, label: 'Soft blobs', desc: 'Clear-cut edges, passes easily', status: 'Slightly loose', color: '#D97706' },
+  { type: 6, label: 'Mushy pieces', desc: 'Fluffy with ragged edges', status: 'Mild diarrhea', color: '#D97706' },
+  { type: 7, label: 'Entirely liquid', desc: 'Watery, no solid pieces', status: 'Severe diarrhea', color: '#DC2626' },
+];
+---
+
+<PageLayout
+  seo={{
+    title: 'Bristol Stool Scale — Automatic AI Classification (Types 1-7)',
+    description: 'PoopCheck automatically classifies your stool using the Bristol Stool Scale. Learn about all 7 types and what they mean for your digestive health.',
+  }}
+>
+  <div class="py-12 md:py-20">
+    <div class="max-w-3xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[
+          { label: 'Features', href: '/features/' },
+          { label: 'Bristol Stool Scale', href: '/features/bristol-stool-scale/' },
+        ]} />
+      </div>
+
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-primary)] mb-6">
+          <svg class="w-8 h-8 text-[var(--color-text-dark)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+        </div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold">
+          <span class="gradient-text">Bristol Stool Scale</span>
+        </h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)] max-w-2xl mx-auto">
+          The medically recognized classification system used by gastroenterologists worldwide — now automated by AI.
+        </p>
+      </div>
+
+      <!-- The Scale -->
+      <div class="mb-16">
+        <h2 class="text-2xl font-bold mb-6">The 7 Types</h2>
+        <div class="space-y-3">
+          {types.map((t) => (
+            <div class="flex items-center gap-4 p-4 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50">
+              <div
+                class="w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg shrink-0"
+                style={`background: ${t.color}20; color: ${t.color}`}
+              >
+                {t.type}
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold">{t.label}</div>
+                <div class="text-sm text-[var(--color-text-muted)]">{t.desc}</div>
+              </div>
+              <div
+                class="text-xs font-semibold px-3 py-1 rounded-full shrink-0 hidden sm:block"
+                style={`background: ${t.color}15; color: ${t.color}`}
+              >
+                {t.status}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="mt-4 p-4 rounded-xl bg-[var(--color-primary)]/5 border border-[var(--color-primary)]/20 text-sm text-[var(--color-text-muted)]">
+          <strong class="text-[var(--color-primary)]">Types 3 and 4</strong> are considered ideal. They indicate optimal transit time and healthy water absorption in the colon.
+        </div>
+      </div>
+
+      <div class="space-y-12 mb-16">
+        <div>
+          <h2 class="text-2xl font-bold mb-4">Automatic AI Classification</h2>
+          <p class="text-[var(--color-text-muted)] leading-relaxed">
+            You don't need to memorize the chart. PoopCheck's AI analyzes your photo and instantly classifies it on the Bristol Scale. The classification is consistent, objective, and tracked over time — giving you a clear picture of your digestive patterns.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold mb-4">Why It Matters</h2>
+          <p class="text-[var(--color-text-muted)] leading-relaxed">
+            The Bristol Scale isn't just academic — it's the tool gastroenterologists use to diagnose IBS subtypes, assess treatment effectiveness, and monitor digestive disorders. By tracking your Bristol types consistently, you're building the same data your doctor would want to see.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <DownloadCTA />
+</PageLayout>

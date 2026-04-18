@@ -1,0 +1,65 @@
+---
+const features = [
+  {
+    icon: 'M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M15 13a3 3 0 11-6 0 3 3 0 016 0z',
+    title: 'Instant AI Stool Analysis',
+    description: 'Snap a photo and get a comprehensive stool analysis in seconds. Our AI classifies consistency, color, shape, and quantity using the Bristol Stool Scale — the medical standard used by gastroenterologists worldwide.',
+  },
+  {
+    icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
+    title: 'Daily Gut Health Score',
+    description: 'Get a personalized gut health score every day based on stool consistency, regularity, comfort level, and lifestyle factors. Track improvements over time and understand what affects your digestive health.',
+  },
+  {
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+    title: 'Pattern Detection & Trends',
+    description: 'Our AI analyzes your history to detect patterns you might miss. Spot correlations between diet, stress, and digestive changes. Get proactive alerts when something looks unusual.',
+  },
+  {
+    icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z',
+    title: 'AI Health Assistant',
+    description: 'Chat with SOFTie, your personal AI digestive health assistant. Ask questions about your results, get contextual advice based on your scan history, and learn about gut health — all in real-time.',
+  },
+  {
+    icon: 'M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+    title: 'Detailed Health Reports',
+    description: 'Generate comprehensive digestive health reports you can share with your healthcare provider. Export detailed summaries with trends, patterns, and actionable recommendations.',
+  },
+  {
+    icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
+    title: 'Global Community',
+    description: 'Join 25,000+ users tracking their gut health. Share experiences, climb the leaderboard, and learn from a growing community — all while keeping your data completely private.',
+  },
+];
+---
+
+<section id="features" class="py-12 md:py-16">
+  <div class="max-w-7xl mx-auto px-5">
+    <!-- Section header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <p class="text-[var(--color-primary)] font-semibold text-sm uppercase tracking-wider mb-3">Features</p>
+      <h2 class="text-3xl md:text-4xl font-bold">
+        Everything you need to understand your
+        <span class="gradient-text">digestive health</span>
+      </h2>
+      <p class="mt-4 text-[var(--color-text-muted)] text-lg">
+        From instant AI analysis to long-term trend tracking, PoopCheck gives you the tools to take control of your gut health.
+      </p>
+    </div>
+
+    <!-- Feature grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {features.map((feature) => (
+        <div class="group gradient-border p-6 hover:bg-[var(--color-elevated)] transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center mb-4 group-hover:bg-[var(--color-primary)]/20 transition-colors">
+            <svg class="w-6 h-6 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={feature.icon} />
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">{feature.title}</h3>
+          <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

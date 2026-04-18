@@ -1,0 +1,213 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
+import { faqSchema } from '../utils/schema';
+
+const faqs = [
+  { question: 'How do I take a good photo for analysis?', answer: 'For best results, take the photo in good lighting from directly above. The app includes a camera mode optimized for stool photography. You can also upload a photo from your camera roll.' },
+  { question: 'Why is my analysis taking longer than usual?', answer: 'Analyses typically complete in under 5 seconds. If it takes longer, check your internet connection. The AI analysis requires a data connection to process the image.' },
+  { question: 'How do I delete my account and data?', answer: 'Go to Settings in the app, then tap "Delete Account." This permanently removes your account and all associated data including photos, analyses, and history. This action cannot be undone.' },
+  { question: 'Can I use PoopCheck without creating an account?', answer: 'Account creation is required to save your analysis history and track trends. However, the sign-up process takes less than 30 seconds with email, Google, or Apple sign-in options.' },
+  { question: 'Is PoopCheck available in my country?', answer: 'PoopCheck is available worldwide on both iOS and Android. The app is currently available in English, with support for 16 languages in store listings.' },
+  { question: 'How do I cancel my premium subscription?', answer: 'Premium subscriptions are managed through your Apple App Store or Google Play Store account. Go to your store\'s subscription management to cancel. You\'ll retain premium access until the end of your billing period.' },
+  { question: 'Can I export my data?', answer: 'Premium members can export detailed health reports as PDFs. These include your analysis history, trends, and gut health score data — perfect for sharing with your healthcare provider.' },
+  { question: 'How do I contact support?', answer: 'Use the contact form below, or email us directly at support@poopcheck.app. You can also reach us through the in-app support form in Settings. We typically respond within 24 hours.' },
+];
+---
+
+<PageLayout
+  seo={{
+    title: 'Support & FAQ — Help Center',
+    description: 'Get help with PoopCheck. Find answers to frequently asked questions about AI stool analysis, account management, subscriptions, and more.',
+  }}
+>
+  <JsonLd schema={faqSchema(faqs)} />
+
+  <div class="py-12 md:py-20">
+    <div class="max-w-3xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[{ label: 'Support', href: '/support/' }]} />
+      </div>
+
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">
+        Help & <span class="gradient-text">Support</span>
+      </h1>
+      <p class="text-lg text-[var(--color-text-muted)] mb-12">
+        Find answers to common questions or reach out to our support team.
+      </p>
+
+      <!-- FAQ Section -->
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer list-none font-semibold hover:text-[var(--color-primary)] transition-colors">
+              <span>{faq.question}</span>
+              <svg class="w-5 h-5 text-[var(--color-text-muted)] group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-6 pb-4 text-sm text-[var(--color-text-muted)] leading-relaxed">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <!-- Contact Form -->
+      <div class="mt-16" id="contact">
+        <h2 class="text-2xl font-bold mb-2">Contact Support</h2>
+        <p class="text-[var(--color-text-muted)] mb-8">
+          Can't find what you're looking for? Send us a message and we'll get back to you within 24 hours.
+        </p>
+
+        <form id="support-form" class="space-y-5">
+          <!-- Email -->
+          <div>
+            <label for="support-email" class="block text-sm font-semibold mb-2">
+              Email address
+            </label>
+            <input
+              type="email"
+              id="support-email"
+              name="email"
+              required
+              placeholder="your@email.com"
+              class="w-full px-4 py-3 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 text-[var(--color-text)] placeholder:text-[var(--color-text-muted)]/50 focus:border-[var(--color-accent)] focus:outline-none transition-colors"
+            />
+          </div>
+
+          <!-- Subject -->
+          <div>
+            <label for="support-subject" class="block text-sm font-semibold mb-2">
+              Subject
+            </label>
+            <select
+              id="support-subject"
+              name="subject"
+              required
+              class="w-full px-4 py-3 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 text-[var(--color-text)] focus:border-[var(--color-accent)] focus:outline-none transition-colors appearance-none"
+            >
+              <option value="" disabled selected>Select a topic...</option>
+              <option value="bug">Bug Report</option>
+              <option value="account">Account Issue</option>
+              <option value="subscription">Subscription / Billing</option>
+              <option value="feature">Feature Request</option>
+              <option value="feedback">General Feedback</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <!-- Message -->
+          <div>
+            <label for="support-message" class="block text-sm font-semibold mb-2">
+              Message
+            </label>
+            <textarea
+              id="support-message"
+              name="message"
+              required
+              maxlength="2000"
+              rows="6"
+              placeholder="Describe your issue or feedback..."
+              class="w-full px-4 py-3 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 text-[var(--color-text)] placeholder:text-[var(--color-text-muted)]/50 focus:border-[var(--color-accent)] focus:outline-none transition-colors resize-y min-h-[120px]"
+            ></textarea>
+            <div class="flex justify-end mt-1">
+              <span id="char-count" class="text-xs text-[var(--color-text-muted)]">0 / 2000</span>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            id="submit-btn"
+            class="w-full sm:w-auto px-8 py-3 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold hover:opacity-90 transition-opacity glow-primary disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Send Message
+          </button>
+        </form>
+
+        <!-- Success message (hidden by default) -->
+        <div id="success-message" class="hidden mt-6 p-6 rounded-xl bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/30">
+          <div class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-[var(--color-primary)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <div>
+              <h3 class="font-semibold">Message sent!</h3>
+              <p class="text-sm text-[var(--color-text-muted)] mt-1">
+                We've received your message and will get back to you within 24 hours at the email you provided.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Direct email fallback -->
+        <p class="mt-6 text-sm text-[var(--color-text-muted)]">
+          You can also email us directly at
+          <a href="mailto:support@poopcheck.app" class="text-[var(--color-accent)] hover:underline">
+            support@poopcheck.app
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</PageLayout>
+
+<script>
+  const form = document.getElementById('support-form') as HTMLFormElement;
+  const textarea = document.getElementById('support-message') as HTMLTextAreaElement;
+  const charCount = document.getElementById('char-count') as HTMLSpanElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const successMsg = document.getElementById('success-message') as HTMLDivElement;
+
+  // Character counter
+  textarea?.addEventListener('input', () => {
+    const len = textarea.value.length;
+    charCount.textContent = `${len} / 2000`;
+    if (len > 1900) {
+      charCount.classList.add('text-[var(--color-warning)]');
+    } else {
+      charCount.classList.remove('text-[var(--color-warning)]');
+    }
+  });
+
+  // Form submission — sends directly via API
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = (document.getElementById('support-email') as HTMLInputElement).value;
+    const subject = (document.getElementById('support-subject') as HTMLSelectElement).value;
+    const message = textarea.value;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    try {
+      const res = await fetch('/api/support/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, subject, message }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
+      // Show success state
+      form.classList.add('hidden');
+      successMsg.classList.remove('hidden');
+    } catch (err) {
+      const errorEl = document.createElement('div');
+      errorEl.className = 'mt-4 p-4 rounded-xl bg-[var(--color-error)]/10 border border-[var(--color-error)]/30 text-sm text-[var(--color-error)]';
+      errorEl.textContent = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+      // Remove any existing error
+      form.querySelector('.text-\\[var\\(--color-error\\)\\]')?.remove();
+      form.appendChild(errorEl);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    }
+  });
+</script>

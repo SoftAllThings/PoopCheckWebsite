@@ -1,0 +1,76 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import DownloadCTA from '../../components/home/DownloadCTA.astro';
+import { STATS } from '../../utils/seo';
+---
+
+<PageLayout
+  seo={{
+    title: `Community — Join ${STATS.users.long} Gut Health Trackers`,
+    description: `Join the PoopCheck community of ${STATS.users.long} users tracking their gut health. Share experiences, climb the leaderboard, and learn from others — all while keeping your data private.`,
+  }}
+>
+  <div class="py-12 md:py-20">
+    <div class="max-w-3xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[
+          { label: 'Features', href: '/features/' },
+          { label: 'Community', href: '/features/community/' },
+        ]} />
+      </div>
+
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-primary)] mb-6">
+          <svg class="w-8 h-8 text-[var(--color-text-dark)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold">
+          <span class="gradient-text">Global Community</span>
+        </h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)] max-w-2xl mx-auto">
+          You're not alone on your gut health journey. Join {STATS.users.long} people who care about their digestive wellness.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
+        {[
+          { value: STATS.users.short, label: 'Active Members' },
+          { value: STATS.analyses.short, label: 'Analyses Shared' },
+          { value: '150+', label: 'Countries' },
+        ].map((stat) => (
+          <div class="text-center p-6 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50">
+            <div class="text-3xl font-bold gradient-text">{stat.value}</div>
+            <div class="text-sm text-[var(--color-text-muted)] mt-1">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+
+      <div class="space-y-12 mb-16">
+        <div>
+          <h2 class="text-2xl font-bold mb-4">Share Experiences, Not Data</h2>
+          <p class="text-[var(--color-text-muted)] leading-relaxed">
+            The PoopCheck community lets you share experiences and insights publicly while keeping all your health data completely private. Post about your gut health journey, share tips, and learn from others who've faced similar challenges.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold mb-4">Leaderboard & Rewards</h2>
+          <p class="text-[var(--color-text-muted)] leading-relaxed">
+            Stay motivated with our points-based leaderboard. Earn points for consistent tracking, community contributions, and healthy habits. Premium members earn 2x points and get a premium badge on their profile.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold mb-4">Privacy by Design</h2>
+          <p class="text-[var(--color-text-muted)] leading-relaxed">
+            Community features are entirely opt-in. Your profile can be public or private. Your analysis data, photos, and health scores are never shared with the community unless you explicitly choose to share. Your data stays yours.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <DownloadCTA />
+</PageLayout>

@@ -1,0 +1,43 @@
+---
+import '../styles/global.css';
+import SEO from '../components/seo/SEO.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
+import { organizationSchema } from '../utils/schema';
+import type { SEOProps } from '../utils/seo';
+
+interface Props {
+  seo: SEOProps;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { seo, schema } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="16x16 32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon-180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#FAFAF8" media="(prefers-color-scheme: light)" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <SEO {...seo} />
+    <JsonLd schema={organizationSchema()} />
+    {schema && <JsonLd schema={schema} />}
+  </head>
+  <body class="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] font-sans antialiased">
+    <!-- Skip to content -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-[var(--color-primary)] focus:text-[var(--color-text-dark)] focus:font-semibold focus:text-sm"
+    >
+      Skip to content
+    </a>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,139 @@
+---
+import JsonLd from '../seo/JsonLd.astro';
+
+const reviews = [
+  {
+    name: 'Alex T.',
+    rating: 5,
+    title: 'Actually life-changing',
+    text: "I have IBS and tracking my bowel movements used to be a pain. PoopCheck makes it instant — snap a photo and done. The gut health score keeps me motivated and I've actually been able to identify trigger foods.",
+    date: '2025-03-28',
+    platform: 'App Store',
+  },
+  {
+    name: 'Rachel S.',
+    rating: 5,
+    title: 'My gastro was impressed',
+    text: "Showed up to my GI appointment with 2 months of detailed reports. My doctor said it was the most useful patient data she'd ever seen. Premium is worth every penny for the export feature alone.",
+    date: '2025-03-15',
+    platform: 'App Store',
+  },
+  {
+    name: 'Michael D.',
+    rating: 5,
+    title: 'Simple and private',
+    text: "I was skeptical about a poop app but the AI analysis is genuinely accurate. Love that it's privacy-first — my data stays mine. The Bristol Scale classification is spot on every time.",
+    date: '2025-03-22',
+    platform: 'Google Play',
+  },
+  {
+    name: 'Priya K.',
+    rating: 5,
+    title: 'Best health app nobody talks about',
+    text: "Your poop tells you SO much about your health and nobody tracks it. This app changed that for me. The gut score trending up after I changed my diet was incredibly satisfying to see.",
+    date: '2025-02-18',
+    platform: 'App Store',
+  },
+  {
+    name: 'Tom W.',
+    rating: 5,
+    title: 'Clean design, fast results',
+    text: "Analysis takes like 3 seconds. The app looks great, dark mode is easy on the eyes, and the community feature is surprisingly fun. Been using it daily for 4 months now.",
+    date: '2025-03-05',
+    platform: 'Google Play',
+  },
+  {
+    name: 'Laura M.',
+    rating: 5,
+    title: 'Finally understanding my gut',
+    text: "After years of digestive issues, PoopCheck helped me see patterns I was completely missing. The AI insights are genuinely helpful, not generic. Recommended it to my whole family.",
+    date: '2025-04-01',
+    platform: 'App Store',
+  },
+];
+
+const aggregateSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'PoopCheck: AI Stool Tracker',
+  operatingSystem: 'iOS, Android',
+  applicationCategory: 'HealthApplication',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.8',
+    ratingCount: '2400',
+    bestRating: '5',
+    worstRating: '1',
+  },
+};
+---
+
+<JsonLd schema={aggregateSchema} />
+
+<section class="py-12 md:py-16">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <p class="text-[var(--color-primary)] font-semibold text-sm uppercase tracking-wider mb-3">Reviews</p>
+      <h2 class="text-3xl md:text-4xl font-bold">
+        Rated <span class="gradient-text">4.8 out of 5</span> by thousands
+      </h2>
+      <div class="flex items-center justify-center gap-1.5 mt-4">
+        {[...Array(5)].map(() => (
+          <svg class="w-6 h-6 text-[var(--color-primary)]" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+          </svg>
+        ))}
+      </div>
+      <p class="text-sm text-[var(--color-text-muted)] mt-2">Based on 2,400+ reviews on App Store & Google Play</p>
+    </div>
+
+    <!-- Reviews grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {reviews.map((review) => (
+        <div class="gradient-border p-5 flex flex-col">
+          <!-- Stars -->
+          <div class="flex items-center gap-1 mb-3">
+            {[...Array(review.rating)].map(() => (
+              <svg class="w-4 h-4 text-[var(--color-primary)]" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </div>
+
+          <!-- Title -->
+          <h3 class="font-semibold text-sm mb-2">"{review.title}"</h3>
+
+          <!-- Text -->
+          <p class="text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">
+            {review.text}
+          </p>
+
+          <!-- Author -->
+          <div class="flex items-center justify-between mt-4 pt-3 border-t border-[var(--color-border)]/30">
+            <div class="flex items-center gap-2">
+              <div class="w-7 h-7 rounded-full bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-primary)] flex items-center justify-center">
+                <span class="text-xs font-bold text-[var(--color-text-dark)]">{review.name[0]}</span>
+              </div>
+              <span class="text-sm font-medium">{review.name}</span>
+            </div>
+            <span class="text-xs text-[var(--color-text-muted)]">{review.platform}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- App Store badges CTA -->
+    <div class="mt-12 text-center">
+      <p class="text-[var(--color-text-muted)] text-sm mb-4">Join thousands of happy users</p>
+      <a
+        href="/download/"
+        class="inline-flex items-center px-8 py-3 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold hover:opacity-90 transition-opacity glow-primary"
+      >
+        Download Free — 4.8 Stars
+        <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

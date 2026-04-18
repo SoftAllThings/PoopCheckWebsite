@@ -1,0 +1,82 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import PostCard from '../../components/blog/PostCard.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const categories = [
+  { slug: 'gut-health', label: 'Gut Health' },
+  { slug: 'stool-analysis', label: 'Stool Analysis' },
+  { slug: 'bristol-stool-scale', label: 'Bristol Stool Scale' },
+  { slug: 'nutrition', label: 'Nutrition' },
+  { slug: 'conditions', label: 'Conditions' },
+  { slug: 'app-updates', label: 'App Updates' },
+  { slug: 'research', label: 'Research' },
+];
+---
+
+<PageLayout
+  seo={{
+    title: 'Blog — Gut Health Tips, Stool Analysis & Digestive Wellness',
+    description: 'Expert articles on gut health, stool analysis, the Bristol Stool Scale, nutrition, and digestive wellness. Learn how to improve your digestive health with PoopCheck.',
+  }}
+>
+  <div class="py-12 md:py-20">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[{ label: 'Blog', href: '/blog/' }]} />
+      </div>
+
+      <div class="max-w-3xl mb-12">
+        <h1 class="text-3xl md:text-4xl font-bold">
+          The <span class="gradient-text">PoopCheck</span> Blog
+        </h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)]">
+          Expert articles on gut health, stool analysis, and digestive wellness. Learn how your poop can tell you about your health.
+        </p>
+      </div>
+
+      <!-- Category filters -->
+      <div class="flex flex-wrap gap-2 mb-10">
+        <a
+          href="/blog/"
+          class="px-4 py-2 rounded-full text-sm font-medium bg-[var(--color-primary)] text-[var(--color-text-dark)]"
+        >
+          All
+        </a>
+        {categories.map((cat) => (
+          <a
+            href={`/blog/category/${cat.slug}/`}
+            class="px-4 py-2 rounded-full text-sm font-medium bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-elevated)] transition-colors border border-[var(--color-border)]/50"
+          >
+            {cat.label}
+          </a>
+        ))}
+      </div>
+
+      <!-- Posts grid -->
+      {posts.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {posts.map((post) => (
+            <PostCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              category={post.data.category}
+              slug={post.id}
+              image={post.data.image}
+              featured={post.data.featured}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-20">
+          <p class="text-[var(--color-text-muted)] text-lg">Blog posts coming soon. Check back shortly!</p>
+        </div>
+      )}
+    </div>
+  </div>
+</PageLayout>

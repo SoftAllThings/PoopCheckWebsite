@@ -1,0 +1,76 @@
+---
+import PageLayout from '../../../layouts/PageLayout.astro';
+import PostCard from '../../../components/blog/PostCard.astro';
+import Breadcrumbs from '../../../components/seo/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+
+const categoryLabels: Record<string, string> = {
+  'gut-health': 'Gut Health',
+  'stool-analysis': 'Stool Analysis',
+  'bristol-stool-scale': 'Bristol Stool Scale',
+  nutrition: 'Nutrition',
+  conditions: 'Conditions',
+  'app-updates': 'App Updates',
+  research: 'Research',
+};
+
+export async function getStaticPaths() {
+  const categories = ['gut-health', 'stool-analysis', 'bristol-stool-scale', 'nutrition', 'conditions', 'app-updates', 'research'];
+  return categories.map((category) => ({
+    params: { category },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props;
+const label = categoryLabels[category] || category;
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft && data.category === category))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<PageLayout
+  seo={{
+    title: `${label} Articles — Gut Health Blog`,
+    description: `Read our latest articles about ${label.toLowerCase()}. Expert insights on digestive health, stool analysis, and wellness from the PoopCheck team.`,
+  }}
+>
+  <div class="py-12 md:py-20">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[
+          { label: 'Blog', href: '/blog/' },
+          { label, href: `/blog/category/${category}/` },
+        ]} />
+      </div>
+
+      <div class="max-w-3xl mb-12">
+        <h1 class="text-3xl md:text-4xl font-bold">
+          <span class="gradient-text">{label}</span> Articles
+        </h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)]">
+          Expert articles about {label.toLowerCase()} from the PoopCheck team.
+        </p>
+      </div>
+
+      {posts.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {posts.map((post) => (
+            <PostCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              category={post.data.category}
+              slug={post.id}
+              image={post.data.image}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-20">
+          <p class="text-[var(--color-text-muted)] text-lg">No articles in this category yet. Check back soon!</p>
+        </div>
+      )}
+    </div>
+  </div>
+</PageLayout>

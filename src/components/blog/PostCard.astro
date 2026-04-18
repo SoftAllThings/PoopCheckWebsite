@@ -1,0 +1,61 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  category: string;
+  slug: string;
+  image?: string;
+  featured?: boolean;
+}
+
+const { title, description, date, category, slug, image, featured } = Astro.props;
+
+const categoryLabels: Record<string, string> = {
+  'gut-health': 'Gut Health',
+  'stool-analysis': 'Stool Analysis',
+  'bristol-stool-scale': 'Bristol Stool Scale',
+  nutrition: 'Nutrition',
+  conditions: 'Conditions',
+  'app-updates': 'App Updates',
+  research: 'Research',
+};
+
+const formattedDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+---
+
+<article class="group gradient-border p-0 overflow-hidden hover:bg-[var(--color-elevated)] transition-colors">
+  {image && (
+    <div class="aspect-video overflow-hidden">
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        loading="lazy"
+      />
+    </div>
+  )}
+  <div class="p-6">
+    <div class="flex items-center gap-3 mb-3">
+      <a
+        href={`/blog/category/${category}/`}
+        class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[var(--color-primary)]/10 text-[var(--color-primary)]"
+      >
+        {categoryLabels[category] || category}
+      </a>
+      <span class="text-xs text-[var(--color-text-muted)]">{formattedDate}</span>
+    </div>
+    <h3 class="font-semibold text-lg mb-2 group-hover:text-[var(--color-primary)] transition-colors">
+      <a href={`/blog/${slug}/`} class="after:absolute after:inset-0 relative">
+        {title}
+      </a>
+    </h3>
+    <p class="text-sm text-[var(--color-text-muted)] leading-relaxed line-clamp-3">
+      {description}
+    </p>
+  </div>
+</article>

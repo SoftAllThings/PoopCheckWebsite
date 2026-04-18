@@ -1,0 +1,69 @@
+---
+import JsonLd from '../seo/JsonLd.astro';
+import { faqSchema } from '../../utils/schema';
+
+const faqs = [
+  {
+    question: 'What is PoopCheck?',
+    answer: 'PoopCheck is an AI-powered stool tracker app that analyzes photos of your bowel movements using the Bristol Stool Scale. It provides instant classification of consistency, color, and shape, gives you a daily gut health score, and tracks trends over time to help you understand and improve your digestive health.',
+  },
+  {
+    question: 'How does the AI stool analysis work?',
+    answer: 'When you take a photo, our AI engine analyzes it using computer vision trained on 140,000+ stool samples. It classifies your stool according to the Bristol Stool Scale (Types 1-7), identifies color patterns, and detects health indicators. Results are delivered in seconds with actionable insights.',
+  },
+  {
+    question: 'Is PoopCheck a medical device?',
+    answer: 'No. PoopCheck is a wellness and health tracking tool designed for personal use. It is not a medical device and should not be used to diagnose, treat, or prevent any disease. Always consult a healthcare professional for medical concerns. PoopCheck can help you track data to share with your doctor.',
+  },
+  {
+    question: 'Is my data private and secure?',
+    answer: 'Absolutely. Privacy is our top priority. Your photos are encrypted in transit and at rest. We never sell your data to third parties. You can delete your account and all associated data at any time. PoopCheck is built privacy-first — your health data stays yours.',
+  },
+  {
+    question: 'What is the Bristol Stool Scale?',
+    answer: 'The Bristol Stool Scale (also called the Bristol Stool Chart) is a medical classification system that categorizes human stool into 7 types based on shape and consistency. It was developed at the Bristol Royal Infirmary and is widely used by healthcare professionals to assess digestive health. Types 3-4 are generally considered ideal.',
+  },
+  {
+    question: 'Is PoopCheck free to use?',
+    answer: 'Yes, PoopCheck is free to download and use. Core features including AI stool analysis, Bristol Scale classification, and basic tracking are completely free. Premium features like detailed health reports, the AI assistant, advanced analytics, and export functionality are available through an optional subscription.',
+  },
+  {
+    question: 'What is a gut health score?',
+    answer: 'Your gut health score is a daily personalized metric calculated from multiple factors: stool consistency and type, bowel movement regularity, comfort level, and lifestyle inputs. The score helps you understand your overall digestive health at a glance and track improvements over time.',
+  },
+  {
+    question: 'What platforms is PoopCheck available on?',
+    answer: 'PoopCheck is available for both iOS (iPhone, iPad) and Android devices. You can download it for free from the Apple App Store or Google Play Store.',
+  },
+];
+---
+
+<JsonLd schema={faqSchema(faqs)} />
+
+<section class="py-12 md:py-16 bg-[var(--color-surface)]">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <p class="text-[var(--color-primary)] font-semibold text-sm uppercase tracking-wider mb-3">FAQ</p>
+      <h2 class="text-3xl md:text-4xl font-bold">
+        Frequently asked
+        <span class="gradient-text">questions</span>
+      </h2>
+    </div>
+
+    <div class="space-y-4">
+      {faqs.map((faq, i) => (
+        <details class="group rounded-xl bg-[var(--color-bg)] border border-[var(--color-border)]/50 overflow-hidden">
+          <summary class="flex items-center justify-between px-6 py-4 cursor-pointer list-none font-semibold hover:text-[var(--color-primary)] transition-colors">
+            <span>{faq.question}</span>
+            <svg class="w-5 h-5 text-[var(--color-text-muted)] group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="px-6 pb-4 text-sm text-[var(--color-text-muted)] leading-relaxed">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

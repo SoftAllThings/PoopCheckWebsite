@@ -1,0 +1,74 @@
+# PoopCheck — Complete Reference
+
+> PoopCheck is an AI-powered stool analysis and gut health tracking mobile application with over 80,000 users worldwide. It is available for free on iOS and Android.
+
+## What is PoopCheck?
+
+PoopCheck is a wellness and health tracking app that uses artificial intelligence to analyze stool photos. When a user takes a photo of their stool, the AI engine classifies it using the Bristol Stool Scale (Types 1-7), analyzes color and consistency, and provides personalized gut health insights. It is not a medical device and should not be used for medical diagnosis.
+
+## Core Features
+
+### AI Stool Analysis
+PoopCheck's AI engine is trained on over 100,000 stool samples. It provides instant classification of:
+- Bristol Stool Scale type (1-7)
+- Stool color analysis
+- Consistency and shape assessment
+- Health indicator screening
+
+### Gut Health Score
+A daily personalized metric calculated from stool consistency, bowel movement regularity, comfort level, and lifestyle inputs. The score helps users understand their overall digestive health at a glance and track improvements over time.
+
+### Bristol Stool Scale Classification
+Automatic classification using the medically recognized Bristol Stool Scale:
+- Type 1: Separate hard lumps (severe constipation)
+- Type 2: Lumpy sausage-shaped (mild constipation)
+- Type 3: Sausage with cracks (normal)
+- Type 4: Smooth and snake-like (ideal)
+- Type 5: Soft blobs (slightly loose)
+- Type 6: Mushy with ragged edges (mild diarrhea)
+- Type 7: Entirely liquid (diarrhea)
+Types 3-4 are considered healthy.
+
+### AI Health Assistant (SOFTie)
+A contextual AI chat assistant that answers questions about analysis results, provides advice based on scan history, and streams responses in real-time.
+
+### Health Reports
+Comprehensive digestive health reports with trends, patterns, and recommendations that can be exported as PDFs and shared with healthcare providers.
+
+### Community
+A global community of 80,000+ users with public post sharing, leaderboard system, and notification features. User data remains private unless explicitly shared.
+
+## Pricing
+
+PoopCheck is free to download and use. Core features including AI stool analysis, Bristol Scale classification, and basic tracking are completely free.
+
+Premium subscription ($4.99/month or $29.99/year) includes:
+- Personalized health reports
+- AI digestive assistant (SOFTie)
+- Advanced analytics and trends
+- Export detailed reports
+- 2x reward points
+- Premium member badge
+
+## Privacy
+
+PoopCheck is built privacy-first. Photos are encrypted in transit and at rest. Data is never sold to third parties. Users can delete their account and all associated data at any time.
+
+## Availability
+
+- iOS: Available on the Apple App Store
+- Android: Available on Google Play Store
+- Website: https://poopcheck.app
+
+## Key Pages
+
+- [Home](https://poopcheck.app/): Main landing page
+- [Features](https://poopcheck.app/features/): All features overview
+- [AI Analysis](https://poopcheck.app/features/ai-stool-analysis/): AI analysis deep-dive
+- [Pricing](https://poopcheck.app/pricing/): Free vs Premium plans
+- [Blog](https://poopcheck.app/blog/): Gut health articles
+- [Guides](https://poopcheck.app/guides/): Comprehensive health guides
+- [Playground](https://poopcheck.app/playground/): Try AI analysis online
+- [Download](https://poopcheck.app/download/): App download links
+- [About](https://poopcheck.app/about/): Company mission
+- [Support](https://poopcheck.app/support/): FAQ and help

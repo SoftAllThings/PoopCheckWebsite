@@ -1,0 +1,321 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import { serviceSchema, faqSchema } from '../../utils/schema';
+import { SITE } from '../../utils/seo';
+
+const useCases = [
+  {
+    title: 'Digestive-health apps',
+    desc: 'Add on-device-quality stool analysis without training or hosting your own CV models.',
+    icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z',
+  },
+  {
+    title: 'Telehealth platforms',
+    desc: 'Let patients submit a photo between appointments and give clinicians structured data to review.',
+    icon: 'M9 12h6m-3-3v6m-9 1V7a2 2 0 012-2h3.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 2h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 5H22a2 2 0 012 2v11a2 2 0 01-2 2H4a2 2 0 01-2-2z',
+  },
+  {
+    title: 'Clinical research tools',
+    desc: 'Standardize stool classification across cohorts with Bristol Scale labels you can cite.',
+    icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
+  },
+  {
+    title: 'Veterinary & wellness',
+    desc: 'Stool-health signals for pet-care platforms, gut-health testing kits, and nutrition apps.',
+    icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
+  },
+];
+
+const returns = [
+  { title: 'Bristol Stool Scale type', desc: 'Classification from Type 1 (hard lumps) to Type 7 (liquid), with a confidence score.' },
+  { title: 'Color analysis', desc: 'Stool color identification plus flags for patterns that may warrant attention.' },
+  { title: 'Health screenings', desc: 'Checks for consistency, mucus, blood indicators, and shape anomalies.' },
+  { title: 'Actionable insights', desc: 'AI-generated narrative summary and recommendations tailored to the result.' },
+];
+
+const faqs = [
+  { question: 'How is the API priced?', answer: 'Pricing is tailored to volume and deployment model — we offer per-call, monthly commit, and enterprise licensing. Contact us with expected monthly volume and we\'ll send a quote the same day.' },
+  { question: 'How fast is a single analysis?', answer: 'Typical end-to-end latency is 2–5 seconds for a single image, including the full Bristol classification, color analysis, and health screening pipeline. The endpoint streams progress events so you can show a responsive UX.' },
+  { question: 'Is the API HIPAA-compliant?', answer: 'We support HIPAA-aligned deployments on request, including signed BAAs for qualifying customers. Reach out about your compliance requirements and we\'ll walk you through options.' },
+  { question: 'Do you offer an SLA?', answer: 'Enterprise customers get a 99.9% uptime SLA and priority incident support. Standard accounts run on the same production infrastructure but without contractual guarantees.' },
+  { question: 'Can you train a custom model for our use case?', answer: 'Yes. If your product needs specialized labels (e.g. pediatric, veterinary, post-surgical) or a domain-specific output schema, we can fine-tune on your data or ours. Typical timelines are 4–8 weeks.' },
+  { question: 'Where is data processed?', answer: 'Our default region is US-based edge infrastructure. EU-region processing is available on request for data-residency requirements.' },
+];
+
+const schemas = [
+  serviceSchema({
+    name: 'Stool Analysis API',
+    description:
+      'REST API for AI stool analysis — Bristol Stool Scale classification, color analysis, and health screenings. Built for digestive-health apps, telehealth platforms, clinical research, and veterinary products.',
+    url: `${SITE.url}/business/api/`,
+    serviceType: 'Medical AI API',
+  }),
+  faqSchema(faqs),
+];
+---
+
+<PageLayout
+  seo={{
+    title: 'Stool Analysis API — Bristol Scale Classification & Health Screening',
+    description:
+      'Integrate PoopCheck\'s AI stool analysis API: Bristol Stool Scale classification, color analysis, and health screenings in a single REST call. Request access for your app or research.',
+    canonical: `${SITE.url}/business/api/`,
+  }}
+  schema={schemas}
+>
+  <div class="py-12 md:py-20">
+    <div class="max-w-5xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs
+          items={[
+            { label: 'For Business', href: '/business/' },
+            { label: 'API', href: '/business/api/' },
+          ]}
+        />
+      </div>
+
+      <!-- Hero -->
+      <div class="max-w-3xl mb-14">
+        <div class="inline-block px-3 py-1 rounded-full text-xs font-semibold text-[var(--color-primary)] bg-[var(--color-primary)]/10 mb-4 tracking-wider">
+          FOR BUSINESS
+        </div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          The <span class="gradient-text">Stool Analysis API</span>
+        </h1>
+        <p class="mt-5 text-lg text-[var(--color-text-muted)] leading-relaxed">
+          Turn a stool photo into a structured health report in seconds. The same engine that powers our consumer app and live demo,
+          available as a REST API for your product, platform, or research.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a
+            href="#contact"
+            class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold hover:opacity-90 transition-opacity glow-primary"
+          >
+            Request API access
+          </a>
+          <a
+            href="/demo/"
+            class="inline-flex items-center justify-center px-6 py-3 rounded-full border border-[var(--color-border)] font-semibold hover:bg-[var(--color-elevated)] transition-colors"
+          >
+            Try it live →
+          </a>
+        </div>
+      </div>
+
+      <!-- What the API returns -->
+      <section class="mb-20">
+        <h2 class="text-2xl md:text-3xl font-bold mb-3">What each call returns</h2>
+        <p class="text-[var(--color-text-muted)] max-w-2xl mb-8">
+          Upload a single image. Get back a structured JSON report covering the full health-signal surface of the stool.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {returns.map((item) => (
+            <div class="gradient-border p-6">
+              <h3 class="font-semibold mb-2">{item.title}</h3>
+              <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Use cases -->
+      <section class="mb-20">
+        <h2 class="text-2xl md:text-3xl font-bold mb-3">Built for</h2>
+        <p class="text-[var(--color-text-muted)] max-w-2xl mb-8">
+          Any product that benefits from understanding what's in a stool image — consumer, clinical, or research.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {useCases.map((item) => (
+            <div class="gradient-border p-6 flex gap-4">
+              <div class="w-12 h-12 shrink-0 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center">
+                <svg class="w-6 h-6 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.icon} />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-1">{item.title}</h3>
+                <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Try it live -->
+      <section class="mb-20">
+        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[var(--color-accent)]/10 to-[var(--color-primary)]/10 border border-[var(--color-border)]/50 p-8 md:p-12">
+          <div class="absolute top-0 right-0 w-80 h-80 bg-[var(--color-primary)]/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+          <div class="relative max-w-2xl">
+            <h2 class="text-2xl md:text-3xl font-bold mb-3">Try it before you talk to us</h2>
+            <p class="text-[var(--color-text-muted)] leading-relaxed mb-6">
+              The live demo on our site calls the exact same pipeline your integration would. Upload an image and
+              see the full response shape, latency, and output quality for yourself.
+            </p>
+            <a
+              href="/demo/"
+              class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold hover:opacity-90 transition-opacity glow-primary"
+            >
+              Open the live demo
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="mb-20">
+        <h2 class="text-2xl md:text-3xl font-bold mb-6">Frequently asked questions</h2>
+        <div class="space-y-3">
+          {faqs.map((faq) => (
+            <details class="group rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 overflow-hidden">
+              <summary class="flex items-center justify-between px-5 py-4 cursor-pointer list-none font-semibold hover:text-[var(--color-primary)] transition-colors">
+                <span>{faq.question}</span>
+                <svg class="w-4 h-4 text-[var(--color-text-muted)] group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div class="px-5 pb-4 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                {faq.answer}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- Contact form -->
+      <section id="contact">
+        <div class="gradient-border p-8 md:p-10">
+          <h2 class="text-2xl md:text-3xl font-bold mb-2">Request API access</h2>
+          <p class="text-[var(--color-text-muted)] mb-8">
+            Tell us a bit about your use case and expected volume. We'll get back within one business day.
+          </p>
+
+          <form id="business-form" class="space-y-5" data-form-kind="api">
+            <div>
+              <label for="business-email" class="block text-sm font-semibold mb-2">Work email</label>
+              <input
+                type="email"
+                id="business-email"
+                name="email"
+                required
+                placeholder="you@company.com"
+                class="w-full px-4 py-3 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 text-[var(--color-text)] placeholder:text-[var(--color-text-muted)]/50 focus:border-[var(--color-accent)] focus:outline-none transition-colors"
+              />
+            </div>
+
+            <div>
+              <label for="business-subject" class="block text-sm font-semibold mb-2">Inquiry type</label>
+              <select
+                id="business-subject"
+                name="subject"
+                required
+                class="w-full px-4 py-3 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 text-[var(--color-text)] focus:border-[var(--color-accent)] focus:outline-none transition-colors appearance-none"
+              >
+                <option value="api-access" selected>API access</option>
+                <option value="partnership">Partnership / other</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="business-message" class="block text-sm font-semibold mb-2">Message</label>
+              <textarea
+                id="business-message"
+                name="message"
+                required
+                maxlength="2000"
+                rows="6"
+                placeholder="What are you building, and what's your expected monthly volume?"
+                class="w-full px-4 py-3 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 text-[var(--color-text)] placeholder:text-[var(--color-text-muted)]/50 focus:border-[var(--color-accent)] focus:outline-none transition-colors resize-y min-h-[140px]"
+              ></textarea>
+              <div class="flex justify-end mt-1">
+                <span id="char-count" class="text-xs text-[var(--color-text-muted)]">0 / 2000</span>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              id="submit-btn"
+              class="w-full sm:w-auto px-8 py-3 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold hover:opacity-90 transition-opacity glow-primary disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Send inquiry
+            </button>
+          </form>
+
+          <div id="success-message" class="hidden mt-6 p-6 rounded-xl bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/30">
+            <div class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-[var(--color-primary)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <div>
+                <h3 class="font-semibold">Inquiry received</h3>
+                <p class="text-sm text-[var(--color-text-muted)] mt-1">
+                  Thanks — we'll get back within one business day at the email you provided.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-6 text-sm text-[var(--color-text-muted)]">
+            Or email us directly at
+            <a href="mailto:marco@softallthings.com" class="text-[var(--color-accent)] hover:underline">marco@softallthings.com</a>.
+          </p>
+        </div>
+      </section>
+    </div>
+  </div>
+</PageLayout>
+
+<script>
+  const form = document.getElementById('business-form') as HTMLFormElement | null;
+  const textarea = document.getElementById('business-message') as HTMLTextAreaElement | null;
+  const charCount = document.getElementById('char-count') as HTMLSpanElement | null;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+  const successMsg = document.getElementById('success-message') as HTMLDivElement | null;
+
+  textarea?.addEventListener('input', () => {
+    if (!textarea || !charCount) return;
+    const len = textarea.value.length;
+    charCount.textContent = `${len} / 2000`;
+    if (len > 1900) {
+      charCount.classList.add('text-[var(--color-warning)]');
+    } else {
+      charCount.classList.remove('text-[var(--color-warning)]');
+    }
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form || !submitBtn || !successMsg || !textarea) return;
+
+    const email = (document.getElementById('business-email') as HTMLInputElement).value;
+    const subject = (document.getElementById('business-subject') as HTMLSelectElement).value;
+    const message = textarea.value;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    try {
+      const res = await fetch('/api/support/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, subject, message }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to send inquiry');
+
+      form.classList.add('hidden');
+      successMsg.classList.remove('hidden');
+    } catch (err) {
+      const errorEl = document.createElement('div');
+      errorEl.className = 'mt-4 p-4 rounded-xl bg-[var(--color-error)]/10 border border-[var(--color-error)]/30 text-sm text-[var(--color-error)]';
+      errorEl.textContent = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+      form.querySelector('.text-\\[var\\(--color-error\\)\\]')?.remove();
+      form.appendChild(errorEl);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send inquiry';
+    }
+  });
+</script>

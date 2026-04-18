@@ -1,0 +1,310 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import { serviceSchema, faqSchema } from '../../utils/schema';
+import { SITE, STATS } from '../../utils/seo';
+
+const included = [
+  { title: `${STATS.analyses.long} labeled images`, desc: 'Real-world stool photos collected through the PoopCheck app, captured across devices, lighting, and demographics.' },
+  { title: 'Bristol Stool Scale class', desc: 'Every image labeled Type 1–7 on the medically recognized Bristol Stool Scale.' },
+  { title: 'Color & pathology flags', desc: 'Multi-label annotations: color category, mucus, blood indicators, consistency, and shape anomalies.' },
+  { title: 'JSON labels + images', desc: 'Standard delivery format, with custom schemas available. Paired with per-image metadata when applicable.' },
+];
+
+const useCases = [
+  {
+    title: 'Training CV models',
+    desc: 'Large, diverse, label-ready image set — skip years of collection and annotation.',
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+  },
+  {
+    title: 'Academic research',
+    desc: 'Research-license terms for universities and published studies on gut health and digestive medicine.',
+    icon: 'M12 14l9-5-9-5-9 5 9 5zM12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z',
+  },
+  {
+    title: 'Clinical validation',
+    desc: 'Benchmark your pipeline against a standardized external dataset before deploying to patients.',
+    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+  },
+  {
+    title: 'Benchmark data',
+    desc: 'A real-world evaluation set for gut-health AI, not another lab-sanitized collection.',
+    icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
+  },
+];
+
+const faqs = [
+  { question: 'How is the dataset licensed?', answer: 'We offer research licenses for academic use (with publication rights) and commercial licenses for product development. Terms vary by use case — contact us and we\'ll scope a license that fits.' },
+  { question: 'How is the data delivered?', answer: 'Default delivery is a signed S3 bucket with images and JSON label files, plus a schema document. We can accommodate custom formats (COCO, CSV, per-label folders) on request.' },
+  { question: 'Can we get a custom subset?', answer: 'Yes. Common requests include "only Types 3–5", "only flagged samples", balanced gender/age splits, or pediatric-only subsets. We can scope these from the master dataset.' },
+  { question: 'How is the data de-identified?', answer: 'Images contain no PHI by design — we collect only the stool photo and app-side analysis metadata. Our annotation and delivery pipelines include additional scrubbing to ensure no identifying information leaks through metadata or file names.' },
+  { question: 'What are the usage restrictions?', answer: 'Standard restrictions: no redistribution outside your organization, no resale, and no use that would enable re-identification. Full terms are in the license agreement we send before delivery.' },
+  { question: 'How is it priced?', answer: 'Pricing depends on subset size, annotation depth, and whether the license is research or commercial. Contact us with the specifics of your need and we\'ll send a quote.' },
+];
+
+const schemas = [
+  serviceSchema({
+    name: 'Annotated Stool Dataset',
+    description:
+      'High-quality multi-label annotated stool image dataset for training computer vision models, academic research, and clinical validation. Over 140,000 labeled samples with Bristol Stool Scale, color, and pathology annotations.',
+    url: `${SITE.url}/business/data/`,
+    serviceType: 'Medical Imaging Dataset',
+  }),
+  faqSchema(faqs),
+];
+---
+
+<PageLayout
+  seo={{
+    title: 'Annotated Stool Dataset — 140K+ Labeled Images for ML & Research',
+    description:
+      'License PoopCheck\'s annotated stool image dataset: 140,000+ samples with Bristol Stool Scale, color, and pathology labels. For ML training, academic research, and clinical validation.',
+    canonical: `${SITE.url}/business/data/`,
+  }}
+  schema={schemas}
+>
+  <div class="py-12 md:py-20">
+    <div class="max-w-5xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs
+          items={[
+            { label: 'For Business', href: '/business/' },
+            { label: 'Annotated Data', href: '/business/data/' },
+          ]}
+        />
+      </div>
+
+      <!-- Hero -->
+      <div class="max-w-3xl mb-14">
+        <div class="inline-block px-3 py-1 rounded-full text-xs font-semibold text-[var(--color-accent)] bg-[var(--color-accent)]/10 mb-4 tracking-wider">
+          FOR BUSINESS
+        </div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          <span class="gradient-text">Annotated</span> stool image dataset
+        </h1>
+        <p class="mt-5 text-lg text-[var(--color-text-muted)] leading-relaxed">
+          {STATS.analyses.long} real-world stool images, multi-label annotated for Bristol Stool Scale class, color, and pathology.
+          The same dataset our production models are trained on — available for your ML team or research group.
+        </p>
+        <div class="mt-8">
+          <a
+            href="#contact"
+            class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold hover:opacity-90 transition-opacity glow-primary"
+          >
+            Request dataset access
+          </a>
+        </div>
+      </div>
+
+      <!-- What's included -->
+      <section class="mb-20">
+        <h2 class="text-2xl md:text-3xl font-bold mb-3">What's included</h2>
+        <p class="text-[var(--color-text-muted)] max-w-2xl mb-8">
+          One of the largest consumer stool image datasets in existence, delivered with labels ready for training.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {included.map((item) => (
+            <div class="gradient-border p-6">
+              <h3 class="font-semibold mb-2">{item.title}</h3>
+              <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Use cases -->
+      <section class="mb-20">
+        <h2 class="text-2xl md:text-3xl font-bold mb-3">What teams do with it</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {useCases.map((item) => (
+            <div class="gradient-border p-6 flex gap-4">
+              <div class="w-12 h-12 shrink-0 rounded-xl bg-[var(--color-accent)]/10 flex items-center justify-center">
+                <svg class="w-6 h-6 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.icon} />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-1">{item.title}</h3>
+                <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Annotation quality -->
+      <section class="mb-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="gradient-border p-8">
+            <h2 class="text-xl md:text-2xl font-bold mb-3">Annotation methodology</h2>
+            <p class="text-[var(--color-text-muted)] leading-relaxed text-sm">
+              Labels are produced by trained annotators against the Bristol Stool Scale and a standardized color/pathology rubric,
+              with a portion of the set double-labeled for QA. Disagreements are resolved by senior review. The same labeling
+              pipeline feeds our production model's training data.
+            </p>
+          </div>
+          <div class="gradient-border p-8">
+            <h2 class="text-xl md:text-2xl font-bold mb-3">Licensing</h2>
+            <p class="text-[var(--color-text-muted)] leading-relaxed text-sm">
+              Research licenses are available for academic use with publication rights. Commercial licenses cover product
+              development, with terms scaled by subset size and use case. We'll send a draft agreement after an intro call.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="mb-20">
+        <h2 class="text-2xl md:text-3xl font-bold mb-6">Frequently asked questions</h2>
+        <div class="space-y-3">
+          {faqs.map((faq) => (
+            <details class="group rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 overflow-hidden">
+              <summary class="flex items-center justify-between px-5 py-4 cursor-pointer list-none font-semibold hover:text-[var(--color-primary)] transition-colors">
+                <span>{faq.question}</span>
+                <svg class="w-4 h-4 text-[var(--color-text-muted)] group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div class="px-5 pb-4 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                {faq.answer}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- Contact form -->
+      <section id="contact">
+        <div class="gradient-border p-8 md:p-10">
+          <h2 class="text-2xl md:text-3xl font-bold mb-2">Request dataset access</h2>
+          <p class="text-[var(--color-text-muted)] mb-8">
+            Tell us about your use case and any specific subset needs. We'll reply within one business day.
+          </p>
+
+          <form id="business-form" class="space-y-5" data-form-kind="data">
+            <div>
+              <label for="business-email" class="block text-sm font-semibold mb-2">Work or academic email</label>
+              <input
+                type="email"
+                id="business-email"
+                name="email"
+                required
+                placeholder="you@company.com or you@university.edu"
+                class="w-full px-4 py-3 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 text-[var(--color-text)] placeholder:text-[var(--color-text-muted)]/50 focus:border-[var(--color-accent)] focus:outline-none transition-colors"
+              />
+            </div>
+
+            <div>
+              <label for="business-subject" class="block text-sm font-semibold mb-2">Inquiry type</label>
+              <select
+                id="business-subject"
+                name="subject"
+                required
+                class="w-full px-4 py-3 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 text-[var(--color-text)] focus:border-[var(--color-accent)] focus:outline-none transition-colors appearance-none"
+              >
+                <option value="dataset" selected>Dataset licensing</option>
+                <option value="partnership">Partnership / other</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="business-message" class="block text-sm font-semibold mb-2">Message</label>
+              <textarea
+                id="business-message"
+                name="message"
+                required
+                maxlength="2000"
+                rows="6"
+                placeholder="What are you training or researching? Any subset, label, or volume requirements?"
+                class="w-full px-4 py-3 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 text-[var(--color-text)] placeholder:text-[var(--color-text-muted)]/50 focus:border-[var(--color-accent)] focus:outline-none transition-colors resize-y min-h-[140px]"
+              ></textarea>
+              <div class="flex justify-end mt-1">
+                <span id="char-count" class="text-xs text-[var(--color-text-muted)]">0 / 2000</span>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              id="submit-btn"
+              class="w-full sm:w-auto px-8 py-3 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold hover:opacity-90 transition-opacity glow-primary disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Send inquiry
+            </button>
+          </form>
+
+          <div id="success-message" class="hidden mt-6 p-6 rounded-xl bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/30">
+            <div class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-[var(--color-primary)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <div>
+                <h3 class="font-semibold">Inquiry received</h3>
+                <p class="text-sm text-[var(--color-text-muted)] mt-1">
+                  Thanks — we'll get back within one business day at the email you provided.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-6 text-sm text-[var(--color-text-muted)]">
+            Or email us directly at
+            <a href="mailto:marco@softallthings.com" class="text-[var(--color-accent)] hover:underline">marco@softallthings.com</a>.
+          </p>
+        </div>
+      </section>
+    </div>
+  </div>
+</PageLayout>
+
+<script>
+  const form = document.getElementById('business-form') as HTMLFormElement | null;
+  const textarea = document.getElementById('business-message') as HTMLTextAreaElement | null;
+  const charCount = document.getElementById('char-count') as HTMLSpanElement | null;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+  const successMsg = document.getElementById('success-message') as HTMLDivElement | null;
+
+  textarea?.addEventListener('input', () => {
+    if (!textarea || !charCount) return;
+    const len = textarea.value.length;
+    charCount.textContent = `${len} / 2000`;
+    if (len > 1900) {
+      charCount.classList.add('text-[var(--color-warning)]');
+    } else {
+      charCount.classList.remove('text-[var(--color-warning)]');
+    }
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form || !submitBtn || !successMsg || !textarea) return;
+
+    const email = (document.getElementById('business-email') as HTMLInputElement).value;
+    const subject = (document.getElementById('business-subject') as HTMLSelectElement).value;
+    const message = textarea.value;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    try {
+      const res = await fetch('/api/support/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, subject, message }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to send inquiry');
+
+      form.classList.add('hidden');
+      successMsg.classList.remove('hidden');
+    } catch (err) {
+      const errorEl = document.createElement('div');
+      errorEl.className = 'mt-4 p-4 rounded-xl bg-[var(--color-error)]/10 border border-[var(--color-error)]/30 text-sm text-[var(--color-error)]';
+      errorEl.textContent = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+      form.querySelector('.text-\\[var\\(--color-error\\)\\]')?.remove();
+      form.appendChild(errorEl);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send inquiry';
+    }
+  });
+</script>

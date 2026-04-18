@@ -1,0 +1,82 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+
+const features = [
+  {
+    slug: 'ai-stool-analysis',
+    title: 'AI Stool Analysis',
+    description: 'Get instant, comprehensive stool analysis using computer vision and the Bristol Stool Scale. Our AI classifies consistency, color, shape, and quantity in seconds.',
+    icon: 'M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M15 13a3 3 0 11-6 0 3 3 0 016 0z',
+  },
+  {
+    slug: 'gut-health-score',
+    title: 'Gut Health Score',
+    description: 'Receive a personalized daily gut health score based on stool consistency, regularity, comfort, and lifestyle factors. Track improvements over time.',
+    icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
+  },
+  {
+    slug: 'bristol-stool-scale',
+    title: 'Bristol Stool Scale',
+    description: 'Automatic classification using the medically recognized Bristol Stool Scale. Understand your stool type (1-7) and what it means for your health.',
+    icon: 'M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01',
+  },
+  {
+    slug: 'poop-tracking',
+    title: 'Poop Tracking & History',
+    description: 'Log every bowel movement with a single photo. View your complete history on a calendar, spot patterns, and identify trends you\'d otherwise miss.',
+    icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
+  },
+  {
+    slug: 'community',
+    title: 'Global Community',
+    description: 'Join 25,000+ users tracking their gut health. Share experiences, climb the leaderboard, and learn from a community that cares about digestive wellness.',
+    icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
+  },
+];
+---
+
+<PageLayout
+  seo={{
+    title: 'Features — AI Stool Analysis, Gut Health Score & More',
+    description: 'Explore PoopCheck features: instant AI stool analysis, daily gut health score, Bristol Stool Scale classification, pattern detection, health reports, and community.',
+  }}
+>
+  <div class="py-12 md:py-20">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[{ label: 'Features', href: '/features/' }]} />
+      </div>
+
+      <div class="max-w-3xl mb-16">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold">
+          Powerful features for
+          <span class="gradient-text">digestive health</span>
+        </h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)]">
+          From instant AI analysis to long-term trend tracking, PoopCheck gives you everything you need to understand and improve your gut health.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {features.map((feature) => (
+          <a href={`/features/${feature.slug}/`} class="group gradient-border p-8 hover:bg-[var(--color-elevated)] transition-colors">
+            <div class="w-14 h-14 rounded-2xl bg-[var(--color-primary)]/10 flex items-center justify-center mb-6 group-hover:bg-[var(--color-primary)]/20 transition-colors">
+              <svg class="w-7 h-7 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={feature.icon} />
+              </svg>
+            </div>
+            <h2 class="text-xl font-semibold mb-3 group-hover:text-[var(--color-primary)] transition-colors">{feature.title}</h2>
+            <p class="text-[var(--color-text-muted)] leading-relaxed">{feature.description}</p>
+            <div class="mt-4 text-sm font-semibold text-[var(--color-primary)] flex items-center gap-1">
+              Learn more
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</PageLayout>

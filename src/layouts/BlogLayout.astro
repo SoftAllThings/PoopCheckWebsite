@@ -1,0 +1,175 @@
+---
+import PageLayout from './PageLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import RelatedPosts from '../components/blog/RelatedPosts.astro';
+import { articleSchema } from '../utils/schema';
+import { getCanonicalUrl, SITE } from '../utils/seo';
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  updated?: Date;
+  author?: string;
+  category: string;
+  image?: string;
+  imageAlt?: string;
+  tags?: string[];
+}
+
+const { title, description, date, updated, author, category, image, imageAlt, tags } = Astro.props;
+
+const categoryLabels: Record<string, string> = {
+  'gut-health': 'Gut Health',
+  'stool-analysis': 'Stool Analysis',
+  'bristol-stool-scale': 'Bristol Stool Scale',
+  nutrition: 'Nutrition',
+  conditions: 'Conditions',
+  'app-updates': 'App Updates',
+  research: 'Research',
+};
+
+const schema = articleSchema({
+  title,
+  description,
+  url: getCanonicalUrl(Astro.url.pathname),
+  image: image ? `${SITE.url}${image}` : undefined,
+  datePublished: date.toISOString(),
+  dateModified: updated?.toISOString(),
+  author: author || 'PoopCheck Team',
+});
+
+const formattedDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const readingTime = Math.ceil(
+  (Astro.slots.has('default') ? 1500 : 500) / 200
+);
+---
+
+<PageLayout
+  seo={{
+    title,
+    description,
+    type: 'article',
+    image,
+    imageAlt,
+    publishedTime: date.toISOString(),
+    modifiedTime: updated?.toISOString(),
+    author: author || 'PoopCheck Team',
+  }}
+  schema={schema}
+>
+  <article class="py-12 md:py-20">
+    <div class="max-w-3xl mx-auto px-5">
+      <!-- Breadcrumbs -->
+      <div class="mb-8">
+        <Breadcrumbs
+          items={[
+            { label: 'Blog', href: '/blog/' },
+            { label: categoryLabels[category] || category, href: `/blog/category/${category}/` },
+            { label: title, href: Astro.url.pathname },
+          ]}
+        />
+      </div>
+
+      <!-- Header -->
+      <header class="mb-10">
+        <div class="flex items-center gap-3 mb-4">
+          <a
+            href={`/blog/category/${category}/`}
+            class="px-3 py-1 rounded-full text-xs font-semibold bg-[var(--color-primary)]/10 text-[var(--color-primary)] hover:bg-[var(--color-primary)]/20 transition-colors"
+          >
+            {categoryLabels[category] || category}
+          </a>
+          <span class="text-sm text-[var(--color-text-muted)]">{formattedDate}</span>
+        </div>
+
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">{title}</h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)] leading-relaxed">{description}</p>
+
+        <div class="mt-6 flex items-center gap-4 text-sm text-[var(--color-text-muted)]">
+          <span>By {author || 'PoopCheck Team'}</span>
+          {updated && (
+            <span>Updated {updated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+          )}
+        </div>
+      </header>
+
+      {/* Hero image */}
+      {image && (
+        <div class="mb-10 rounded-2xl overflow-hidden">
+          <img
+            src={image}
+            alt={imageAlt || title}
+            class="w-full h-auto"
+            loading="eager"
+          />
+        </div>
+      )}
+
+      <!-- Content -->
+      <div class="prose prose-invert prose-lg max-w-none
+        prose-headings:font-bold prose-headings:text-[var(--color-text)]
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+        prose-p:text-[var(--color-text-muted)] prose-p:leading-relaxed
+        prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline
+        prose-strong:text-[var(--color-text)]
+        prose-code:text-[var(--color-primary)] prose-code:bg-[var(--color-surface)] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
+        prose-blockquote:border-[var(--color-primary)] prose-blockquote:text-[var(--color-text-muted)]
+        prose-li:text-[var(--color-text-muted)]
+        prose-img:rounded-xl
+      ">
+        <slot />
+      </div>
+
+      {/* Tags */}
+      {tags && tags.length > 0 && (
+        <div class="mt-12 pt-8 border-t border-[var(--color-border)]/50">
+          <div class="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <a
+                href={`/blog/tag/${tag}/`}
+                class="px-3 py-1 rounded-full text-xs font-medium bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:text-[var(--color-primary)] hover:bg-[var(--color-primary)]/10 transition-colors border border-[var(--color-border)]/50"
+              >
+                #{tag}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Author card -->
+      <div class="mt-12 gradient-border p-6 flex items-start gap-4">
+        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-primary)] flex items-center justify-center shrink-0">
+          <span class="text-lg font-bold text-[var(--color-text-dark)]">P</span>
+        </div>
+        <div>
+          <div class="font-semibold">{author || 'PoopCheck Team'}</div>
+          <p class="text-sm text-[var(--color-text-muted)] mt-1">
+            The PoopCheck team is dedicated to making digestive health tracking accessible, accurate, and private for everyone.
+          </p>
+        </div>
+      </div>
+
+      <!-- Related -->
+      <RelatedPosts currentSlug={Astro.url.pathname.split('/blog/')[1]?.replace(/\/$/, '') || ''} category={category} />
+
+      <!-- CTA -->
+      <div class="mt-12 p-8 rounded-2xl bg-gradient-to-br from-[var(--color-accent)]/10 to-[var(--color-primary)]/10 border border-[var(--color-border)]/50 text-center">
+        <h3 class="text-xl font-bold mb-2">Ready to track your gut health?</h3>
+        <p class="text-sm text-[var(--color-text-muted)] mb-4">Download PoopCheck free and get your first AI stool analysis in seconds.</p>
+        <a
+          href="/download/"
+          class="inline-flex items-center px-6 py-3 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold hover:opacity-90 transition-opacity glow-primary"
+        >
+          Download Free
+        </a>
+      </div>
+    </div>
+  </article>
+</PageLayout>

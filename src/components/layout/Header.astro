@@ -1,0 +1,84 @@
+---
+import Nav from './Nav.astro';
+
+const navItems = [
+  { label: 'Features', href: '/features/' },
+  { label: 'Pricing', href: '/pricing/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'Guides', href: '/guides/' },
+  { label: 'Live Demo', href: '/demo/' },
+  { label: 'For Business', href: '/business/' },
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 border-b border-[var(--color-border)]/50 backdrop-blur-xl bg-[var(--color-bg)]/80">
+  <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 group" aria-label="PoopCheck Home">
+      <img src="/icon-192.png" alt="PoopCheck" class="w-8 h-8 rounded-lg" width="32" height="32" />
+      <span class="text-xl font-bold">
+        <span class="text-[var(--color-text)]">Poop</span><span class="gradient-text">Check</span>
+      </span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <Nav items={navItems} />
+
+    <!-- Download CTA -->
+    <a
+      href="/download/"
+      class="hidden md:inline-flex items-center px-5 py-2 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold text-sm hover:opacity-90 transition-opacity glow-primary"
+    >
+      Download App
+    </a>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg text-[var(--color-text)] hover:bg-[var(--color-surface)] transition-colors"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-[var(--color-border)]/50 bg-[var(--color-bg)]/95 backdrop-blur-xl">
+    <nav class="px-5 py-4 flex flex-col gap-1">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="px-4 py-3 rounded-lg text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface)] transition-colors font-medium"
+        >
+          {item.label}
+        </a>
+      ))}
+      <a
+        href="/download/"
+        class="mt-2 px-4 py-3 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold text-center"
+      >
+        Download App
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('hidden') === false;
+    btn.setAttribute('aria-expanded', String(isOpen));
+    menuIcon?.classList.toggle('hidden', isOpen);
+    closeIcon?.classList.toggle('hidden', !isOpen);
+  });
+</script>

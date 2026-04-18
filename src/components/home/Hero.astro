@@ -1,0 +1,124 @@
+---
+import { STATS } from '../../utils/seo';
+import PlaygroundApp from '../playground/PlaygroundApp.tsx';
+
+const STATS_ENDPOINT = 'https://us-central1-poopmania-prod.cloudfunctions.net/getPublicStats';
+---
+
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[var(--color-primary)]/5 rounded-full blur-3xl"></div>
+    <div class="absolute top-20 right-0 w-[400px] h-[400px] bg-[var(--color-accent)]/5 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-5 pt-8 pb-12 md:pt-14 md:pb-16">
+    <div class="text-center max-w-3xl mx-auto">
+      <!-- Proof pill -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)]/60 text-xs md:text-sm text-[var(--color-text-muted)] mb-6">
+        <span class="flex items-center gap-1 text-[var(--color-primary)] font-semibold">
+          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+          {STATS.rating}
+        </span>
+        <span class="text-[var(--color-border)]">·</span>
+        <span><span data-live-stat="totalUsers">{STATS.users.short}</span> users</span>
+        <span class="text-[var(--color-border)]">·</span>
+        <span><span data-live-stat="totalPoops">{STATS.analyses.short}</span> analyses</span>
+      </div>
+
+      <!-- Outcome-promise headline -->
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
+        Know what your
+        <span class="gradient-text">gut</span>
+        is telling you
+        <span class="block mt-1 text-[var(--color-text-muted)] font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">in 5 seconds.</span>
+      </h1>
+
+      <!-- Sub -->
+      <p class="mt-6 text-base md:text-lg text-[var(--color-text-muted)] max-w-xl mx-auto leading-relaxed">
+        Snap a photo. Our AI scores it on the Bristol Stool Scale, flags health signals, and tells you what to do next. Free. No signup.
+      </p>
+
+      <!-- Primary CTA -->
+      <div class="mt-8 flex flex-col items-center gap-3">
+        <a
+          href="/download/"
+          class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold text-base hover:opacity-90 transition-opacity glow-primary"
+        >
+          Get the app — free
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+        <a href="#try-it" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors">
+          or try the AI right now ↓
+        </a>
+      </div>
+
+      <!-- Privacy strip -->
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-[var(--color-text-muted)]">
+        <span class="inline-flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-[var(--color-primary)]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          Encrypted end-to-end
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-[var(--color-primary)]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L18.364 5.636M5.636 18.364l12.728-12.728"/></svg>
+          Never sold
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-[var(--color-primary)]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M1 7h22M10 7V4a1 1 0 011-1h2a1 1 0 011 1v3"/></svg>
+          Delete anytime
+        </span>
+      </div>
+    </div>
+
+    <!-- Embedded Playground -->
+    <div id="try-it" class="mt-14 md:mt-20 max-w-2xl mx-auto scroll-mt-24">
+      <div class="text-center mb-6">
+        <p class="text-[var(--color-primary)] font-semibold text-xs uppercase tracking-wider mb-2">Live AI demo</p>
+        <h2 class="text-2xl md:text-3xl font-bold">See it work on a real photo</h2>
+        <p class="mt-2 text-sm text-[var(--color-text-muted)]">Upload any stool photo. Get Bristol Scale type, health screening, and actions in under 5 seconds.</p>
+      </div>
+      <PlaygroundApp client:load />
+    </div>
+
+    <!-- Clinical credibility block -->
+    <div class="mt-16 md:mt-20 max-w-4xl mx-auto">
+      <div class="gradient-border p-6 md:p-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center md:text-left">
+          <div>
+            <div class="text-2xl md:text-3xl font-bold gradient-text mb-1">Bristol Stool Scale</div>
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">The gastroenterology standard since 1997. The same 7-type classification your doctor uses.</p>
+          </div>
+          <div>
+            <div class="text-2xl md:text-3xl font-bold gradient-text mb-1"><span data-live-stat="totalPoops">{STATS.analyses.short}</span></div>
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">Stool samples analyzed. Our AI gets sharper with every scan, across every population.</p>
+          </div>
+          <div>
+            <div class="text-2xl md:text-3xl font-bold gradient-text mb-1">Wellness, not diagnosis</div>
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">PoopCheck is a tracking tool, not a medical device. Red flags prompt you to see a doctor — we don't replace one.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ STATS_ENDPOINT }}>
+  const format = (n) => {
+    if (typeof n !== 'number' || !isFinite(n)) return null;
+    if (n >= 1_000_000) return (n / 1_000_000).toFixed(n >= 10_000_000 ? 0 : 1).replace(/\.0$/, '') + 'M+';
+    if (n >= 1_000) return Math.floor(n / 1_000) + 'K+';
+    return String(n);
+  };
+  const apply = (data) => {
+    document.querySelectorAll('[data-live-stat]').forEach((el) => {
+      const key = el.getAttribute('data-live-stat');
+      const formatted = format(data?.[key]);
+      if (formatted) el.textContent = formatted;
+    });
+  };
+  fetch(STATS_ENDPOINT)
+    .then((r) => (r.ok ? r.json() : null))
+    .then((data) => data && apply(data))
+    .catch(() => {});
+</script>

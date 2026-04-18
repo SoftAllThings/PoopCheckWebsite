@@ -1,0 +1,110 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import DownloadCTA from '../components/home/DownloadCTA.astro';
+
+const freeFeatures = [
+  'AI stool analysis',
+  'Bristol Stool Scale classification',
+  'Color & consistency analysis',
+  'Basic tracking & history',
+  'Community access',
+  'Daily gut health score',
+];
+
+const premiumFeatures = [
+  'Everything in Free',
+  'Personalized health reports',
+  'AI digestive assistant (SOFTie)',
+  'Advanced analytics & trends',
+  'Export detailed reports',
+  '2x reward points',
+  'Premium member badge',
+  'Priority support',
+];
+---
+
+<PageLayout
+  seo={{
+    title: 'Pricing — Free AI Stool Analysis & Premium Plans',
+    description: 'PoopCheck is free to use. Get AI stool analysis, Bristol Scale classification, and gut health tracking at no cost. Premium plans unlock advanced reports and AI assistant.',
+  }}
+>
+  <div class="py-12 md:py-20">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[{ label: 'Pricing', href: '/pricing/' }]} />
+      </div>
+
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold">
+          Start free, upgrade when
+          <span class="gradient-text">you're ready</span>
+        </h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)]">
+          Core AI stool analysis is completely free. Premium unlocks advanced reports, the AI health assistant, and more.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <!-- Free Plan -->
+        <div class="gradient-border p-8">
+          <h2 class="text-xl font-bold mb-1">Free</h2>
+          <p class="text-[var(--color-text-muted)] text-sm mb-6">Everything you need to get started</p>
+          <div class="text-4xl font-bold mb-6">
+            $0
+            <span class="text-base font-normal text-[var(--color-text-muted)]">/ forever</span>
+          </div>
+          <ul class="space-y-3 mb-8">
+            {freeFeatures.map((feature) => (
+              <li class="flex items-start gap-3 text-sm">
+                <svg class="w-5 h-5 text-[var(--color-primary)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+          <a
+            href="/download/"
+            class="block w-full py-3 rounded-full border border-[var(--color-border)] text-center font-semibold hover:bg-[var(--color-elevated)] transition-colors"
+          >
+            Download Free
+          </a>
+        </div>
+
+        <!-- Premium Plan -->
+        <div class="relative gradient-border p-8 pt-10">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-10 px-5 py-1.5 rounded-full text-xs font-bold tracking-wider text-[var(--color-text-dark)] bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-primary)]">
+            MOST POPULAR
+          </div>
+          <h2 class="text-xl font-bold mb-1">Premium</h2>
+          <p class="text-[var(--color-text-muted)] text-sm mb-6">Advanced insights & AI assistant</p>
+          <div class="text-4xl font-bold mb-1">
+            $6.99
+            <span class="text-base font-normal text-[var(--color-text-muted)]">/ month</span>
+          </div>
+          <p class="text-xs text-[var(--color-text-muted)] mb-6">or $49.99/year (save 40%)</p>
+          <ul class="space-y-3 mb-8">
+            {premiumFeatures.map((feature) => (
+              <li class="flex items-start gap-3 text-sm">
+                <svg class="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+          <a
+            href="/download/"
+            class="block w-full py-3 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] text-center font-semibold hover:opacity-90 transition-opacity glow-primary"
+          >
+            Get Premium
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <DownloadCTA />
+</PageLayout>

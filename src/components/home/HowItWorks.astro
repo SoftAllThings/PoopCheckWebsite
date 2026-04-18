@@ -1,0 +1,52 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: 'Snap a Photo',
+    description: 'Open PoopCheck and take a quick photo. Our camera is optimized for fast, private capture — photos never leave your device unencrypted.',
+  },
+  {
+    number: '02',
+    title: 'Get AI Analysis',
+    description: 'Our AI engine classifies your stool using the Bristol Stool Scale, analyzes color, consistency, and compares against 140,000+ analyses worldwide.',
+  },
+  {
+    number: '03',
+    title: 'Track Your Score',
+    description: 'Receive your daily gut health score and watch it improve over time. Spot trends, identify trigger foods, and share reports with your doctor.',
+  },
+];
+---
+
+<section class="py-12 md:py-16">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <p class="text-[var(--color-primary)] font-semibold text-sm uppercase tracking-wider mb-3">How It Works</p>
+      <h2 class="text-3xl md:text-4xl font-bold">
+        Three steps to better
+        <span class="gradient-text">gut health</span>
+      </h2>
+      <p class="mt-4 text-[var(--color-text-muted)] text-lg">
+        Getting started takes less than 30 seconds. No account required for your first analysis.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {steps.map((step, i) => (
+        <div class="relative">
+          {/* Connector line */}
+          {i < steps.length - 1 && (
+            <div class="hidden md:block absolute top-8 left-[calc(50%+60px)] w-[calc(100%-120px)] h-px bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-primary)] opacity-30" />
+          )}
+          <div class="text-center">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[var(--color-accent)]/20 to-[var(--color-primary)]/20 mb-6">
+              <span class="text-2xl font-bold gradient-text">{step.number}</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">{step.title}</h3>
+            <p class="text-[var(--color-text-muted)] text-sm leading-relaxed max-w-xs mx-auto">{step.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

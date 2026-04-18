@@ -1,0 +1,69 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import DownloadCTA from '../../components/home/DownloadCTA.astro';
+---
+
+<PageLayout
+  seo={{
+    title: 'Poop Tracking — AI-Powered Bowel Movement Diary & History',
+    description: 'Track every bowel movement with a single photo. View history on a calendar, spot patterns, and identify trends with PoopCheck AI-powered poop tracking.',
+  }}
+>
+  <div class="py-12 md:py-20">
+    <div class="max-w-3xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[
+          { label: 'Features', href: '/features/' },
+          { label: 'Poop Tracking', href: '/features/poop-tracking/' },
+        ]} />
+      </div>
+
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-primary)] mb-6">
+          <svg class="w-8 h-8 text-[var(--color-text-dark)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+        </div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold">
+          <span class="gradient-text">Poop Tracking</span>
+        </h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)] max-w-2xl mx-auto">
+          The fastest way to log bowel movements. One photo, instant AI analysis, complete history.
+        </p>
+      </div>
+
+      <div class="space-y-12 mb-16">
+        <div>
+          <h2 class="text-2xl font-bold mb-4">Log in Seconds</h2>
+          <p class="text-[var(--color-text-muted)] leading-relaxed">
+            Traditional stool diaries are tedious and inconsistent. With PoopCheck, you take a single photo and the AI handles everything — Bristol type classification, color analysis, consistency assessment, and timestamping. The entire process takes under 10 seconds.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold mb-4">Calendar View</h2>
+          <p class="text-[var(--color-text-muted)] leading-relaxed">
+            See your complete bowel movement history on an intuitive calendar. Each day is color-coded by Bristol type so you can spot patterns at a glance. Tap any day to see detailed analysis results. Compare weeks and months to track progress.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold mb-4">Pattern Detection</h2>
+          <p class="text-[var(--color-text-muted)] leading-relaxed">
+            Our AI doesn't just classify individual bowel movements — it analyzes your entire history to detect patterns you'd otherwise miss. Identify correlations between diet, stress, sleep, and your digestive health. Get proactive alerts when the AI notices something unusual.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold mb-4">Share With Your Doctor</h2>
+          <p class="text-[var(--color-text-muted)] leading-relaxed">
+            Premium members can export comprehensive PDF reports with their tracking history, Bristol type distribution, trend analysis, and health insights. Bring data to your doctor's appointment instead of trying to remember what happened two weeks ago.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <DownloadCTA />
+</PageLayout>

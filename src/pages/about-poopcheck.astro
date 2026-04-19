@@ -1,0 +1,92 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import DownloadCTA from '../components/home/DownloadCTA.astro';
+import { organizationSchema } from '../utils/schema';
+import { STATS, SITE } from '../utils/seo';
+
+const schemas = [
+  organizationSchema(),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'About PoopCheck',
+    url: `${SITE.url}/about-poopcheck/`,
+    description: 'Learn about PoopCheck, the AI-powered digestive health app developed by Soft All Things LLC to help users monitor gut health through stool analysis and health tracking.',
+  },
+];
+---
+
+<PageLayout
+  seo={{
+    title: 'About PoopCheck \u2014 Built by Soft All Things LLC',
+    description: 'Learn about PoopCheck, the AI-powered digestive health app developed by Soft All Things LLC to help users monitor gut health through stool analysis and health tracking.',
+  }}
+  schema={schemas}
+>
+  <div class="py-12 md:py-20">
+    <div class="max-w-3xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[{ label: 'About', href: '/about-poopcheck/' }]} />
+      </div>
+
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+        About PoopCheck and
+        <span class="gradient-text">Soft All Things LLC</span>
+      </h1>
+
+      <div class="space-y-8 text-[var(--color-text-muted)] leading-relaxed">
+        <p class="text-lg">
+          PoopCheck started with a simple observation: your stool is one of the most immediate indicators of your digestive health, yet most people have no systematic way to track it. We built PoopCheck to change that.
+        </p>
+
+        <h2 class="text-2xl font-bold text-[var(--color-text)] pt-4">Who Is Behind PoopCheck</h2>
+        <p>
+          PoopCheck is developed and operated by <strong class="text-[var(--color-text)]">Soft All Things LLC</strong>, a technology company registered in Wyoming, United States. The company focuses on building digital tools that help people better understand personal health data and everyday health patterns.
+        </p>
+
+        <h2 class="text-2xl font-bold text-[var(--color-text)] pt-4">Why We Built PoopCheck</h2>
+        <p>
+          Digestive health is an important indicator of overall well-being, yet many people do not track changes in their digestive patterns over time. PoopCheck was created to make digestive health monitoring more accessible by allowing users to analyze stool patterns and better understand their gut health \u2014 no medical degree required.
+        </p>
+
+        <h2 class="text-2xl font-bold text-[var(--color-text)] pt-4">Our Approach to Digestive Health Insights</h2>
+        <p>
+          PoopCheck combines modern image recognition technology with established digestive health reference systems such as the Bristol Stool Chart. By helping users monitor patterns over time, the app aims to provide helpful insights that support awareness of digestive health trends.
+        </p>
+        <p>
+          Our AI has analyzed over {STATS.analyses.long} stool samples, and our community of {STATS.users.long} users proves that people want better tools for health tracking.
+        </p>
+
+        <h2 class="text-2xl font-bold text-[var(--color-text)] pt-4">Privacy First</h2>
+        <p>
+          Health data is sensitive. That\u2019s why privacy isn\u2019t a feature \u2014 it\u2019s our foundation. Your photos are encrypted. Your data is never sold. You can delete everything at any time. We built PoopCheck the way we\u2019d want our own health apps built.
+        </p>
+
+        <h2 class="text-2xl font-bold text-[var(--color-text)] pt-4">Not a Medical Device</h2>
+        <p>
+          PoopCheck is a wellness and health tracking tool designed for personal use. It is not a medical device and should not be used to diagnose, treat, or prevent any disease. Always consult a healthcare professional for medical concerns. What PoopCheck does do is give you better data to bring to those conversations.
+        </p>
+
+        <h2 class="text-2xl font-bold text-[var(--color-text)] pt-4">Learn More</h2>
+        <p>Explore our evidence-based articles on gut health and stool analysis:</p>
+        <ul class="space-y-2">
+          <li>
+            <a href="/poopcheck-blog/bristol-stool-chart-types-explained/" class="text-[var(--color-primary)] hover:underline">Bristol Stool Chart: All 7 Types Explained</a>
+          </li>
+          <li>
+            <a href="/poopcheck-blog/what-your-poop-color-means/" class="text-[var(--color-primary)] hover:underline">What Your Poop Color Means</a>
+          </li>
+          <li>
+            <a href="/poopcheck-blog/how-to-improve-gut-health/" class="text-[var(--color-primary)] hover:underline">10 Evidence-Based Ways to Improve Your Gut Health</a>
+          </li>
+          <li>
+            <a href="/poopcheck-blog/" class="text-[var(--color-primary)] hover:underline">Visit the PoopCheck blog</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <DownloadCTA />
+</PageLayout>

@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(winget install *)",
+      "Bash(npm i *)",
+      "Bash(where node *)",
+      "Read(//c/Program Files/nodejs//**)",
+      "Bash(nvm list *)",
+      "Bash(curl -s -L \"https://www.poopcheck.app/about-poopcheck\")",
+      "Bash(curl -s -L \"https://www.poopcheck.app/\")",
+      "Bash(curl -s -L \"https://www.poopcheck.app/ai-poop-analyzer\")",
+      "Bash(curl -s -L \"https://www.poopcheck.app/ai-stool-analysis-technology\")",
+      "Bash(curl -s -L \"https://www.poopcheck.app/faq\")",
+      "Bash(curl -s -L \"https://www.poopcheck.app/poopcheck-blog\")",
+      "Bash(py --version)",
+      "Bash(node -e ' *)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4321/faq/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4321/)",
+      "Bash(tasklist)",
+      "WebFetch(domain:www.poopcheck.app)",
+      "Bash(python -c \"import json; data = json.load\\(open\\(r'C:/Users/Marco/.claude/projects/c--Users-Marco-Desktop-PoopCheckWebsite/1dbb596a-68e6-4131-9f71-9b9a8f0ebb4e/tool-results/toolu_01XARmw93XBRhbSuhLCaD57N.json', encoding='utf-8'\\)\\); print\\(type\\(data\\)\\); print\\(len\\(data\\)\\); print\\(list\\(data[0].keys\\(\\)\\) if isinstance\\(data, list\\) else list\\(data.keys\\(\\)\\)\\)\")",
+      "Bash(node -e \"const d=require\\('C:/Users/Marco/.claude/projects/c--Users-Marco-Desktop-PoopCheckWebsite/1dbb596a-68e6-4131-9f71-9b9a8f0ebb4e/tool-results/toolu_01XARmw93XBRhbSuhLCaD57N.json'\\); console.log\\('count:', d.length\\); d.forEach\\(\\(p,i\\)=>{console.log\\('---',i+1,'---'\\); console.log\\(Object.keys\\(p\\)\\);}\\);\")",
+      "Bash(node -e \"const d=require\\('C:/Users/Marco/.claude/projects/c--Users-Marco-Desktop-PoopCheckWebsite/1dbb596a-68e6-4131-9f71-9b9a8f0ebb4e/tool-results/toolu_01XARmw93XBRhbSuhLCaD57N.json'\\); console.log\\('len0:', d[0].text.length\\); console.log\\('len1:', d[1].text.length\\); console.log\\('FIRST 2000 of d0:'\\); console.log\\(d[0].text.slice\\(0,2000\\)\\);\")",
+      "Bash(node -e \"const d=require\\('C:/Users/Marco/.knowledge/../claude/projects/c--Users-Marco-Desktop-PoopCheckWebsite/1dbb596a-68e6-4131-9f71-9b9a8f0ebb4e/tool-results/toolu_01XARmw93XBRhbSuhLCaD57N.json'.replace\\('.knowledge/../claude','claude'\\)\\); const t=d[0].text; const parts=t.split\\(/## Post \\\\d+:/\\); console.log\\('parts:',parts.length\\); parts.forEach\\(\\(p,i\\)=>{if\\(i===0\\)return; console.log\\('===POST',i,'HEADER==='\\); console.log\\(p.slice\\(0,800\\)\\); console.log\\(\\);}\\);\")",
+      "Bash(node -e \"const d=require\\('C:/Users/Marco/.claude/projects/c--Users-Marco-Desktop-PoopCheckWebsite/1dbb596a-68e6-4131-9f71-9b9a8f0ebb4e/tool-results/toolu_01XARmw93XBRhbSuhLCaD57N.json'\\); const t=d[0].text; const parts=t.split\\(/## Post \\\\d+:/\\); console.log\\('parts:',parts.length\\); parts.forEach\\(\\(p,i\\)=>{if\\(i===0\\)return; console.log\\('===POST',i,'HEADER==='\\); console.log\\(p.slice\\(0,800\\)\\); console.log\\(\\);}\\);\")",
+      "Bash(node -e \"const d=require\\('C:/Users/Marco/.claude/projects/c--Users-Marco-Desktop-PoopCheckWebsite/1dbb596a-68e6-4131-9f71-9b9a8f0ebb4e/tool-results/toolu_01XARmw93XBRhbSuhLCaD57N.json'\\); const t=d[0].text; const parts=t.split\\(/## Post \\\\d+:/\\); for\\(let i=6;i<=10;i++\\){console.log\\('===POST',i,'==='\\); console.log\\(parts[i].slice\\(800,3500\\)\\); console.log\\(\\);}\")",
+      "Bash(node -e \"const d=require\\('C:/Users/Marco/.claude/projects/c--Users-Marco-Desktop-PoopCheckWebsite/1dbb596a-68e6-4131-9f71-9b9a8f0ebb4e/tool-results/toolu_01XARmw93XBRhbSuhLCaD57N.json'\\); const t=d[0].text; const parts=t.split\\(/## Post \\\\d+:/\\); for\\(let i=1;i<=5;i++\\){console.log\\('===POST',i,'==='\\); console.log\\(parts[i].slice\\(800,3500\\)\\); console.log\\(\\);}\")",
+      "Bash(node -e \"const d=require\\('C:/Users/Marco/.claude/projects/c--Users-Marco-Desktop-PoopCheckWebsite/1dbb596a-68e6-4131-9f71-9b9a8f0ebb4e/tool-results/toolu_01XARmw93XBRhbSuhLCaD57N.json'\\); const t=d[0].text; const idx=t.indexOf\\('Key findings'\\); console.log\\(t.slice\\(idx, idx+4000\\)\\);\")",
+      "Bash(mkdir -p /tmp/blogchunks)",
+      "Bash(python3 -c ' *)",
+      "Bash(mkdir -p /c/temp_blog)",
+      "Bash(awk '{print length, $0}')"
+    ]
+  }
+}

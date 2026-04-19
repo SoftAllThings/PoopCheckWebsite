@@ -1,0 +1,92 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import DownloadCTA from '../components/home/DownloadCTA.astro';
+import { SITE } from '../utils/seo';
+
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'AI Stool Analysis Technology',
+    url: `${SITE.url}/ai-stool-analysis-technology/`,
+    description: 'Learn how PoopCheck\u2019s AI analyzes stool images using image recognition and the Bristol Stool Chart to detect stool type and track digestive health patterns.',
+  },
+];
+---
+
+<PageLayout
+  seo={{
+    title: 'AI Stool Analysis Technology \u2014 How PoopCheck Analyzes Stool Images',
+    description: 'Learn how PoopCheck\u2019s AI analyzes stool images using image recognition and the Bristol Stool Chart to detect stool type and track digestive health patterns.',
+  }}
+  schema={schemas}
+>
+  <div class="py-12 md:py-20">
+    <div class="max-w-3xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[{ label: 'AI Stool Analysis Technology', href: '/ai-stool-analysis-technology/' }]} />
+      </div>
+
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+        Stool Analysis
+        <span class="gradient-text">Technology</span>
+      </h1>
+
+      <p class="text-lg text-[var(--color-text-muted)] leading-relaxed mb-12">
+        PoopCheck uses advanced AI stool analysis technology to power its <a href="/ai-poop-analyzer/" class="text-[var(--color-primary)] hover:underline">AI poop analyzer</a>, which analyzes stool images and identifies digestive health patterns. By combining image recognition with the Bristol Stool Chart, the system classifies stool type, evaluates key characteristics such as shape and consistency, and helps users track gut health over time.
+      </p>
+
+      <div class="space-y-10 text-[var(--color-text-muted)] leading-relaxed">
+        <section>
+          <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-4">AI-Powered Analysis &amp; Classification</h2>
+          <p>
+            Our advanced AI analyzes each stool image, detecting key features like shape, texture, and possible signs of concern. Using the Bristol Stool Chart, it classifies each sample into one of seven types, giving you clear insights into your digestive health and helping you track changes over time.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-4">Data Extraction &amp; Health Tracking</h2>
+          <p>
+            PoopCheck goes beyond basic analysis. It extracts critical data points such as color, consistency, and even potential traces of blood. These findings are automatically organized into clean visuals and smart graphs, helping you monitor your gut health. With the built-in calendar and tracking tools, identifying trends and maintaining awareness of your well-being becomes effortless.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-4">Medical Reference Framework</h2>
+          <p>
+            PoopCheck\u2019s AI stool analysis system is designed using established medical reference frameworks commonly used in digestive health evaluation. The system analyzes stool characteristics such as shape, consistency, and color using the Bristol Stool Chart, a widely recognized clinical tool developed by gastroenterology researchers. By combining this framework with AI image recognition, PoopCheck helps users better understand digestive patterns and monitor gut health trends over time.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-4">Join the PoopCheck Community</h2>
+          <p>
+            PoopCheck isn\u2019t just an app \u2014 it\u2019s a movement. Our growing community offers a safe and engaging space where users can share experiences, ask questions, and learn from one another. Whether you\u2019re seeking support, sharing progress, or simply curious, the PoopCheck community is here to help you feel understood, informed, and empowered.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-4">Dive Deeper</h2>
+          <p class="mb-4">Related reading from the PoopCheck blog and guides:</p>
+          <ul class="space-y-2">
+            <li>
+              <a href="/guides/bristol-stool-scale-explained/" class="text-[var(--color-primary)] hover:underline">Bristol Stool Scale: The Complete Guide</a>
+            </li>
+            <li>
+              <a href="/poopcheck-blog/bristol-stool-chart-types-explained/" class="text-[var(--color-primary)] hover:underline">Bristol Stool Chart: All 7 Types Explained</a>
+            </li>
+            <li>
+              <a href="/poopcheck-blog/mucus-in-stool/" class="text-[var(--color-primary)] hover:underline">Mucus in Stool: What&apos;s Normal and When to Worry</a>
+            </li>
+            <li>
+              <a href="/poopcheck-blog/why-is-my-poop-green-decoding-the-secret-language-of-your-stool/" class="text-[var(--color-primary)] hover:underline">Why Is My Poop Green?</a>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <DownloadCTA />
+</PageLayout>

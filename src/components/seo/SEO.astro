@@ -41,10 +41,3 @@ const imageUrl = image?.startsWith('http') ? image : `${SITE.url}${image}`;
 {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
 {author && <meta property="article:author" content={author} />}
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:url" content={canonicalUrl} />
-<meta name="twitter:title" content={formattedTitle} />
-<meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={imageUrl} />
-<meta name="twitter:site" content={SITE.twitter} />

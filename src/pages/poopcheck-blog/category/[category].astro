@@ -2,6 +2,7 @@
 import PageLayout from '../../../layouts/PageLayout.astro';
 import PostCard from '../../../components/blog/PostCard.astro';
 import Breadcrumbs from '../../../components/seo/Breadcrumbs.astro';
+import CategoryFilter from '../../../components/blog/CategoryFilter.astro';
 import { getCollection } from 'astro:content';
 
 const categoryLabels: Record<string, string> = {
@@ -14,6 +15,16 @@ const categoryLabels: Record<string, string> = {
   research: 'Research',
 };
 
+const categoryDescriptions: Record<string, string> = {
+  'gut-health': 'Evidence-based articles on improving gut health, supporting your microbiome, and building digestive resilience — from the PoopCheck team.',
+  'stool-analysis': 'Stool color, shape, consistency, and what they reveal about your digestive health. Expert stool analysis articles from PoopCheck.',
+  'bristol-stool-scale': 'Master the Bristol Stool Scale (Types 1–7). Learn what each type means and track your digestive health with PoopCheck.',
+  nutrition: 'How diet, fermented foods, fiber, and spices shape your gut. Nutrition-focused digestive health articles from PoopCheck.',
+  conditions: 'IBS, colon cancer, hemorrhoids, and other digestive conditions — symptoms, causes, and when to see a doctor. From PoopCheck.',
+  'app-updates': 'The latest PoopCheck app updates, new features, and release notes for our AI stool analyzer.',
+  research: 'Emerging research on the gut microbiome, digestion, and stool analysis — breaking down the latest science for everyday health.',
+};
+
 export async function getStaticPaths() {
   const categories = ['gut-health', 'stool-analysis', 'bristol-stool-scale', 'nutrition', 'conditions', 'app-updates', 'research'];
   return categories.map((category) => ({
@@ -24,6 +35,7 @@ export async function getStaticPaths() {
 
 const { category } = Astro.props;
 const label = categoryLabels[category] || category;
+const description = categoryDescriptions[category] || `Read our latest articles about ${label.toLowerCase()} from the PoopCheck team.`;
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft && data.category === category))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
@@ -32,15 +44,15 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft && data.cat
 <PageLayout
   seo={{
     title: `${label} Articles — Gut Health Blog`,
-    description: `Read our latest articles about ${label.toLowerCase()}. Expert insights on digestive health, stool analysis, and wellness from the PoopCheck team.`,
+    description,
   }}
 >
   <div class="py-12 md:py-20">
     <div class="max-w-7xl mx-auto px-5">
       <div class="mb-8">
         <Breadcrumbs items={[
-          { label: 'Blog', href: '/blog/' },
-          { label, href: `/blog/category/${category}/` },
+          { label: 'Blog', href: '/poopcheck-blog/' },
+          { label, href: `/poopcheck-blog/category/${category}/` },
         ]} />
       </div>
 
@@ -49,9 +61,11 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft && data.cat
           <span class="gradient-text">{label}</span> Articles
         </h1>
         <p class="mt-4 text-lg text-[var(--color-text-muted)]">
-          Expert articles about {label.toLowerCase()} from the PoopCheck team.
+          {description}
         </p>
       </div>
+
+      <CategoryFilter active={category} />
 
       {posts.length > 0 ? (
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

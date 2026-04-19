@@ -4,16 +4,42 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import JsonLd from '../components/seo/JsonLd.astro';
 import { faqSchema } from '../utils/schema';
 
-const faqs = [
-  { question: 'How do I take a good photo for analysis?', answer: 'For best results, take the photo in good lighting from directly above. The app includes a camera mode optimized for stool photography. You can also upload a photo from your camera roll.' },
-  { question: 'Why is my analysis taking longer than usual?', answer: 'Analyses typically complete in under 5 seconds. If it takes longer, check your internet connection. The AI analysis requires a data connection to process the image.' },
-  { question: 'How do I delete my account and data?', answer: 'Go to Settings in the app, then tap "Delete Account." This permanently removes your account and all associated data including photos, analyses, and history. This action cannot be undone.' },
-  { question: 'Can I use PoopCheck without creating an account?', answer: 'Account creation is required to save your analysis history and track trends. However, the sign-up process takes less than 30 seconds with email, Google, or Apple sign-in options.' },
-  { question: 'Is PoopCheck available in my country?', answer: 'PoopCheck is available worldwide on both iOS and Android. The app is currently available in English, with support for 16 languages in store listings.' },
-  { question: 'How do I cancel my premium subscription?', answer: 'Premium subscriptions are managed through your Apple App Store or Google Play Store account. Go to your store\'s subscription management to cancel. You\'ll retain premium access until the end of your billing period.' },
-  { question: 'Can I export my data?', answer: 'Premium members can export detailed health reports as PDFs. These include your analysis history, trends, and gut health score data — perfect for sharing with your healthcare provider.' },
-  { question: 'How do I contact support?', answer: 'Use the contact form below, or email us directly at support@poopcheck.app. You can also reach us through the in-app support form in Settings. We typically respond within 24 hours.' },
+const faqSections = [
+  {
+    heading: 'Using the App',
+    id: 'using-the-app',
+    faqs: [
+      { question: 'How do I take a good photo for analysis?', answer: 'For best results, take the photo in good lighting from directly above. The app includes a camera mode optimized for stool photography. You can also upload a photo from your camera roll.' },
+      { question: 'Why is my analysis taking longer than usual?', answer: 'Analyses typically complete in under 5 seconds. If it takes longer, check your internet connection. The AI analysis requires a data connection to process the image.' },
+    ],
+  },
+  {
+    heading: 'Account & Privacy',
+    id: 'account-privacy',
+    faqs: [
+      { question: 'How do I delete my account and data?', answer: 'Go to Settings in the app, then tap "Delete Account." This permanently removes your account and all associated data including photos, analyses, and history. This action cannot be undone.' },
+      { question: 'Can I use PoopCheck without creating an account?', answer: 'Account creation is required to save your analysis history and track trends. However, the sign-up process takes less than 30 seconds with email, Google, or Apple sign-in options.' },
+      { question: 'Is PoopCheck available in my country?', answer: 'PoopCheck is available worldwide on both iOS and Android. The app is currently available in English, with support for 16 languages in store listings.' },
+    ],
+  },
+  {
+    heading: 'Subscriptions & Data',
+    id: 'subscriptions',
+    faqs: [
+      { question: 'How do I cancel my premium subscription?', answer: 'Premium subscriptions are managed through your Apple App Store or Google Play Store account. Go to your store\'s subscription management to cancel. You\'ll retain premium access until the end of your billing period.' },
+      { question: 'Can I export my data?', answer: 'Premium members can export detailed health reports as PDFs. These include your analysis history, trends, and gut health score data — perfect for sharing with your healthcare provider.' },
+    ],
+  },
+  {
+    heading: 'Getting in Touch',
+    id: 'getting-in-touch',
+    faqs: [
+      { question: 'How do I contact support?', answer: 'Use the contact form below, or email us directly at poopcheck@softallthings.com. You can also reach us through the in-app support form in Settings. We typically respond within 24 hours.' },
+    ],
+  },
 ];
+
+const faqs = faqSections.flatMap((s) => s.faqs);
 ---
 
 <PageLayout
@@ -37,22 +63,27 @@ const faqs = [
         Find answers to common questions or reach out to our support team.
       </p>
 
-      <!-- FAQ Section -->
-      <div class="space-y-4">
-        {faqs.map((faq) => (
-          <details class="group rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 overflow-hidden">
-            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer list-none font-semibold hover:text-[var(--color-primary)] transition-colors">
-              <span>{faq.question}</span>
-              <svg class="w-5 h-5 text-[var(--color-text-muted)] group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <div class="px-6 pb-4 text-sm text-[var(--color-text-muted)] leading-relaxed">
-              {faq.answer}
-            </div>
-          </details>
-        ))}
-      </div>
+      <!-- FAQ Sections -->
+      {faqSections.map((section) => (
+        <section class="mb-10" aria-labelledby={section.id}>
+          <h2 id={section.id} class="text-2xl font-bold mb-4">{section.heading}</h2>
+          <div class="space-y-4">
+            {section.faqs.map((faq) => (
+              <details class="group rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer list-none font-semibold hover:text-[var(--color-primary)] transition-colors">
+                  <h3 class="text-base font-semibold m-0">{faq.question}</h3>
+                  <svg class="w-5 h-5 text-[var(--color-text-muted)] group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div class="px-6 pb-4 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                  {faq.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+      ))}
 
       <!-- Contact Form -->
       <div class="mt-16" id="contact">
@@ -145,8 +176,8 @@ const faqs = [
         <!-- Direct email fallback -->
         <p class="mt-6 text-sm text-[var(--color-text-muted)]">
           You can also email us directly at
-          <a href="mailto:support@poopcheck.app" class="text-[var(--color-accent)] hover:underline">
-            support@poopcheck.app
+          <a href="mailto:poopcheck@softallthings.com" class="text-[var(--color-accent)] hover:underline">
+            poopcheck@softallthings.com
           </a>
         </p>
       </div>

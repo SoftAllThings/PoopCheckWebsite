@@ -5,10 +5,22 @@ export function organizationSchema() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: SITE.name,
+    legalName: 'Soft All Things LLC',
     url: SITE.url,
     logo: `${SITE.url}/logo.png`,
     description: SITE.description,
-    sameAs: Object.values(SITE.social),
+    email: 'poopcheck@softallthings.com',
+    foundingDate: '2025-01',
+    parentOrganization: {
+      '@type': 'Organization',
+      name: 'Soft All Things LLC',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email: 'poopcheck@softallthings.com',
+      availableLanguage: ['English'],
+    },
   };
 }
 

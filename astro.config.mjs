@@ -13,37 +13,36 @@ export default defineConfig({
   trailingSlash: 'always',
 
   redirects: {
-    // Page-level redirects (old Squarespace → new Astro)
+    // Page-level redirects. Old Squarespace URLs are now real pages at the same paths
+    // (/about-poopcheck, /ai-poop-analyzer, /ai-stool-analysis-technology, /faq,
+    // /poopcheck-blog) to preserve SEO equity. Redirects below cover only paths
+    // that don't have a 1:1 page in the new site.
     '/playground': '/demo/',
-    '/about-poopcheck': '/about/',
-    '/ai-poop-analyzer': '/features/ai-stool-analysis/',
-    '/ai-stool-analysis-technology': '/features/',
-    '/faq': '/',
     '/track-your-health': '/features/poop-tracking/',
     '/privacy-policy': '/privacy/',
     '/contact-us': '/support/',
     '/cart': '/',
 
-    // Blog prefix redirect
-    '/poopcheck-blog': '/blog/',
+    // Internal-to-canonical: /about (removed) → /about-poopcheck (the SEO URL)
+    '/about': '/about-poopcheck/',
+
+    // Legacy /blog/ prefix → canonical /poopcheck-blog/ (root + any sub-slug)
+    '/blog': '/poopcheck-blog/',
+    '/blog/[...slug]': '/poopcheck-blog/[...slug]',
 
     // Old blog post with matching new content (different slug)
-    '/poopcheck-blog/bristol-stool-chart-explained-your-guide-to-stool-health': '/blog/bristol-stool-chart-types-explained/',
+    '/poopcheck-blog/bristol-stool-chart-explained-your-guide-to-stool-health': '/poopcheck-blog/bristol-stool-chart-types-explained/',
 
-    // Old blog posts without new equivalents → blog index
-    '/poopcheck-blog/long-term-capsaicin-intake-effects-on-gut-health-and-inflammation-2': '/blog/',
-    '/poopcheck-blog/top-fermented-beverages-to-enhance-your-gut-health-naturally': '/blog/',
-    '/poopcheck-blog/how-green-stool-in-infants-predicts-future-bowel-health-insights': '/blog/',
-    '/poopcheck-blog/how-a-big-breakfast-diet-boosts-appetite-control-and-gut-health': '/blog/',
-    '/poopcheck-blog/bioengineered-probiotics-a-new-frontier-in-gut-health-and-diabetes-care': '/blog/',
-    '/poopcheck-blog/do-i-have-colon-cancer': '/blog/',
-    '/poopcheck-blog/how-often-should-you-poop-3-shocking-facts-you-need-to-know': '/blog/',
-    '/poopcheck-blog/why-is-my-poop-green-decoding-the-secret-language-of-your-stool': '/blog/',
-    '/poopcheck-blog/ibs-plague-of-the-millenium': '/blog/',
+    // Mucus in Stool — moved from gibberish Squarespace slug to clean slug
+    '/poopcheck-blog/yzaivbi2a54j7jy72mcb852emg02vg': '/poopcheck-blog/mucus-in-stool/',
+
+    // Old blog posts without ported equivalents → blog index (Big Breakfast + Bioengineered Probiotics skipped in migration)
+    '/poopcheck-blog/how-a-big-breakfast-diet-boosts-appetite-control-and-gut-health': '/poopcheck-blog/',
+    '/poopcheck-blog/bioengineered-probiotics-a-new-frontier-in-gut-health-and-diabetes-care': '/poopcheck-blog/',
 
     // Old category redirects → blog index
-    '/poopcheck-blog/category/Bristol+Stool+Chart': '/blog/',
-    '/poopcheck-blog/category/Diet+%26+Nutrition': '/blog/',
+    '/poopcheck-blog/category/Bristol+Stool+Chart': '/poopcheck-blog/',
+    '/poopcheck-blog/category/Diet+%26+Nutrition': '/poopcheck-blog/',
   },
 
   vite: {
@@ -58,7 +57,15 @@ export default defineConfig({
     defaultStrategy: 'viewport',
   },
 
-  integrations: [mdx(), react(), sitemap()],
+  integrations: [
+    mdx(),
+    react(),
+    sitemap({
+      filter: (page) => !page.includes('/api/'),
+      changefreq: 'weekly',
+      priority: 0.7,
+    }),
+  ],
 
   markdown: {
     shikiConfig: {

@@ -1,0 +1,116 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import DownloadCTA from '../components/home/DownloadCTA.astro';
+import { faqSchema } from '../utils/schema';
+import { SITE } from '../utils/seo';
+
+const faqs = [
+  {
+    question: 'What does the Bristol Stool Chart mean?',
+    answer: 'The Bristol Stool Chart is a medical classification system used to categorize stool into seven types based on shape and consistency. Doctors use it to evaluate digestive health and identify potential gastrointestinal issues. PoopCheck uses this chart to help interpret stool patterns through AI analysis.',
+  },
+  {
+    question: 'Can stool color indicate health problems?',
+    answer: 'Changes in stool color can sometimes reflect diet, medications, or digestive conditions. For example, green stool may be linked to diet or fast digestion, while very dark stool may require medical attention. AI stool analysis tools like PoopCheck help users monitor these changes over time.',
+  },
+  {
+    question: 'Is AI stool analysis accurate?',
+    answer: 'AI stool analysis tools use image recognition and medical reference systems like the Bristol Stool Chart to identify stool characteristics. While AI analysis can provide helpful insights, it should not replace professional medical advice.',
+  },
+];
+
+const schemas = [
+  faqSchema(faqs),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'AI Poop Analyzer \u2014 Scan Your Stool Instantly',
+    url: `${SITE.url}/ai-poop-analyzer/`,
+    description: 'Use PoopCheck\u2019s AI poop analyzer to scan your stool and get instant insights about stool type, digestive health, and gut patterns using advanced image analysis.',
+  },
+];
+---
+
+<PageLayout
+  seo={{
+    title: 'AI Poop Analyzer \u2014 Scan Your Stool Instantly | PoopCheck',
+    description: 'Use PoopCheck\u2019s AI poop analyzer to scan your stool and get instant insights about stool type, digestive health, and gut patterns using advanced image analysis.',
+  }}
+  schema={schemas}
+>
+  <div class="py-12 md:py-20">
+    <div class="max-w-3xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[{ label: 'AI Poop Analyzer', href: '/ai-poop-analyzer/' }]} />
+      </div>
+
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+        AI
+        <span class="gradient-text">Poop Analyzer</span>
+      </h1>
+
+      <p class="text-lg text-[var(--color-text-muted)] leading-relaxed mb-12">
+        PoopCheck is an AI poop analyzer and stool analyzer that scans stool photos to identify stool type, detect digestive patterns, and help you monitor your gut health over time. Using advanced image recognition and the Bristol Stool Chart, PoopCheck provides instant insights into your digestive health.
+      </p>
+
+      <div class="space-y-10 text-[var(--color-text-muted)] leading-relaxed">
+        <section>
+          <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-4">How the AI Poop Analyzer Works</h2>
+          <p>
+            The PoopCheck AI poop analyzer uses advanced image recognition technology from the <a href="/ai-stool-analysis-technology/" class="text-[var(--color-primary)] hover:underline">PoopCheck AI stool analysis system</a> to evaluate stool photos and identify key digestive health indicators. In seconds, it classifies each sample by Bristol Stool Scale type and highlights patterns worth tracking.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-4">What Your Stool Can Reveal About Your Health</h2>
+          <p>
+            Your stool can reveal important clues about your digestive health. Changes in stool color, shape, or consistency may reflect diet, hydration levels, gut bacteria, or digestive conditions. The PoopCheck AI stool analyzer evaluates these characteristics using the Bristol Stool Chart and advanced image analysis, helping users better understand what their stool may indicate about their digestive health.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-6">Common Questions About Stool Analysis</h2>
+          <div class="space-y-4">
+            {faqs.map((faq) => (
+              <details class="group rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer list-none font-semibold text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors">
+                  <h3 class="text-base md:text-lg font-semibold">{faq.question}</h3>
+                  <svg class="w-5 h-5 text-[var(--color-text-muted)] group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div class="px-6 pb-4 text-sm md:text-base leading-relaxed">
+                  {faq.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-4">Learn More About Stool Health</h2>
+          <p class="mb-4">
+            Understanding your stool can help you monitor digestive health and detect changes in your gut. Explore our guides to learn more about stool types, digestive patterns, and gut health.
+          </p>
+          <ul class="space-y-2">
+            <li>
+              <a href="/poopcheck-blog/bristol-stool-chart-types-explained/" class="text-[var(--color-primary)] hover:underline">What the Bristol Stool Chart Means</a>
+            </li>
+            <li>
+              <a href="/poopcheck-blog/what-your-poop-color-means/" class="text-[var(--color-primary)] hover:underline">What Different Stool Colors Can Indicate</a>
+            </li>
+            <li>
+              <a href="/poopcheck-blog/how-to-improve-gut-health/" class="text-[var(--color-primary)] hover:underline">Signs of Healthy vs Unhealthy Stool</a>
+            </li>
+            <li>
+              <a href="/poopcheck-blog/" class="text-[var(--color-primary)] hover:underline">Common Causes of Digestive Changes</a>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <DownloadCTA />
+</PageLayout>

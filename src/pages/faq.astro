@@ -1,0 +1,146 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import DownloadCTA from '../components/home/DownloadCTA.astro';
+import { faqSchema } from '../utils/schema';
+
+const faqSections = [
+  {
+    heading: 'About PoopCheck',
+    id: 'about',
+    faqs: [
+      {
+        question: 'What is PoopCheck?',
+        answer: 'PoopCheck is an AI-powered stool tracker app that analyzes photos of your bowel movements using the Bristol Stool Scale. It provides instant classification of consistency, color, and shape, gives you a daily gut health score, and tracks trends over time to help you understand and improve your digestive health.',
+      },
+      {
+        question: 'What makes PoopCheck different from other health apps?',
+        answer: 'Unlike generic health apps, PoopCheck focuses on digestive health, leveraging advanced AI to analyze stool and provide actionable recommendations tailored to your body\u2019s needs.',
+      },
+      {
+        question: 'How does the AI stool analysis work?',
+        answer: 'When you take a photo, our AI engine analyzes it using computer vision trained on 140,000+ stool samples. It classifies your stool according to the Bristol Stool Scale (Types 1\u20137), identifies color patterns, and detects health indicators. Results are delivered in seconds with actionable insights.',
+      },
+      {
+        question: 'What is the Bristol Stool Scale?',
+        answer: 'The Bristol Stool Scale (also called the Bristol Stool Chart) is a medical classification system that categorizes human stool into 7 types based on shape and consistency. It was developed at the Bristol Royal Infirmary and is widely used by healthcare professionals to assess digestive health. Types 3\u20134 are generally considered ideal. Read our full <a href="/poopcheck-blog/bristol-stool-chart-types-explained/" class="text-[var(--color-primary)] hover:underline">Bristol Stool Chart breakdown</a> for each type.',
+      },
+    ],
+  },
+  {
+    heading: 'Features & Insights',
+    id: 'features-insights',
+    faqs: [
+      {
+        question: 'What kinds of health insights can PoopCheck provide?',
+        answer: 'The app analyzes stool consistency, color, and other factors to identify trends and provide insights into hydration, fiber intake, possible deficiencies, or patterns that may warrant attention \u2014 such as signs related to <a href="/poopcheck-blog/ibs-plague-of-the-millenium/" class="text-[var(--color-primary)] hover:underline">IBS</a> or hemorrhoids. PoopCheck is a wellness tool, not a diagnostic device.',
+      },
+      {
+        question: 'Can PoopCheck help me improve my diet?',
+        answer: 'Yes. Based on your stool analysis, PoopCheck offers recommendations for adjusting fiber, water, and nutrient intake to support better digestion and overall health. Our blog also covers <a href="/poopcheck-blog/top-fermented-beverages-to-enhance-your-gut-health-naturally/" class="text-[var(--color-primary)] hover:underline">fermented foods for gut health</a>.',
+      },
+      {
+        question: 'Can PoopCheck help with weight loss or weight gain?',
+        answer: 'PoopCheck provides insights into your digestion, nutrient absorption, and overall gut health. By understanding how your body processes food, the app can guide you toward dietary adjustments whether your goal is to lose or gain weight.',
+      },
+      {
+        question: 'What is a gut health score?',
+        answer: 'Your gut health score is a daily personalized metric calculated from multiple factors: stool consistency and type, bowel movement regularity, comfort level, and lifestyle inputs. The score helps you understand your overall digestive health at a glance and track improvements over time.',
+      },
+    ],
+  },
+  {
+    heading: 'Usage & Tracking',
+    id: 'usage',
+    faqs: [
+      {
+        question: 'How often should I use PoopCheck?',
+        answer: 'Ideally, every time you go. Regular tracking helps you monitor changes and spot trends that could indicate underlying digestive issues. Curious what\u2019s normal? See <a href="/poopcheck-blog/how-often-should-you-poop-3-shocking-facts-you-need-to-know/" class="text-[var(--color-primary)] hover:underline">how often you should poop</a>.',
+      },
+      {
+        question: 'Why is tracking my stool over time important?',
+        answer: 'Digestive changes can be gradual. PoopCheck\u2019s calendar and data visualization tools make it easy to see long-term trends and take action before minor issues become major concerns.',
+      },
+    ],
+  },
+  {
+    heading: 'Privacy & Medical',
+    id: 'privacy-medical',
+    faqs: [
+      {
+        question: 'Is it safe and private to upload stool photos?',
+        answer: 'Yes, your privacy is our priority. All photos are encrypted in transit and at rest, securely processed, and anonymized. We never sell your data to third parties. You can delete your account and all associated data at any time.',
+      },
+      {
+        question: 'Is PoopCheck a medical device?',
+        answer: 'No. PoopCheck is a wellness and health tracking tool designed for personal use. It is not a medical device and should not be used to diagnose, treat, or prevent any disease. Always consult a healthcare professional for medical concerns.',
+      },
+    ],
+  },
+  {
+    heading: 'Pricing & Availability',
+    id: 'pricing',
+    faqs: [
+      {
+        question: 'Is PoopCheck free to use?',
+        answer: 'Yes, PoopCheck is free to download and use. Core features including AI stool analysis, Bristol Scale classification, and basic tracking are completely free. Premium features like detailed health reports, the AI assistant, advanced analytics, and export functionality are available through an optional subscription.',
+      },
+      {
+        question: 'What platforms is PoopCheck available on?',
+        answer: 'PoopCheck is available for both iOS (iPhone, iPad) and Android devices. You can download it for free from the Apple App Store or Google Play Store.',
+      },
+    ],
+  },
+];
+
+const faqs = faqSections.flatMap((s) => s.faqs);
+const schemas = [faqSchema(faqs)];
+---
+
+<PageLayout
+  seo={{
+    title: 'FAQ \u2014 Frequently Asked Questions About PoopCheck',
+    description: 'Answers to common questions about PoopCheck: how the AI stool analyzer works, the Bristol Stool Scale, privacy, gut health tracking, and digestive health insights.',
+  }}
+  schema={schemas}
+>
+  <div class="py-12 md:py-20">
+    <div class="max-w-3xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[{ label: 'FAQ', href: '/faq/' }]} />
+      </div>
+
+      <div class="mb-12">
+        <p class="text-[var(--color-primary)] font-semibold text-sm uppercase tracking-wider mb-3">FAQ</p>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold">
+          Frequently asked
+          <span class="gradient-text">questions</span>
+        </h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)]">
+          Everything you need to know about PoopCheck, stool analysis, and how the app supports your digestive health.
+        </p>
+      </div>
+
+      {faqSections.map((section) => (
+        <section class="mb-12" aria-labelledby={section.id}>
+          <h2 id={section.id} class="text-2xl md:text-3xl font-bold mb-5">{section.heading}</h2>
+          <div class="space-y-4">
+            {section.faqs.map((faq) => (
+              <details class="group rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]/50 overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer list-none font-semibold hover:text-[var(--color-primary)] transition-colors">
+                  <h3 class="text-base md:text-lg font-semibold m-0">{faq.question}</h3>
+                  <svg class="w-5 h-5 text-[var(--color-text-muted)] group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div class="px-6 pb-4 text-sm md:text-base text-[var(--color-text-muted)] leading-relaxed" set:html={faq.answer} />
+              </details>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </div>
+
+  <DownloadCTA />
+</PageLayout>

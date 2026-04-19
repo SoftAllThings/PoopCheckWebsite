@@ -42,7 +42,7 @@ const formattedDate = date.toLocaleDateString('en-US', {
   <div class="p-6">
     <div class="flex items-center gap-3 mb-3">
       <a
-        href={`/blog/category/${category}/`}
+        href={`/poopcheck-blog/category/${category}/`}
         class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[var(--color-primary)]/10 text-[var(--color-primary)]"
       >
         {categoryLabels[category] || category}
@@ -50,7 +50,7 @@ const formattedDate = date.toLocaleDateString('en-US', {
       <span class="text-xs text-[var(--color-text-muted)]">{formattedDate}</span>
     </div>
     <h3 class="font-semibold text-lg mb-2 group-hover:text-[var(--color-primary)] transition-colors">
-      <a href={`/blog/${slug}/`} class="after:absolute after:inset-0 relative">
+      <a href={`/poopcheck-blog/${slug}/`} class="after:absolute after:inset-0 relative">
         {title}
       </a>
     </h3>

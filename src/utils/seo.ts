@@ -19,16 +19,9 @@ export const SITE = {
   url: 'https://poopcheck.app',
   image: '/og-default.svg',
   locale: 'en_US',
-  twitter: '@poopcheckapp',
-  appStore: 'https://apps.apple.com/app/poopcheck-ai-stool-tracker/id6467840498',
+  appStore: 'https://apps.apple.com/us/app/poopcheck-ai-stool-tracker/id6737857695',
   playStore:
-    'https://play.google.com/store/apps/details?id=com.poopcheck.app',
-  social: {
-    instagram: 'https://www.instagram.com/poopcheck.app/',
-    facebook: 'https://www.facebook.com/poopcheckapp',
-    twitter: 'https://x.com/poopcheckapp',
-    pinterest: 'https://www.pinterest.com/poopcheckapp/',
-  },
+    'https://play.google.com/store/apps/details?id=com.softallthings.poopcheckapp',
 };
 
 // Canonical numbers used across marketing copy. Live counts are hydrated

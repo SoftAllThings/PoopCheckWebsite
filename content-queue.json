@@ -1,0 +1,154 @@
+{
+  "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
+  "pending": [
+    {
+      "slug": "fiber-and-stool-consistency",
+      "title_hint": "How fiber changes stool consistency: soluble vs insoluble",
+      "primary_keyword": "fiber and stool consistency",
+      "category": "nutrition",
+      "brief": "Explain soluble vs insoluble fiber, the Bristol-scale outcomes of each, recommended daily intake, practical food sources, and what happens when you suddenly increase fiber.",
+      "target_word_count": 1700,
+      "priority": 3
+    },
+    {
+      "slug": "what-causes-floating-stool",
+      "title_hint": "Why does my stool float? Causes and when to worry",
+      "primary_keyword": "floating stool causes",
+      "category": "stool-analysis",
+      "brief": "Gas vs fat content as causes of floating stool. When it's benign (high-fiber meal, legumes) vs a sign of malabsorption (steatorrhea, celiac, pancreatic insufficiency). Red flags that warrant a doctor visit.",
+      "target_word_count": 1500,
+      "priority": 3
+    },
+    {
+      "slug": "gut-brain-axis-explained",
+      "title_hint": "The gut-brain axis: how your microbiome affects mood and anxiety",
+      "primary_keyword": "gut-brain axis",
+      "category": "research",
+      "brief": "Vagus nerve, enteric nervous system, serotonin production in the gut (90% of body's serotonin), current evidence linking microbiome to depression/anxiety, practical implications for stress management.",
+      "target_word_count": 1800,
+      "priority": 2
+    },
+    {
+      "slug": "black-stool-causes",
+      "title_hint": "Black stool: benign causes vs medical emergencies",
+      "primary_keyword": "black stool causes",
+      "category": "stool-analysis",
+      "brief": "Differentiate melena (upper GI bleed, tarry + foul) from dietary causes (iron, bismuth, blueberries, licorice). When to go to the ER. Link to poop-color post as cornerstone.",
+      "target_word_count": 1400,
+      "priority": 3
+    },
+    {
+      "slug": "how-long-food-takes-to-digest",
+      "title_hint": "How long does food take to digest? A transit-time guide",
+      "primary_keyword": "food digestion time",
+      "category": "gut-health",
+      "brief": "Normal transit times by meal composition, the mouth-to-toilet journey (stomach: 2-5h, small intestine: 3-5h, large intestine: 10-59h). Why transit time matters for stool consistency and nutrient absorption.",
+      "target_word_count": 1600,
+      "priority": 2
+    },
+    {
+      "slug": "low-fodmap-diet-guide",
+      "title_hint": "The low-FODMAP diet: a practical guide for IBS",
+      "primary_keyword": "low FODMAP diet",
+      "category": "conditions",
+      "brief": "What FODMAPs are, Monash University research foundation, 3-phase protocol (elimination, reintroduction, personalization), typical high/low FODMAP foods, evidence for IBS symptom reduction. Link to existing IBS post.",
+      "target_word_count": 2000,
+      "priority": 2
+    },
+    {
+      "slug": "probiotics-vs-prebiotics",
+      "title_hint": "Probiotics vs prebiotics: what's the difference and which do you need?",
+      "primary_keyword": "probiotics vs prebiotics",
+      "category": "nutrition",
+      "brief": "Define each, explain synbiotics, review evidence (which strains work for what), food sources of each, when supplements are worth it vs waste of money. Nuanced — don't oversell.",
+      "target_word_count": 1700,
+      "priority": 3
+    },
+    {
+      "slug": "stool-smell-what-it-means",
+      "title_hint": "Why does my poop smell so bad? What stool odor means",
+      "primary_keyword": "stool smell",
+      "category": "stool-analysis",
+      "brief": "Normal odor sources (sulfur compounds from protein breakdown), dietary contributors, abnormal smells (very foul = malabsorption, sweet = C. diff, metallic = GI bleeding). When to see a doctor.",
+      "target_word_count": 1400,
+      "priority": 3
+    },
+    {
+      "slug": "constipation-causes-and-remedies",
+      "title_hint": "Constipation: causes, evidence-based remedies, and when to see a doctor",
+      "primary_keyword": "constipation remedies",
+      "category": "conditions",
+      "brief": "Functional vs secondary constipation, Rome IV criteria, first-line remedies (fiber, fluid, movement), OTC options (osmotic vs stimulant laxatives), red-flag symptoms warranting workup.",
+      "target_word_count": 1900,
+      "priority": 2
+    },
+    {
+      "slug": "diarrhea-causes-and-when-to-worry",
+      "title_hint": "Diarrhea: causes, home care, and red flags",
+      "primary_keyword": "diarrhea causes",
+      "category": "conditions",
+      "brief": "Acute vs chronic, common causes (viral, bacterial, food intolerance, medication), hydration and BRAT diet, when antibiotics do and don't help, red flags (blood, fever, >2 days persistent).",
+      "target_word_count": 1600,
+      "priority": 2
+    },
+    {
+      "slug": "morning-poop-why",
+      "title_hint": "Why do I poop right after coffee? The gastrocolic reflex explained",
+      "primary_keyword": "coffee makes me poop",
+      "category": "gut-health",
+      "brief": "The gastrocolic reflex, why coffee amplifies it (chlorogenic acids, caffeine minor role), why mornings are the natural peak, how to leverage for regularity.",
+      "target_word_count": 1300,
+      "priority": 3
+    },
+    {
+      "slug": "fermented-foods-vs-probiotic-supplements",
+      "title_hint": "Fermented foods vs probiotic supplements: which is better for your gut?",
+      "primary_keyword": "fermented foods vs probiotics",
+      "category": "nutrition",
+      "brief": "Stanford fermented-foods study (Sonnenburg 2021), why whole-food fermented options often outperform pills on diversity and inflammation markers, when supplements are still the right call.",
+      "target_word_count": 1700,
+      "priority": 2
+    },
+    {
+      "slug": "gut-microbiome-testing-worth-it",
+      "title_hint": "Gut microbiome tests: are they worth the money in 2026?",
+      "primary_keyword": "gut microbiome test",
+      "category": "research",
+      "brief": "State of consumer microbiome testing (Viome, Zoe, Thryve), what current science can and can't tell you from a stool sample, where the field is going, honest take on value for money today.",
+      "target_word_count": 1900,
+      "priority": 1
+    },
+    {
+      "slug": "how-hydration-affects-stool",
+      "title_hint": "How hydration affects your stool: the water-constipation link",
+      "primary_keyword": "hydration and stool",
+      "category": "gut-health",
+      "brief": "Mechanism (colon water reabsorption), how much water you actually need (by body weight + activity), electrolyte role, caffeine/alcohol effects, practical daily-intake targets.",
+      "target_word_count": 1400,
+      "priority": 2
+    },
+    {
+      "slug": "exercise-and-bowel-movements",
+      "title_hint": "Does exercise make you poop? The science of movement and motility",
+      "primary_keyword": "exercise and bowel movements",
+      "category": "gut-health",
+      "brief": "Mechanisms (mechanical agitation, vagal tone, blood-flow shifts), runner's trots explained, evidence for endurance vs resistance training, practical recommendations for gut health.",
+      "target_word_count": 1500,
+      "priority": 2
+    }
+  ],
+  "published": [
+    { "slug": "bristol-stool-chart-types-explained", "source": "seed" },
+    { "slug": "do-i-have-colon-cancer", "source": "seed" },
+    { "slug": "how-green-stool-in-infants-predicts-future-bowel-health-insights", "source": "seed" },
+    { "slug": "how-often-should-you-poop-3-shocking-facts-you-need-to-know", "source": "seed" },
+    { "slug": "how-to-improve-gut-health", "source": "seed" },
+    { "slug": "ibs-plague-of-the-millenium", "source": "seed" },
+    { "slug": "long-term-capsaicin-intake-effects-on-gut-health-and-inflammation-2", "source": "seed" },
+    { "slug": "mucus-in-stool", "source": "seed" },
+    { "slug": "top-fermented-beverages-to-enhance-your-gut-health-naturally", "source": "seed" },
+    { "slug": "what-your-poop-color-means", "source": "seed" },
+    { "slug": "why-is-my-poop-green-decoding-the-secret-language-of-your-stool", "source": "seed" }
+  ],
+  "trending_candidates": []
+}

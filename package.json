@@ -8,6 +8,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "postbuild": "node scripts/patch-wrangler.mjs",
+    "deploy": "npm run build && wrangler deploy -c dist/server/wrangler.json",
     "preview": "astro preview",
     "astro": "astro"
   },

@@ -120,9 +120,14 @@ export const POST: APIRoute = async ({ request, locals, clientAddress }) => {
     }
   }
 
-  // 6. Forward to SoftAI with server-side key
+  // 6. Forward to SoftAI with server-side key.
+  //    externalIndividualId pins every web-demo request to a single shared
+  //    anonymous individual under the "PoopCheck Website" org, so backend
+  //    analytics (softai.stool_logs) count website traffic as its own Org.
+  //    Memory extraction is skipped server-side for this individual.
   const upstreamForm = new FormData();
   upstreamForm.append('image', image);
+  upstreamForm.append('externalIndividualId', 'web-anonymous');
 
   const upstream = await fetch(`${softAiUrl}/softAi/stool/analyze?stream=1`, {
     method: 'POST',

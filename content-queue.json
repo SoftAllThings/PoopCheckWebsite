@@ -2,15 +2,6 @@
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
   "pending": [
     {
-      "slug": "fiber-and-stool-consistency",
-      "title_hint": "How fiber changes stool consistency: soluble vs insoluble",
-      "primary_keyword": "fiber and stool consistency",
-      "category": "nutrition",
-      "brief": "Explain soluble vs insoluble fiber, the Bristol-scale outcomes of each, recommended daily intake, practical food sources, and what happens when you suddenly increase fiber.",
-      "target_word_count": 1700,
-      "priority": 3
-    },
-    {
       "slug": "what-causes-floating-stool",
       "title_hint": "Why does my stool float? Causes and when to worry",
       "primary_keyword": "floating stool causes",
@@ -148,7 +139,8 @@
     { "slug": "mucus-in-stool", "source": "seed" },
     { "slug": "top-fermented-beverages-to-enhance-your-gut-health-naturally", "source": "seed" },
     { "slug": "what-your-poop-color-means", "source": "seed" },
-    { "slug": "why-is-my-poop-green-decoding-the-secret-language-of-your-stool", "source": "seed" }
+    { "slug": "why-is-my-poop-green-decoding-the-secret-language-of-your-stool", "source": "seed" },
+    { "slug": "fiber-and-stool-consistency", "published_at": "2026-04-20", "source": "curated" }
   ],
   "trending_candidates": []
 }

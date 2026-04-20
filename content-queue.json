@@ -11,15 +11,6 @@
       "priority": 2
     },
     {
-      "slug": "black-stool-causes",
-      "title_hint": "Black stool: benign causes vs medical emergencies",
-      "primary_keyword": "black stool causes",
-      "category": "stool-analysis",
-      "brief": "Differentiate melena (upper GI bleed, tarry + foul) from dietary causes (iron, bismuth, blueberries, licorice). When to go to the ER. Link to poop-color post as cornerstone.",
-      "target_word_count": 1400,
-      "priority": 3
-    },
-    {
       "slug": "how-long-food-takes-to-digest",
       "title_hint": "How long does food take to digest? A transit-time guide",
       "primary_keyword": "food digestion time",
@@ -132,7 +123,8 @@
     { "slug": "what-your-poop-color-means", "source": "seed" },
     { "slug": "why-is-my-poop-green-decoding-the-secret-language-of-your-stool", "source": "seed" },
     { "slug": "fiber-and-stool-consistency", "published_at": "2026-04-20", "source": "curated" },
-    { "slug": "what-causes-floating-stool", "published_at": "2026-04-20", "source": "curated" }
+    { "slug": "what-causes-floating-stool", "published_at": "2026-04-20", "source": "curated" },
+    { "slug": "black-stool-causes", "published_at": "2026-04-20", "source": "curated" }
   ],
   "trending_candidates": []
 }

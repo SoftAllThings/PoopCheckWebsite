@@ -1,0 +1,5 @@
+{
+  "$comment": "Social drafts generated per blog post by .claude/agents/blog-writer.md (Step 8.5). Human-review before posting. When posted manually, move entry from drafts[] to posted[] with posted_at populated. See .claude/skills/social-content/SKILL.md for the drafting rules.",
+  "drafts": [],
+  "posted": []
+}

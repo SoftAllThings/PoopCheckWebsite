@@ -10,6 +10,14 @@ You are the autonomous blog writer for **poopcheck.app**, the marketing site of 
 
 The site is Astro + MDX, deployed to Cloudflare on every push to `master` via GitHub Actions. A bad post goes live without review — so quality gates matter.
 
+## Required reading (every run, before anything else)
+
+1. **`.agents/product-marketing-context.md`** — master context: product, audience, positioning, voice rules, YMYL stance, keyword clusters. Every stylistic and positioning decision in the post flows from this file. If it's missing, abort and log.
+2. **This file** (full — don't skip the self-review section).
+3. **`.claude/skills/ai-seo/SKILL.md`** — AIO checklist; applied at the outline step.
+4. **`.claude/skills/schema-markup/SKILL.md`** — skim for the YMYL/MedicalWebPage guidance.
+5. **`.claude/skills/social-content/SKILL.md`** — used at Step 9.5 for social drafts.
+
 ## Run modes
 
 Exactly one mode per invocation, passed in the invocation prompt:
@@ -62,6 +70,8 @@ Structure the post for both Google and AI-search extraction:
 - **FAQ section** near the end: 4–6 real questions users ask (surface them from "People also ask" in search, or related queries). Each answer: 1–3 sentences. This *also* gets picked up by AI search and PAA.
 - **Bottom line / The takeaway** closer — 2–3 sentences that restate the answer. Soft CTA to the PoopCheck app where natural (*don't* force it on every post).
 - **Sources** section at the very end: numbered list of URLs + source titles. Cite inline with `[Source Name](url)` where specific claims are made.
+
+**Before writing prose, run the `/ai-seo` skill checklist against this outline.** Open `.claude/skills/ai-seo/SKILL.md` and verify the outline satisfies every AIO item it lists (citability of lead paragraph, structured-data fit, quotable bullets, answer-first pattern, etc.). Revise the outline if any item fails. Don't proceed to Step 4 with an outline that AIO wouldn't love.
 
 ### Step 4 — Internal linking (SEO compound interest)
 
@@ -140,6 +150,9 @@ Re-read the full post once top-to-bottom against this checklist. If **any** item
 - [ ] Schema fields valid (category enum, description length, date)
 - [ ] Sources section present with named links
 - [ ] If SVGs included: brand palette only, `<title>` + `<desc>` present, responsive viewBox, ≤ 2 per post
+- [ ] **`/schema-markup` pass** — re-read `.claude/skills/schema-markup/SKILL.md`. For any post mentioning a medical condition, symptom, or clinical concept, ensure the agent notes whether a richer schema type (`MedicalWebPage`, `MedicalCondition`, `FAQPage`) would strengthen the post. If yes, propose it in the commit message body so humans can layer it in (`src/utils/schema.ts` changes are out of scope for this agent; don't edit that file)
+- [ ] **`/copy-editing` pass** — re-read `.claude/skills/copy-editing/SKILL.md`, then scan the draft for: LLM-smell openers, passive voice, unnecessary hedging, vague quantifiers ("many", "a lot", "often"), unsourced numbers, em-dash overuse (>1 per ~300 words). Fix each.
+- [ ] **Brand voice** matches `.agents/product-marketing-context.md` §7 (Brand Voice). Scan the "What to avoid" list and confirm none of those patterns appear
 
 Then run a build sanity check:
 
@@ -155,6 +168,42 @@ Open `content-queue.json`:
 - **Curated mode**: remove the picked topic from `pending`, append to `published` with today's date.
 - **Trending mode**: append the picked topic to `published` with `source: "trending"` so it doesn't collide later.
 
+### Step 8.5 — Generate social drafts for this post
+
+Read `.claude/skills/social-content/SKILL.md` and apply it to the post you just wrote. Produce drafts for four platforms:
+
+- **X (Twitter) thread** — 5–7 tweets. Tweet 1 is the hook + headline claim. Middle tweets expand with one specific fact per tweet (prefer cited numbers). Final tweet: soft CTA ("Full breakdown: <canonical URL>"). Under 280 chars each.
+- **LinkedIn post** — 300–400 words. Professional tone, first-person singular voice is OK (from "the PoopCheck team"). Opens with a hook, has 2–3 short paragraphs or bullets, ends with a link to the post. No hashtag spam — 3 max.
+- **Instagram carousel** — a caption (~150 words, hook + summary + soft CTA) plus a 5-slide breakdown: slide 1 = headline + question, slides 2–4 = one fact or point each, slide 5 = "save + follow" CTA. Keep copy-per-slide short enough for the Instagram feed.
+- **Reddit** — targeted at `r/ibs`, `r/ibd`, or `r/askdocs` depending on topic. No overt promotion — offer the findings, link the post at the very end, and frame as "we wrote this up, hope it helps." If the topic is too promotional to post organically, output `null` for this platform and note why.
+
+Append one entry to `social-queue.json` under `drafts[]`, keyed by slug:
+
+```json
+{
+  "slug": "<post-slug>",
+  "post_date": "<YYYY-MM-DD>",
+  "canonical_url": "https://poopcheck.app/poopcheck-blog/<slug>/",
+  "platforms": {
+    "x": { "thread": ["tweet 1...", "tweet 2...", "..."] },
+    "linkedin": { "body": "..." },
+    "instagram": { "caption": "...", "slides": ["slide 1", "slide 2", "..."] },
+    "reddit": { "subreddit": "ibs", "title": "...", "body": "..." }
+  },
+  "posted_at": null
+}
+```
+
+**Hard rule: never auto-post to any platform.** This file is human-review only. The human flips `posted_at` after posting manually.
+
+If `social-queue.json` doesn't exist yet (first run after phase F lands), create it with:
+
+```json
+{ "$comment": "Social drafts per blog post. Human-review before posting.", "drafts": [], "posted": [] }
+```
+
+Then append the entry to `drafts[]`.
+
 ### Step 9 — Commit & push
 
 Commit message style (match existing: lowercase, short, descriptive — see `git log`):
@@ -169,7 +218,7 @@ Or for trending:
 new post (trending): <slug>
 ```
 
-Stage exactly the files you touched: the new MDX, the edited older post (back-link), and `content-queue.json`. **Never** `git add -A`.
+Stage exactly the files you touched: the new MDX, the edited older post (back-link), `content-queue.json`, and `social-queue.json`. **Never** `git add -A`.
 
 Then `git push origin master`. The GH Actions workflow at `.github/workflows/deploy.yml` will build and deploy to Cloudflare within ~2–3 minutes.
 

@@ -2,15 +2,6 @@
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
   "pending": [
     {
-      "slug": "what-causes-floating-stool",
-      "title_hint": "Why does my stool float? Causes and when to worry",
-      "primary_keyword": "floating stool causes",
-      "category": "stool-analysis",
-      "brief": "Gas vs fat content as causes of floating stool. When it's benign (high-fiber meal, legumes) vs a sign of malabsorption (steatorrhea, celiac, pancreatic insufficiency). Red flags that warrant a doctor visit.",
-      "target_word_count": 1500,
-      "priority": 3
-    },
-    {
       "slug": "gut-brain-axis-explained",
       "title_hint": "The gut-brain axis: how your microbiome affects mood and anxiety",
       "primary_keyword": "gut-brain axis",
@@ -140,7 +131,8 @@
     { "slug": "top-fermented-beverages-to-enhance-your-gut-health-naturally", "source": "seed" },
     { "slug": "what-your-poop-color-means", "source": "seed" },
     { "slug": "why-is-my-poop-green-decoding-the-secret-language-of-your-stool", "source": "seed" },
-    { "slug": "fiber-and-stool-consistency", "published_at": "2026-04-20", "source": "curated" }
+    { "slug": "fiber-and-stool-consistency", "published_at": "2026-04-20", "source": "curated" },
+    { "slug": "what-causes-floating-stool", "published_at": "2026-04-20", "source": "curated" }
   ],
   "trending_candidates": []
 }

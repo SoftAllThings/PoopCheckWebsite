@@ -1,0 +1,141 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import { articleSchema, breadcrumbSchema } from '../../utils/schema';
+import { getCanonicalUrl, SITE } from '../../utils/seo';
+import bristolData from '../../data/bristol.json';
+
+const url = getCanonicalUrl(Astro.url.pathname);
+const title = 'Bristol Stool Scale: Complete Guide to All 7 Types';
+const description = 'Every Bristol Stool type explained — what each one looks like, what it means, causes, when to worry, and how to shift toward the healthy range.';
+
+const schema = [
+  articleSchema({
+    title,
+    description,
+    url,
+    datePublished: '2026-04-20T00:00:00Z',
+    dateModified: '2026-04-20T00:00:00Z',
+    author: 'PoopCheck Team',
+    medical: true,
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: `${SITE.url}/` },
+    { name: 'Bristol Stool Scale', url },
+  ]),
+];
+
+const signalColor: Record<string, string> = {
+  ideal: 'var(--color-primary)',
+  healthy: 'var(--color-primary)',
+  'borderline-loose': 'var(--color-accent)',
+  'mild-constipation': 'var(--color-accent)',
+  'mild-diarrhea': '#ffb86b',
+  'severe-constipation': '#ff6b6b',
+  diarrhea: '#ff6b6b',
+};
+---
+
+<PageLayout seo={{ title, description, type: 'article' }} schema={schema}>
+  <article class="py-12 md:py-20">
+    <div class="max-w-5xl mx-auto px-5">
+
+      <div class="mb-8">
+        <Breadcrumbs items={[{ label: 'Bristol Stool Scale', href: '/bristol/' }]} />
+      </div>
+
+      <header class="mb-12 text-center">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          The Bristol Stool Scale
+        </h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)] leading-relaxed max-w-3xl mx-auto">
+          Developed in 1997 at the Bristol Royal Infirmary, the Bristol Stool Scale
+          is the most widely used clinical tool for classifying stool consistency.
+          It maps stool into 7 types, from hard pellets (constipation) to fully
+          liquid (diarrhea). Types 3 and 4 are the healthy range.
+        </p>
+      </header>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        {bristolData.types.map((t: any) => {
+          const color = signalColor[t.health_signal] || 'var(--color-primary)';
+          return (
+            <a
+              href={`/bristol/${t.slug}/`}
+              class="group relative rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)] p-6 hover:border-[var(--color-primary)]/50 transition-colors"
+            >
+              <div class="flex items-start justify-between mb-4">
+                <div class="text-4xl font-bold" style={`color: ${color};`}>
+                  {t.type}
+                </div>
+                <div
+                  class="text-xs font-semibold px-3 py-1 rounded-full"
+                  style={`background-color: color-mix(in oklab, ${color} 15%, transparent); color: ${color};`}
+                >
+                  {t.health_signal_label}
+                </div>
+              </div>
+              <h2 class="text-xl font-bold mb-2 group-hover:text-[var(--color-primary)] transition-colors">
+                {t.name}
+              </h2>
+              <p class="text-sm text-[var(--color-text-muted)]">
+                {t.appearance}
+              </p>
+            </a>
+          );
+        })}
+      </div>
+
+      <div class="prose prose-invert prose-lg max-w-none
+        prose-headings:font-bold prose-headings:text-[var(--color-text)]
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-p:text-[var(--color-text-muted)] prose-p:leading-relaxed
+        prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline
+        prose-li:text-[var(--color-text-muted)]
+      ">
+        <h2>How to use the scale</h2>
+        <p>
+          Check your stool after each bowel movement and note the type. Over a few
+          weeks, you'll see your personal baseline — most healthy people fall
+          consistently in Types 3–4. Occasional drift into other types is normal;
+          it's the pattern that matters.
+        </p>
+        <p>
+          Use the scale to have more precise conversations with your doctor. "I've
+          been having mostly Type 2 for three weeks" is a specific, actionable
+          report; "I think I've been a bit constipated" is not.
+        </p>
+
+        <h2>Why PoopCheck uses the Bristol Scale</h2>
+        <p>
+          PoopCheck's AI classifies your stool on the Bristol Scale automatically
+          from a photo — no manual selection, no guesswork. Combined with color
+          and consistency analysis, the app builds a daily gut-health score and
+          surfaces the patterns humans miss. Most people can't reliably remember
+          last Tuesday's Bristol type; the app remembers for you.
+        </p>
+
+        <h2>Healthy vs concerning patterns</h2>
+        <ul>
+          <li><strong>Healthy baseline:</strong> Types 3–4 most days.</li>
+          <li><strong>Acceptable variation:</strong> occasional Type 2 or 5.</li>
+          <li><strong>Investigate:</strong> persistent Type 1–2 (constipation) or Type 6–7 (diarrhea) for more than 2 weeks.</li>
+          <li><strong>See a doctor promptly:</strong> any Bristol type combined with blood, mucus, unexplained weight loss, severe pain, or fever.</li>
+        </ul>
+
+        <p><em>PoopCheck is a tracker, not a diagnostic tool. This page summarizes widely-accepted medical information but isn't medical advice. See a clinician for any concerning symptoms.</em></p>
+      </div>
+
+      <div class="mt-16 p-8 rounded-2xl bg-gradient-to-br from-[var(--color-accent)]/10 to-[var(--color-primary)]/10 border border-[var(--color-border)]/50 text-center">
+        <h3 class="text-xl font-bold mb-2">Track your Bristol type automatically</h3>
+        <p class="text-sm text-[var(--color-text-muted)] mb-4">Take a photo — PoopCheck classifies Bristol type, color, and consistency in seconds.</p>
+        <a
+          href="/download/"
+          class="inline-flex items-center px-6 py-3 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold hover:opacity-90 transition-opacity glow-primary"
+        >
+          Download Free
+        </a>
+      </div>
+    </div>
+  </article>
+</PageLayout>

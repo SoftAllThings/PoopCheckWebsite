@@ -1,0 +1,85 @@
+{
+  "$comment": "Competitor comparison data for /compare/* pages. Honest — always include when_competitor_is_better. Maintained by programmatic-writer agent. Facts must cite sources; pricing must be current. Update if pricing or positioning changes.",
+  "competitors": [
+    {
+      "slug": "cara-care",
+      "name": "Cara Care",
+      "tagline": "Dietitian-backed IBS and gut-health app with a focus on low-FODMAP elimination.",
+      "website_url": "https://cara.care/",
+      "positioning": "Personalized gut-health program led by registered dietitians, strongest for IBS management and FODMAP elimination protocols.",
+      "pricing_notes": "Offers free tier with paid dietitian programs — check cara.care/pricing for current rates.",
+      "features": [
+        { "name": "AI photo analysis of stool", "cara_care": false, "poopcheck": true, "note": "Cara Care is log-based; PoopCheck classifies directly from a photo." },
+        { "name": "Bristol Stool Scale classification", "cara_care": "Manual selection", "poopcheck": "Automatic from photo", "note": "" },
+        { "name": "Food + symptom tracking", "cara_care": true, "poopcheck": "Coming with Premium analytics" },
+        { "name": "Registered dietitian network", "cara_care": true, "poopcheck": false, "note": "Cara Care's clearest advantage." },
+        { "name": "Low-FODMAP guided protocol", "cara_care": true, "poopcheck": false },
+        { "name": "Daily gut-health score", "cara_care": false, "poopcheck": true },
+        { "name": "Free tier", "cara_care": true, "poopcheck": true },
+        { "name": "Focused on chronic IBS/IBD", "cara_care": true, "poopcheck": "General gut tracking" }
+      ],
+      "strengths": "Cara Care's dietitian network is the real differentiator. If you want a low-FODMAP elimination walked through by a credentialed human, this is the app. Their condition-specific programs (IBS, IBD) are deeper than generic trackers.",
+      "weaknesses_for_user": "Cara Care is log-driven — you manually select everything, including Bristol type. That's accurate if you're diligent, but most users aren't, and the data thins out over weeks. There's also no AI visual analysis of stool itself.",
+      "when_competitor_is_better": "If you have IBS or IBD and want a guided low-FODMAP protocol with real dietitian support, Cara Care is the better choice. Their depth on condition-specific programs exceeds PoopCheck's.",
+      "when_poopcheck_is_better": "If you want effortless daily tracking (photo in, Bristol+color out), a single gut-health score that trends over time, or you're optimizing rather than managing a diagnosed condition, PoopCheck's AI approach fits better.",
+      "sources": [
+        { "title": "Cara Care website", "url": "https://cara.care/" }
+      ],
+      "last_verified": "2026-04-20"
+    },
+    {
+      "slug": "dieta-health",
+      "name": "Dieta Health",
+      "tagline": "AI stool-analysis app with published clinical validation from Cedars-Sinai.",
+      "website_url": "https://dieta.health/",
+      "positioning": "Clinical-grade AI stool analysis, validated in a Cedars-Sinai study. Focused on research-quality measurement for gastroenterology patients and clinicians.",
+      "pricing_notes": "Consumer tier free; clinical tiers for providers. See dieta.health for current pricing.",
+      "features": [
+        { "name": "AI photo analysis of stool", "dieta_health": true, "poopcheck": true, "note": "Both apps do this. Dieta has published clinical-study backing; PoopCheck has faster consumer-facing UX and broader feature set." },
+        { "name": "Bristol Stool Scale classification", "dieta_health": true, "poopcheck": true },
+        { "name": "Published clinical validation", "dieta_health": true, "poopcheck": false, "note": "Dieta's Cedars-Sinai study is a genuine credibility advantage." },
+        { "name": "Clinician-facing features / provider portal", "dieta_health": true, "poopcheck": false },
+        { "name": "Consumer gamification / rewards", "dieta_health": false, "poopcheck": true },
+        { "name": "Daily gut-health score", "dieta_health": "Narrower metrics", "poopcheck": true },
+        { "name": "AI digestive assistant (chat)", "dieta_health": false, "poopcheck": "SOFTie (Premium)" },
+        { "name": "Community / leaderboard", "dieta_health": false, "poopcheck": true }
+      ],
+      "strengths": "Dieta Health has something few apps in this category can claim: a peer-reviewed validation study backing its AI accuracy. For clinicians integrating stool data into IBD or post-surgical workflows, that matters. Their clinical focus produces narrower but well-credentialed features.",
+      "weaknesses_for_user": "Dieta is more clinical than consumer. If you're not working with a gastroenterologist or managing a diagnosed condition, the app is fewer features and less engaging day-to-day than a consumer app.",
+      "when_competitor_is_better": "If you're working with a gastroenterologist who wants clinically-validated tracking data, or you're managing a diagnosed IBD/IBS condition with a care team, Dieta Health's clinical credibility is the right fit.",
+      "when_poopcheck_is_better": "If you want consumer-friendly daily tracking, broader features (community, gamification, premium AI chat), or you're optimizing your own gut health without a specific diagnosis, PoopCheck is a better everyday app.",
+      "sources": [
+        { "title": "Cedars-Sinai: AI app more accurate than patient evaluation of stool samples", "url": "https://www.cedars-sinai.org/newsroom/study-app-more-accurate-than-patient-evaluation-of-stool-samples/" },
+        { "title": "Dieta Health website", "url": "https://dieta.health/" }
+      ],
+      "last_verified": "2026-04-20"
+    },
+    {
+      "slug": "balloon",
+      "name": "Balloon",
+      "tagline": "Guided gut-health protocols with polished UX, frequently featured in 2026 'best poop tracker' roundups.",
+      "website_url": "https://balloonguthealth.com/",
+      "positioning": "Protocol-first gut-health app with structured programs (FODMAP, elimination diets, gut-brain exercises). Focused on gentle education and guided action over raw data.",
+      "pricing_notes": "Has both free and premium protocol tiers — check balloonguthealth.com for current pricing.",
+      "features": [
+        { "name": "AI photo analysis of stool", "balloon": false, "poopcheck": true, "note": "Balloon is protocol-based; PoopCheck is data-based." },
+        { "name": "Bristol Stool Scale classification", "balloon": "Manual", "poopcheck": "Automatic from photo" },
+        { "name": "Guided gut-health protocols", "balloon": true, "poopcheck": false, "note": "Balloon's differentiator." },
+        { "name": "FODMAP program", "balloon": true, "poopcheck": false },
+        { "name": "Gut-brain / breathing exercises", "balloon": true, "poopcheck": false },
+        { "name": "Daily gut-health score", "balloon": false, "poopcheck": true },
+        { "name": "AI digestive chat assistant", "balloon": false, "poopcheck": "SOFTie (Premium)" },
+        { "name": "App-store rating", "balloon": "Highly rated in roundups", "poopcheck": "4.8★ combined (~80 reviews)" }
+      ],
+      "strengths": "Balloon's protocols are its genuine strength — if you want structured guidance (elimination diet, relaxation techniques for gut-brain), Balloon walks you through step by step. UX is polished and approachable.",
+      "weaknesses_for_user": "Balloon is prescriptive. If you don't want to follow a program and just want objective tracking, it can feel like hand-holding. Also, it doesn't do AI visual analysis of stool — you log everything manually.",
+      "when_competitor_is_better": "If you're new to gut-health tracking and want a guided protocol to follow rather than raw data to interpret, Balloon is the gentler on-ramp.",
+      "when_poopcheck_is_better": "If you want automatic Bristol classification from photos, a single daily gut-health score, and the freedom to interpret your own data (with optional AI chat via SOFTie), PoopCheck gets you further faster.",
+      "sources": [
+        { "title": "Balloon Gut Health website", "url": "https://balloonguthealth.com/" },
+        { "title": "Balloon: Best iOS poop trackers 2025", "url": "https://balloonguthealth.com/blog/best-ios-poop-trackers-for-2025" }
+      ],
+      "last_verified": "2026-04-20"
+    }
+  ]
+}

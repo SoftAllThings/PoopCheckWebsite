@@ -1,0 +1,97 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import { breadcrumbSchema } from '../../utils/schema';
+import { getCanonicalUrl, SITE } from '../../utils/seo';
+
+const url = getCanonicalUrl(Astro.url.pathname);
+const title = 'Free Gut Health Tools — Bristol Quiz, Calculators & More';
+const description = 'Free interactive gut-health tools from PoopCheck. Bristol Stool Chart quiz, fiber intake calculator, and more — quick, private, and based on clinical references.';
+
+const schema = [
+  breadcrumbSchema([
+    { name: 'Home', url: `${SITE.url}/` },
+    { name: 'Tools', url },
+  ]),
+];
+
+const tools = [
+  {
+    href: '/tools/bristol-quiz/',
+    title: 'Bristol Stool Chart Quiz',
+    description: 'Answer 2–3 quick questions and find out which of the 7 Bristol Stool Scale types your stool is — with an explanation of what it means.',
+    status: 'live',
+    tag: 'Live',
+  },
+  {
+    href: '#',
+    title: 'Fiber Intake Calculator',
+    description: 'Calculate your recommended daily fiber target based on weight, age, sex, and activity — with food sources to hit it.',
+    status: 'soon',
+    tag: 'Coming soon',
+  },
+  {
+    href: '#',
+    title: 'Low-FODMAP Food Checker',
+    description: 'Search any common ingredient and see if it\'s low, moderate, or high FODMAP with typical serving sizes.',
+    status: 'soon',
+    tag: 'Coming soon',
+  },
+];
+---
+
+<PageLayout seo={{ title, description }} schema={schema}>
+  <article class="py-12 md:py-20">
+    <div class="max-w-4xl mx-auto px-5">
+
+      <div class="mb-8">
+        <Breadcrumbs items={[{ label: 'Tools', href: '/tools/' }]} />
+      </div>
+
+      <header class="mb-12 text-center">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          Free Gut-Health Tools
+        </h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)] leading-relaxed max-w-2xl mx-auto">
+          Quick, interactive, and based on real clinical references. All free,
+          no signup required. Built by the team behind PoopCheck.
+        </p>
+      </header>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {tools.map((t) => {
+          const isLive = t.status === 'live';
+          const Wrapper = isLive ? 'a' : 'div';
+          return (
+            <Wrapper
+              href={isLive ? t.href : undefined}
+              class={`group relative rounded-2xl border border-[var(--color-border)]/50 p-6 ${isLive ? 'bg-[var(--color-surface)] hover:border-[var(--color-primary)]/50 transition-colors cursor-pointer' : 'bg-[var(--color-surface)]/30 opacity-70'}`}
+            >
+              <div class={`inline-block px-2.5 py-1 rounded-full text-xs font-semibold mb-3 ${isLive ? 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]' : 'bg-[var(--color-text-muted)]/10 text-[var(--color-text-muted)]'}`}>
+                {t.tag}
+              </div>
+              <h2 class={`text-xl font-bold mb-3 ${isLive ? 'group-hover:text-[var(--color-primary)] transition-colors' : ''}`}>
+                {t.title}
+              </h2>
+              <p class="text-sm text-[var(--color-text-muted)]">{t.description}</p>
+            </Wrapper>
+          );
+        })}
+      </div>
+
+      <div class="mt-16 p-8 rounded-2xl bg-gradient-to-br from-[var(--color-accent)]/10 to-[var(--color-primary)]/10 border border-[var(--color-border)]/50 text-center">
+        <h3 class="text-xl font-bold mb-2">Want automatic tracking?</h3>
+        <p class="text-sm text-[var(--color-text-muted)] mb-4">
+          PoopCheck classifies Bristol type, color, and consistency from a single
+          photo — so you don't have to remember or guess.
+        </p>
+        <a
+          href="/download/"
+          class="inline-flex items-center px-6 py-3 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold hover:opacity-90 transition-opacity glow-primary"
+        >
+          Download PoopCheck Free
+        </a>
+      </div>
+    </div>
+  </article>
+</PageLayout>

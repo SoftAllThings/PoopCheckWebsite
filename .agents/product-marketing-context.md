@@ -18,7 +18,7 @@
 
 - **Free tier:** AI stool analysis, Bristol Scale classification, color & consistency analysis, basic tracking & history, community access, daily gut-health score.
 - **Premium tier** (PoopCheck Premium): everything in Free + personalized health reports, SOFTie AI digestive assistant, advanced analytics & trends, export detailed reports, 2× reward points, premium badge, priority support.
-- **Pricing:** [TODO — fill in exact monthly/annual prices. Currently shown only by in-app paywall; marketing-context should mirror it.]
+- **Pricing:** PoopCheck Premium is **$6.99 USD/month** or **$49.99 USD/year** (annual = ~40% discount vs monthly). Free tier is permanent, no credit card required.
 
 ---
 
@@ -61,15 +61,22 @@
 
 ## 4. Competitive Landscape
 
-### Direct competitors (same job)
-- **Cara Care** — symptom + diet tracker, strong in IBS. Strength: dietitian integration. Gap: no AI stool vision; log-heavy.
-- **Bowelle** — focused on bowel movement logging. Strength: simple UI. Gap: manual classification, no AI, no analytics depth.
-- **Poop Tracker / Stool Log / Stool Diary** — various lightweight loggers. Strength: speed. Gap: no AI, no health score, no long-term insights.
-- **Symple Symptom Tracker** — generic symptom journaling. Strength: broad applicability. Gap: not gut-specialized.
+### Direct competitors (same job — based on actual 2026 search competition)
+- **Cara Care** — symptom + diet tracker, IBS/FODMAP-focused. Strength: dietitian network. Gap: no AI stool vision; log-heavy.
+- **Dieta Health** — Cedars-Sinai-validated AI stool analysis. Strength: real clinical-study backing. Gap: clinical focus, fewer consumer-facing features; narrower audience.
+- **Balloon** — currently featured in "best poop tracker 2026" roundups. Strength: UX polish, guided protocols. Gap: no AI vision, protocol-prescriptive.
+- **Plop** — power-user tracker with deep customization. Strength: flexibility. Gap: no AI; steep learning curve.
+- **Bowelle** — IBS-specific bowel logger. Strength: simple UI. Gap: manual classification, no AI.
+- **mySymptoms / MyIBS** — manual symptom diaries. Strength: mature product. Gap: no AI photo analysis.
+- **Stooly** — free-with-no-ads AI rival. Strength: price. Gap: accuracy/feature depth unclear.
+- **CleverPoop / Poopalyzer / Poop Scanner AI** — AI-analyzer category. Various small apps.
 
 ### Secondary (overlapping job)
 - **Bearable** — general symptom + habit tracker. Strength: customization. Gap: not gut-specific, no AI vision.
 - **MyFitnessPal / Cronometer** — food logging only. Users often pair with PoopCheck.
+
+### Category-level queries PoopCheck should own
+"AI stool analysis app", "best AI poop tracker", "poop photo analysis app", "Bristol stool scale app with camera".
 
 ### Where PoopCheck wins
 - **AI vision-based classification** — no other app does this. It's our moat.
@@ -87,7 +94,7 @@
 
 - **Only** app that classifies stool from a photo using dedicated AI vision.
 - Bristol-aware **by design** — not a bolted-on checkbox.
-- Privacy-first — photos processed and discarded, not stored long-term. [TODO: verify exact retention policy and cite here.]
+- Privacy-first — photos are "processed securely and never shared with third parties" per [privacy policy](../src/pages/privacy.astro). Uses Firebase for auth/storage (Google's privacy terms apply). We do not sell personal data; we may share anonymized aggregated data for research. **Note:** the privacy policy does not currently state an explicit photo retention window — a gap worth closing in a future policy update, since users ask and it blocks some enterprise/health-data conversations.
 - Daily score makes it sticky — users see a number; numbers compound habit.
 - SoftAI integration gives us the AI substrate other apps can't replicate without an ML team.
 
@@ -147,10 +154,15 @@ PoopCheck content sits in **Google's YMYL (Your Money or Your Life)** zone — h
 
 - **North star:** organic **install-conversion** from SEO + AI-search referrals (Google, ChatGPT, Perplexity, Gemini). Target: growing organic sessions → growing installs with stable conversion rate.
 - **Secondary metrics:**
-  - Premium conversion rate from organic sessions.
+  - Premium conversion rate from organic sessions (on $6.99/mo or $49.99/yr Premium).
   - AI-search mention rate (how often ChatGPT/Perplexity cites poopcheck.app when asked about stool questions).
   - Backlink acquisition (free tools + cornerstone pages should earn links).
-  - Newsletter signups [TODO — confirm newsletter exists; if yes, track; if not, consider launching].
+- **Growth gap to flag**: no newsletter currently exists. Resend is installed but only used for the `/support` form. A newsletter (weekly digest from blog output + tool launches) is a real missed lever and a candidate for future work.
+
+### App store ratings (use in schema, landing copy, social)
+- **Apple App Store**: 4.5★ / 24 ratings (id: 6737857695).
+- **Google Play**: 5.0★ / 56 ratings (id: com.softallthings.poopcheckapp).
+- Combined (approximate, for `aggregateRating` schema): ~4.8★ / 80 ratings.
 
 ---
 
@@ -181,7 +193,7 @@ Ranked loosely by commercial + search-intent value. Agents should consult this b
 ### Top objections
 1. *"Isn't this kind of gross?"* — Reframe: millions of people have gut issues and hide them. Having real data removes the stigma.
 2. *"Why pay when I can just describe my poop to my doctor?"* — Because you can't, accurately. Try describing last Tuesday's Bristol type from memory. The app remembers and shows patterns.
-3. *"Does my data stay private?"* — Yes. [TODO: verify + cite exact privacy policy and retention window.]
+3. *"Does my data stay private?"* — Photos are processed securely, never shared with third parties, and we don't sell personal data (see [privacy policy](https://poopcheck.app/privacy/)). We may share anonymized aggregated data for research purposes. Firebase (Google) handles auth/storage under their privacy terms.
 
 ### Anti-persona
 Users looking for an AI doctor. PoopCheck is a tracker + classifier + pattern-surface-er, **not** a replacement for medical care. We say this explicitly.
@@ -197,18 +209,40 @@ Users looking for an AI doctor. PoopCheck is a tracker + classifier + pattern-su
 
 ---
 
-## 13. Customer Language
+## 13. Customer Language (verbatim — use these exact phrases)
 
-[TODO — Populate from actual reviews, support tickets, and r/ibs / r/ibd threads. Verbatim phrases are the most valuable content in this doc. Exact quotes beat polished descriptions.]
+### Positive — App Store / Google Play reviews
+- *"Super helpful app and easy to use! The tracking/storage features are great"* — App Store
+- *"Simple to use and it gives some interesting info with just a picture."* — App Store
+- *"I love it! Great information given for free! Perfect way to store photos"* — App Store
+- *"user friendly, funny features and the leaderboard just nails it! 5 stars worth it"* — Google Play
+- *"Not bad for what it attempts"* — Google Play (tempered but honest)
 
-Placeholder starters (replace with real ones):
-- How they describe the problem: *"I don't know what's normal for me."*
-- How they describe PoopCheck: *"It's like Oura but for your gut."*
-- Phrases that work: "gut health," "Bristol Scale," "pattern," "track," "see the trend."
-- Phrases that don't: "bowel movement" (too clinical for headlines), "poop" (fine in body copy, not always in H1s).
+### Negative / critical (know the objections)
+- *"there have been errors identifying stool type by AI, and the inability to manually edit the type makes it impossible to make good use of the data"* — Google Play IBS user. **Actionable intelligence**: AI accuracy + manual-edit UX are weak points; users want control.
+- *"I have been using it quite a bit and I found it quite buggy"* — App Store. **Actionable intelligence**: stability matters; triage app bugs before running big marketing pushes.
+- *"Ai as usual needs work and is not a replacement for professional medical advice"* — Google Play. **Reinforces** the YMYL stance: "inform, not diagnose" must stay front-and-center.
+
+### Language patterns observed in the gut-health space (Reddit r/ibs, r/ibd, r/crohnsdisease, JMIR IBD analysis)
+- Users describe: *"tracking symptoms, managing medications, and coping with stress"*
+- Symptom vocabulary: *"bloody stools, diarrhea, constipation, urgency, nausea, vomiting, bloating"*
+- Emotional frame: "I worry about [color/consistency]" — the worry-about-normal pattern is the deepest pain.
+
+### Phrases that work in headlines & copy
+"gut health," "Bristol Scale," "track," "pattern," "decode your [color/consistency]," "what your poop is telling you," "AI stool analysis," "from a photo," "in seconds."
+
+### Phrases to avoid
+- "Bowel movement" — too clinical for headlines (fine in body).
+- "Fecal" — clinical term, not consumer-friendly.
+- Overt medical-advice framing ("diagnose," "treatment plan") — YMYL trap.
+- Moralizing about diet or lifestyle.
+
+### TODO (optional, lower priority)
+- Pull full App Store / Google Play review corpus from App Store Connect + Play Console and extract additional verbatim quotes for future copy work. Public scraping only surfaces the first handful. Reddit has no direct PoopCheck mentions yet — app is still too small/new.
 
 ---
 
 ## Changelog
 
-- **2026-04-20** — v1 seeded from session context. Includes [TODO] markers for exact pricing, privacy retention, keyword data from GSC, and verbatim customer language. Update as data becomes available.
+- **2026-04-20** — v1 seeded from session context.
+- **2026-04-20** — v1.1 — resolved TODOs: pricing ($6.99/mo or $49.99/yr USD), privacy stance (per privacy.astro; retention window gap noted), newsletter status (doesn't exist — growth lever), competitors updated with 2026 search-demand competitors, verbatim customer language pulled from App Store/Play, app store ratings added for schema use.

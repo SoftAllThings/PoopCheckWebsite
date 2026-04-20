@@ -1,0 +1,269 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../../utils/schema';
+import { getCanonicalUrl, SITE } from '../../utils/seo';
+import bristolData from '../../data/bristol.json';
+
+export function getStaticPaths() {
+  return bristolData.types.map((t: any) => ({
+    params: { type: t.slug },
+    props: { entry: t, shared: bristolData.$sources_shared },
+  }));
+}
+
+const { entry, shared } = Astro.props;
+
+const url = getCanonicalUrl(Astro.url.pathname);
+const title = `${entry.name} — What It Means for Your Health`;
+const description = `${entry.appearance} Here's what ${entry.name} signals about your digestive health, when to worry, and evidence-based ways to shift toward the healthy Bristol range.`.slice(0, 160);
+
+const sources = shared.filter((s: any) => entry.sources.includes(s.id));
+
+const faqItems = [
+  {
+    question: `Is ${entry.name.replace(/^Type \d+: /, 'Type ' + entry.type + ' (')} normal?`,
+    answer: entry.health_signal_label === 'Ideal — gold standard' || entry.health_signal_label === 'Healthy'
+      ? `Yes. ${entry.name} is within the healthy range on the Bristol Stool Scale.`
+      : `${entry.name} falls outside the ideal range (Types 3–4). Occasional episodes are common, but consistent ${entry.name} for more than a few weeks — or combined with other symptoms — deserves attention.`,
+  },
+  {
+    question: `What causes ${entry.short_name} stool?`,
+    answer: entry.common_causes.slice(0, 3).map((c: any) => c.cause).join('; ') + '. See the full list above with citations.',
+  },
+  {
+    question: `When should I see a doctor about ${entry.short_name} stool?`,
+    answer: entry.when_to_worry.slice(0, 2).join(' Also: ') + ' See a healthcare provider for any of these.',
+  },
+  {
+    question: `How can I shift toward Type 3 or 4?`,
+    answer: entry.how_to_improve.slice(0, 3).map((a: any) => a.action).join('; ') + '. These are starting points — persistent issues deserve a clinician evaluation.',
+  },
+];
+
+const schema = [
+  articleSchema({
+    title,
+    description,
+    url,
+    datePublished: '2026-04-20T00:00:00Z',
+    dateModified: '2026-04-20T00:00:00Z',
+    author: 'PoopCheck Team',
+    medical: true,
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: `${SITE.url}/` },
+    { name: 'Bristol Stool Scale', url: `${SITE.url}/bristol/` },
+    { name: entry.name, url },
+  ]),
+  faqSchema(faqItems),
+];
+
+const signalColor: Record<string, string> = {
+  ideal: 'var(--color-primary)',
+  healthy: 'var(--color-primary)',
+  'borderline-loose': 'var(--color-accent)',
+  'mild-constipation': 'var(--color-accent)',
+  'mild-diarrhea': '#ffb86b',
+  'severe-constipation': '#ff6b6b',
+  diarrhea: '#ff6b6b',
+};
+const accent = signalColor[entry.health_signal] || 'var(--color-primary)';
+---
+
+<PageLayout seo={{ title, description, type: 'article' }} schema={schema}>
+  <article class="py-12 md:py-20">
+    <div class="max-w-3xl mx-auto px-5">
+
+      <div class="mb-8">
+        <Breadcrumbs
+          items={[
+            { label: 'Bristol Stool Scale', href: '/bristol/' },
+            { label: entry.name, href: Astro.url.pathname },
+          ]}
+        />
+      </div>
+
+      <header class="mb-10">
+        <div
+          class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4"
+          style={`background-color: color-mix(in oklab, ${accent} 15%, transparent); color: ${accent}; border: 1px solid color-mix(in oklab, ${accent} 30%, transparent);`}
+        >
+          {entry.health_signal_label}
+        </div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          {entry.name}
+        </h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)] leading-relaxed">
+          {entry.appearance}
+        </p>
+      </header>
+
+      {/* SVG: simple visual of this type */}
+      <figure class="mb-12">
+        <svg viewBox="0 0 1200 400" width="100%" height="auto" role="img" aria-labelledby={`bristol-${entry.type}-title bristol-${entry.type}-desc`} style="background: #121212; border-radius: 16px;">
+          <title id={`bristol-${entry.type}-title`}>{`Bristol Stool Scale ${entry.name}: ${entry.short_name}`}</title>
+          <desc id={`bristol-${entry.type}-desc`}>{`Simplified visual of ${entry.name}: ${entry.appearance} This health signal corresponds to ${entry.health_signal_label.toLowerCase()}.`}</desc>
+          <rect width="1200" height="400" fill="#121212"/>
+          <text x="600" y="80" text-anchor="middle" fill="#FFFFFF" font-size="28" font-weight="600">{`Type ${entry.type}`}</text>
+          <text x="600" y="115" text-anchor="middle" fill="#9BF0FF" font-size="16">{entry.short_name}</text>
+          {entry.type === 1 && (
+            <g>
+              {[280, 380, 480, 580, 680, 780, 880].map((x: number) => (
+                <circle cx={x} cy="240" r="25" fill={accent} />
+              ))}
+            </g>
+          )}
+          {entry.type === 2 && (
+            <g>
+              <rect x="280" y="215" width="640" height="50" rx="10" fill={accent}/>
+              {[340, 440, 540, 640, 740, 840].map((x: number) => (
+                <circle cx={x} cy="240" r="12" fill="#121212" opacity="0.4" />
+              ))}
+            </g>
+          )}
+          {entry.type === 3 && (
+            <g>
+              <rect x="240" y="210" width="720" height="60" rx="30" fill={accent}/>
+              {[380, 500, 620, 740, 860].map((x: number) => (
+                <line x1={x} y1="225" x2={x} y2="255" stroke="#121212" stroke-width="2" opacity="0.4" />
+              ))}
+            </g>
+          )}
+          {entry.type === 4 && (
+            <g>
+              <path d="M 240 240 Q 400 200 600 240 T 960 240" stroke={accent} stroke-width="55" fill="none" stroke-linecap="round"/>
+            </g>
+          )}
+          {entry.type === 5 && (
+            <g>
+              {[{x:340,r:45},{x:500,r:50},{x:680,r:42},{x:860,r:48}].map(({x,r}: any) => (
+                <ellipse cx={x} cy="240" rx={r} ry={r*0.6} fill={accent}/>
+              ))}
+            </g>
+          )}
+          {entry.type === 6 && (
+            <g>
+              {[300, 420, 540, 660, 780, 900].map((x: number, i: number) => (
+                <circle cx={x} cy={230 + (i % 2) * 20} r={22 + (i % 3) * 4} fill={accent} opacity={0.85}/>
+              ))}
+            </g>
+          )}
+          {entry.type === 7 && (
+            <g>
+              <ellipse cx="600" cy="245" rx="380" ry="30" fill={accent} opacity="0.9"/>
+              {[320, 450, 600, 750, 880].map((x: number) => (
+                <circle cx={x} cy="245" r="4" fill="#FFFFFF" opacity="0.7"/>
+              ))}
+            </g>
+          )}
+          <text x="600" y="370" text-anchor="middle" fill="#FFFFFF" font-size="14" opacity="0.7">{entry.appearance}</text>
+        </svg>
+      </figure>
+
+      <div class="prose prose-invert prose-lg max-w-none
+        prose-headings:font-bold prose-headings:text-[var(--color-text)]
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+        prose-p:text-[var(--color-text-muted)] prose-p:leading-relaxed
+        prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline
+        prose-strong:text-[var(--color-text)]
+        prose-li:text-[var(--color-text-muted)]
+      ">
+
+        <h2>What {entry.name} means</h2>
+        <p>{entry.description}</p>
+        <ul>
+          {entry.what_it_means.map((item: string) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+
+        <h2>Common causes</h2>
+        <ul>
+          {entry.common_causes.map((c: any) => (
+            <li>{c.cause}</li>
+          ))}
+        </ul>
+
+        <h2>When to see a doctor</h2>
+        <ul>
+          {entry.when_to_worry.map((item: string) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+        <p><em>PoopCheck is a tracker and classifier, not a replacement for medical care. If you see any red flags above, see a qualified clinician.</em></p>
+
+        <h2>How to shift toward the healthy range (Type 3–4)</h2>
+        <ul>
+          {entry.how_to_improve.map((a: any) => (
+            <li>{a.action}</li>
+          ))}
+        </ul>
+
+        <h2>Foods commonly associated with {entry.short_name} stool</h2>
+        <ul>
+          {entry.foods_associated.map((f: string) => (
+            <li>{f}</li>
+          ))}
+        </ul>
+
+        {entry.neighbors && entry.neighbors.length > 0 && (
+          <>
+            <h2>Neighbors on the Bristol scale</h2>
+            <ul>
+              {entry.neighbors.map((n: any) => {
+                const neighbor = bristolData.types.find((t: any) => t.type === n.type);
+                return neighbor && (
+                  <li>
+                    <a href={`/bristol/${neighbor.slug}/`}><strong>{neighbor.name}</strong></a> — {n.relation}.
+                  </li>
+                );
+              })}
+            </ul>
+          </>
+        )}
+
+        <h2>Related guides</h2>
+        <ul>
+          {entry.related_topics.map((rt: any) => (
+            <li>
+              <a href={`/poopcheck-blog/${rt.slug}/`}>{rt.slug.replace(/-/g, ' ')}</a> — {rt.why}
+            </li>
+          ))}
+        </ul>
+
+        <h2>FAQ</h2>
+        {faqItems.map((f: any) => (
+          <>
+            <h3>{f.question}</h3>
+            <p>{f.answer}</p>
+          </>
+        ))}
+
+        <h2>Sources</h2>
+        <ol>
+          {sources.map((s: any) => (
+            <li>
+              <a href={s.url} target="_blank" rel="noopener noreferrer">{s.title}</a>
+              {s.authors && <> — {s.authors} ({s.year})</>}
+              {s.publisher && !s.authors && <> — {s.publisher}</>}
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      {/* CTA */}
+      <div class="mt-12 p-8 rounded-2xl bg-gradient-to-br from-[var(--color-accent)]/10 to-[var(--color-primary)]/10 border border-[var(--color-border)]/50 text-center">
+        <h3 class="text-xl font-bold mb-2">Track your Bristol type automatically</h3>
+        <p class="text-sm text-[var(--color-text-muted)] mb-4">PoopCheck classifies your stool by Bristol type, color, and consistency from a single photo — and shows the pattern over time.</p>
+        <a
+          href="/download/"
+          class="inline-flex items-center px-6 py-3 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold hover:opacity-90 transition-opacity glow-primary"
+        >
+          Download Free
+        </a>
+      </div>
+    </div>
+  </article>
+</PageLayout>

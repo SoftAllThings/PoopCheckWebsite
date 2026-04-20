@@ -1,0 +1,163 @@
+---
+import PageLayout from '../../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../../components/seo/Breadcrumbs.astro';
+import BristolQuiz from '../../../components/tools/BristolQuiz';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../../../utils/schema';
+import { getCanonicalUrl, SITE } from '../../../utils/seo';
+
+const url = getCanonicalUrl(Astro.url.pathname);
+const title = 'Bristol Stool Chart Quiz — Find Your Type in 30 Seconds';
+const description = 'Free Bristol Stool Scale quiz. Answer 2–3 quick questions and find out which of the 7 Bristol types your stool is — with an explanation of what it means.';
+
+const faqItems = [
+  {
+    question: 'What is the Bristol Stool Chart?',
+    answer: 'The Bristol Stool Chart (or Bristol Stool Scale) is a clinical tool developed in 1997 at the Bristol Royal Infirmary that classifies stool into 7 types, from hard pellets (Type 1) to fully liquid (Type 7). Types 3 and 4 are considered the healthy range.',
+  },
+  {
+    question: 'How accurate is this quiz?',
+    answer: "The quiz uses the same classification criteria as clinical Bristol Stool Scale charts. It's accurate for identifying your Bristol type, but not a medical diagnostic tool — it tells you what type your stool is, not what's causing it. For persistent issues, see a clinician.",
+  },
+  {
+    question: "What's a healthy Bristol type?",
+    answer: 'Types 3 and 4 are considered the healthy range. Type 4 is often called the "gold standard" — smooth, soft, snake-like, and easy to pass. Occasional drift into other types is normal; it\'s the pattern over weeks that matters.',
+  },
+  {
+    question: 'What should I do if my type is unhealthy?',
+    answer: 'For Types 1–2 (constipation), focus on fiber, fluid, and movement. For Types 6–7 (diarrhea), prioritize hydration with electrolytes and avoid dietary triggers. For any concerning pattern lasting more than 2 weeks, or for any blood, mucus, unexplained weight loss, or severe pain, see a clinician.',
+  },
+  {
+    question: 'Is this the same as an AI stool analysis?',
+    answer: 'No — this quiz relies on your self-description. PoopCheck\'s AI does the analysis automatically from a photo, classifying Bristol type, color, and consistency in seconds, and tracks the pattern over time. The app is more accurate and much easier than describing stool with words.',
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'Bristol Stool Chart Quiz',
+    description,
+    url,
+    applicationCategory: 'HealthApplication',
+    operatingSystem: 'Web',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+  },
+  articleSchema({
+    title,
+    description,
+    url,
+    datePublished: '2026-04-20T00:00:00Z',
+    dateModified: '2026-04-20T00:00:00Z',
+    author: 'PoopCheck Team',
+    medical: true,
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: `${SITE.url}/` },
+    { name: 'Tools', url: `${SITE.url}/tools/` },
+    { name: 'Bristol Stool Chart Quiz', url },
+  ]),
+  faqSchema(faqItems),
+];
+---
+
+<PageLayout seo={{ title, description, type: 'article' }} schema={schema}>
+  <article class="py-12 md:py-20">
+    <div class="max-w-3xl mx-auto px-5">
+
+      <div class="mb-8">
+        <Breadcrumbs
+          items={[
+            { label: 'Tools', href: '/tools/' },
+            { label: 'Bristol Stool Chart Quiz', href: Astro.url.pathname },
+          ]}
+        />
+      </div>
+
+      <header class="mb-10 text-center">
+        <div class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[var(--color-accent)]/10 text-[var(--color-accent)] mb-4">
+          Free Tool
+        </div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          Bristol Stool Chart Quiz
+        </h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)] leading-relaxed max-w-2xl mx-auto">
+          Answer 2–3 quick questions and find out which of the 7 Bristol Stool Scale types your stool is — with an explanation of what it means and how to shift toward the healthy range.
+        </p>
+      </header>
+
+      {/* The quiz (React island) */}
+      <BristolQuiz client:load />
+
+      {/* SEO content below the fold */}
+      <div class="prose prose-invert prose-lg max-w-none mt-16
+        prose-headings:font-bold prose-headings:text-[var(--color-text)]
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+        prose-p:text-[var(--color-text-muted)] prose-p:leading-relaxed
+        prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline
+        prose-strong:text-[var(--color-text)]
+        prose-li:text-[var(--color-text-muted)]
+      ">
+
+        <h2>How this quiz works</h2>
+        <p>
+          The Bristol Stool Scale is a widely-used clinical tool for classifying
+          stool consistency. It maps stool into seven distinct types based on
+          shape and texture:
+        </p>
+        <ul>
+          <li><strong>Types 1–2:</strong> Hard, separate lumps — constipation territory.</li>
+          <li><strong>Types 3–4:</strong> Smooth and well-formed — the healthy range.</li>
+          <li><strong>Types 5–7:</strong> Soft, mushy, or liquid — loose-to-diarrhea range.</li>
+        </ul>
+        <p>
+          Our quiz narrows down your type with 2–3 simple questions based on
+          appearance (separate pieces vs connected shape), surface (lumpy vs
+          cracked vs smooth), and consistency (solid vs mushy vs liquid). The
+          logic mirrors how clinicians quickly classify stool using the chart.
+        </p>
+
+        <h2>What your Bristol type tells you</h2>
+        <p>
+          Your Bristol type is a direct readout of colon transit time and water
+          absorption. Hard types (1–2) mean stool sat too long in the colon and
+          too much water was reabsorbed. Liquid types (6–7) mean stool moved too
+          fast for the colon to absorb water at all. Types 3–4 hit the balance.
+        </p>
+        <p>
+          No single day of stool defines your gut health. The pattern over weeks
+          does. That's why we built PoopCheck: the app automatically classifies
+          Bristol type, color, and consistency from a photo — so tracking is
+          effortless enough to actually do daily, and the pattern becomes
+          visible.
+        </p>
+
+        <h2>Common questions</h2>
+        {faqItems.map((f) => (
+          <>
+            <h3>{f.question}</h3>
+            <p>{f.answer}</p>
+          </>
+        ))}
+
+        <h2>Dig deeper</h2>
+        <ul>
+          <li><a href="/bristol/">The complete Bristol Stool Scale guide</a> — all 7 types with detailed breakdowns</li>
+          <li><a href="/poopcheck-blog/fiber-and-stool-consistency/">Fiber and stool consistency</a> — how diet shifts your Bristol type</li>
+          <li><a href="/poopcheck-blog/how-often-should-you-poop-3-shocking-facts-you-need-to-know/">How often should you poop?</a> — frequency vs consistency</li>
+          <li><a href="/poopcheck-blog/how-to-improve-gut-health/">10 evidence-based ways to improve gut health</a></li>
+        </ul>
+
+        <p class="text-xs">
+          Disclaimer: This quiz provides informational classification based on the
+          Bristol Stool Scale. It is not medical advice and does not diagnose any
+          condition. If you're experiencing persistent changes in bowel habits,
+          blood in stool, unexplained weight loss, or severe pain, see a
+          qualified healthcare provider.
+        </p>
+      </div>
+    </div>
+  </article>
+</PageLayout>

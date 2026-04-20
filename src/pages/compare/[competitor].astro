@@ -1,0 +1,206 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../../utils/schema';
+import { getCanonicalUrl, SITE } from '../../utils/seo';
+import competitorsData from '../../data/competitors.json';
+
+export function getStaticPaths() {
+  return competitorsData.competitors.map((c: any) => ({
+    params: { competitor: c.slug },
+    props: { entry: c },
+  }));
+}
+
+const { entry } = Astro.props;
+
+const url = getCanonicalUrl(Astro.url.pathname);
+const title = `PoopCheck vs ${entry.name}: Honest Comparison (2026)`;
+const descSource = `How PoopCheck and ${entry.name} compare on AI analysis, tracking depth, pricing, and who each app is right for.`;
+const description = descSource.slice(0, 160);
+
+// Build feature table using the entry's own competitor key (cara_care / dieta_health / balloon)
+const compKey = entry.slug.replace(/-/g, '_');
+
+const faqItems = [
+  {
+    question: `Is PoopCheck a good alternative to ${entry.name}?`,
+    answer: `${entry.when_poopcheck_is_better} See the full feature comparison above.`,
+  },
+  {
+    question: `Which app is better for me — PoopCheck or ${entry.name}?`,
+    answer: `${entry.when_competitor_is_better} Conversely: ${entry.when_poopcheck_is_better}`,
+  },
+  {
+    question: `How much does PoopCheck cost vs ${entry.name}?`,
+    answer: `PoopCheck is free to use; PoopCheck Premium is $6.99 USD/month or $49.99 USD/year. ${entry.pricing_notes}`,
+  },
+  {
+    question: `Can I switch from ${entry.name} to PoopCheck and keep my history?`,
+    answer: `Direct migration isn't available today. You can export your ${entry.name} data and keep it for reference; PoopCheck starts fresh with your first photo and builds the history automatically.`,
+  },
+];
+
+const schema = [
+  articleSchema({
+    title,
+    description,
+    url,
+    datePublished: '2026-04-20T00:00:00Z',
+    dateModified: entry.last_verified ? `${entry.last_verified}T00:00:00Z` : '2026-04-20T00:00:00Z',
+    author: 'PoopCheck Team',
+    medical: false,
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: `${SITE.url}/` },
+    { name: 'Compare', url: `${SITE.url}/compare/` },
+    { name: `PoopCheck vs ${entry.name}`, url },
+  ]),
+  faqSchema(faqItems),
+];
+---
+
+<PageLayout seo={{ title, description, type: 'article' }} schema={schema}>
+  <article class="py-12 md:py-20">
+    <div class="max-w-4xl mx-auto px-5">
+
+      <div class="mb-8">
+        <Breadcrumbs
+          items={[
+            { label: 'Compare', href: '/compare/' },
+            { label: `PoopCheck vs ${entry.name}`, href: Astro.url.pathname },
+          ]}
+        />
+      </div>
+
+      <header class="mb-10">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          PoopCheck vs {entry.name}
+        </h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)] leading-relaxed">
+          {entry.tagline}
+        </p>
+      </header>
+
+      <div class="prose prose-invert prose-lg max-w-none
+        prose-headings:font-bold prose-headings:text-[var(--color-text)]
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+        prose-p:text-[var(--color-text-muted)] prose-p:leading-relaxed
+        prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline
+        prose-strong:text-[var(--color-text)]
+        prose-li:text-[var(--color-text-muted)]
+      ">
+
+        <h2>The short answer</h2>
+        <p><strong>{entry.name}:</strong> {entry.strengths}</p>
+        <p><strong>PoopCheck:</strong> AI-first stool analysis — take a photo, get Bristol type + color + consistency + a daily gut-health score automatically. Broader feature set; built for consumer self-tracking.</p>
+
+      </div>
+
+      {/* Feature comparison table */}
+      <div class="mt-12 overflow-hidden rounded-2xl border border-[var(--color-border)]/50">
+        <table class="w-full text-sm">
+          <thead class="bg-[var(--color-surface)] border-b border-[var(--color-border)]/50">
+            <tr>
+              <th class="text-left p-4 font-semibold">Feature</th>
+              <th class="text-center p-4 font-semibold">{entry.name}</th>
+              <th class="text-center p-4 font-semibold text-[var(--color-primary)]">PoopCheck</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--color-border)]/30">
+            {entry.features.map((f: any) => {
+              const compVal = f[compKey];
+              const pcVal = f.poopcheck;
+              const renderCell = (v: any) => {
+                if (v === true) return <span class="text-[var(--color-primary)]">✓</span>;
+                if (v === false) return <span class="text-[var(--color-text-muted)]">—</span>;
+                return <span class="text-[var(--color-text-muted)]">{v}</span>;
+              };
+              return (
+                <tr class="hover:bg-[var(--color-surface)]/30">
+                  <td class="p-4 font-medium">
+                    {f.name}
+                    {f.note && <div class="text-xs text-[var(--color-text-muted)] mt-1 font-normal">{f.note}</div>}
+                  </td>
+                  <td class="p-4 text-center">{renderCell(compVal)}</td>
+                  <td class="p-4 text-center">{renderCell(pcVal)}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="prose prose-invert prose-lg max-w-none mt-12
+        prose-headings:font-bold prose-headings:text-[var(--color-text)]
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+        prose-p:text-[var(--color-text-muted)] prose-p:leading-relaxed
+        prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline
+        prose-strong:text-[var(--color-text)]
+        prose-li:text-[var(--color-text-muted)]
+      ">
+
+        <h2>Where {entry.name} is stronger</h2>
+        <p>{entry.strengths}</p>
+
+        <h2>Where PoopCheck is stronger</h2>
+        <p>
+          PoopCheck's AI vision layer is the core difference — most competitors
+          in this space rely on manual selection of Bristol type, color, and
+          consistency. PoopCheck does all three from a single photo in seconds.
+          Combined with the daily gut-health score, users get a trending signal
+          instead of a pile of disconnected log entries.
+        </p>
+        <p>
+          Premium ($6.99 USD/month or $49.99/year) adds SOFTie, an AI digestive
+          assistant that contextualizes your tracking data, plus advanced
+          analytics, exports, and priority support.
+        </p>
+
+        <h2>Who should pick {entry.name}</h2>
+        <p>{entry.when_competitor_is_better}</p>
+
+        <h2>Who should pick PoopCheck</h2>
+        <p>{entry.when_poopcheck_is_better}</p>
+
+        <h2>FAQ</h2>
+        {faqItems.map((f: any) => (
+          <>
+            <h3>{f.question}</h3>
+            <p>{f.answer}</p>
+          </>
+        ))}
+
+        <h2>Related</h2>
+        <ul>
+          <li><a href="/bristol/">The Bristol Stool Scale — complete guide</a></li>
+          <li><a href="/poopcheck-blog/how-to-improve-gut-health/">10 evidence-based ways to improve gut health</a></li>
+          <li><a href="/poopcheck-blog/fiber-and-stool-consistency/">Fiber and stool consistency</a></li>
+        </ul>
+
+        <h2>Sources</h2>
+        <ol>
+          {entry.sources.map((s: any) => (
+            <li>
+              <a href={s.url} target="_blank" rel="noopener noreferrer">{s.title}</a>
+            </li>
+          ))}
+        </ol>
+        <p class="text-xs text-[var(--color-text-muted)]">Last verified: {entry.last_verified}. Competitor features and pricing may have changed since this date — tell us via <a href="/support/">support</a> if anything is out of date.</p>
+      </div>
+
+      <div class="mt-12 p-8 rounded-2xl bg-gradient-to-br from-[var(--color-accent)]/10 to-[var(--color-primary)]/10 border border-[var(--color-border)]/50 text-center">
+        <h3 class="text-xl font-bold mb-2">Try PoopCheck free</h3>
+        <p class="text-sm text-[var(--color-text-muted)] mb-4">AI stool analysis, Bristol Scale classification, and a daily gut-health score — all in seconds from a photo.</p>
+        <a
+          href="/download/"
+          class="inline-flex items-center px-6 py-3 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold hover:opacity-90 transition-opacity glow-primary"
+        >
+          Download Free
+        </a>
+      </div>
+    </div>
+  </article>
+</PageLayout>

@@ -41,15 +41,51 @@ export function websiteSchema() {
 export function softwareApplicationSchema() {
   return {
     '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
+    '@type': 'MobileApplication',
     name: 'PoopCheck: AI Stool Tracker',
     operatingSystem: 'iOS, Android',
     applicationCategory: 'HealthApplication',
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      ratingCount: '80',
+      bestRating: '5',
+      worstRating: '1',
     },
+    offers: [
+      {
+        '@type': 'Offer',
+        name: 'PoopCheck Free',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+      {
+        '@type': 'Offer',
+        name: 'PoopCheck Premium (Monthly)',
+        price: '6.99',
+        priceCurrency: 'USD',
+        priceSpecification: {
+          '@type': 'UnitPriceSpecification',
+          price: '6.99',
+          priceCurrency: 'USD',
+          billingIncrement: 1,
+          unitText: 'MONTH',
+        },
+      },
+      {
+        '@type': 'Offer',
+        name: 'PoopCheck Premium (Annual)',
+        price: '49.99',
+        priceCurrency: 'USD',
+        priceSpecification: {
+          '@type': 'UnitPriceSpecification',
+          price: '49.99',
+          priceCurrency: 'USD',
+          billingIncrement: 1,
+          unitText: 'YEAR',
+        },
+      },
+    ],
     description: SITE.description,
     url: SITE.url,
     downloadUrl: SITE.appStore,
@@ -126,12 +162,14 @@ export interface ArticleSchemaProps {
   datePublished: string;
   dateModified?: string;
   author?: string;
+  medical?: boolean;
 }
 
 export function articleSchema(props: ArticleSchemaProps) {
-  return {
+  const type = props.medical ? ['Article', 'MedicalWebPage'] : 'Article';
+  const base = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': type,
     headline: props.title,
     description: props.description,
     url: props.url,
@@ -151,4 +189,16 @@ export function articleSchema(props: ArticleSchemaProps) {
       },
     },
   };
+
+  if (props.medical) {
+    return {
+      ...base,
+      lastReviewed: props.dateModified || props.datePublished,
+      audience: {
+        '@type': 'Audience',
+        audienceType: 'consumers',
+      },
+    };
+  }
+  return base;
 }

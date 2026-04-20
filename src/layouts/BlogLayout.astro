@@ -29,6 +29,9 @@ const categoryLabels: Record<string, string> = {
   research: 'Research',
 };
 
+// MedicalWebPage type applies to all blog categories EXCEPT app-updates (which are product news, not medical content)
+const isMedical = category !== 'app-updates';
+
 const schema = articleSchema({
   title,
   description,
@@ -37,6 +40,7 @@ const schema = articleSchema({
   datePublished: date.toISOString(),
   dateModified: updated?.toISOString(),
   author: author || 'PoopCheck Team',
+  medical: isMedical,
 });
 
 const formattedDate = date.toLocaleDateString('en-US', {

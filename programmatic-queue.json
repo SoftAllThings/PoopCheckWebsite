@@ -1,0 +1,49 @@
+{
+  "$comment": "Queue for the programmatic-writer agent (.claude/agents/programmatic-writer.md). The agent pops from pending[] by mode (bristol or comparison). Schedule is weekly — don't over-fill. Bristol types 1-7 and the first 3 competitors are already shipped in the initial scaffold; new work goes here.",
+  "pending": [
+    {
+      "mode": "comparison",
+      "slug": "bowelle",
+      "name": "Bowelle",
+      "website_url": "https://bowelle.com/",
+      "priority": 2,
+      "notes": "IBS-specific bowel logger. Manual, no AI. Good to compare against for the 'why AI matters' angle."
+    },
+    {
+      "mode": "comparison",
+      "slug": "plop",
+      "name": "Plop",
+      "website_url": "",
+      "priority": 2,
+      "notes": "Power-user tracker with deep customization. Research site before writing."
+    },
+    {
+      "mode": "comparison",
+      "slug": "mysymptoms",
+      "name": "mySymptoms",
+      "website_url": "https://skygazerlabs.com/",
+      "priority": 3,
+      "notes": "Broader symptom diary. PoopCheck wins on AI + gut specificity; mySymptoms wins on multi-domain tracking."
+    },
+    {
+      "mode": "comparison",
+      "slug": "stooly",
+      "name": "Stooly",
+      "website_url": "",
+      "priority": 3,
+      "notes": "Free-with-no-ads AI rival. Direct feature parity — research carefully."
+    }
+  ],
+  "published": [
+    { "mode": "bristol", "slug": "type-1", "published_at": "2026-04-20", "source": "initial-scaffold" },
+    { "mode": "bristol", "slug": "type-2", "published_at": "2026-04-20", "source": "initial-scaffold" },
+    { "mode": "bristol", "slug": "type-3", "published_at": "2026-04-20", "source": "initial-scaffold" },
+    { "mode": "bristol", "slug": "type-4", "published_at": "2026-04-20", "source": "initial-scaffold" },
+    { "mode": "bristol", "slug": "type-5", "published_at": "2026-04-20", "source": "initial-scaffold" },
+    { "mode": "bristol", "slug": "type-6", "published_at": "2026-04-20", "source": "initial-scaffold" },
+    { "mode": "bristol", "slug": "type-7", "published_at": "2026-04-20", "source": "initial-scaffold" },
+    { "mode": "comparison", "slug": "cara-care", "published_at": "2026-04-20", "source": "initial-scaffold" },
+    { "mode": "comparison", "slug": "dieta-health", "published_at": "2026-04-20", "source": "initial-scaffold" },
+    { "mode": "comparison", "slug": "balloon", "published_at": "2026-04-20", "source": "initial-scaffold" }
+  ]
+}

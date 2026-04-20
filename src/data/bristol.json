@@ -1,0 +1,317 @@
+{
+  "$comment": "Bristol Stool Scale cornerstone-page data. Each entry drives one page at /bristol/type-N/. Maintained by programmatic-writer agent. All facts must cite a source. Do NOT add symptom/condition decision trees here — that's YMYL and out of scope.",
+  "$sources_shared": [
+    {
+      "id": "heaton-1997",
+      "title": "Stool Form Scale as a Useful Guide to Intestinal Transit Time",
+      "authors": "Lewis SJ, Heaton KW",
+      "journal": "Scandinavian Journal of Gastroenterology",
+      "year": 1997,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9299672/"
+    },
+    {
+      "id": "mayo-poop-healthy",
+      "title": "What to know about your poop",
+      "publisher": "Mayo Clinic",
+      "url": "https://www.mayoclinic.org/healthy-lifestyle/adult-health/expert-answers/digestion-how-long-does-it-take/faq-20058340"
+    },
+    {
+      "id": "cleveland-bristol",
+      "title": "Bristol Stool Chart: Types & What They Mean",
+      "publisher": "Cleveland Clinic",
+      "url": "https://my.clevelandclinic.org/health/articles/bristol-stool-chart"
+    },
+    {
+      "id": "nhs-constipation",
+      "title": "Constipation",
+      "publisher": "NHS",
+      "url": "https://www.nhs.uk/conditions/constipation/"
+    },
+    {
+      "id": "nhs-diarrhoea",
+      "title": "Diarrhoea and vomiting",
+      "publisher": "NHS",
+      "url": "https://www.nhs.uk/conditions/diarrhoea-and-vomiting/"
+    }
+  ],
+  "types": [
+    {
+      "type": 1,
+      "slug": "type-1",
+      "name": "Type 1: Separate Hard Lumps",
+      "short_name": "Separate hard lumps",
+      "appearance": "Small, hard, separate lumps that look like nuts or rabbit droppings.",
+      "health_signal": "severe-constipation",
+      "health_signal_label": "Severe constipation",
+      "description": "Type 1 on the Bristol Stool Scale is the hardest and driest stool pattern. The stool has spent too long in the colon, where excess water has been reabsorbed through the colon wall, leaving small dehydrated pellets that are painful to pass.",
+      "what_it_means": [
+        "Transit time through the colon is significantly longer than healthy.",
+        "Water content in the stool is very low — the colon has absorbed most of it.",
+        "Passing Type 1 stool is usually effortful and can cause straining, hemorrhoids, or anal fissures.",
+        "Chronic Type 1 output (multiple days per week for 3+ months) meets Rome IV criteria for chronic constipation."
+      ],
+      "common_causes": [
+        { "cause": "Low fiber intake (below ~14 g per 1,000 kcal)", "source_id": "dga-2020" },
+        { "cause": "Insufficient fluid intake", "source_id": "nhs-constipation" },
+        { "cause": "Low physical activity / sedentary lifestyle", "source_id": "nhs-constipation" },
+        { "cause": "Certain medications (opioids, iron supplements, some antidepressants, anticholinergics)", "source_id": "nhs-constipation" },
+        { "cause": "Ignoring the urge to go (over time retrains bowel habit)", "source_id": "nhs-constipation" }
+      ],
+      "when_to_worry": [
+        "Type 1 for more than 3 weeks despite diet/fluid changes.",
+        "Accompanied by blood in stool, unexplained weight loss, or severe abdominal pain.",
+        "New-onset in anyone over 45 without an obvious cause.",
+        "Anyone with a family history of colon cancer or IBD experiencing a sustained change in bowel habit."
+      ],
+      "how_to_improve": [
+        { "action": "Increase fiber gradually — 2–3 g per day every few days, up to ~25 g (women) or ~34 g (men) daily", "source_id": "dga-2020" },
+        { "action": "Drink more water — fiber without fluid can worsen constipation", "source_id": "nhs-constipation" },
+        { "action": "Move daily — walking 30 minutes improves colon motility", "source_id": "nhs-constipation" },
+        { "action": "Don't ignore the urge — establish a morning routine when the gastrocolic reflex is strongest" },
+        { "action": "Consider psyllium (5–10 g/day) — normalizes stool in both constipation and diarrhea", "source_id": "psyllium-trial" }
+      ],
+      "foods_associated": [
+        "Diets heavy in refined carbs, low in plants.",
+        "Low-residue or all-meat eating patterns.",
+        "Dehydration from high caffeine or alcohol with little water."
+      ],
+      "related_topics": [
+        { "slug": "constipation-causes-and-remedies", "why": "Deep dive into constipation, when it's medical." },
+        { "slug": "fiber-and-stool-consistency", "why": "How soluble vs insoluble fiber changes outcomes." }
+      ],
+      "neighbors": [{ "type": 2, "relation": "less severe end of the constipation range" }],
+      "sources": ["heaton-1997", "cleveland-bristol", "nhs-constipation"]
+    },
+    {
+      "type": 2,
+      "slug": "type-2",
+      "name": "Type 2: Lumpy and Sausage-Shaped",
+      "short_name": "Lumpy sausage",
+      "appearance": "Sausage-shaped but lumpy on the surface — like several Type 1 lumps pressed together.",
+      "health_signal": "mild-constipation",
+      "health_signal_label": "Mild to moderate constipation",
+      "description": "Type 2 still indicates constipation — less severe than Type 1 but still slow transit. The stool has formed a single mass but individual hard lumps are visible on the surface, suggesting the colon compressed already-dry material.",
+      "what_it_means": [
+        "Transit time is slower than healthy, though not as extreme as Type 1.",
+        "Passing Type 2 can still require straining.",
+        "Frequently Type 2 output is a sign that diet and hydration need adjustment — often fixable without medical intervention."
+      ],
+      "common_causes": [
+        { "cause": "Marginal fiber intake", "source_id": "dga-2020" },
+        { "cause": "Insufficient hydration", "source_id": "nhs-constipation" },
+        { "cause": "Sedentary days in a row", "source_id": "nhs-constipation" },
+        { "cause": "Travel, new environment, or schedule disruption" }
+      ],
+      "when_to_worry": [
+        "Sustained Type 2 for 3+ weeks without dietary change explanation.",
+        "Accompanied by blood, unexplained weight loss, new abdominal pain.",
+        "Sudden shift from Type 3/4 to Type 2 in adults over 45 without cause."
+      ],
+      "how_to_improve": [
+        { "action": "Add one extra serving of whole plant food per meal.", "source_id": "dga-2020" },
+        { "action": "Aim for 2–3 L of water daily, more if active.", "source_id": "nhs-constipation" },
+        { "action": "Walk 20–30 minutes after meals — activates the gastrocolic reflex." },
+        { "action": "Try a tablespoon of ground flaxseed or chia seeds daily — both soluble and insoluble fiber." }
+      ],
+      "foods_associated": ["Low-vegetable diets.", "Heavy cheese/dairy consumption.", "High white-bread / low-whole-grain patterns."],
+      "related_topics": [
+        { "slug": "fiber-and-stool-consistency", "why": "Soluble fiber softens this type of stool." },
+        { "slug": "how-to-improve-gut-health", "why": "Dietary strategies for regularity." }
+      ],
+      "neighbors": [{ "type": 1, "relation": "more severe constipation" }, { "type": 3, "relation": "on the healthy side" }],
+      "sources": ["heaton-1997", "cleveland-bristol", "nhs-constipation"]
+    },
+    {
+      "type": 3,
+      "slug": "type-3",
+      "name": "Type 3: Sausage-Shaped with Cracks",
+      "short_name": "Cracked sausage",
+      "appearance": "Like a sausage but with cracks on the surface. Holds together, passes smoothly.",
+      "health_signal": "healthy",
+      "health_signal_label": "Healthy",
+      "description": "Type 3 is considered a healthy stool type on the Bristol Stool Scale. Transit time through the colon is appropriate, water content is balanced, and passage is generally easy. Most people aim for Type 3 or Type 4.",
+      "what_it_means": [
+        "Colon transit time is within the healthy range.",
+        "Diet and hydration are generally supporting good digestion.",
+        "Passing is typically easy and complete."
+      ],
+      "common_causes": [
+        { "cause": "Adequate fiber intake (25–35 g/day)", "source_id": "dga-2020" },
+        { "cause": "Good hydration", "source_id": "mayo-poop-healthy" },
+        { "cause": "Regular physical activity" }
+      ],
+      "when_to_worry": [
+        "Type 3 isn't itself a concern. See a doctor only if accompanied by blood, mucus, pain, or a sudden shift from your usual pattern."
+      ],
+      "how_to_improve": [
+        { "action": "Maintain — don't over-optimize. Track consistency over weeks to spot drift." },
+        { "action": "Note what days you produce Type 3 vs Type 4 — patterns reveal which foods/habits work best for you." }
+      ],
+      "foods_associated": ["Plant-rich diets.", "Balanced protein/carb/fat.", "Fermented foods (yogurt, kefir, kimchi, sauerkraut)."],
+      "related_topics": [
+        { "slug": "how-to-improve-gut-health", "why": "Habits that produce consistent Type 3/4 output." },
+        { "slug": "top-fermented-beverages-to-enhance-your-gut-health-naturally", "why": "Foods that support this pattern." }
+      ],
+      "neighbors": [{ "type": 2, "relation": "mild constipation side" }, { "type": 4, "relation": "ideal / gold standard" }],
+      "sources": ["heaton-1997", "cleveland-bristol", "mayo-poop-healthy"]
+    },
+    {
+      "type": 4,
+      "slug": "type-4",
+      "name": "Type 4: Smooth and Snake-Like",
+      "short_name": "Smooth snake",
+      "appearance": "Smooth, soft, and snake-like or sausage-shaped. Typically a single piece.",
+      "health_signal": "ideal",
+      "health_signal_label": "Ideal — gold standard",
+      "description": "Type 4 is the gold standard on the Bristol Stool Scale. Easy to pass, smooth, and well-formed — this type indicates optimal digestive function, appropriate transit time, and balanced water content.",
+      "what_it_means": [
+        "Ideal colon transit time.",
+        "Fiber, fluid, and motility are all well-matched.",
+        "Passing is effortless and complete."
+      ],
+      "common_causes": [
+        { "cause": "25–35 g of fiber daily, balanced soluble + insoluble", "source_id": "dga-2020" },
+        { "cause": "Adequate hydration (2–3 L/day, more if active)" },
+        { "cause": "Regular exercise", "source_id": "nhs-constipation" },
+        { "cause": "Low chronic stress (the gut-brain axis rewards calm)" }
+      ],
+      "when_to_worry": [
+        "Type 4 itself is not a concern.",
+        "If Type 4 is accompanied by new blood, mucus, or persistent pain, see a doctor — those signal issues independent of consistency."
+      ],
+      "how_to_improve": [
+        { "action": "Protect what's working. Keep a stool log to catch drift." },
+        { "action": "Note transitions between Type 4 and other types — those teach you your personal triggers." }
+      ],
+      "foods_associated": ["Mediterranean-style patterns.", "~30 different plants per week (linked to microbiome diversity).", "Moderate animal protein with plenty of vegetables."],
+      "related_topics": [
+        { "slug": "fiber-and-stool-consistency", "why": "What supports Type 4 output." },
+        { "slug": "how-to-improve-gut-health", "why": "Maintaining healthy patterns long-term." }
+      ],
+      "neighbors": [{ "type": 3, "relation": "also healthy, slightly firmer" }, { "type": 5, "relation": "softer but still normal for some" }],
+      "sources": ["heaton-1997", "cleveland-bristol", "mayo-poop-healthy"]
+    },
+    {
+      "type": 5,
+      "slug": "type-5",
+      "name": "Type 5: Soft Blobs with Clear Edges",
+      "short_name": "Soft blobs",
+      "appearance": "Soft blobs with clear-cut edges that pass easily. Multiple separate pieces.",
+      "health_signal": "borderline-loose",
+      "health_signal_label": "Slightly loose, usually normal",
+      "description": "Type 5 is on the loose side of normal. Transit time may be slightly fast, but for many people — particularly those eating plenty of fiber and fruit — Type 5 is a regular, unproblematic pattern. Only concerning if it's a change from usual or paired with other symptoms.",
+      "what_it_means": [
+        "Slightly fast colon transit, but still within the adaptive range.",
+        "Can be normal for people eating very high fiber, high fruit, or frequent meals.",
+        "If sudden or accompanied by symptoms, investigate."
+      ],
+      "common_causes": [
+        { "cause": "High fiber intake (especially fruit)", "source_id": "mayo-poop-healthy" },
+        { "cause": "Mild food intolerance or sensitivity" },
+        { "cause": "Viral or mild bacterial infection (often self-limiting)", "source_id": "nhs-diarrhoea" },
+        { "cause": "Coffee, spicy food, or carbonated drinks stimulating motility" }
+      ],
+      "when_to_worry": [
+        "Type 5 that persists for more than 1–2 weeks without explanation.",
+        "Accompanied by weight loss, blood, mucus, severe cramping, or fever.",
+        "New-onset in adults over 45.",
+        "Recent antibiotic use and persistent Type 5 → consider C. difficile, see a doctor."
+      ],
+      "how_to_improve": [
+        { "action": "Slight increase in soluble fiber (oats, psyllium, chia) — gels excess water and firms stool.", "source_id": "psyllium-trial" },
+        { "action": "Log food + stool for 2 weeks — identify triggers (often specific fruits, artificial sweeteners, or caffeine)." },
+        { "action": "Reduce stimulant intake (coffee, alcohol) and see if pattern shifts." }
+      ],
+      "foods_associated": ["High-fruit patterns.", "Artificial sweeteners (sorbitol, xylitol, erythritol).", "High caffeine."],
+      "related_topics": [
+        { "slug": "fiber-and-stool-consistency", "why": "Soluble fiber's role in firming soft stool." },
+        { "slug": "mucus-in-stool", "why": "When soft stool comes with mucus, what it means." }
+      ],
+      "neighbors": [{ "type": 4, "relation": "ideal" }, { "type": 6, "relation": "mild diarrhea territory" }],
+      "sources": ["heaton-1997", "cleveland-bristol", "mayo-poop-healthy"]
+    },
+    {
+      "type": 6,
+      "slug": "type-6",
+      "name": "Type 6: Mushy with Ragged Edges",
+      "short_name": "Mushy ragged",
+      "appearance": "Fluffy pieces with ragged edges, a mushy stool. No definite shape.",
+      "health_signal": "mild-diarrhea",
+      "health_signal_label": "Mild diarrhea",
+      "description": "Type 6 is mild diarrhea. Transit time is too fast — the colon hasn't had time to absorb water — leaving mushy, fluffy output with no formed shape.",
+      "what_it_means": [
+        "Colon transit is accelerated.",
+        "Water reabsorption is incomplete.",
+        "Frequent Type 6 over days can cause mild dehydration and electrolyte imbalance."
+      ],
+      "common_causes": [
+        { "cause": "Food intolerance (lactose, FODMAPs, gluten for sensitive individuals)" },
+        { "cause": "Acute viral gastroenteritis", "source_id": "nhs-diarrhoea" },
+        { "cause": "Bacterial food poisoning", "source_id": "nhs-diarrhoea" },
+        { "cause": "Stress / anxiety triggering the gut-brain axis" },
+        { "cause": "IBS-D (diarrhea-predominant IBS)" },
+        { "cause": "Medications (antibiotics, magnesium, metformin)" }
+      ],
+      "when_to_worry": [
+        "More than 3 Type 6 stools in 24 hours lasting more than 2 days.",
+        "Blood, pus, or mucus in the stool.",
+        "High fever, severe dehydration (dark urine, dizziness), severe abdominal pain.",
+        "Recent antibiotic use and persistent Type 6 → rule out C. difficile."
+      ],
+      "how_to_improve": [
+        { "action": "Hydrate with oral rehydration solution (not just water — needs electrolytes)." },
+        { "action": "Psyllium husk (soluble fiber) absorbs excess water and firms stool.", "source_id": "psyllium-trial" },
+        { "action": "BRAT diet short-term (bananas, rice, apple sauce, toast) — low-fiber, binding foods." },
+        { "action": "Track food triggers with a 2-week log if it's recurring." }
+      ],
+      "foods_associated": ["Triggers vary: common culprits are dairy, high-FODMAP foods, artificial sweeteners, very spicy food, and alcohol."],
+      "related_topics": [
+        { "slug": "diarrhea-causes-and-when-to-worry", "why": "When diarrhea is self-limiting vs medical." },
+        { "slug": "ibs-plague-of-the-millenium", "why": "IBS-D is a common chronic cause of Type 6." }
+      ],
+      "neighbors": [{ "type": 5, "relation": "soft but still formed" }, { "type": 7, "relation": "full diarrhea" }],
+      "sources": ["heaton-1997", "cleveland-bristol", "nhs-diarrhoea"]
+    },
+    {
+      "type": 7,
+      "slug": "type-7",
+      "name": "Type 7: Entirely Liquid",
+      "short_name": "Entirely liquid",
+      "appearance": "Completely liquid with no solid pieces. Watery.",
+      "health_signal": "diarrhea",
+      "health_signal_label": "Diarrhea",
+      "description": "Type 7 is full diarrhea. Very rapid transit means water isn't absorbed at all. Acute Type 7 is usually self-limiting but warrants hydration; persistent Type 7 needs medical attention.",
+      "what_it_means": [
+        "Transit time is very fast — essentially no colonic water absorption.",
+        "Dehydration risk is real, especially for children and the elderly.",
+        "If persistent, can indicate infection, IBD flare, or severe food poisoning."
+      ],
+      "common_causes": [
+        { "cause": "Acute infection (viral, bacterial, parasitic)", "source_id": "nhs-diarrhoea" },
+        { "cause": "Food poisoning" },
+        { "cause": "IBD flare (Crohn's, ulcerative colitis)" },
+        { "cause": "Severe IBS-D episode" },
+        { "cause": "Certain medications or chemotherapy" }
+      ],
+      "when_to_worry": [
+        "Type 7 lasting more than 48 hours in adults.",
+        "Any Type 7 in infants, elderly, or immunocompromised.",
+        "Blood in stool, high fever (>38.5°C / 101°F), severe abdominal pain.",
+        "Signs of dehydration: dark urine, dizziness, rapid heartbeat, no urination for 8+ hours.",
+        "Recent travel to a developing region."
+      ],
+      "how_to_improve": [
+        { "action": "Oral rehydration solution is the priority — water alone doesn't replace lost electrolytes.", "source_id": "nhs-diarrhoea" },
+        { "action": "Avoid dairy, caffeine, alcohol, and high-fat foods until stool firms up." },
+        { "action": "Avoid anti-diarrheal medications if you suspect infection — they can trap pathogens." },
+        { "action": "Seek medical care if any red-flag symptom appears (see above)." }
+      ],
+      "foods_associated": ["Type 7 is usually caused by an acute trigger, not chronic diet."],
+      "related_topics": [
+        { "slug": "diarrhea-causes-and-when-to-worry", "why": "Full guide on when diarrhea becomes a medical issue." }
+      ],
+      "neighbors": [{ "type": 6, "relation": "mild diarrhea" }],
+      "sources": ["heaton-1997", "cleveland-bristol", "nhs-diarrhoea"]
+    }
+  ]
+}

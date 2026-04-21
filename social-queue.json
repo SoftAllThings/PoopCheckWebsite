@@ -1,5 +1,43 @@
 {
   "$comment": "Social drafts generated per blog post by .claude/agents/blog-writer.md (Step 8.5). Human-review before posting. When posted manually, move entry from drafts[] to posted[] with posted_at populated. See .claude/skills/social-content/SKILL.md for the drafting rules.",
-  "drafts": [],
+  "drafts": [
+    {
+      "slug": "probiotics-vs-prebiotics",
+      "post_date": "2026-04-21",
+      "canonical_url": "https://poopcheck.app/poopcheck-blog/probiotics-vs-prebiotics/",
+      "platforms": {
+        "x": {
+          "thread": [
+            "Probiotics vs prebiotics: one of the most misunderstood distinctions in gut health.\n\nProbiotics = live microbes you swallow.\nPrebiotics = the fibers those microbes eat.\n\nThey're not interchangeable. Here's what the evidence actually says ↓",
+            "The official ISAPP definitions:\n\nProbiotics: \"live microorganisms that, when administered in adequate amounts, confer a health benefit on the host.\"\n\nPrebiotics: \"a substrate that is selectively utilized by host microorganisms conferring a health benefit.\"",
+            "Probiotic evidence is narrower than marketing suggests.\n\nA 2023 network meta-analysis in Nutrients found only a handful of strains had solid evidence for IBS:\n\n• L. acidophilus DDS-1\n• B. animalis lactis UABla-12\n• Select multi-strain mixtures\n\nStrain matters. Brand doesn't.",
+            "For prebiotics, the bar is different: you mostly want real food.\n\nTop sources:\n• Onion, garlic, leek\n• Oats and barley\n• Chickpeas and lentils\n• Slightly-green bananas\n• Cooled cooked potato (resistant starch)\n\nTarget 3–5g of prebiotic fiber daily.",
+            "The practical decision tree:\n\n1. Eat prebiotic whole foods daily\n2. Add fermented foods (yogurt, kefir, kimchi)\n3. Only reach for a supplement if you have a specific condition + a strain with evidence for it\n4. Skip the generic \"daily probiotic\" pill. No evidence it helps healthy people.",
+            "Two traps to avoid:\n\n• Labels that just say \"Lactobacillus blend\" with no strain IDs. Not enough info to match to evidence.\n• Ramping prebiotic fiber too fast. Inulin, FOS, GOS are fermentable — go slow or get gas and bloating.",
+            "Full breakdown with sources, strain specifics, and food lists: https://poopcheck.app/poopcheck-blog/probiotics-vs-prebiotics/\n\nTrack whether your gut actually responds with the PoopCheck app."
+          ]
+        },
+        "linkedin": {
+          "body": "Most people ask \"which probiotic should I take?\" before asking the better question: do I even need one?\n\nThe gut-health supplement aisle is huge, but the evidence for probiotics is narrower than marketing suggests. And the same studies that make probiotics look modest make the case for prebiotics (the fibers that feed your existing gut bacteria) look very strong.\n\nThe quick distinction:\n\n• Probiotics are live microbes you swallow. Strain-specific and condition-specific evidence only.\n• Prebiotics are non-digestible fibers that feed the microbes already in your colon. Broad evidence, overlaps with whole-food fiber research.\n• Synbiotics combine both. Postbiotics are the beneficial compounds microbes leave behind.\n\nA 2023 network meta-analysis in Nutrients rated only a handful of probiotic strains (L. acidophilus DDS-1, B. animalis lactis UABla-12, and specific multi-strain mixtures) as having solid evidence for IBS symptom relief. For IBS-D vs IBS-C, the effective strains differ. Reading \"Lactobacillus blend\" on a label isn't enough to match to evidence.\n\nThe practical order of operations for most healthy adults:\n\n1. Prebiotic-rich whole foods daily (onion, garlic, oats, legumes, chicory, bananas).\n2. Fermented foods daily (yogurt, kefir, sauerkraut, kimchi).\n3. Targeted probiotic supplements only for a specific condition, with a strain matched to that condition.\n4. Skip the generic \"daily probiotic\" capsule.\n\nWe wrote up the full decision tree, food lists, and the strain-by-condition evidence table: https://poopcheck.app/poopcheck-blog/probiotics-vs-prebiotics/\n\n#GutHealth #Nutrition #Probiotics"
+        },
+        "instagram": {
+          "caption": "Probiotics vs prebiotics: one of the most misunderstood distinctions in gut health.\n\nProbiotics = live microbes you swallow (yogurt, kefir, supplements).\nPrebiotics = the fibers that feed the microbes already in your colon (onion, garlic, oats, legumes).\n\nMost people should start with prebiotic foods before reaching for a probiotic pill. The evidence for specific probiotic strains is narrower than the supplement aisle suggests — and it's strain-specific and condition-specific, not \"one pill fits all.\"\n\nFull breakdown linked in bio. Save this post for next time you're squinting at a supplement label.",
+          "slides": [
+            "Slide 1: PROBIOTICS vs PREBIOTICS — Do you actually know the difference?",
+            "Slide 2: PROBIOTICS are live microbes you swallow. Found in yogurt, kefir, kimchi, sauerkraut, kombucha. Strain-specific. Brand name doesn't tell you what works.",
+            "Slide 3: PREBIOTICS are the fibers those microbes eat. Found in onion, garlic, oats, legumes, chicory, slightly-green bananas. Target 3–5g per day of a specific prebiotic fiber.",
+            "Slide 4: THE ORDER: 1) Prebiotic whole foods daily. 2) Fermented foods daily. 3) Targeted probiotic ONLY for a specific condition with a studied strain. 4) Skip the generic \"daily probiotic.\"",
+            "Slide 5: Save this + follow @poopcheck for more gut-health breakdowns. Full article + sources in bio."
+          ]
+        },
+        "reddit": {
+          "subreddit": "ibs",
+          "title": "Wrote up a breakdown of which probiotic strains actually have evidence for IBS (and which don't)",
+          "body": "Hey r/ibs. Been digging into the 2023 network meta-analyses on probiotics for IBS because I keep seeing the same generic \"take a probiotic\" advice that ignores how strain-specific the evidence actually is.\n\nShort version:\n\n• For overall IBS symptoms: L. acidophilus DDS-1 and B. animalis lactis UABla-12 (plus a few multi-strain mixtures) were the top-rated strains in the 2023 Nutrients meta-analysis.\n• For IBS-D specifically: L. paracasei strains and B. longum R0175 reduced bowel-movement frequency vs placebo.\n• For IBS-C: multi-species formulations with L. acidophilus, L. reuteri, L. plantarum, L. rhamnosus, and B. lactis improved bloating and bowel-habit satisfaction.\n• Evidence quality is low-to-moderate by GRADE, so not miracle results. But way more useful than \"just try a probiotic.\"\n\nAlso: if you have IBS, be careful with prebiotic fibers. Inulin, FOS, and GOS are all high-FODMAP and can flare symptoms. Lower-FODMAP prebiotics like partially hydrolyzed guar gum or resistant starch tend to be better tolerated.\n\nFull write-up with source links and food lists if useful: https://poopcheck.app/poopcheck-blog/probiotics-vs-prebiotics/\n\nNot medical advice — work with a GI or dietitian for your specific situation. Curious what strains have actually worked for people here."
+        }
+      },
+      "posted_at": null
+    }
+  ],
   "posted": []
 }

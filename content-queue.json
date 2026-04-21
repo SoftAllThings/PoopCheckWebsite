@@ -29,15 +29,6 @@
       "priority": 2
     },
     {
-      "slug": "probiotics-vs-prebiotics",
-      "title_hint": "Probiotics vs prebiotics: what's the difference and which do you need?",
-      "primary_keyword": "probiotics vs prebiotics",
-      "category": "nutrition",
-      "brief": "Define each, explain synbiotics, review evidence (which strains work for what), food sources of each, when supplements are worth it vs waste of money. Nuanced — don't oversell.",
-      "target_word_count": 1700,
-      "priority": 3
-    },
-    {
       "slug": "stool-smell-what-it-means",
       "title_hint": "Why does my poop smell so bad? What stool odor means",
       "primary_keyword": "stool smell",
@@ -124,7 +115,8 @@
     { "slug": "why-is-my-poop-green-decoding-the-secret-language-of-your-stool", "source": "seed" },
     { "slug": "fiber-and-stool-consistency", "published_at": "2026-04-20", "source": "curated" },
     { "slug": "what-causes-floating-stool", "published_at": "2026-04-20", "source": "curated" },
-    { "slug": "black-stool-causes", "published_at": "2026-04-20", "source": "curated" }
+    { "slug": "black-stool-causes", "published_at": "2026-04-20", "source": "curated" },
+    { "slug": "probiotics-vs-prebiotics", "published_at": "2026-04-21", "source": "curated" }
   ],
   "trending_candidates": []
 }

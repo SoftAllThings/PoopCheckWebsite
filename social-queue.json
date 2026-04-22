@@ -1,5 +1,80 @@
 {
   "$comment": "Social drafts generated per blog post by .claude/agents/blog-writer.md (Step 8.5). Human-review before posting. When posted manually, move entry from drafts[] to posted[] with posted_at populated. See .claude/skills/social-content/SKILL.md for the drafting rules.",
-  "drafts": [],
+  "drafts": [
+    {
+      "slug": "probiotics-vs-prebiotics",
+      "post_date": "2026-04-21",
+      "canonical_url": "https://poopcheck.app/poopcheck-blog/probiotics-vs-prebiotics/",
+      "platforms": {
+        "x": {
+          "thread": [
+            "Probiotics vs prebiotics: one of the most misunderstood distinctions in gut health.\n\nProbiotics = live microbes you swallow.\nPrebiotics = the fibers those microbes eat.\n\nThey're not interchangeable. Here's what the evidence actually says ↓",
+            "The official ISAPP definitions:\n\nProbiotics: \"live microorganisms that, when administered in adequate amounts, confer a health benefit on the host.\"\n\nPrebiotics: \"a substrate that is selectively utilized by host microorganisms conferring a health benefit.\"",
+            "Probiotic evidence is narrower than marketing suggests.\n\nA 2023 network meta-analysis in Nutrients found only a handful of strains had solid evidence for IBS:\n\n• L. acidophilus DDS-1\n• B. animalis lactis UABla-12\n• Select multi-strain mixtures\n\nStrain matters. Brand doesn't.",
+            "For prebiotics, the bar is different: you mostly want real food.\n\nTop sources:\n• Onion, garlic, leek\n• Oats and barley\n• Chickpeas and lentils\n• Slightly-green bananas\n• Cooled cooked potato (resistant starch)\n\nTarget 3–5g of prebiotic fiber daily.",
+            "The practical decision tree:\n\n1. Eat prebiotic whole foods daily\n2. Add fermented foods (yogurt, kefir, kimchi)\n3. Only reach for a supplement if you have a specific condition + a strain with evidence for it\n4. Skip the generic \"daily probiotic\" pill. No evidence it helps healthy people.",
+            "Two traps to avoid:\n\n• Labels that just say \"Lactobacillus blend\" with no strain IDs. Not enough info to match to evidence.\n• Ramping prebiotic fiber too fast. Inulin, FOS, GOS are fermentable — go slow or get gas and bloating.",
+            "Full breakdown with sources, strain specifics, and food lists: https://poopcheck.app/poopcheck-blog/probiotics-vs-prebiotics/\n\nTrack whether your gut actually responds with the PoopCheck app."
+          ]
+        },
+        "linkedin": {
+          "body": "Most people ask \"which probiotic should I take?\" before asking the better question: do I even need one?\n\nThe gut-health supplement aisle is huge, but the evidence for probiotics is narrower than marketing suggests. And the same studies that make probiotics look modest make the case for prebiotics (the fibers that feed your existing gut bacteria) look very strong.\n\nThe quick distinction:\n\n• Probiotics are live microbes you swallow. Strain-specific and condition-specific evidence only.\n• Prebiotics are non-digestible fibers that feed the microbes already in your colon. Broad evidence, overlaps with whole-food fiber research.\n• Synbiotics combine both. Postbiotics are the beneficial compounds microbes leave behind.\n\nA 2023 network meta-analysis in Nutrients rated only a handful of probiotic strains (L. acidophilus DDS-1, B. animalis lactis UABla-12, and specific multi-strain mixtures) as having solid evidence for IBS symptom relief. For IBS-D vs IBS-C, the effective strains differ. Reading \"Lactobacillus blend\" on a label isn't enough to match to evidence.\n\nThe practical order of operations for most healthy adults:\n\n1. Prebiotic-rich whole foods daily (onion, garlic, oats, legumes, chicory, bananas).\n2. Fermented foods daily (yogurt, kefir, sauerkraut, kimchi).\n3. Targeted probiotic supplements only for a specific condition, with a strain matched to that condition.\n4. Skip the generic \"daily probiotic\" capsule.\n\nWe wrote up the full decision tree, food lists, and the strain-by-condition evidence table: https://poopcheck.app/poopcheck-blog/probiotics-vs-prebiotics/\n\n#GutHealth #Nutrition #Probiotics"
+        },
+        "instagram": {
+          "caption": "Probiotics vs prebiotics: one of the most misunderstood distinctions in gut health.\n\nProbiotics = live microbes you swallow (yogurt, kefir, supplements).\nPrebiotics = the fibers that feed the microbes already in your colon (onion, garlic, oats, legumes).\n\nMost people should start with prebiotic foods before reaching for a probiotic pill. The evidence for specific probiotic strains is narrower than the supplement aisle suggests — and it's strain-specific and condition-specific, not \"one pill fits all.\"\n\nFull breakdown linked in bio. Save this post for next time you're squinting at a supplement label.",
+          "slides": [
+            "Slide 1: PROBIOTICS vs PREBIOTICS — Do you actually know the difference?",
+            "Slide 2: PROBIOTICS are live microbes you swallow. Found in yogurt, kefir, kimchi, sauerkraut, kombucha. Strain-specific. Brand name doesn't tell you what works.",
+            "Slide 3: PREBIOTICS are the fibers those microbes eat. Found in onion, garlic, oats, legumes, chicory, slightly-green bananas. Target 3–5g per day of a specific prebiotic fiber.",
+            "Slide 4: THE ORDER: 1) Prebiotic whole foods daily. 2) Fermented foods daily. 3) Targeted probiotic ONLY for a specific condition with a studied strain. 4) Skip the generic \"daily probiotic.\"",
+            "Slide 5: Save this + follow @poopcheck for more gut-health breakdowns. Full article + sources in bio."
+          ]
+        },
+        "reddit": {
+          "subreddit": "ibs",
+          "title": "Wrote up a breakdown of which probiotic strains actually have evidence for IBS (and which don't)",
+          "body": "Hey r/ibs. Been digging into the 2023 network meta-analyses on probiotics for IBS because I keep seeing the same generic \"take a probiotic\" advice that ignores how strain-specific the evidence actually is.\n\nShort version:\n\n• For overall IBS symptoms: L. acidophilus DDS-1 and B. animalis lactis UABla-12 (plus a few multi-strain mixtures) were the top-rated strains in the 2023 Nutrients meta-analysis.\n• For IBS-D specifically: L. paracasei strains and B. longum R0175 reduced bowel-movement frequency vs placebo.\n• For IBS-C: multi-species formulations with L. acidophilus, L. reuteri, L. plantarum, L. rhamnosus, and B. lactis improved bloating and bowel-habit satisfaction.\n• Evidence quality is low-to-moderate by GRADE, so not miracle results. But way more useful than \"just try a probiotic.\"\n\nAlso: if you have IBS, be careful with prebiotic fibers. Inulin, FOS, and GOS are all high-FODMAP and can flare symptoms. Lower-FODMAP prebiotics like partially hydrolyzed guar gum or resistant starch tend to be better tolerated.\n\nFull write-up with source links and food lists if useful: https://poopcheck.app/poopcheck-blog/probiotics-vs-prebiotics/\n\nNot medical advice — work with a GI or dietitian for your specific situation. Curious what strains have actually worked for people here."
+        }
+      },
+      "posted_at": null
+    },
+    {
+      "slug": "gut-brain-axis-explained",
+      "post_date": "2026-04-22",
+      "canonical_url": "https://poopcheck.app/poopcheck-blog/gut-brain-axis-explained/",
+      "platforms": {
+        "x": {
+          "thread": [
+            "Your gut and your brain are in constant conversation.\n\nIt happens through the vagus nerve, microbe-made chemicals, stress hormones, and immune signals.\n\nHere's what the gut-brain axis actually is — and what the research does (and doesn't) show ↓",
+            "Your gut houses an \"enteric nervous system\" of roughly 100–500 million neurons.\n\nIt's more than the spinal cord. Researchers call it a \"second brain.\"\n\nIt doesn't think. It senses chemistry and stretch, and it signals upstream — mostly via the vagus nerve.",
+            "The vagus nerve is the main gut-brain highway.\n\nAbout 80% of its fibers carry signals FROM the gut TO the brain. Only 20% go the other way.\n\nYour gut talks to your brain far more than your brain talks back.",
+            "Yes, ~90% of the body's serotonin is made in the gut.\n\nBut most of it acts LOCALLY on gut motility and pain signaling — it doesn't cross the blood-brain barrier. The gut influences mood indirectly, via vagal signaling and tryptophan metabolism.",
+            "A 2019 Nature Microbiology study of 1,054 people found something striking:\n\nPeople with depression had lower levels of Faecalibacterium and Coprococcus — two big butyrate-producing bacteria.\n\nAssociation, not causation. But one of the best-powered datasets we have.",
+            "Four mechanisms with real evidence:\n\n• Short-chain fatty acids (butyrate) support blood-brain-barrier integrity and BDNF\n• Vagal signaling from enterochromaffin cells\n• HPA-axis (stress hormone) regulation\n• Microbe-made neurotransmitters (GABA, dopamine precursors)",
+            "Full breakdown — mechanisms, citations, and what you can actually do about it: https://poopcheck.app/poopcheck-blog/gut-brain-axis-explained/"
+          ]
+        },
+        "linkedin": {
+          "body": "\"90% of your serotonin is made in your gut\" is one of the most-quoted wellness facts online. It's also mostly misused.\n\nThe number is real. But most gut-produced serotonin doesn't cross the blood-brain barrier. It acts locally on gut motility and visceral pain — which is why enterochromaffin cells matter in IBS, not because they ship happiness up to your brain.\n\nThe actual gut-brain axis is more interesting than the slogan suggests. Four channels carry signals in both directions:\n\n• Neural: the vagus nerve (80% of its fibers carry signals FROM gut TO brain) and the enteric nervous system (100–500 million neurons in the gut wall).\n• Endocrine: the HPA stress axis, which gut inflammation can prime toward overreactivity.\n• Immune: cytokines from gut-resident immune cells that influence brain signaling.\n• Microbial metabolites: short-chain fatty acids like butyrate that cross the blood-brain barrier and support BDNF, and microbe-made GABA and tryptophan metabolites that modulate mood-relevant pathways.\n\nA 2019 Nature Microbiology study of 1,054 people found that people with depression had lower levels of Faecalibacterium and Coprococcus, two major butyrate-producing bacteria. Association, not causation — but well-powered and consistent with the mechanistic work.\n\nWhat does the evidence support doing?\n\n• Varied fiber intake (feeds butyrate producers)\n• Fermented foods daily\n• Honest expectations of probiotic supplements — psychobiotic effects on mood are real but modest and strain-specific\n• Sleep + stress management (both feed back onto HPA reactivity)\n\nFull write-up with citations: https://poopcheck.app/poopcheck-blog/gut-brain-axis-explained/\n\n#GutHealth #MentalHealth #Microbiome"
+        },
+        "instagram": {
+          "caption": "Your gut and your brain are in constant two-way conversation. It happens through the vagus nerve, stress hormones, immune signals, and the chemical output of trillions of microbes.\n\nYou've probably heard \"90% of serotonin is made in the gut.\" True — but most of it stays local. The more interesting story is how your microbes make short-chain fatty acids (like butyrate) that support brain function, and how certain bacteria missing in depression studies (Faecalibacterium, Coprococcus) are the same ones a fiber-rich, plant-varied diet feeds.\n\nYou can't micromanage the gut-brain axis. You can feed it well and give it time. Full breakdown in bio.",
+          "slides": [
+            "Slide 1: THE GUT-BRAIN AXIS — Can your microbiome really shape your mood?",
+            "Slide 2: Your gut has an \"enteric nervous system\" of 100–500 million neurons. Researchers call it your \"second brain.\" It doesn't think — it senses and signals.",
+            "Slide 3: The vagus nerve is the highway. ~80% of its fibers carry signals FROM the gut TO the brain. Your gut talks to your brain more than your brain talks back.",
+            "Slide 4: A 2019 Nature Microbiology study of 1,054 people found people with depression had lower levels of two butyrate-producing bacteria (Faecalibacterium, Coprococcus). Diet feeds these microbes.",
+            "Slide 5: Save + follow @poopcheck for evidence-based gut-health breakdowns. Full article linked in bio."
+          ]
+        },
+        "reddit": {
+          "subreddit": "ibs",
+          "title": "Wrote up what the gut-brain axis research actually says (vagus nerve, SCFAs, HPA axis, and the 2019 Valles-Colomer depression study)",
+          "body": "Hey r/ibs. Most of us here know the gut-brain axis isn't hand-wavy — stress makes IBS worse, IBS flares drive anxiety, and it loops. Wanted to write up the actual mechanisms for people who want to understand what's happening.\n\nThe four channels of communication:\n\n1. Neural — vagus nerve (80% of fibers carry signals from gut to brain) and the enteric nervous system (100–500 million neurons in the gut wall).\n2. Endocrine — HPA axis, where chronic gut inflammation can ramp up cortisol reactivity.\n3. Immune — cytokines from gut-resident immune cells crossing into brain signaling.\n4. Microbial metabolites — short-chain fatty acids (butyrate mainly), tryptophan metabolites, microbe-made GABA.\n\nA few things I didn't expect going in:\n\n• Most gut serotonin doesn't actually reach the brain. The \"90% of serotonin is in your gut\" stat is true but gets misquoted — it mostly acts locally on gut motility, which is why ECC dysfunction shows up in IBS.\n• The 2019 Nature Microbiology study (Valles-Colomer et al., n=1,054 with a 1,063-person replication cohort) found that people with depression had consistently lower levels of Faecalibacterium and Coprococcus — both big butyrate producers. Even after controlling for antidepressant use.\n• CBT and gut-directed hypnotherapy have randomized-trial evidence for IBS specifically because of this bidirectional loop.\n\nFull write-up with sources: https://poopcheck.app/poopcheck-blog/gut-brain-axis-explained/\n\nNot medical advice. Curious what gut-brain interventions have actually helped people here — stress management, therapy, probiotics, something else?"
+        }
+      },
+      "posted_at": null
+    }
+  ],
   "posted": []
 }

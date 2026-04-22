@@ -3,14 +3,6 @@
   "pending": [
     {
       "mode": "comparison",
-      "slug": "bowelle",
-      "name": "Bowelle",
-      "website_url": "https://bowelle.com/",
-      "priority": 2,
-      "notes": "IBS-specific bowel logger. Manual, no AI. Good to compare against for the 'why AI matters' angle."
-    },
-    {
-      "mode": "comparison",
       "slug": "plop",
       "name": "Plop",
       "website_url": "",
@@ -44,6 +36,7 @@
     { "mode": "bristol", "slug": "type-7", "published_at": "2026-04-20", "source": "initial-scaffold" },
     { "mode": "comparison", "slug": "cara-care", "published_at": "2026-04-20", "source": "initial-scaffold" },
     { "mode": "comparison", "slug": "dieta-health", "published_at": "2026-04-20", "source": "initial-scaffold" },
-    { "mode": "comparison", "slug": "balloon", "published_at": "2026-04-20", "source": "initial-scaffold" }
+    { "mode": "comparison", "slug": "balloon", "published_at": "2026-04-20", "source": "initial-scaffold" },
+    { "mode": "comparison", "slug": "bowelle", "published_at": "2026-04-22", "source": "programmatic-writer" }
   ]
 }

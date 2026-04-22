@@ -80,6 +80,37 @@
         { "title": "Balloon: Best iOS poop trackers 2025", "url": "https://balloonguthealth.com/blog/best-ios-poop-trackers-for-2025" }
       ],
       "last_verified": "2026-04-20"
+    },
+    {
+      "slug": "bowelle",
+      "name": "Bowelle",
+      "tagline": "iOS-only food and symptom diary built specifically for people living with IBS.",
+      "website_url": "https://bowelle.com/",
+      "positioning": "A food and symptom diary for IBS and digestive health problems. Tracks how you feel, what you eat, stress, bowel movements, water intake, and custom values — manually, privately, on-device.",
+      "pricing_notes": "Free to download with a useful basic tier. Premium subscription reported at around $24.99/year on the App Store, sometimes discounted — check the App Store listing for current pricing.",
+      "features": [
+        { "name": "AI photo analysis of stool", "bowelle": false, "poopcheck": true, "note": "Bowelle is a manual log; PoopCheck classifies Bristol type, color and consistency from a photo." },
+        { "name": "Bristol Stool Scale classification", "bowelle": "Manual log of bowel movements", "poopcheck": "Automatic from photo", "note": "Bowelle tracks bowel movements in its diary; the public feature descriptions don't explicitly surface a Bristol scale picker." },
+        { "name": "Food + symptom diary", "bowelle": true, "poopcheck": "Coming with Premium analytics", "note": "Food, stress, hydration, mood and custom fields — Bowelle's core strength." },
+        { "name": "Custom tracking fields (text / number / tags)", "bowelle": true, "poopcheck": false, "note": "Bowelle lets you define your own variables and graph them." },
+        { "name": "Apple Health integration", "bowelle": true, "poopcheck": true },
+        { "name": "Daily gut-health score", "bowelle": false, "poopcheck": true },
+        { "name": "AI digestive chat assistant", "bowelle": false, "poopcheck": "SOFTie (Premium)" },
+        { "name": "On-device data storage (privacy-first)", "bowelle": true, "poopcheck": "Cloud-synced with account controls" },
+        { "name": "Android availability", "bowelle": false, "poopcheck": true, "note": "Bowelle is iOS-only; PoopCheck ships on both iOS and Android." },
+        { "name": "App Store rating", "bowelle": "4.7★ (~2.2k ratings)", "poopcheck": "4.8★ combined (~80 reviews)" }
+      ],
+      "strengths": "Bowelle is a focused, well-loved IBS diary with a long track record on iOS and a loyal user base. The custom-fields system (text, number, tags) is unusually flexible for a symptom tracker, and the on-device privacy model is a genuine differentiator for users who don't want their gut data in the cloud.",
+      "weaknesses_for_user": "Bowelle is manual end-to-end — you tap in every food, mood, stress level and bowel movement by hand, which works for diligent users but thins out over weeks. It's iOS-only (no Android), has no AI visual analysis of stool, and no single daily score that summarises your gut day at a glance.",
+      "when_competitor_is_better": "If you have an IBS diagnosis, use iOS, and want a flexible, privacy-first manual diary to share with your doctor or dietitian — especially one with custom fields you can tailor to your triggers — Bowelle is the more specialised fit.",
+      "when_poopcheck_is_better": "If you want effortless daily tracking (photo in, Bristol type + color + gut-health score out), you're on Android, or you're optimising general gut health rather than managing a diagnosed IBS flare, PoopCheck's AI approach gets you insights with far less logging fatigue.",
+      "sources": [
+        { "title": "Bowelle – The IBS tracker (official site)", "url": "https://bowelle.com/" },
+        { "title": "Bowelle – The IBS tracker on the App Store", "url": "https://apps.apple.com/us/app/bowelle-the-ibs-tracker/id1436064640" },
+        { "title": "Bowelle – The IBS tracker on Healthify (reviewed app library)", "url": "https://healthify.nz/apps/b/bowelle-the-ibs-tracker" },
+        { "title": "Balloon: Best iOS poop trackers for 2025 (includes Bowelle review)", "url": "https://balloonguthealth.com/blog/best-ios-poop-trackers-for-2025" }
+      ],
+      "last_verified": "2026-04-22"
     }
   ]
 }

@@ -37,6 +37,43 @@
         }
       },
       "posted_at": null
+    },
+    {
+      "slug": "gut-brain-axis-explained",
+      "post_date": "2026-04-22",
+      "canonical_url": "https://poopcheck.app/poopcheck-blog/gut-brain-axis-explained/",
+      "platforms": {
+        "x": {
+          "thread": [
+            "Your gut and your brain are in constant conversation.\n\nIt happens through the vagus nerve, microbe-made chemicals, stress hormones, and immune signals.\n\nHere's what the gut-brain axis actually is — and what the research does (and doesn't) show ↓",
+            "Your gut houses an \"enteric nervous system\" of roughly 100–500 million neurons.\n\nIt's more than the spinal cord. Researchers call it a \"second brain.\"\n\nIt doesn't think. It senses chemistry and stretch, and it signals upstream — mostly via the vagus nerve.",
+            "The vagus nerve is the main gut-brain highway.\n\nAbout 80% of its fibers carry signals FROM the gut TO the brain. Only 20% go the other way.\n\nYour gut talks to your brain far more than your brain talks back.",
+            "Yes, ~90% of the body's serotonin is made in the gut.\n\nBut most of it acts LOCALLY on gut motility and pain signaling — it doesn't cross the blood-brain barrier. The gut influences mood indirectly, via vagal signaling and tryptophan metabolism.",
+            "A 2019 Nature Microbiology study of 1,054 people found something striking:\n\nPeople with depression had lower levels of Faecalibacterium and Coprococcus — two big butyrate-producing bacteria.\n\nAssociation, not causation. But one of the best-powered datasets we have.",
+            "Four mechanisms with real evidence:\n\n• Short-chain fatty acids (butyrate) support blood-brain-barrier integrity and BDNF\n• Vagal signaling from enterochromaffin cells\n• HPA-axis (stress hormone) regulation\n• Microbe-made neurotransmitters (GABA, dopamine precursors)",
+            "Full breakdown — mechanisms, citations, and what you can actually do about it: https://poopcheck.app/poopcheck-blog/gut-brain-axis-explained/"
+          ]
+        },
+        "linkedin": {
+          "body": "\"90% of your serotonin is made in your gut\" is one of the most-quoted wellness facts online. It's also mostly misused.\n\nThe number is real. But most gut-produced serotonin doesn't cross the blood-brain barrier. It acts locally on gut motility and visceral pain — which is why enterochromaffin cells matter in IBS, not because they ship happiness up to your brain.\n\nThe actual gut-brain axis is more interesting than the slogan suggests. Four channels carry signals in both directions:\n\n• Neural: the vagus nerve (80% of its fibers carry signals FROM gut TO brain) and the enteric nervous system (100–500 million neurons in the gut wall).\n• Endocrine: the HPA stress axis, which gut inflammation can prime toward overreactivity.\n• Immune: cytokines from gut-resident immune cells that influence brain signaling.\n• Microbial metabolites: short-chain fatty acids like butyrate that cross the blood-brain barrier and support BDNF, and microbe-made GABA and tryptophan metabolites that modulate mood-relevant pathways.\n\nA 2019 Nature Microbiology study of 1,054 people found that people with depression had lower levels of Faecalibacterium and Coprococcus, two major butyrate-producing bacteria. Association, not causation — but well-powered and consistent with the mechanistic work.\n\nWhat does the evidence support doing?\n\n• Varied fiber intake (feeds butyrate producers)\n• Fermented foods daily\n• Honest expectations of probiotic supplements — psychobiotic effects on mood are real but modest and strain-specific\n• Sleep + stress management (both feed back onto HPA reactivity)\n\nFull write-up with citations: https://poopcheck.app/poopcheck-blog/gut-brain-axis-explained/\n\n#GutHealth #MentalHealth #Microbiome"
+        },
+        "instagram": {
+          "caption": "Your gut and your brain are in constant two-way conversation. It happens through the vagus nerve, stress hormones, immune signals, and the chemical output of trillions of microbes.\n\nYou've probably heard \"90% of serotonin is made in the gut.\" True — but most of it stays local. The more interesting story is how your microbes make short-chain fatty acids (like butyrate) that support brain function, and how certain bacteria missing in depression studies (Faecalibacterium, Coprococcus) are the same ones a fiber-rich, plant-varied diet feeds.\n\nYou can't micromanage the gut-brain axis. You can feed it well and give it time. Full breakdown in bio.",
+          "slides": [
+            "Slide 1: THE GUT-BRAIN AXIS — Can your microbiome really shape your mood?",
+            "Slide 2: Your gut has an \"enteric nervous system\" of 100–500 million neurons. Researchers call it your \"second brain.\" It doesn't think — it senses and signals.",
+            "Slide 3: The vagus nerve is the highway. ~80% of its fibers carry signals FROM the gut TO the brain. Your gut talks to your brain more than your brain talks back.",
+            "Slide 4: A 2019 Nature Microbiology study of 1,054 people found people with depression had lower levels of two butyrate-producing bacteria (Faecalibacterium, Coprococcus). Diet feeds these microbes.",
+            "Slide 5: Save + follow @poopcheck for evidence-based gut-health breakdowns. Full article linked in bio."
+          ]
+        },
+        "reddit": {
+          "subreddit": "ibs",
+          "title": "Wrote up what the gut-brain axis research actually says (vagus nerve, SCFAs, HPA axis, and the 2019 Valles-Colomer depression study)",
+          "body": "Hey r/ibs. Most of us here know the gut-brain axis isn't hand-wavy — stress makes IBS worse, IBS flares drive anxiety, and it loops. Wanted to write up the actual mechanisms for people who want to understand what's happening.\n\nThe four channels of communication:\n\n1. Neural — vagus nerve (80% of fibers carry signals from gut to brain) and the enteric nervous system (100–500 million neurons in the gut wall).\n2. Endocrine — HPA axis, where chronic gut inflammation can ramp up cortisol reactivity.\n3. Immune — cytokines from gut-resident immune cells crossing into brain signaling.\n4. Microbial metabolites — short-chain fatty acids (butyrate mainly), tryptophan metabolites, microbe-made GABA.\n\nA few things I didn't expect going in:\n\n• Most gut serotonin doesn't actually reach the brain. The \"90% of serotonin is in your gut\" stat is true but gets misquoted — it mostly acts locally on gut motility, which is why ECC dysfunction shows up in IBS.\n• The 2019 Nature Microbiology study (Valles-Colomer et al., n=1,054 with a 1,063-person replication cohort) found that people with depression had consistently lower levels of Faecalibacterium and Coprococcus — both big butyrate producers. Even after controlling for antidepressant use.\n• CBT and gut-directed hypnotherapy have randomized-trial evidence for IBS specifically because of this bidirectional loop.\n\nFull write-up with sources: https://poopcheck.app/poopcheck-blog/gut-brain-axis-explained/\n\nNot medical advice. Curious what gut-brain interventions have actually helped people here — stress management, therapy, probiotics, something else?"
+        }
+      },
+      "posted_at": null
     }
   ],
   "posted": []

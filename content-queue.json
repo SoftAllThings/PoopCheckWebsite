@@ -2,15 +2,6 @@
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
   "pending": [
     {
-      "slug": "gut-brain-axis-explained",
-      "title_hint": "The gut-brain axis: how your microbiome affects mood and anxiety",
-      "primary_keyword": "gut-brain axis",
-      "category": "research",
-      "brief": "Vagus nerve, enteric nervous system, serotonin production in the gut (90% of body's serotonin), current evidence linking microbiome to depression/anxiety, practical implications for stress management.",
-      "target_word_count": 1800,
-      "priority": 2
-    },
-    {
       "slug": "how-long-food-takes-to-digest",
       "title_hint": "How long does food take to digest? A transit-time guide",
       "primary_keyword": "food digestion time",
@@ -116,7 +107,8 @@
     { "slug": "fiber-and-stool-consistency", "published_at": "2026-04-20", "source": "curated" },
     { "slug": "what-causes-floating-stool", "published_at": "2026-04-20", "source": "curated" },
     { "slug": "black-stool-causes", "published_at": "2026-04-20", "source": "curated" },
-    { "slug": "probiotics-vs-prebiotics", "published_at": "2026-04-21", "source": "curated" }
+    { "slug": "probiotics-vs-prebiotics", "published_at": "2026-04-21", "source": "curated" },
+    { "slug": "gut-brain-axis-explained", "published_at": "2026-04-22", "source": "curated" }
   ],
   "trending_candidates": []
 }

@@ -14,9 +14,8 @@ The site is Astro + MDX, deployed to Cloudflare on every push to `master` via Gi
 
 1. **`.agents/product-marketing-context.md`** — master context: product, audience, positioning, voice rules, YMYL stance, keyword clusters. Every stylistic and positioning decision in the post flows from this file. If it's missing, abort and log.
 2. **This file** (full — don't skip the self-review section).
-3. **`.claude/skills/ai-seo/SKILL.md`** — AIO checklist; applied at the outline step.
-4. **`.claude/skills/schema-markup/SKILL.md`** — skim for the YMYL/MedicalWebPage guidance.
-5. **`.claude/skills/social-content/SKILL.md`** — used at Step 9.5 for social drafts.
+
+That's it. Do **not** open other skill files — the AIO and copy-editing rules you need are already inlined in Steps 3 and 7 below. Skimming extra skills has caused past runs to exceed the session time budget and abort mid-write.
 
 ## Run modes
 
@@ -49,14 +48,16 @@ If you cannot confidently pick a topic, **do not push**. Exit cleanly with a sho
 
 ### Step 2 — Research
 
-Use `WebSearch` + `WebFetch`. Aim for 3–5 authoritative sources:
+Use `WebSearch` + `WebFetch`. Target **exactly 3 authoritative sources** — no more. Quality, not quantity.
 
 - Preference order: peer-reviewed journals (PubMed, NIH, PMC) > major health institutions (Mayo Clinic, Cleveland Clinic, Harvard Health, NHS, WHO, CDC) > reputable science outlets (ScienceDaily, Nature News) > high-authority consumer health (Healthline with *cited* studies).
 - Avoid content farms, low-authority blogs, Quora, Reddit (as citations — Reddit is fine for topic discovery in trending mode).
 - Prefer sources from the last 5 years for anything involving research; evergreen anatomy/physiology can be older.
 - Extract specific facts, study findings, and quotable stats. Keep a running source list with URL + 1-line note.
 
-If < 3 usable sources found, abort the run — don't publish weak content.
+**Time budget: ~5 minutes for research.** Do **not** retry failed WebSearch queries more than once. If a search fails or returns weak results, rephrase once and move on. Don't burn the session budget on flaky search — past runs have timed out mid-write because research chewed 15+ minutes.
+
+If < 3 usable sources found after a reasonable effort, abort the run — don't publish weak content.
 
 ### Step 3 — Outline
 
@@ -71,7 +72,14 @@ Structure the post for both Google and AI-search extraction:
 - **Bottom line / The takeaway** closer — 2–3 sentences that restate the answer. Soft CTA to the PoopCheck app where natural (*don't* force it on every post).
 - **Sources** section at the very end: numbered list of URLs + source titles. Cite inline with `[Source Name](url)` where specific claims are made.
 
-**Before writing prose, run the `/ai-seo` skill checklist against this outline.** Open `.claude/skills/ai-seo/SKILL.md` and verify the outline satisfies every AIO item it lists (citability of lead paragraph, structured-data fit, quotable bullets, answer-first pattern, etc.). Revise the outline if any item fails. Don't proceed to Step 4 with an outline that AIO wouldn't love.
+**Inline AIO check** — before writing prose, verify the outline passes:
+- Lead paragraph answers the primary question in its first sentence (LLM-quotable)
+- "Key takeaways" box near top with 3–5 one-sentence bullets
+- Each H2 answers a specific sub-question (also LLM-extractable)
+- FAQ section near end with 4–6 real user questions
+- Sources section at the end with named inline citations
+
+Revise the outline if any item fails. Do **not** open `.claude/skills/ai-seo/SKILL.md` — the above is the distilled checklist.
 
 ### Step 4 — Internal linking (SEO compound interest)
 
@@ -96,15 +104,17 @@ tags: ["<primary-keyword>", "<secondary>", "<3-6 total, kebab-case>"]
 
 Body rules:
 
-- Target word count: from the queue entry (`target_word_count`), or 1400–1800 if unspecified. **Quality > length.** Do not pad.
+- Target word count: **1200–1500 words** (ignore the queue entry's `target_word_count` if it's higher — the schedule budget doesn't allow longer posts). **Quality > length.** Do not pad.
 - No H1 in the body — the layout renders `title` as the H1.
 - Short sentences. Active voice. Grade-8-ish readability for consumer topics; grade-12 acceptable for the `research` category.
 - Cite inline with markdown links. Numbers must trace back to a source.
 - Where appropriate, use `<dl>`, bulleted lists, and definition-style Q&A. These are LLM-extractable and Google-snippet-friendly.
 
-### Step 6 — SVG diagrams (optional, max 2 per post)
+### Step 6 — SVG diagrams (DEFAULT: skip)
 
-Only include an SVG when a diagram actually clarifies:
+**Scheduled/auto runs: skip SVGs entirely.** Diagrams double the token budget for step 5 and have caused timeouts. Ship prose-only posts by default.
+
+Only include an SVG if the queue entry has `"include_svg": true` *and* the diagram actually clarifies:
 - Bristol-scale visualizations (7 types)
 - Digestive-tract anatomy / transit paths
 - Flow-charts (e.g., "what your stool color means" decision tree)
@@ -150,9 +160,9 @@ Re-read the full post once top-to-bottom against this checklist. If **any** item
 - [ ] Schema fields valid (category enum, description length, date)
 - [ ] Sources section present with named links
 - [ ] If SVGs included: brand palette only, `<title>` + `<desc>` present, responsive viewBox, ≤ 2 per post
-- [ ] **`/schema-markup` pass** — re-read `.claude/skills/schema-markup/SKILL.md`. For any post mentioning a medical condition, symptom, or clinical concept, ensure the agent notes whether a richer schema type (`MedicalWebPage`, `MedicalCondition`, `FAQPage`) would strengthen the post. If yes, propose it in the commit message body so humans can layer it in (`src/utils/schema.ts` changes are out of scope for this agent; don't edit that file)
-- [ ] **`/copy-editing` pass** — re-read `.claude/skills/copy-editing/SKILL.md`, then scan the draft for: LLM-smell openers, passive voice, unnecessary hedging, vague quantifiers ("many", "a lot", "often"), unsourced numbers, em-dash overuse (>1 per ~300 words). Fix each.
-- [ ] **Brand voice** matches `.agents/product-marketing-context.md` §7 (Brand Voice). Scan the "What to avoid" list and confirm none of those patterns appear
+- [ ] **Inline copy-edit scan** — no LLM-smell openers, no passive voice clusters, no vague quantifiers ("many", "a lot", "often") where a number would do, no em-dash overuse (>1 per ~300 words). Do **not** open the copy-editing skill — this inline checklist is the distilled version
+- [ ] **Brand voice** matches `.agents/product-marketing-context.md` §7 (Brand Voice)
+- [ ] If the post covers a medical condition/symptom, note in the commit message that a richer schema type (`MedicalWebPage`, `FAQPage`) could be layered in later. Do **not** open the schema-markup skill or edit `src/utils/schema.ts`
 
 Then run a build sanity check:
 
@@ -168,42 +178,6 @@ Open `content-queue.json`:
 - **Curated mode**: remove the picked topic from `pending`, append to `published` with today's date.
 - **Trending mode**: append the picked topic to `published` with `source: "trending"` so it doesn't collide later.
 
-### Step 8.5 — Generate social drafts for this post
-
-Read `.claude/skills/social-content/SKILL.md` and apply it to the post you just wrote. Produce drafts for four platforms:
-
-- **X (Twitter) thread** — 5–7 tweets. Tweet 1 is the hook + headline claim. Middle tweets expand with one specific fact per tweet (prefer cited numbers). Final tweet: soft CTA ("Full breakdown: <canonical URL>"). Under 280 chars each.
-- **LinkedIn post** — 300–400 words. Professional tone, first-person singular voice is OK (from "the PoopCheck team"). Opens with a hook, has 2–3 short paragraphs or bullets, ends with a link to the post. No hashtag spam — 3 max.
-- **Instagram carousel** — a caption (~150 words, hook + summary + soft CTA) plus a 5-slide breakdown: slide 1 = headline + question, slides 2–4 = one fact or point each, slide 5 = "save + follow" CTA. Keep copy-per-slide short enough for the Instagram feed.
-- **Reddit** — targeted at `r/ibs`, `r/ibd`, or `r/askdocs` depending on topic. No overt promotion — offer the findings, link the post at the very end, and frame as "we wrote this up, hope it helps." If the topic is too promotional to post organically, output `null` for this platform and note why.
-
-Append one entry to `social-queue.json` under `drafts[]`, keyed by slug:
-
-```json
-{
-  "slug": "<post-slug>",
-  "post_date": "<YYYY-MM-DD>",
-  "canonical_url": "https://poopcheck.app/poopcheck-blog/<slug>/",
-  "platforms": {
-    "x": { "thread": ["tweet 1...", "tweet 2...", "..."] },
-    "linkedin": { "body": "..." },
-    "instagram": { "caption": "...", "slides": ["slide 1", "slide 2", "..."] },
-    "reddit": { "subreddit": "ibs", "title": "...", "body": "..." }
-  },
-  "posted_at": null
-}
-```
-
-**Hard rule: never auto-post to any platform.** This file is human-review only. The human flips `posted_at` after posting manually.
-
-If `social-queue.json` doesn't exist yet (first run after phase F lands), create it with:
-
-```json
-{ "$comment": "Social drafts per blog post. Human-review before posting.", "drafts": [], "posted": [] }
-```
-
-Then append the entry to `drafts[]`.
-
 ### Step 9 — Commit & push
 
 Commit message style (match existing: lowercase, short, descriptive — see `git log`):
@@ -218,7 +192,7 @@ Or for trending:
 new post (trending): <slug>
 ```
 
-Stage exactly the files you touched: the new MDX, the edited older post (back-link), `content-queue.json`, and `social-queue.json`. **Never** `git add -A`.
+Stage exactly the files you touched: the new MDX, the edited older post (back-link), and `content-queue.json`. **Never** `git add -A`.
 
 Then `git push origin master`. The GH Actions workflow at `.github/workflows/deploy.yml` will build and deploy to Cloudflare within ~2–3 minutes.
 

@@ -65,15 +65,6 @@
       "priority": 2
     },
     {
-      "slug": "gut-microbiome-testing-worth-it",
-      "title_hint": "Gut microbiome tests: are they worth the money in 2026?",
-      "primary_keyword": "gut microbiome test",
-      "category": "research",
-      "brief": "State of consumer microbiome testing (Viome, Zoe, Thryve), what current science can and can't tell you from a stool sample, where the field is going, honest take on value for money today.",
-      "target_word_count": 1900,
-      "priority": 1
-    },
-    {
       "slug": "how-hydration-affects-stool",
       "title_hint": "How hydration affects your stool: the water-constipation link",
       "primary_keyword": "hydration and stool",
@@ -108,7 +99,8 @@
     { "slug": "what-causes-floating-stool", "published_at": "2026-04-20", "source": "curated" },
     { "slug": "black-stool-causes", "published_at": "2026-04-20", "source": "curated" },
     { "slug": "probiotics-vs-prebiotics", "published_at": "2026-04-21", "source": "curated" },
-    { "slug": "gut-brain-axis-explained", "published_at": "2026-04-22", "source": "curated" }
+    { "slug": "gut-brain-axis-explained", "published_at": "2026-04-22", "source": "curated" },
+    { "slug": "gut-microbiome-testing-worth-it", "published_at": "2026-04-24", "source": "curated" }
   ],
   "trending_candidates": []
 }

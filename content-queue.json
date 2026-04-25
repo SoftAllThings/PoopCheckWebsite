@@ -2,15 +2,6 @@
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
   "pending": [
     {
-      "slug": "how-long-food-takes-to-digest",
-      "title_hint": "How long does food take to digest? A transit-time guide",
-      "primary_keyword": "food digestion time",
-      "category": "gut-health",
-      "brief": "Normal transit times by meal composition, the mouth-to-toilet journey (stomach: 2-5h, small intestine: 3-5h, large intestine: 10-59h). Why transit time matters for stool consistency and nutrient absorption.",
-      "target_word_count": 1600,
-      "priority": 2
-    },
-    {
       "slug": "low-fodmap-diet-guide",
       "title_hint": "The low-FODMAP diet: a practical guide for IBS",
       "primary_keyword": "low FODMAP diet",
@@ -100,7 +91,8 @@
     { "slug": "black-stool-causes", "published_at": "2026-04-20", "source": "curated" },
     { "slug": "probiotics-vs-prebiotics", "published_at": "2026-04-21", "source": "curated" },
     { "slug": "gut-brain-axis-explained", "published_at": "2026-04-22", "source": "curated" },
-    { "slug": "gut-microbiome-testing-worth-it", "published_at": "2026-04-24", "source": "curated" }
+    { "slug": "gut-microbiome-testing-worth-it", "published_at": "2026-04-24", "source": "curated" },
+    { "slug": "how-long-food-takes-to-digest", "published_at": "2026-04-25", "source": "curated" }
   ],
   "trending_candidates": []
 }

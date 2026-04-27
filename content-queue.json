@@ -2,15 +2,6 @@
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
   "pending": [
     {
-      "slug": "low-fodmap-diet-guide",
-      "title_hint": "The low-FODMAP diet: a practical guide for IBS",
-      "primary_keyword": "low FODMAP diet",
-      "category": "conditions",
-      "brief": "What FODMAPs are, Monash University research foundation, 3-phase protocol (elimination, reintroduction, personalization), typical high/low FODMAP foods, evidence for IBS symptom reduction. Link to existing IBS post.",
-      "target_word_count": 2000,
-      "priority": 2
-    },
-    {
       "slug": "stool-smell-what-it-means",
       "title_hint": "Why does my poop smell so bad? What stool odor means",
       "primary_keyword": "stool smell",
@@ -93,7 +84,8 @@
     { "slug": "gut-brain-axis-explained", "published_at": "2026-04-22", "source": "curated" },
     { "slug": "gut-microbiome-testing-worth-it", "published_at": "2026-04-24", "source": "curated" },
     { "slug": "how-long-food-takes-to-digest", "published_at": "2026-04-25", "source": "curated" },
-    { "slug": "fibermaxxing-explained", "published_at": "2026-04-26", "source": "trending" }
+    { "slug": "fibermaxxing-explained", "published_at": "2026-04-26", "source": "trending" },
+    { "slug": "low-fodmap-diet-guide", "published_at": "2026-04-27", "source": "curated" }
   ],
   "trending_candidates": []
 }

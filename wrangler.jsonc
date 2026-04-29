@@ -1,0 +1,7 @@
+// Pinned so the @cloudflare/vite-plugin doesn't default `compatibility_date`
+// to today during build — the bundled workerd lags by ~1 week, which makes
+// CI builds fail on any day past the binary's max supported date.
+// Bump this only when bumping wrangler/miniflare/workerd in lockstep.
+{
+  "compatibility_date": "2026-04-23"
+}

@@ -2,15 +2,6 @@
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
   "pending": [
     {
-      "slug": "stool-smell-what-it-means",
-      "title_hint": "Why does my poop smell so bad? What stool odor means",
-      "primary_keyword": "stool smell",
-      "category": "stool-analysis",
-      "brief": "Normal odor sources (sulfur compounds from protein breakdown), dietary contributors, abnormal smells (very foul = malabsorption, sweet = C. diff, metallic = GI bleeding). When to see a doctor.",
-      "target_word_count": 1400,
-      "priority": 3
-    },
-    {
       "slug": "constipation-causes-and-remedies",
       "title_hint": "Constipation: causes, evidence-based remedies, and when to see a doctor",
       "primary_keyword": "constipation remedies",
@@ -85,7 +76,8 @@
     { "slug": "gut-microbiome-testing-worth-it", "published_at": "2026-04-24", "source": "curated" },
     { "slug": "how-long-food-takes-to-digest", "published_at": "2026-04-25", "source": "curated" },
     { "slug": "fibermaxxing-explained", "published_at": "2026-04-26", "source": "trending" },
-    { "slug": "low-fodmap-diet-guide", "published_at": "2026-04-27", "source": "curated" }
+    { "slug": "low-fodmap-diet-guide", "published_at": "2026-04-27", "source": "curated" },
+    { "slug": "stool-smell-what-it-means", "published_at": "2026-04-29", "source": "curated" }
   ],
   "trending_candidates": []
 }

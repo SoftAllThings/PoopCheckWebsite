@@ -20,15 +20,6 @@
       "priority": 2
     },
     {
-      "slug": "morning-poop-why",
-      "title_hint": "Why do I poop right after coffee? The gastrocolic reflex explained",
-      "primary_keyword": "coffee makes me poop",
-      "category": "gut-health",
-      "brief": "The gastrocolic reflex, why coffee amplifies it (chlorogenic acids, caffeine minor role), why mornings are the natural peak, how to leverage for regularity.",
-      "target_word_count": 1300,
-      "priority": 3
-    },
-    {
       "slug": "fermented-foods-vs-probiotic-supplements",
       "title_hint": "Fermented foods vs probiotic supplements: which is better for your gut?",
       "primary_keyword": "fermented foods vs probiotics",
@@ -77,7 +68,8 @@
     { "slug": "how-long-food-takes-to-digest", "published_at": "2026-04-25", "source": "curated" },
     { "slug": "fibermaxxing-explained", "published_at": "2026-04-26", "source": "trending" },
     { "slug": "low-fodmap-diet-guide", "published_at": "2026-04-27", "source": "curated" },
-    { "slug": "stool-smell-what-it-means", "published_at": "2026-04-29", "source": "curated" }
+    { "slug": "stool-smell-what-it-means", "published_at": "2026-04-29", "source": "curated" },
+    { "slug": "morning-poop-why", "published_at": "2026-04-30", "source": "curated" }
   ],
   "trending_candidates": []
 }

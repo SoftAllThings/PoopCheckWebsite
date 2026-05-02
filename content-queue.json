@@ -2,15 +2,6 @@
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
   "pending": [
     {
-      "slug": "constipation-causes-and-remedies",
-      "title_hint": "Constipation: causes, evidence-based remedies, and when to see a doctor",
-      "primary_keyword": "constipation remedies",
-      "category": "conditions",
-      "brief": "Functional vs secondary constipation, Rome IV criteria, first-line remedies (fiber, fluid, movement), OTC options (osmotic vs stimulant laxatives), red-flag symptoms warranting workup.",
-      "target_word_count": 1900,
-      "priority": 2
-    },
-    {
       "slug": "diarrhea-causes-and-when-to-worry",
       "title_hint": "Diarrhea: causes, home care, and red flags",
       "primary_keyword": "diarrhea causes",
@@ -69,7 +60,8 @@
     { "slug": "fibermaxxing-explained", "published_at": "2026-04-26", "source": "trending" },
     { "slug": "low-fodmap-diet-guide", "published_at": "2026-04-27", "source": "curated" },
     { "slug": "stool-smell-what-it-means", "published_at": "2026-04-29", "source": "curated" },
-    { "slug": "morning-poop-why", "published_at": "2026-04-30", "source": "curated" }
+    { "slug": "morning-poop-why", "published_at": "2026-04-30", "source": "curated" },
+    { "slug": "constipation-causes-and-remedies", "published_at": "2026-05-02", "source": "curated" }
   ],
   "trending_candidates": []
 }

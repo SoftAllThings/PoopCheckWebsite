@@ -2,15 +2,6 @@
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
   "pending": [
     {
-      "slug": "diarrhea-causes-and-when-to-worry",
-      "title_hint": "Diarrhea: causes, home care, and red flags",
-      "primary_keyword": "diarrhea causes",
-      "category": "conditions",
-      "brief": "Acute vs chronic, common causes (viral, bacterial, food intolerance, medication), hydration and BRAT diet, when antibiotics do and don't help, red flags (blood, fever, >2 days persistent).",
-      "target_word_count": 1600,
-      "priority": 2
-    },
-    {
       "slug": "fermented-foods-vs-probiotic-supplements",
       "title_hint": "Fermented foods vs probiotic supplements: which is better for your gut?",
       "primary_keyword": "fermented foods vs probiotics",
@@ -62,7 +53,8 @@
     { "slug": "stool-smell-what-it-means", "published_at": "2026-04-29", "source": "curated" },
     { "slug": "morning-poop-why", "published_at": "2026-04-30", "source": "curated" },
     { "slug": "constipation-causes-and-remedies", "published_at": "2026-05-02", "source": "curated" },
-    { "slug": "do-colonics-work", "published_at": "2026-05-03", "source": "trending" }
+    { "slug": "do-colonics-work", "published_at": "2026-05-03", "source": "trending" },
+    { "slug": "diarrhea-causes-and-when-to-worry", "published_at": "2026-05-04", "source": "curated" }
   ],
   "trending_candidates": []
 }

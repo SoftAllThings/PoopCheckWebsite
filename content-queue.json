@@ -2,15 +2,6 @@
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
   "pending": [
     {
-      "slug": "fermented-foods-vs-probiotic-supplements",
-      "title_hint": "Fermented foods vs probiotic supplements: which is better for your gut?",
-      "primary_keyword": "fermented foods vs probiotics",
-      "category": "nutrition",
-      "brief": "Stanford fermented-foods study (Sonnenburg 2021), why whole-food fermented options often outperform pills on diversity and inflammation markers, when supplements are still the right call.",
-      "target_word_count": 1700,
-      "priority": 2
-    },
-    {
       "slug": "how-hydration-affects-stool",
       "title_hint": "How hydration affects your stool: the water-constipation link",
       "primary_keyword": "hydration and stool",
@@ -54,7 +45,8 @@
     { "slug": "morning-poop-why", "published_at": "2026-04-30", "source": "curated" },
     { "slug": "constipation-causes-and-remedies", "published_at": "2026-05-02", "source": "curated" },
     { "slug": "do-colonics-work", "published_at": "2026-05-03", "source": "trending" },
-    { "slug": "diarrhea-causes-and-when-to-worry", "published_at": "2026-05-04", "source": "curated" }
+    { "slug": "diarrhea-causes-and-when-to-worry", "published_at": "2026-05-04", "source": "curated" },
+    { "slug": "fermented-foods-vs-probiotic-supplements", "published_at": "2026-05-05", "source": "curated" }
   ],
   "trending_candidates": []
 }

@@ -3,14 +3,6 @@
   "pending": [
     {
       "mode": "comparison",
-      "slug": "plop",
-      "name": "Plop",
-      "website_url": "",
-      "priority": 2,
-      "notes": "Power-user tracker with deep customization. Research site before writing."
-    },
-    {
-      "mode": "comparison",
       "slug": "mysymptoms",
       "name": "mySymptoms",
       "website_url": "https://skygazerlabs.com/",
@@ -37,6 +29,7 @@
     { "mode": "comparison", "slug": "cara-care", "published_at": "2026-04-20", "source": "initial-scaffold" },
     { "mode": "comparison", "slug": "dieta-health", "published_at": "2026-04-20", "source": "initial-scaffold" },
     { "mode": "comparison", "slug": "balloon", "published_at": "2026-04-20", "source": "initial-scaffold" },
-    { "mode": "comparison", "slug": "bowelle", "published_at": "2026-04-22", "source": "programmatic-writer" }
+    { "mode": "comparison", "slug": "bowelle", "published_at": "2026-04-22", "source": "programmatic-writer" },
+    { "mode": "comparison", "slug": "plop", "published_at": "2026-05-06", "source": "programmatic-writer" }
   ]
 }

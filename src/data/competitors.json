@@ -111,6 +111,40 @@
         { "title": "Balloon: Best iOS poop trackers for 2025 (includes Bowelle review)", "url": "https://balloonguthealth.com/blog/best-ios-poop-trackers-for-2025" }
       ],
       "last_verified": "2026-04-22"
+    },
+    {
+      "slug": "plop",
+      "name": "Plop",
+      "tagline": "Power-user poop tracker with deep customization, factor correlation analytics, and on-device privacy.",
+      "website_url": "https://plopdiary.com/",
+      "positioning": "A highly customizable bowel-movement and symptom diary built for people managing IBS, IBD and Crohn's, with factor correlation charts and PDF reports designed to be shared with a clinician.",
+      "pricing_notes": "Free to download on iOS and Android with in-app purchases for premium features. Check the App Store and Google Play listings for current subscription pricing.",
+      "features": [
+        { "name": "AI photo analysis of stool", "plop": false, "poopcheck": true, "note": "Plop is manual logging end-to-end; Bristol type, color and consistency are user-selected. PoopCheck classifies all three from a photo." },
+        { "name": "Bristol Stool Scale classification", "plop": "Manual (with default-type shortcut)", "poopcheck": "Automatic from photo", "note": "Plop lets you set a default Bristol type to speed up logging." },
+        { "name": "Customizable tracking factors / categories", "plop": true, "poopcheck": false, "note": "Plop's clearest advantage — define your own factors (pain, mood, sleep, stress, hydration, custom) and chart them." },
+        { "name": "Factor correlation matrix & impact charts", "plop": true, "poopcheck": false },
+        { "name": "Monthly report with PDF export", "plop": true, "poopcheck": false, "note": "Useful for sharing with a gastroenterologist or dietitian." },
+        { "name": "Pattern alerts (flags unusual changes automatically)", "plop": true, "poopcheck": "Coming with Premium analytics" },
+        { "name": "Daily gut-health score", "plop": false, "poopcheck": true },
+        { "name": "AI digestive chat assistant", "plop": false, "poopcheck": "SOFTie (Premium)" },
+        { "name": "Apple Health integration", "plop": true, "poopcheck": true },
+        { "name": "On-device photo storage (privacy-first)", "plop": true, "poopcheck": "Cloud-synced with account controls", "note": "Plop explicitly states photos are not uploaded to a cloud server." },
+        { "name": "Android availability", "plop": true, "poopcheck": true, "note": "Both apps ship on iOS and Android." },
+        { "name": "Free tier with ads", "plop": "Yes — ads in free tier per user reviews", "poopcheck": "Free, no ads" }
+      ],
+      "strengths": "Plop is the deepest-customization tool in this category. The factor correlation matrix and factor-impact-on-plop-count charts give power users who can stomach the manual logging real signal about what triggers their symptoms — the kind of analytics most consumer trackers don't even attempt. The monthly PDF export is genuinely useful for clinic visits, and the on-device photo storage is a real privacy advantage over cloud-synced apps.",
+      "weaknesses_for_user": "Plop is manual end-to-end. There's no AI visual analysis of stool, so every Bristol type, color, and factor is tapped in by hand — fine for diligent IBS/IBD users, exhausting for casual trackers. The free tier serves ads after each log, which some reviewers find disruptive, and there's no single daily gut-health score that summarises your day at a glance.",
+      "when_competitor_is_better": "If you're managing diagnosed IBS, IBD or Crohn's, want to define your own tracking factors, run correlation analysis on triggers, and bring a polished PDF report to your gastroenterologist, Plop is the better fit. Power users who value depth over speed will get more out of it.",
+      "when_poopcheck_is_better": "If you want effortless daily tracking — a photo gives you Bristol type, color, consistency and a single gut-health score in seconds — and you'd rather optimise your gut without becoming a part-time data-entry clerk, PoopCheck's AI approach gets you insights with far less logging fatigue.",
+      "sources": [
+        { "title": "Plop – Poop Tracker & Analyzer (official site, plopdiary.com)", "url": "https://plopdiary.com/en/" },
+        { "title": "plop – poop tracker & analyzer on the App Store", "url": "https://apps.apple.com/us/app/plop-poop-tracker-analyzer/id1505427265" },
+        { "title": "plop – poop tracker & analyzer on Google Play", "url": "https://play.google.com/store/apps/details?id=com.notiis.plop&hl=en_US" },
+        { "title": "plop – poop tracker & analyzer on AppBrain (Android stats)", "url": "https://www.appbrain.com/app/plop-poop-tracker-analyzer/com.notiis.plop" },
+        { "title": "Balloon: Best iOS poop trackers for 2025 (includes Plop review)", "url": "https://balloonguthealth.com/blog/best-ios-poop-trackers-for-2025" }
+      ],
+      "last_verified": "2026-05-06"
     }
   ]
 }

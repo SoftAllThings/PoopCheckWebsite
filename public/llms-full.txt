@@ -52,7 +52,7 @@ Premium subscription ($4.99/month or $29.99/year) includes:
 
 ## Privacy
 
-PoopCheck is built privacy-first. Photos are encrypted in transit and at rest. Data is never sold to third parties. Users can delete their account and all associated data at any time.
+Photos are encrypted in transit and at rest. Users can delete their account and all associated data at any time.
 
 ## Availability
 

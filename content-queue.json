@@ -2,15 +2,6 @@
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
   "pending": [
     {
-      "slug": "how-hydration-affects-stool",
-      "title_hint": "How hydration affects your stool: the water-constipation link",
-      "primary_keyword": "hydration and stool",
-      "category": "gut-health",
-      "brief": "Mechanism (colon water reabsorption), how much water you actually need (by body weight + activity), electrolyte role, caffeine/alcohol effects, practical daily-intake targets.",
-      "target_word_count": 1400,
-      "priority": 2
-    },
-    {
       "slug": "exercise-and-bowel-movements",
       "title_hint": "Does exercise make you poop? The science of movement and motility",
       "primary_keyword": "exercise and bowel movements",
@@ -46,7 +37,8 @@
     { "slug": "constipation-causes-and-remedies", "published_at": "2026-05-02", "source": "curated" },
     { "slug": "do-colonics-work", "published_at": "2026-05-03", "source": "trending" },
     { "slug": "diarrhea-causes-and-when-to-worry", "published_at": "2026-05-04", "source": "curated" },
-    { "slug": "fermented-foods-vs-probiotic-supplements", "published_at": "2026-05-05", "source": "curated" }
+    { "slug": "fermented-foods-vs-probiotic-supplements", "published_at": "2026-05-05", "source": "curated" },
+    { "slug": "how-hydration-affects-stool", "published_at": "2026-05-06", "source": "curated" }
   ],
   "trending_candidates": []
 }

@@ -1,16 +1,6 @@
 {
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
-  "pending": [
-    {
-      "slug": "exercise-and-bowel-movements",
-      "title_hint": "Does exercise make you poop? The science of movement and motility",
-      "primary_keyword": "exercise and bowel movements",
-      "category": "gut-health",
-      "brief": "Mechanisms (mechanical agitation, vagal tone, blood-flow shifts), runner's trots explained, evidence for endurance vs resistance training, practical recommendations for gut health.",
-      "target_word_count": 1500,
-      "priority": 2
-    }
-  ],
+  "pending": [],
   "published": [
     { "slug": "bristol-stool-chart-types-explained", "source": "seed" },
     { "slug": "do-i-have-colon-cancer", "source": "seed" },
@@ -38,7 +28,8 @@
     { "slug": "do-colonics-work", "published_at": "2026-05-03", "source": "trending" },
     { "slug": "diarrhea-causes-and-when-to-worry", "published_at": "2026-05-04", "source": "curated" },
     { "slug": "fermented-foods-vs-probiotic-supplements", "published_at": "2026-05-05", "source": "curated" },
-    { "slug": "how-hydration-affects-stool", "published_at": "2026-05-06", "source": "curated" }
+    { "slug": "how-hydration-affects-stool", "published_at": "2026-05-06", "source": "curated" },
+    { "slug": "exercise-and-bowel-movements", "published_at": "2026-05-07", "source": "curated" }
   ],
   "trending_candidates": []
 }

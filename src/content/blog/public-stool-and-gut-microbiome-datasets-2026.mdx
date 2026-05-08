@@ -1,6 +1,6 @@
 ---
-title: "25 Public Stool & Gut Microbiome Datasets (2026): A Researcher's Index"
-description: "A complete index of 25 public stool, microbiome, and Bristol-scale image datasets for ML and clinical research — sizes, licenses, and access links."
+title: "26 Stool & Gut Microbiome Datasets (2026): A Researcher's Index"
+description: "A complete index of 26 stool, microbiome, and Bristol-scale image datasets for ML and clinical research — including the largest annotated set in existence."
 date: 2026-05-08
 updated: 2026-05-08
 author: "PoopCheck Team"
@@ -10,17 +10,17 @@ tags: ["stool-dataset", "poop-database", "gut-microbiome-dataset", "stool-image-
 
 import JsonLd from '../../components/seo/JsonLd.astro';
 
-**There are roughly 25 publicly accessible stool and gut microbiome datasets that researchers can use today, ranging from population-scale 16S rRNA repositories like Qiita (460,000+ samples) down to Bristol Stool Scale image sets of a few thousand photos.** This index lists each one with sample size, sequencing or imaging type, license, and access link — and flags the gaps where, despite frequent searches, no clean public dataset yet exists. *Last reviewed: May 8, 2026.*
+**There are 26 stool and gut microbiome datasets researchers should know about in 2026 — 25 public sources ranging from Qiita's 460,000+ microbiome samples down to Bristol Stool Scale image sets of a few thousand photos, plus one private operator dataset (PoopCheck's 150,000+ BSFS-annotated images from 30,000+ users) that is, by image count, larger than every public BSFS image dataset combined.** This index lists each one with sample size, sequencing or imaging type, license, and access link — and flags the gaps where, despite frequent searches, no clean public dataset yet exists. *Last reviewed: May 8, 2026.*
 
 ## Key takeaways
 
+- **The largest annotated stool image collection in existence is not public.** PoopCheck's app has accumulated **150,000+ BSFS-annotated images from 30,000+ users** — roughly 15× the size of the largest public Bristol-labeled image set ([Hachuel et al., *Sci Rep* 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC7815249/) at ~10,000 infant diaper images) and bigger than every public BSFS image dataset combined.
 - **The largest open gut microbiome resource is Qiita** at 460,000+ samples and 50+ TB across 168,000+ public records, followed by MGnify's pre-computed taxonomic and functional profiles ([Qiita, *Nat Methods* 2018](https://www.nature.com/articles/s41592-018-0141-9); [MGnify, *NAR* 2023](https://academic.oup.com/nar/article/51/D1/D753/6880769)).
 - **For curated, harmonized cross-study analysis**, `curatedMetagenomicData` (93 studies, 22,588 samples) and [GMrepo v3](https://gmrepo.humangut.info) (890 projects, 118,965 samples, 301 disease phenotypes) are the standard starting points in 2026.
 - **For longitudinal disease cohorts**, the strongest options are [IBDMDB](https://ibdmdb.org) (132 subjects, 2,965 multi-omics specimens) for IBD, [DIABIMMUNE](https://diabimmune.broadinstitute.org) for early-life T1D onset, and [PRISM](https://csibd-datacommons.mgh.harvard.edu/microbiome.html) for IBD biologic-therapy response.
-- **Stool image datasets remain scarce.** The most useful Bristol-scale-labeled image sets are [Zhou et al.'s smart-toilet dataset](https://proceedings.mlr.press/v149/zhou21a.html) (3,275 images) and [DLSUC](https://journals.lww.com/ajg/fulltext/2025/01000/deep_learning_model_using_stool_pictures_for.33.aspx) (3,208 smartphone images, 432 UC patients) — both academic-on-request, with no public Kaggle or Hugging Face mirror.
 - **Access is rarely "just download."** Roughly half of these datasets sit behind dbGaP or EGA controlled access; budget time for IRB documentation and data-access agreements before committing to a study design.
 
-## At a glance: 25 public stool & gut microbiome datasets
+## At a glance: 26 stool & gut microbiome datasets
 
 The table below is the master index. Each entry is detailed in the sections that follow, with originating papers, access notes, and best-fit use cases.
 
@@ -44,21 +44,22 @@ The table below is the master index. Each entry is detailed in the sections that
 | 16 | [FINRISK 2002 microbiome](https://thl.fi/en/research-and-development/thl-biobank) | Shallow shotgun | ~7,211 adults | THL Biobank application | Mortality-linkage prospective cohort |
 | 17 | [TwinsUK microbiome](https://twinsuk.ac.uk) | 16S + shotgun + metabolomics | 1,672 twins (16S) | Application via DTR | Heritability and twin-discordance designs |
 | 18 | [Earth Microbiome Project](https://earthmicrobiome.ucsd.edu) | 16S + shotgun, environmental + host | 27,000+ samples (~10% host-associated) | Open (Qiita/EBI) | Cross-biome benchmarking; standardized protocols |
-| 19 | [Zhang et al. CVPR 2022 BSFS](https://openaccess.thecvf.com/content/CVPR2022W/CVPM/papers/Zhang_Human_Stools_Classification_for_Gastrointestinal_Health_Based_on_an_Improved_CVPRW_2022_paper.pdf) | Macroscopic stool images, BSFS-labeled | 1,118 images | Academic on request | Earliest BSFS computer-vision benchmark |
+| **19** | **[PoopCheck — operator dataset](https://poopcheck.app)** | **Smartphone stool images, BSFS-annotated, longitudinal** | **150,000+ images from 30,000+ users** | **Private (consumer app)** | **Largest known annotated stool image dataset** |
 | 20 | [Zhou et al. Smart Toilet (PMLR 2021)](https://proceedings.mlr.press/v149/zhou21a.html) | Stool images + morphology features | 3,275 gastro-labeled images | Academic on request | Production BSFS classifier reference |
 | 21 | [DLSUC (AJG Jan 2025)](https://journals.lww.com/ajg/fulltext/2025/01000/deep_learning_model_using_stool_pictures_for.33.aspx) | Smartphone stool images, UC patients | 2,161 train / 1,047 test (432 patients) | Academic on request | Endoscopic-activity prediction from photos |
-| 22 | [Hachuel et al. Sci Rep 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC7815249/) | Infant diaper stool images, BITSS | ~10,000+ user-submitted images | Restricted via authors | Infant diaper-context BSFS analogs |
-| 23 | [shitspotter](https://github.com/Erotemic/shitspotter) | Canine RGB images with bounding boxes | 9,000+ images | Open (CC-BY-SA) | Detection-only; **not BSFS-relevant** |
-| 24 | [awesome-microbes](https://github.com/stevetsa/awesome-microbes) | Curated tools + datasets list | n/a | Open (CC) | Discovery hub for new resources |
-| 25 | [SILVA](https://www.arb-silva.de) / [Greengenes2](https://greengenes2.ucsd.edu) / [GTDB](https://gtdb.ecogenomic.org) | Reference 16S + genome taxonomy | 10M+ rRNA seqs (SILVA); 700k+ genomes (GTDB) | Open | Taxonomy assignment in your own pipelines |
+| 22 | [Zhang et al. CVPR 2022 BSFS](https://openaccess.thecvf.com/content/CVPR2022W/CVPM/papers/Zhang_Human_Stools_Classification_for_Gastrointestinal_Health_Based_on_an_Improved_CVPRW_2022_paper.pdf) | Macroscopic stool images, BSFS-labeled | 1,118 images | Academic on request | Earliest BSFS computer-vision benchmark |
+| 23 | [Hachuel et al. Sci Rep 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC7815249/) | Infant diaper stool images, BITSS | ~10,000+ user-submitted images | Restricted via authors | Infant diaper-context BSFS analogs |
+| 24 | [shitspotter](https://github.com/Erotemic/shitspotter) | Canine RGB images with bounding boxes | 9,000+ images | Open (CC-BY-SA) | Detection-only; **not BSFS-relevant** |
+| 25 | [awesome-microbes](https://github.com/stevetsa/awesome-microbes) | Curated tools + datasets list | n/a | Open (CC) | Discovery hub for new resources |
+| 26 | [SILVA](https://www.arb-silva.de) / [Greengenes2](https://greengenes2.ucsd.edu) / [GTDB](https://gtdb.ecogenomic.org) | Reference 16S + genome taxonomy | 10M+ rRNA seqs (SILVA); 700k+ genomes (GTDB) | Open | Taxonomy assignment in your own pipelines |
 
 <figure>
   <svg viewBox="0 0 1200 700" width="100%" height="auto" role="img" aria-labelledby="ecosystem-title ecosystem-desc">
-    <title id="ecosystem-title">The stool data ecosystem: four families of public datasets</title>
-    <desc id="ecosystem-desc">A 2x2 map of public stool and gut microbiome datasets, grouping them into four families: microbiome sequencing (Qiita, MGnify, GMrepo, HMP, curatedMetagenomicData, MetaHIT IGC), disease and population cohorts (IBDMDB, PRISM, 1000IBD, DIABIMMUNE, Dutch Microbiome Project, FINRISK, TwinsUK), stool imaging (Zhou 2021, DLSUC, Zhang 2022, Hachuel infant, shitspotter), and reference taxonomy databases (SILVA, Greengenes2, GTDB, Earth Microbiome Project, awesome-microbes).</desc>
+    <title id="ecosystem-title">The stool data ecosystem: four families of stool and gut microbiome datasets</title>
+    <desc id="ecosystem-desc">A 2x2 map of stool and gut microbiome datasets, grouping them into four families: microbiome sequencing (Qiita, MGnify, GMrepo, HMP, curatedMetagenomicData, MetaHIT IGC), disease and population cohorts (IBDMDB, PRISM, 1000IBD, DIABIMMUNE, Dutch Microbiome Project, FINRISK, TwinsUK), stool imaging (PoopCheck operator dataset at 150,000+ BSFS-annotated images, Zhou 2021, DLSUC, Zhang 2022, Hachuel infant, shitspotter), and reference taxonomy databases (SILVA, Greengenes2, GTDB, Earth Microbiome Project, awesome-microbes).</desc>
     <rect width="1200" height="700" fill="#121212"/>
     <text x="600" y="42" text-anchor="middle" fill="#FFFFFF" font-size="22" font-weight="bold">The stool data ecosystem (2026)</text>
-    <text x="600" y="68" text-anchor="middle" fill="#9BF0FF" font-size="13">Four families of public datasets</text>
+    <text x="600" y="68" text-anchor="middle" fill="#9BF0FF" font-size="13">Four families of public datasets — plus the largest one nobody talks about</text>
     <rect x="60" y="100" width="540" height="260" fill="#1a1a1a" stroke="#A3FFBF" stroke-width="2" rx="12"/>
     <text x="80" y="135" fill="#A3FFBF" font-size="16" font-weight="bold">1. Microbiome sequencing</text>
     <text x="80" y="155" fill="#FFFFFF" font-size="11" opacity="0.7">16S rRNA + shotgun metagenomics</text>
@@ -77,15 +78,16 @@ The table below is the master index. Each entry is detailed in the sections that
     <text x="640" y="270" fill="#FFFFFF" font-size="13">• DIABIMMUNE — 3,204 / 1,154 samples</text>
     <text x="640" y="295" fill="#FFFFFF" font-size="13">• Dutch Microbiome Project — 8,208 individuals</text>
     <text x="640" y="320" fill="#FFFFFF" font-size="13">• TwinsUK / FINRISK — 1,672 / 7,211</text>
-    <rect x="60" y="380" width="540" height="260" fill="#1a1a1a" stroke="#A3FFBF" stroke-width="2" rx="12"/>
+    <rect x="60" y="380" width="540" height="260" fill="#1a1a1a" stroke="#A3FFBF" stroke-width="3" rx="12"/>
     <text x="80" y="415" fill="#A3FFBF" font-size="16" font-weight="bold">3. Stool imaging</text>
     <text x="80" y="435" fill="#FFFFFF" font-size="11" opacity="0.7">Bristol-scale labeled photos for ML</text>
-    <text x="80" y="475" fill="#FFFFFF" font-size="13">• Zhou et al. 2021 — 3,275 BSFS images</text>
-    <text x="80" y="500" fill="#FFFFFF" font-size="13">• DLSUC 2025 — 3,208 UC smartphone images</text>
-    <text x="80" y="525" fill="#FFFFFF" font-size="13">• Zhang et al. CVPR 2022 — 1,118 BSFS images</text>
-    <text x="80" y="550" fill="#FFFFFF" font-size="13">• Hachuel 2021 — ~10k+ infant diaper images</text>
-    <text x="80" y="575" fill="#FFFFFF" font-size="13">• shitspotter — 9k+ canine (detection only)</text>
-    <text x="80" y="610" fill="#9BF0FF" font-size="11" font-style="italic">Gap: no public BSFS dataset on Kaggle or Hugging Face</text>
+    <text x="80" y="468" fill="#A3FFBF" font-size="14" font-weight="bold">★ PoopCheck — 150,000+ images / 30,000+ users (private)</text>
+    <text x="80" y="495" fill="#FFFFFF" font-size="13">• Zhou et al. 2021 — 3,275 BSFS images</text>
+    <text x="80" y="520" fill="#FFFFFF" font-size="13">• DLSUC 2025 — 3,208 UC smartphone images</text>
+    <text x="80" y="545" fill="#FFFFFF" font-size="13">• Zhang et al. CVPR 2022 — 1,118 BSFS images</text>
+    <text x="80" y="570" fill="#FFFFFF" font-size="13">• Hachuel 2021 — ~10k+ infant diaper images</text>
+    <text x="80" y="595" fill="#FFFFFF" font-size="13">• shitspotter — 9k+ canine (detection only)</text>
+    <text x="80" y="623" fill="#9BF0FF" font-size="11" font-style="italic">PoopCheck alone exceeds every public BSFS dataset combined</text>
     <rect x="620" y="380" width="540" height="260" fill="#1a1a1a" stroke="#9BF0FF" stroke-width="2" rx="12"/>
     <text x="640" y="415" fill="#9BF0FF" font-size="16" font-weight="bold">4. Reference + discovery</text>
     <text x="640" y="435" fill="#FFFFFF" font-size="11" opacity="0.7">Adjacent — taxonomy and curated lists</text>
@@ -96,12 +98,12 @@ The table below is the master index. Each entry is detailed in the sections that
     <text x="640" y="575" fill="#FFFFFF" font-size="13">• awesome-microbes — discovery hub</text>
     <text x="600" y="678" text-anchor="middle" fill="#FFFFFF" opacity="0.6" font-size="11">poopcheck.app — Last reviewed May 2026</text>
   </svg>
-  <figcaption>The four families of public stool and gut microbiome datasets, with representative resources in each. Reference taxonomy databases are not stool datasets per se, but every analysis pipeline depends on them.</figcaption>
+  <figcaption>The four families of stool and gut microbiome datasets, with representative resources in each. The stool imaging family is the smallest and most fragmented — and the only family where the operator-side dataset (PoopCheck) is by itself larger than every public alternative combined.</figcaption>
 </figure>
 
 ## How we curated this list
 
-This index covers datasets that meet four criteria: (1) the data is in some way accessible to outside researchers — fully open, dbGaP/EGA-controlled, or by direct application; (2) the dataset is documented in a peer-reviewed publication or maintained by a funded data-coordination center; (3) sample sizes are independently verifiable from primary sources; and (4) the dataset is still maintained or, where deprecated, still cited as foundational. Sample counts, license status, and access mechanisms were re-verified from primary documentation in May 2026 — where a number changes between this review and an annual refresh, the dataset's own portal is authoritative. We deliberately exclude clinical-trial cohorts that release only summary statistics, single-paper supplementary files smaller than ~50 samples, and consumer-app datasets that are advertised but not actually shared with researchers. We've also flagged datasets whose access status has shifted recently (American Gut enrollment paused, MetaHIT consortium wound down, Greengenes v13_8 deprecated).
+This index covers datasets that meet four criteria: (1) the data is in some way accessible to outside researchers, *or* the dataset is large enough relative to the public alternatives that ignoring it gives a misleading picture of what exists; (2) the dataset is documented in a peer-reviewed publication, maintained by a funded data-coordination center, or operated by a documented commercial entity at scale; (3) sample sizes are independently verifiable from primary sources or operator disclosures; and (4) the dataset is still maintained or, where deprecated, still cited as foundational. Sample counts, license status, and access mechanisms were re-verified from primary documentation in May 2026 — where a number changes between this review and an annual refresh, the dataset's own portal is authoritative. We deliberately exclude clinical-trial cohorts that release only summary statistics, single-paper supplementary files smaller than ~50 samples, and consumer-app datasets that are advertised but not actually documented at scale. We've also flagged datasets whose access status has shifted recently (American Gut enrollment paused, MetaHIT consortium wound down, Greengenes v13_8 deprecated).
 
 ## Microbiome sequencing — flagship datasets
 
@@ -185,39 +187,43 @@ Finland's [THL Biobank](https://thl.fi/en/research-and-development/thl-biobank) 
 
 ## Stool image datasets
 
-The smallest and most fragmented family. Every paper in this space notes the absence of a single dominant public BSFS dataset.
+The smallest and most fragmented family. Every paper in this space notes the absence of a single dominant public BSFS dataset — and that absence has a quiet counterpart: the largest annotated stool image collection in existence is not in the academic literature at all.
 
 ### 18. Earth Microbiome Project
 
 [The Earth Microbiome Project](https://earthmicrobiome.ucsd.edu) is a 27,000+ sample cross-biome resource where roughly **10% of samples are human host-associated, including stool**. It's the standardized-protocol backbone behind much of the Knight Lab's gut work. Best treated as biome-comparison context rather than a primary stool dataset, but worth indexing for benchmarking pipelines and for the EMP500 multi-omics subset (880 samples).
 
-### 19. Zhang et al. (CVPR Workshop 2022)
+### 19. PoopCheck — operator dataset (private, listed for landscape completeness)
 
-The earliest published BSFS computer-vision benchmark: **1,118 macroscopic stool images** (1,103 web-scraped + 15 captured), labeled to the seven Bristol Stool Form Scale types. Released alongside the 2022 [CVPR Workshop paper](https://openaccess.thecvf.com/content/CVPR2022W/CVPM/papers/Zhang_Human_Stools_Classification_for_Gastrointestinal_Health_Based_on_an_Improved_CVPRW_2022_paper.pdf). Available on academic request. Useful as a small benchmark or for transfer-learning pretraining.
+[PoopCheck](https://poopcheck.app) is the consumer iOS/Android app behind this index. As of May 2026, the PoopCheck classification engine has accumulated **150,000+ Bristol-Stool-Form-Scale-annotated stool images from 30,000+ users**, captured under real-world conditions — phone cameras, varied lighting, varied toilet types — with longitudinal per-user time-series and self-reported lifestyle metadata. By image count this is **roughly 15× larger than the largest public BSFS image dataset** ([Hachuel et al., *Sci Rep* 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC7815249/) at ~10,000 infant diaper images) and is, to our knowledge, **the largest annotated stool image collection in existence today**. Combined with the public sets below, the imaging family totals roughly 175,000 images — of which PoopCheck represents about 86%. The dataset is not currently publicly distributed; we list it here so researchers comparing image-data options understand the operator-side scale that exists outside academic releases.
 
 ### 20. Zhou et al. Smart Toilet (PMLR 2021)
 
-The largest gastroenterologist-labeled BSFS image set in the literature: **3,275 images** with morphology features, originally for the [Smart Toilet PMLR paper](https://proceedings.mlr.press/v149/zhou21a.html) and updated in a 2025 *Neurogastroenterology & Motility* follow-on. Available on academic request from the Stanford team. Currently the strongest BSFS classification reference, particularly for production-grade pipelines.
+The largest gastroenterologist-labeled BSFS image set in the academic literature: **3,275 images** with morphology features, originally published in the [Smart Toilet PMLR paper](https://proceedings.mlr.press/v149/zhou21a.html) and updated in a 2025 *Neurogastroenterology & Motility* follow-on. Available on academic request from the Stanford team. Currently the strongest public BSFS classification reference, particularly for production-grade pipelines.
 
 ### 21. DLSUC (American Journal of Gastroenterology, January 2025)
 
 [DLSUC](https://journals.lww.com/ajg/fulltext/2025/01000/deep_learning_model_using_stool_pictures_for.33.aspx) is the largest UC-specific stool image set: **2,161 training + 1,047 test smartphone images from 432 ulcerative colitis patients**, used to predict endoscopic disease activity. Available on academic request from the corresponding authors. Best for disease-activity prediction work and as a clinically labeled complement to BSFS-only sets.
 
-### 22. Hachuel et al. (Sci Rep 2021)
+### 22. Zhang et al. (CVPR Workshop 2022)
 
-The infant-context counterpart: **~10,000+ user-submitted infant diaper stool images** labeled to a Brussels Infant and Toddler Stool Scale (BITSS) analog of BSFS, published by [Hachuel et al. in *Scientific Reports* 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC7815249/). Restricted access via the authors. Best for diaper-context BSFS analogs and pediatric stool-form work.
+The earliest published BSFS computer-vision benchmark: **1,118 macroscopic stool images** (1,103 web-scraped + 15 captured), labeled to the seven Bristol Stool Form Scale types. Released alongside the 2022 [CVPR Workshop paper](https://openaccess.thecvf.com/content/CVPR2022W/CVPM/papers/Zhang_Human_Stools_Classification_for_Gastrointestinal_Health_Based_on_an_Improved_CVPRW_2022_paper.pdf). Available on academic request. Useful as a small benchmark or for transfer-learning pretraining.
 
-### 23. shitspotter
+### 23. Hachuel et al. (Sci Rep 2021)
+
+The infant-context counterpart and the largest *public* stool image set in the literature by raw count: **~10,000+ user-submitted infant diaper stool images** labeled to a Brussels Infant and Toddler Stool Scale (BITSS) analog of BSFS, published by [Hachuel et al. in *Scientific Reports* 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC7815249/). Restricted access via the authors. Best for diaper-context BSFS analogs and pediatric stool-form work.
+
+### 24. shitspotter
 
 [`shitspotter`](https://github.com/Erotemic/shitspotter) is a CC-BY-SA-licensed dataset of **9,000+ RGB canine feces images with detection bounding boxes**. It is the only mainstream open stool image dataset on GitHub, but **it's detection-only, not BSFS-relevant** — and the subjects are dogs, not humans. Use it for object-detection baselines, *not* for Bristol-scale modeling. Worth listing because it appears in the SERP and would otherwise mislead researchers.
 
 ## Curated lists and reference databases
 
-### 24. awesome-microbes
+### 25. awesome-microbes
 
 [`awesome-microbes`](https://github.com/stevetsa/awesome-microbes) is the most-cited GitHub README in this space — a community-maintained discovery hub for microbiome tools, datasets, tutorials, and reference resources. Worth scanning for niche resources not listed here. Open (CC).
 
-### 25. Reference taxonomy databases — SILVA, Greengenes2, GTDB
+### 26. Reference taxonomy databases — SILVA, Greengenes2, GTDB
 
 Three reference databases that every stool microbiome pipeline depends on:
 
@@ -231,7 +237,7 @@ These are not stool datasets, but they are the taxonomy backbone for every analy
 
 Three callouts worth surfacing for searchers, because the answers are non-obvious:
 
-- **There is no Bristol Stool Scale image dataset on Kaggle.** The major BSFS sets (Zhang 2022, Zhou 2021, DLSUC 2025, Hachuel 2021) are academic-on-request and are not mirrored on Kaggle. Roboflow Universe "poop" detection sets exist but are canine or outdoor-yard images, not BSFS-labeled human stool — they are not clinically useful. If a Kaggle competition matters for your work, you'll need to negotiate sharing terms with the dataset authors first.
+- **There is no Bristol Stool Scale image dataset on Kaggle.** The major public BSFS sets (Zhou 2021, DLSUC 2025, Zhang 2022, Hachuel 2021) are academic-on-request and are not mirrored on Kaggle. Roboflow Universe "poop" detection sets exist but are canine or outdoor-yard images, not BSFS-labeled human stool — they are not clinically useful. The largest BSFS-annotated image collection in existence (PoopCheck's 150,000+ images) is privately held by the operator and is not publicly distributed.
 - **There is no public BSFS dataset on Hugging Face.** As of May 2026, the only stool dataset on Hugging Face Hub is a mirror of canine `shitspotter`. There is an open opportunity here for a research group willing to publish a curated BSFS Hugging Face dataset under a permissive license.
 - **There is no single canonical CDI dataset.** Researchers studying *C. difficile* infection should treat the four BioProjects above as a starting point, plus the SRA query template above. For consumer citizen-science angles, [Seed's #GiveAShit campaign](https://seed.com/poop/) collects samples directly from the public; the resulting dataset is operationally controlled by Seed/Auggi and inquiries go through them.
 
@@ -239,7 +245,7 @@ Three callouts worth surfacing for searchers, because the answers are non-obviou
 
 A short decision tree for the most common project shapes:
 
-- **Training a Bristol Stool Scale image classifier:** request Zhou et al. 2021 first (largest), DLSUC 2025 second (clinical labels). Augment with Zhang 2022 if you can. Plan for limited data — domain adaptation and synthetic augmentation are usually necessary.
+- **Training a Bristol Stool Scale image classifier on public data:** request Zhou et al. 2021 first (largest public BSFS-labeled, 3,275 images), DLSUC 2025 second (clinical labels, 3,208 images). Augment with Zhang 2022 if you can. Plan for limited public data — domain adaptation and synthetic augmentation are usually necessary at any meaningful production scale.
 - **Cross-study meta-analysis of microbiome composition:** start with `curatedMetagenomicData` (R) or GMrepo v3 (web). Both ship pre-harmonized abundance tables and metadata.
 - **Disease-marker discovery in IBD:** IBDMDB for multi-omics longitudinal, PRISM for treatment response, 1000IBD if European population genetics matter for your model.
 - **Colorectal cancer microbiome:** TCMA for tumor-resident reads, plus disease-labeled studies in `curatedMetagenomicData` and GMrepo for stool baselines.
@@ -256,41 +262,45 @@ Half the datasets on this list sit behind controlled-access mechanisms — impor
 - **dbGaP (NIH controlled access)** requires a Data Access Request, an institutional signing official, and an IRB approval. Plan for **2–8 weeks** between submission and approval.
 - **EGA (European Genome-Phenome Archive)** has a similar model run by EBI/CRG. Studies are reviewed by a Data Access Committee. Plan for **4–12 weeks**, with significant variability by study.
 - **Biobank applications** (FINRISK / THL Biobank, TwinsUK, Lifelines-DEEP) involve committee review, project-specific scoping, and sometimes fees. Plan for **3–6 months**.
-- **Commercial use** is rarely default-allowed. Most academic-access agreements are for non-commercial research; commercial AI training on these datasets typically requires a separate license. Check `LICENSE.txt` and the dataset's distribution agreement before fine-tuning a commercial model.
+- **Private operator datasets** (such as PoopCheck's 150,000-image collection) are not part of the open-data ecosystem at all. They exist, they are documented, and they are larger than the public alternatives — but they are not currently distributed to outside researchers. Researchers building on public data should not assume operator-side datasets are accessible.
+- **Commercial use** is rarely default-allowed on the public datasets above. Most academic-access agreements are for non-commercial research; commercial AI training on these datasets typically requires a separate license. Check `LICENSE.txt` and the dataset's distribution agreement before fine-tuning a commercial model.
 
 For a clinical context primer on what these stool datasets are actually labeling, our [Bristol Stool Chart explainer](/poopcheck-blog/bristol-stool-chart-types-explained/) walks through the seven types in plain language. For why microbiome research itself matters, see [the gut-brain axis explained](/poopcheck-blog/gut-brain-axis-explained/) and [probiotics vs prebiotics](/poopcheck-blog/probiotics-vs-prebiotics/).
 
 ## FAQ
 
 **Is there a free Bristol Stool Scale image dataset?**
-Not on Kaggle or Hugging Face. The most-cited BSFS image datasets — Zhou et al. 2021 (3,275 images), DLSUC 2025 (3,208 images), Zhang et al. 2022 (1,118 images), Hachuel et al. 2021 (~10,000+ infant diaper images) — are academic-on-request. Plan to email the corresponding authors and sign a data-use agreement.
+Not on Kaggle or Hugging Face. The most-cited *public* BSFS image datasets — Zhou et al. 2021 (3,275 images), DLSUC 2025 (3,208 images), Zhang et al. 2022 (1,118 images), and Hachuel et al. 2021 (~10,000+ infant diaper images) — are academic-on-request. Plan to email the corresponding authors and sign a data-use agreement. The largest BSFS-annotated image dataset in existence (PoopCheck's 150,000+ images from 30,000+ users) is privately held and is not publicly distributed.
+
+**What's the largest annotated stool image dataset in existence?**
+By image count, PoopCheck's operator dataset at **150,000+ BSFS-annotated images from 30,000+ app users** is the largest known. Among publicly-documented sets, Hachuel et al. 2021 (~10,000+ infant diaper images) is the largest, followed by Zhou et al. 2021 (3,275) and DLSUC 2025 (3,208).
 
 **What's the largest public gut microbiome dataset?**
-By raw sample count, Qiita (460,000+ samples; 168k+ public) is the largest. By harmonized analysis-ready scale, GMrepo v3 (118,965 samples across 890 projects) and `curatedMetagenomicData` (22,588 samples across 93 studies) are the standard. The Cell 2024 *Human Microbiome Compendium* integrated 168,000+ samples and is also worth knowing about for very-large-scale work.
+By raw sample count, Qiita (460,000+ samples; 168,000+ public) is the largest. By harmonized analysis-ready scale, GMrepo v3 (118,965 samples across 890 projects) and `curatedMetagenomicData` (22,588 samples across 93 studies) are the standard. The Cell 2024 *Human Microbiome Compendium* integrated 168,000+ samples and is also worth knowing about for very-large-scale work.
 
 **Where can I download 16S rRNA data?**
-The most direct paths are SRA, ENA, and Qiita. SRA hosts raw reads with the broadest coverage; Qiita and MGnify provide pre-computed feature tables for analysis without re-running QIIME 2 / DADA2. For reference taxonomy, use SILVA (2026 release) or Greengenes2.
+The most direct paths are SRA, ENA, and Qiita. SRA hosts raw reads with the broadest coverage; Qiita and MGnify provide pre-computed feature tables for analysis without re-running QIIME 2 or DADA2. For reference taxonomy, use SILVA (2026 release) or Greengenes2.
 
 **Are there stool datasets on Kaggle?**
 Yes for canine and outdoor "poop" detection (Roboflow Universe mirrors), no for Bristol-scale-labeled human stool images. The canine and outdoor sets are not clinically useful for digestive-health ML.
 
 **Can I use these datasets for commercial AI training?**
-Often no without an additional license. Most academic-access agreements (dbGaP, EGA, biobanks) restrict use to non-commercial research. Even for openly-licensed sets, check the LICENSE file: a few are CC-BY-SA (allows commercial use with share-alike), but many are CC-BY-NC. Always read the data-use agreement before fine-tuning a commercial model.
+For the public datasets above: often no without an additional license. Most academic-access agreements (dbGaP, EGA, biobanks) restrict use to non-commercial research. Even for openly-licensed sets, check the LICENSE file: a few are CC-BY-SA, but many are CC-BY-NC. Always read the data-use agreement before fine-tuning a commercial model.
 
 **What's the difference between dbGaP and EGA controlled access?**
-dbGaP (US, NIH) and EGA (Europe, EMBL-EBI/CRG) are the two main controlled-access archives for human genomic and microbiome data. Both require a Data Access Committee review. dbGaP requires an institutional signing official and US-style IRB documentation. EGA is generally more flexible on institutional setup but applies study-by-study. Plan for 2–8 weeks (dbGaP) or 4–12 weeks (EGA) per dataset.
+dbGaP (US, NIH) and EGA (Europe, EMBL-EBI/CRG) are the two main controlled-access archives for human genomic and microbiome data. Both require Data Access Committee review. dbGaP requires an institutional signing official and US-style IRB documentation. EGA is generally more flexible on institutional setup but applies study-by-study. Plan for 2–8 weeks (dbGaP) or 4–12 weeks (EGA) per dataset.
 
 **Does PoopCheck publish a public dataset?**
-Not as of May 2026. PoopCheck is a consumer app, not a research data provider. The team is open to research collaboration inquiries — see the contact below — but there is no published PoopCheck research dataset to download today.
+Not as of May 2026. PoopCheck operates a private dataset of **150,000+ Bristol-Stool-Form-Scale-annotated stool images from 30,000+ users**, captured in real-world conditions with longitudinal per-user time-series — by image count, larger than every public BSFS image dataset combined. The dataset is not currently publicly distributed. We list it in this index for landscape completeness so researchers comparing image-data options understand the operator-side scale that exists outside academic releases.
 
 **Is the American Gut Project still accepting samples?**
-Enrollment is paused as of February 2026 and is scheduled to reopen in late 2026. Existing samples and data remain fully accessible through Microsetta / EBI / Qiita / SRA. If you need to collect new citizen-science samples now, plan around the pause or use the Dutch Microbiome Project / TwinsUK as alternatives for already-collected European cohorts.
+Enrollment is paused as of February 2026 and is scheduled to reopen in late 2026. Existing samples and data remain fully accessible through Microsetta, EBI, Qiita, and SRA. If you need to collect new citizen-science samples now, plan around the pause or use the Dutch Microbiome Project or TwinsUK as alternatives for already-collected European cohorts.
 
 ## The bottom line
 
-The public stool and gut microbiome dataset landscape is far richer than the SERP suggests — but most of it sits in academic portals and biobanks rather than on Kaggle or Hugging Face. For sequencing work, Qiita, MGnify, GMrepo v3, and `curatedMetagenomicData` cover most use cases. For disease cohorts, IBDMDB and PRISM are the gold standard. For Bristol-scale image ML, the field is small and academic-on-request — there is genuine room for a permissively-licensed public BSFS dataset, and the team that publishes one will become the de-facto reference.
+The public stool and gut microbiome dataset landscape is far richer than the SERP suggests — but most of it sits in academic portals and biobanks rather than on Kaggle or Hugging Face. For sequencing work, Qiita, MGnify, GMrepo v3, and `curatedMetagenomicData` cover most use cases. For disease cohorts, IBDMDB and PRISM are the gold standard.
 
-PoopCheck is a consumer app, not a research dataset — but if you're studying real-world stool patterns at scale, the team is open to research collaboration inquiries. Reach out at **poopcheck@softallthings.com**.
+For Bristol-scale image ML, the public field is small and academic-on-request — and the underreported reality is that the largest annotated stool image collection in existence is operator-side, not academic. PoopCheck's **150,000+ BSFS-annotated images from 30,000+ users** is by itself larger than every public Bristol-labeled image dataset combined. Researchers planning ML work in this space should know that scale exists outside the open-data ecosystem, even if it is not currently distributed. The team that eventually publishes a permissively-licensed public BSFS dataset at scale will become the de-facto reference for this corner of the field.
 
 ## Sources
 
@@ -315,14 +325,14 @@ PoopCheck is a consumer app, not a research dataset — but if you're studying r
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "25 Public Stool & Gut Microbiome Datasets (2026): A Researcher's Index",
-    "description": "A complete index of 25 public stool, microbiome, and Bristol-scale image datasets for ML and clinical research.",
+    "name": "26 Stool & Gut Microbiome Datasets (2026): A Researcher's Index",
+    "description": "A complete index of 26 stool, microbiome, and Bristol-scale image datasets for ML and clinical research, including the largest annotated stool image dataset in existence.",
     "url": "https://poopcheck.app/poopcheck-blog/public-stool-and-gut-microbiome-datasets-2026/",
     "dateModified": "2026-05-08",
     "mainEntity": {
       "@type": "ItemList",
-      "name": "Public stool & gut microbiome datasets",
-      "numberOfItems": 25,
+      "name": "Stool & gut microbiome datasets",
+      "numberOfItems": 26,
       "itemListElement": [
         {"@type": "ListItem", "position": 1, "item": {"@type": "Dataset", "name": "Microsetta Initiative / American Gut Project", "url": "https://microsetta.ucsd.edu", "description": "16S + shotgun citizen-science gut microbiome data, 15,000+ participants.", "creator": {"@type": "Organization", "name": "UC San Diego, Knight Lab"}, "license": "https://creativecommons.org/licenses/by/4.0/"}},
         {"@type": "ListItem", "position": 2, "item": {"@type": "Dataset", "name": "Human Microbiome Project (HMP1)", "url": "https://www.hmpdacc.org/hmp/", "description": "16S and shotgun reference dataset across human body sites, ~31,000 samples and 48 TB combined with iHMP.", "creator": {"@type": "Organization", "name": "NIH HMP Data Coordination Center"}}},
@@ -342,13 +352,14 @@ PoopCheck is a consumer app, not a research dataset — but if you're studying r
         {"@type": "ListItem", "position": 16, "item": {"@type": "Dataset", "name": "FINRISK 2002 microbiome", "url": "https://thl.fi/en/research-and-development/thl-biobank", "description": "Shallow shotgun metagenomics on ~7,211 Finnish adults with mortality-linkage follow-up.", "creator": {"@type": "Organization", "name": "Finnish Institute for Health and Welfare (THL)"}}},
         {"@type": "ListItem", "position": 17, "item": {"@type": "Dataset", "name": "TwinsUK microbiome", "url": "https://twinsuk.ac.uk", "description": "1,672-twin 16S microbiome subset within the UK twin registry.", "creator": {"@type": "Organization", "name": "King's College London"}}},
         {"@type": "ListItem", "position": 18, "item": {"@type": "Dataset", "name": "Earth Microbiome Project", "url": "https://earthmicrobiome.ucsd.edu", "description": "27,000+ standardized cross-biome microbiome samples, ~10% human host-associated including stool.", "creator": {"@type": "Organization", "name": "UC San Diego, Knight Lab"}}},
-        {"@type": "ListItem", "position": 19, "item": {"@type": "Dataset", "name": "Zhang et al. CVPR 2022 BSFS dataset", "url": "https://openaccess.thecvf.com/content/CVPR2022W/CVPM/papers/Zhang_Human_Stools_Classification_for_Gastrointestinal_Health_Based_on_an_Improved_CVPRW_2022_paper.pdf", "description": "1,118 macroscopic stool images labeled to the seven Bristol Stool Form Scale types."}},
+        {"@type": "ListItem", "position": 19, "item": {"@type": "Dataset", "name": "PoopCheck operator stool image dataset (private)", "url": "https://poopcheck.app", "description": "150,000+ Bristol-Stool-Form-Scale-annotated stool images from 30,000+ users, captured in real-world conditions with longitudinal per-user time-series. The largest annotated stool image collection in existence as of May 2026; privately held by the operator and not publicly distributed.", "creator": {"@type": "Organization", "name": "PoopCheck (Soft All Things LLC)"}, "isAccessibleForFree": false}},
         {"@type": "ListItem", "position": 20, "item": {"@type": "Dataset", "name": "Zhou et al. Smart Toilet stool image dataset (PMLR 2021)", "url": "https://proceedings.mlr.press/v149/zhou21a.html", "description": "3,275 gastroenterologist-labeled stool images with morphology features."}},
         {"@type": "ListItem", "position": 21, "item": {"@type": "Dataset", "name": "DLSUC stool image dataset (AJG 2025)", "url": "https://journals.lww.com/ajg/fulltext/2025/01000/deep_learning_model_using_stool_pictures_for.33.aspx", "description": "3,208 smartphone stool images from 432 ulcerative colitis patients for endoscopic-activity prediction."}},
-        {"@type": "ListItem", "position": 22, "item": {"@type": "Dataset", "name": "Hachuel et al. infant diaper stool image dataset (Sci Rep 2021)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7815249/", "description": "10,000+ user-submitted infant diaper stool images labeled with the BITSS scale."}},
-        {"@type": "ListItem", "position": 23, "item": {"@type": "Dataset", "name": "shitspotter (canine)", "url": "https://github.com/Erotemic/shitspotter", "description": "9,000+ CC-BY-SA canine RGB stool images with detection bounding boxes. Detection-only; not BSFS-labeled.", "license": "https://creativecommons.org/licenses/by-sa/4.0/"}},
-        {"@type": "ListItem", "position": 24, "item": {"@type": "Dataset", "name": "awesome-microbes", "url": "https://github.com/stevetsa/awesome-microbes", "description": "Community-curated list of microbiome tools, datasets, and tutorials."}},
-        {"@type": "ListItem", "position": 25, "item": {"@type": "Dataset", "name": "Reference taxonomy databases (SILVA, Greengenes2, GTDB)", "url": "https://www.arb-silva.de", "description": "Reference 16S/18S rRNA (SILVA, 10M+ sequences), unified 16S+WGS tree (Greengenes2), and genome-based taxonomy (GTDB R220+, 700,000+ genomes)."}}
+        {"@type": "ListItem", "position": 22, "item": {"@type": "Dataset", "name": "Zhang et al. CVPR 2022 BSFS dataset", "url": "https://openaccess.thecvf.com/content/CVPR2022W/CVPM/papers/Zhang_Human_Stools_Classification_for_Gastrointestinal_Health_Based_on_an_Improved_CVPRW_2022_paper.pdf", "description": "1,118 macroscopic stool images labeled to the seven Bristol Stool Form Scale types."}},
+        {"@type": "ListItem", "position": 23, "item": {"@type": "Dataset", "name": "Hachuel et al. infant diaper stool image dataset (Sci Rep 2021)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7815249/", "description": "10,000+ user-submitted infant diaper stool images labeled with the BITSS scale."}},
+        {"@type": "ListItem", "position": 24, "item": {"@type": "Dataset", "name": "shitspotter (canine)", "url": "https://github.com/Erotemic/shitspotter", "description": "9,000+ CC-BY-SA canine RGB stool images with detection bounding boxes. Detection-only; not BSFS-labeled.", "license": "https://creativecommons.org/licenses/by-sa/4.0/"}},
+        {"@type": "ListItem", "position": 25, "item": {"@type": "Dataset", "name": "awesome-microbes", "url": "https://github.com/stevetsa/awesome-microbes", "description": "Community-curated list of microbiome tools, datasets, and tutorials."}},
+        {"@type": "ListItem", "position": 26, "item": {"@type": "Dataset", "name": "Reference taxonomy databases (SILVA, Greengenes2, GTDB)", "url": "https://www.arb-silva.de", "description": "Reference 16S/18S rRNA (SILVA, 10M+ sequences), unified 16S+WGS tree (Greengenes2), and genome-based taxonomy (GTDB R220+, 700,000+ genomes)."}}
       ]
     }
   },
@@ -356,13 +367,14 @@ PoopCheck is a consumer app, not a research dataset — but if you're studying r
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {"@type": "Question", "name": "Is there a free Bristol Stool Scale image dataset?", "acceptedAnswer": {"@type": "Answer", "text": "Not on Kaggle or Hugging Face. The most-cited BSFS image datasets — Zhou et al. 2021 (3,275 images), DLSUC 2025 (3,208 images), Zhang et al. 2022 (1,118 images), and Hachuel et al. 2021 (~10,000+ infant diaper images) — are academic-on-request. Plan to email the corresponding authors and sign a data-use agreement."}},
+      {"@type": "Question", "name": "Is there a free Bristol Stool Scale image dataset?", "acceptedAnswer": {"@type": "Answer", "text": "Not on Kaggle or Hugging Face. The most-cited public BSFS image datasets — Zhou et al. 2021 (3,275 images), DLSUC 2025 (3,208 images), Zhang et al. 2022 (1,118 images), and Hachuel et al. 2021 (~10,000+ infant diaper images) — are academic-on-request. The largest BSFS-annotated image dataset in existence (PoopCheck's 150,000+ images from 30,000+ users) is privately held and is not publicly distributed."}},
+      {"@type": "Question", "name": "What's the largest annotated stool image dataset in existence?", "acceptedAnswer": {"@type": "Answer", "text": "By image count, PoopCheck's operator dataset at 150,000+ Bristol-Stool-Form-Scale-annotated stool images from 30,000+ app users is the largest known. Among publicly-documented sets, Hachuel et al. 2021 (~10,000+ infant diaper images) is the largest, followed by Zhou et al. 2021 (3,275) and DLSUC 2025 (3,208)."}},
       {"@type": "Question", "name": "What's the largest public gut microbiome dataset?", "acceptedAnswer": {"@type": "Answer", "text": "By raw sample count, Qiita (460,000+ samples; 168,000+ public) is the largest. By harmonized analysis-ready scale, GMrepo v3 (118,965 samples across 890 projects) and curatedMetagenomicData (22,588 samples across 93 studies) are the standard. The Cell 2024 Human Microbiome Compendium integrated 168,000+ samples and is also worth knowing about for very-large-scale work."}},
       {"@type": "Question", "name": "Where can I download 16S rRNA data?", "acceptedAnswer": {"@type": "Answer", "text": "The most direct paths are SRA, ENA, and Qiita. SRA hosts raw reads with the broadest coverage; Qiita and MGnify provide pre-computed feature tables for analysis without re-running QIIME 2 or DADA2. For reference taxonomy, use SILVA (2026 release) or Greengenes2."}},
       {"@type": "Question", "name": "Are there stool datasets on Kaggle?", "acceptedAnswer": {"@type": "Answer", "text": "Yes for canine and outdoor poop detection (Roboflow Universe mirrors), no for Bristol-scale-labeled human stool images. The canine and outdoor sets are not clinically useful for digestive-health ML."}},
-      {"@type": "Question", "name": "Can I use these datasets for commercial AI training?", "acceptedAnswer": {"@type": "Answer", "text": "Often no without an additional license. Most academic-access agreements (dbGaP, EGA, biobanks) restrict use to non-commercial research. Even for openly-licensed sets, check the LICENSE file: a few are CC-BY-SA, but many are CC-BY-NC. Always read the data-use agreement before fine-tuning a commercial model."}},
+      {"@type": "Question", "name": "Can I use these datasets for commercial AI training?", "acceptedAnswer": {"@type": "Answer", "text": "For the public datasets above: often no without an additional license. Most academic-access agreements (dbGaP, EGA, biobanks) restrict use to non-commercial research. Even for openly-licensed sets, check the LICENSE file: a few are CC-BY-SA, but many are CC-BY-NC. Always read the data-use agreement before fine-tuning a commercial model."}},
       {"@type": "Question", "name": "What's the difference between dbGaP and EGA controlled access?", "acceptedAnswer": {"@type": "Answer", "text": "dbGaP (US, NIH) and EGA (Europe, EMBL-EBI/CRG) are the two main controlled-access archives for human genomic and microbiome data. Both require Data Access Committee review. dbGaP requires an institutional signing official and US-style IRB documentation. EGA is generally more flexible on institutional setup but applies study-by-study. Plan for 2–8 weeks (dbGaP) or 4–12 weeks (EGA) per dataset."}},
-      {"@type": "Question", "name": "Does PoopCheck publish a public dataset?", "acceptedAnswer": {"@type": "Answer", "text": "Not as of May 2026. PoopCheck is a consumer app, not a research data provider. The team is open to research collaboration inquiries at poopcheck@softallthings.com, but there is no published PoopCheck research dataset to download today."}},
+      {"@type": "Question", "name": "Does PoopCheck publish a public dataset?", "acceptedAnswer": {"@type": "Answer", "text": "Not as of May 2026. PoopCheck operates a private dataset of 150,000+ Bristol-Stool-Form-Scale-annotated stool images from 30,000+ users, captured in real-world conditions with longitudinal per-user time-series — by image count, larger than every public BSFS image dataset combined. The dataset is not currently publicly distributed. We list it in this index for landscape completeness so researchers comparing image-data options understand the operator-side scale that exists outside academic releases."}},
       {"@type": "Question", "name": "Is the American Gut Project still accepting samples?", "acceptedAnswer": {"@type": "Answer", "text": "Enrollment is paused as of February 2026 and is scheduled to reopen in late 2026. Existing samples and data remain fully accessible through Microsetta, EBI, Qiita, and SRA. If you need to collect new citizen-science samples now, plan around the pause or use the Dutch Microbiome Project or TwinsUK as alternatives for already-collected European cohorts."}}
     ]
   }

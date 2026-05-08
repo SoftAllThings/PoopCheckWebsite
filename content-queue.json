@@ -1,6 +1,97 @@
 {
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
-  "pending": [],
+  "pending": [
+    {
+      "slug": "ozempic-and-bowel-changes",
+      "priority": 10,
+      "title": "Ozempic and Bowel Changes: Why GLP-1 Drugs Cause Constipation",
+      "primary_keyword": "ozempic constipation",
+      "category": "conditions",
+      "include_svg": false,
+      "notes": "GLP-1 mechanism (slowed gastric emptying, reduced motility), the constipation/diarrhea split, prevalence in Ozempic/Wegovy/Mounjaro trials (cite NEJM/JAMA), practical management, red flags. High search volume topic in 2026."
+    },
+    {
+      "slug": "sibo-explained",
+      "priority": 9,
+      "title": "SIBO: Causes, Symptoms, and What the Breath Test Actually Tells You",
+      "primary_keyword": "SIBO small intestinal bacterial overgrowth",
+      "category": "conditions",
+      "include_svg": false,
+      "notes": "Cover hydrogen vs methane vs hydrogen sulfide breath tests, prevalence, link to IBS, treatment options (rifaximin, elemental diet), recurrence rates. Cite Rome IV criteria and recent reviews."
+    },
+    {
+      "slug": "magnesium-for-constipation",
+      "priority": 9,
+      "title": "Magnesium for Constipation: Which Form Actually Works",
+      "primary_keyword": "magnesium for constipation",
+      "category": "nutrition",
+      "include_svg": false,
+      "notes": "Compare magnesium citrate, oxide, glycinate, hydroxide for stool softening. Mechanism (osmotic), effective doses, when not to use (kidney disease), interactions. Very high-intent search."
+    },
+    {
+      "slug": "bloating-causes-and-remedies",
+      "priority": 9,
+      "title": "Bloating: Causes, Triggers, and What Actually Reduces It",
+      "primary_keyword": "bloating causes and remedies",
+      "category": "gut-health",
+      "include_svg": false,
+      "notes": "Cover food triggers (FODMAPs, lactose, fructose), swallowed air, IBS, SIBO, motility issues. What works: low-FODMAP, slow eating, peppermint oil, fiber timing. Massive search volume."
+    },
+    {
+      "slug": "yellow-stool-causes",
+      "priority": 8,
+      "title": "Yellow Stool: What It Means and When to See a Doctor",
+      "primary_keyword": "yellow stool causes",
+      "category": "stool-analysis",
+      "include_svg": false,
+      "notes": "Fills the color-series gap (we have green, black, color overview). Causes: fast transit, bile issues, gallbladder/pancreas, giardia, fat malabsorption. Red flags vs benign."
+    },
+    {
+      "slug": "leaky-gut-real-or-myth",
+      "priority": 8,
+      "title": "Leaky Gut: What the Science Actually Says (and Doesn't)",
+      "primary_keyword": "leaky gut syndrome",
+      "category": "research",
+      "include_svg": false,
+      "notes": "Distinguish increased intestinal permeability (real, measurable) from 'leaky gut syndrome' (wellness umbrella). Cite zonulin research, IBD/celiac links. Differentiates from wellness blogs by being honest about evidence."
+    },
+    {
+      "slug": "pencil-thin-stools-when-to-worry",
+      "priority": 8,
+      "title": "Pencil-Thin Stools: When It's Normal and When to Worry",
+      "primary_keyword": "pencil thin stools",
+      "category": "conditions",
+      "include_svg": false,
+      "notes": "Common health-anxiety search. Cover benign causes (low fiber, hemorrhoids, transient) vs concerning (persistent narrowing, colon cancer screening guidance). Cite USPSTF colorectal screening guidelines."
+    },
+    {
+      "slug": "antibiotics-and-gut-microbiome-recovery",
+      "priority": 7,
+      "title": "Antibiotics and Your Gut Microbiome: How Long Recovery Actually Takes",
+      "primary_keyword": "antibiotics gut microbiome recovery",
+      "category": "gut-health",
+      "include_svg": false,
+      "notes": "Recovery timelines from key studies (months to years for full diversity), antibiotic-specific impact (broad vs narrow spectrum), rescue strategies (fermented foods, prebiotics, S. boulardii). Cite Dethlefsen, Palleja studies."
+    },
+    {
+      "slug": "microplastics-in-stool-2026",
+      "priority": 7,
+      "title": "Microplastics in Stool: What 2026 Research Actually Shows",
+      "primary_keyword": "microplastics in stool",
+      "category": "research",
+      "include_svg": false,
+      "notes": "Cite the 2018 Vienna pilot, 2022-2025 expansion studies, particle counts per gram of feces, IBD correlation work. Honest about what's known vs speculative. Trending search term."
+    },
+    {
+      "slug": "postbiotics-explained",
+      "priority": 7,
+      "title": "Postbiotics Explained: The Third Wave After Probiotics and Prebiotics",
+      "primary_keyword": "postbiotics",
+      "category": "nutrition",
+      "include_svg": false,
+      "notes": "ISAPP 2021 definition, key compounds (SCFAs, exopolysaccharides, cell-wall fragments), evidence base vs probiotics, clinical applications. Back-link from probiotics-vs-prebiotics post."
+    }
+  ],
   "published": [
     { "slug": "bristol-stool-chart-types-explained", "source": "seed" },
     { "slug": "do-i-have-colon-cancer", "source": "seed" },

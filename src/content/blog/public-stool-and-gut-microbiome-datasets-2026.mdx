@@ -1,0 +1,369 @@
+---
+title: "25 Public Stool & Gut Microbiome Datasets (2026): A Researcher's Index"
+description: "A complete index of 25 public stool, microbiome, and Bristol-scale image datasets for ML and clinical research — sizes, licenses, and access links."
+date: 2026-05-08
+updated: 2026-05-08
+author: "PoopCheck Team"
+category: "research"
+tags: ["stool-dataset", "poop-database", "gut-microbiome-dataset", "stool-image-dataset", "bristol-stool-scale-dataset", "microbiome-research", "open-data"]
+---
+
+import JsonLd from '../../components/seo/JsonLd.astro';
+
+**There are roughly 25 publicly accessible stool and gut microbiome datasets that researchers can use today, ranging from population-scale 16S rRNA repositories like Qiita (460,000+ samples) down to Bristol Stool Scale image sets of a few thousand photos.** This index lists each one with sample size, sequencing or imaging type, license, and access link — and flags the gaps where, despite frequent searches, no clean public dataset yet exists. *Last reviewed: May 8, 2026.*
+
+## Key takeaways
+
+- **The largest open gut microbiome resource is Qiita** at 460,000+ samples and 50+ TB across 168,000+ public records, followed by MGnify's pre-computed taxonomic and functional profiles ([Qiita, *Nat Methods* 2018](https://www.nature.com/articles/s41592-018-0141-9); [MGnify, *NAR* 2023](https://academic.oup.com/nar/article/51/D1/D753/6880769)).
+- **For curated, harmonized cross-study analysis**, `curatedMetagenomicData` (93 studies, 22,588 samples) and [GMrepo v3](https://gmrepo.humangut.info) (890 projects, 118,965 samples, 301 disease phenotypes) are the standard starting points in 2026.
+- **For longitudinal disease cohorts**, the strongest options are [IBDMDB](https://ibdmdb.org) (132 subjects, 2,965 multi-omics specimens) for IBD, [DIABIMMUNE](https://diabimmune.broadinstitute.org) for early-life T1D onset, and [PRISM](https://csibd-datacommons.mgh.harvard.edu/microbiome.html) for IBD biologic-therapy response.
+- **Stool image datasets remain scarce.** The most useful Bristol-scale-labeled image sets are [Zhou et al.'s smart-toilet dataset](https://proceedings.mlr.press/v149/zhou21a.html) (3,275 images) and [DLSUC](https://journals.lww.com/ajg/fulltext/2025/01000/deep_learning_model_using_stool_pictures_for.33.aspx) (3,208 smartphone images, 432 UC patients) — both academic-on-request, with no public Kaggle or Hugging Face mirror.
+- **Access is rarely "just download."** Roughly half of these datasets sit behind dbGaP or EGA controlled access; budget time for IRB documentation and data-access agreements before committing to a study design.
+
+## At a glance: 25 public stool & gut microbiome datasets
+
+The table below is the master index. Each entry is detailed in the sections that follow, with originating papers, access notes, and best-fit use cases.
+
+| # | Dataset | Type | Samples | License / access | Best for |
+|---|---|---|---|---|---|
+| 1 | [Microsetta / American Gut](https://microsetta.ucsd.edu) | 16S + shotgun | 15,000+ participants | Open via EBI/Qiita/SRA | Largest open citizen-science gut cohort |
+| 2 | [Human Microbiome Project (HMP1)](https://www.hmpdacc.org/hmp/) | 16S + shotgun, multi-body-site | ~31,000 samples, 48 TB | Open + dbGaP subset | Reference healthy-adult baseline |
+| 3 | [Integrative HMP / iHMP](https://www.hmpdacc.org/ihmp/) | Multi-omics | 3 cohorts (IBD, T2D, pregnancy) | Open + dbGaP | Longitudinal multi-omics in disease vs health |
+| 4 | [GMrepo v3](https://gmrepo.humangut.info) | Curated 16S + WGS, 301 phenotypes | 890 projects, 118,965 samples | Open | Disease-marker meta-analysis |
+| 5 | [Qiita](https://qiita.ucsd.edu) | 16S, shotgun, metabolomics | 460,000+ samples (168k+ public) | Open + study restrictions | Web-based meta-analysis, no local compute |
+| 6 | [MGnify](https://www.ebi.ac.uk/metagenomics/) | Amplicon, shotgun, MAGs | 2.4B+ non-redundant proteins | Open | Pre-computed taxonomy + function |
+| 7 | [curatedMetagenomicData](https://waldronlab.io/curatedMetagenomicData/) | Shotgun (MetaPhlAn3 + HUMAnN3) | 93 studies, 22,588 samples | Open (Bioconductor) | Drop-in R workflows; harmonized meta-analysis |
+| 8 | [MetaHIT / IGC](https://pubmed.ncbi.nlm.nih.gov/24997786/) | Shotgun, gene catalog | 1,267 samples, 9.88M genes | Open via ENA | European gut gene-catalog reference |
+| 9 | [IBDMDB](https://ibdmdb.org) | Multi-omics IBD | 132 subjects, 2,965 specimens | Open + EGA phs001626 | Reference longitudinal IBD multi-omics |
+| 10 | [PRISM (MGH IBD)](https://csibd-datacommons.mgh.harvard.edu/microbiome.html) | Shotgun, longitudinal | 960 metagenomes / 443 individuals | Restricted via SRA/dbGaP | IBD biologic-therapy response |
+| 11 | [1000IBD](https://1000ibd.org) | 16S + shotgun + host genomics | 461 fecal metagenomes (1,000+ patients) | EGA EGAS00001002702 | IBD multi-omics with population genetics |
+| 12 | [DIABIMMUNE](https://diabimmune.broadinstitute.org) | 16S + shotgun, longitudinal infant | 3,204 16S + 1,154 metagenomes | Open via SRA PRJNA497734 | Early-life gut development and T1D onset |
+| 13 | [Cancer Microbiome Atlas](https://tcma.pratt.duke.edu/) | TCGA-derived microbial reads | 125 COAD samples (CRC slice) | Open summary, dbGaP raw | Tumor-resident microbiome in CRC |
+| 14 | C. difficile BioProjects (PRJNA770733 / 494584 / 637878 / 386260) | 16S + shotgun, FMT longitudinal | Hundreds of samples per project | Open via SRA | CDI vs carriage; FMT engraftment |
+| 15 | [Dutch Microbiome Project](https://dutchmicrobiomeproject.molgeniscloud.org) | Shotgun, deep phenotyping | 8,208 individuals | EGA EGAS00001005027 | Population-scale healthy gut + host genetics |
+| 16 | [FINRISK 2002 microbiome](https://thl.fi/en/research-and-development/thl-biobank) | Shallow shotgun | ~7,211 adults | THL Biobank application | Mortality-linkage prospective cohort |
+| 17 | [TwinsUK microbiome](https://twinsuk.ac.uk) | 16S + shotgun + metabolomics | 1,672 twins (16S) | Application via DTR | Heritability and twin-discordance designs |
+| 18 | [Earth Microbiome Project](https://earthmicrobiome.ucsd.edu) | 16S + shotgun, environmental + host | 27,000+ samples (~10% host-associated) | Open (Qiita/EBI) | Cross-biome benchmarking; standardized protocols |
+| 19 | [Zhang et al. CVPR 2022 BSFS](https://openaccess.thecvf.com/content/CVPR2022W/CVPM/papers/Zhang_Human_Stools_Classification_for_Gastrointestinal_Health_Based_on_an_Improved_CVPRW_2022_paper.pdf) | Macroscopic stool images, BSFS-labeled | 1,118 images | Academic on request | Earliest BSFS computer-vision benchmark |
+| 20 | [Zhou et al. Smart Toilet (PMLR 2021)](https://proceedings.mlr.press/v149/zhou21a.html) | Stool images + morphology features | 3,275 gastro-labeled images | Academic on request | Production BSFS classifier reference |
+| 21 | [DLSUC (AJG Jan 2025)](https://journals.lww.com/ajg/fulltext/2025/01000/deep_learning_model_using_stool_pictures_for.33.aspx) | Smartphone stool images, UC patients | 2,161 train / 1,047 test (432 patients) | Academic on request | Endoscopic-activity prediction from photos |
+| 22 | [Hachuel et al. Sci Rep 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC7815249/) | Infant diaper stool images, BITSS | ~10,000+ user-submitted images | Restricted via authors | Infant diaper-context BSFS analogs |
+| 23 | [shitspotter](https://github.com/Erotemic/shitspotter) | Canine RGB images with bounding boxes | 9,000+ images | Open (CC-BY-SA) | Detection-only; **not BSFS-relevant** |
+| 24 | [awesome-microbes](https://github.com/stevetsa/awesome-microbes) | Curated tools + datasets list | n/a | Open (CC) | Discovery hub for new resources |
+| 25 | [SILVA](https://www.arb-silva.de) / [Greengenes2](https://greengenes2.ucsd.edu) / [GTDB](https://gtdb.ecogenomic.org) | Reference 16S + genome taxonomy | 10M+ rRNA seqs (SILVA); 700k+ genomes (GTDB) | Open | Taxonomy assignment in your own pipelines |
+
+<figure>
+  <svg viewBox="0 0 1200 700" width="100%" height="auto" role="img" aria-labelledby="ecosystem-title ecosystem-desc">
+    <title id="ecosystem-title">The stool data ecosystem: four families of public datasets</title>
+    <desc id="ecosystem-desc">A 2x2 map of public stool and gut microbiome datasets, grouping them into four families: microbiome sequencing (Qiita, MGnify, GMrepo, HMP, curatedMetagenomicData, MetaHIT IGC), disease and population cohorts (IBDMDB, PRISM, 1000IBD, DIABIMMUNE, Dutch Microbiome Project, FINRISK, TwinsUK), stool imaging (Zhou 2021, DLSUC, Zhang 2022, Hachuel infant, shitspotter), and reference taxonomy databases (SILVA, Greengenes2, GTDB, Earth Microbiome Project, awesome-microbes).</desc>
+    <rect width="1200" height="700" fill="#121212"/>
+    <text x="600" y="42" text-anchor="middle" fill="#FFFFFF" font-size="22" font-weight="bold">The stool data ecosystem (2026)</text>
+    <text x="600" y="68" text-anchor="middle" fill="#9BF0FF" font-size="13">Four families of public datasets</text>
+    <rect x="60" y="100" width="540" height="260" fill="#1a1a1a" stroke="#A3FFBF" stroke-width="2" rx="12"/>
+    <text x="80" y="135" fill="#A3FFBF" font-size="16" font-weight="bold">1. Microbiome sequencing</text>
+    <text x="80" y="155" fill="#FFFFFF" font-size="11" opacity="0.7">16S rRNA + shotgun metagenomics</text>
+    <text x="80" y="195" fill="#FFFFFF" font-size="13">• Qiita — 460k+ samples</text>
+    <text x="80" y="220" fill="#FFFFFF" font-size="13">• MGnify — 2.4B+ proteins</text>
+    <text x="80" y="245" fill="#FFFFFF" font-size="13">• GMrepo v3 — 118,965 samples</text>
+    <text x="80" y="270" fill="#FFFFFF" font-size="13">• HMP / iHMP — ~31k samples</text>
+    <text x="80" y="295" fill="#FFFFFF" font-size="13">• curatedMetagenomicData — 22,588 samples</text>
+    <text x="80" y="320" fill="#FFFFFF" font-size="13">• MetaHIT / IGC — 9.88M genes</text>
+    <rect x="620" y="100" width="540" height="260" fill="#1a1a1a" stroke="#9BF0FF" stroke-width="2" rx="12"/>
+    <text x="640" y="135" fill="#9BF0FF" font-size="16" font-weight="bold">2. Disease + population cohorts</text>
+    <text x="640" y="155" fill="#FFFFFF" font-size="11" opacity="0.7">Multi-omics with clinical phenotypes</text>
+    <text x="640" y="195" fill="#FFFFFF" font-size="13">• IBDMDB — 132 subjects, 2,965 specimens</text>
+    <text x="640" y="220" fill="#FFFFFF" font-size="13">• PRISM (MGH) — 960 metagenomes</text>
+    <text x="640" y="245" fill="#FFFFFF" font-size="13">• 1000IBD — 461 metagenomes</text>
+    <text x="640" y="270" fill="#FFFFFF" font-size="13">• DIABIMMUNE — 3,204 / 1,154 samples</text>
+    <text x="640" y="295" fill="#FFFFFF" font-size="13">• Dutch Microbiome Project — 8,208 individuals</text>
+    <text x="640" y="320" fill="#FFFFFF" font-size="13">• TwinsUK / FINRISK — 1,672 / 7,211</text>
+    <rect x="60" y="380" width="540" height="260" fill="#1a1a1a" stroke="#A3FFBF" stroke-width="2" rx="12"/>
+    <text x="80" y="415" fill="#A3FFBF" font-size="16" font-weight="bold">3. Stool imaging</text>
+    <text x="80" y="435" fill="#FFFFFF" font-size="11" opacity="0.7">Bristol-scale labeled photos for ML</text>
+    <text x="80" y="475" fill="#FFFFFF" font-size="13">• Zhou et al. 2021 — 3,275 BSFS images</text>
+    <text x="80" y="500" fill="#FFFFFF" font-size="13">• DLSUC 2025 — 3,208 UC smartphone images</text>
+    <text x="80" y="525" fill="#FFFFFF" font-size="13">• Zhang et al. CVPR 2022 — 1,118 BSFS images</text>
+    <text x="80" y="550" fill="#FFFFFF" font-size="13">• Hachuel 2021 — ~10k+ infant diaper images</text>
+    <text x="80" y="575" fill="#FFFFFF" font-size="13">• shitspotter — 9k+ canine (detection only)</text>
+    <text x="80" y="610" fill="#9BF0FF" font-size="11" font-style="italic">Gap: no public BSFS dataset on Kaggle or Hugging Face</text>
+    <rect x="620" y="380" width="540" height="260" fill="#1a1a1a" stroke="#9BF0FF" stroke-width="2" rx="12"/>
+    <text x="640" y="415" fill="#9BF0FF" font-size="16" font-weight="bold">4. Reference + discovery</text>
+    <text x="640" y="435" fill="#FFFFFF" font-size="11" opacity="0.7">Adjacent — taxonomy and curated lists</text>
+    <text x="640" y="475" fill="#FFFFFF" font-size="13">• SILVA — 10M+ rRNA sequences</text>
+    <text x="640" y="500" fill="#FFFFFF" font-size="13">• Greengenes2 — unified 16S + WGS tree</text>
+    <text x="640" y="525" fill="#FFFFFF" font-size="13">• GTDB — 700,000+ genomes</text>
+    <text x="640" y="550" fill="#FFFFFF" font-size="13">• Earth Microbiome Project — 27k+ samples</text>
+    <text x="640" y="575" fill="#FFFFFF" font-size="13">• awesome-microbes — discovery hub</text>
+    <text x="600" y="678" text-anchor="middle" fill="#FFFFFF" opacity="0.6" font-size="11">poopcheck.app — Last reviewed May 2026</text>
+  </svg>
+  <figcaption>The four families of public stool and gut microbiome datasets, with representative resources in each. Reference taxonomy databases are not stool datasets per se, but every analysis pipeline depends on them.</figcaption>
+</figure>
+
+## How we curated this list
+
+This index covers datasets that meet four criteria: (1) the data is in some way accessible to outside researchers — fully open, dbGaP/EGA-controlled, or by direct application; (2) the dataset is documented in a peer-reviewed publication or maintained by a funded data-coordination center; (3) sample sizes are independently verifiable from primary sources; and (4) the dataset is still maintained or, where deprecated, still cited as foundational. Sample counts, license status, and access mechanisms were re-verified from primary documentation in May 2026 — where a number changes between this review and an annual refresh, the dataset's own portal is authoritative. We deliberately exclude clinical-trial cohorts that release only summary statistics, single-paper supplementary files smaller than ~50 samples, and consumer-app datasets that are advertised but not actually shared with researchers. We've also flagged datasets whose access status has shifted recently (American Gut enrollment paused, MetaHIT consortium wound down, Greengenes v13_8 deprecated).
+
+## Microbiome sequencing — flagship datasets
+
+These are the largest and most-used public resources for human gut microbiome sequencing data. Most ML and meta-analysis projects start here.
+
+### 1. Microsetta Initiative / American Gut Project
+
+The Microsetta Initiative is the successor to the [American Gut Project](https://microsetta.ucsd.edu), the largest open citizen-science gut cohort with **15,000+ enrolled participants** providing 16S rRNA sequencing plus rich diet and lifestyle metadata. Raw sequence data lives on EBI/Qiita/SRA and is fully open. **Heads-up:** new sample enrollment was paused in February 2026 and is scheduled to reopen in late 2026 — existing samples remain accessible. Best for studies that need Western-population baseline data with self-reported diet and lifestyle covariates.
+
+### 2. Human Microbiome Project (HMP1)
+
+The original [HMP](https://www.hmpdacc.org/hmp/) is the foundational reference dataset for healthy adult microbiome composition across multiple body sites — gut, oral, skin, vaginal, nasal. Combined with the iHMP follow-on, the HMP Data Coordination Center hosts **~31,000 samples and roughly 48 TB** of 16S and shotgun data. NIH Common Fund support ended in 2016, so the portal is maintained but no longer expanding. Treat it as the canonical healthy-adult baseline rather than an actively growing resource. Open access, with a dbGaP-controlled subset.
+
+### 3. Integrative HMP / iHMP / HMP2
+
+The [iHMP](https://www.hmpdacc.org/ihmp/) extended HMP1 with three multi-omics longitudinal cohorts: an IBD cohort (now better known as IBDMDB), a type-2 diabetes cohort, and a pregnancy cohort. Each combines metagenomics, metatranscriptomics, metabolomics, and host transcriptomics on the same subjects across multiple visits — the cleanest public example of integrated host-microbe time-series in disease vs health. Best for projects that need disease-vs-control multi-omics with a documented sampling protocol.
+
+### 4. GMrepo v3
+
+[GMrepo v3](https://gmrepo.humangut.info) (released January 2026) is the most comprehensively curated meta-analysis resource for human gut microbiome data. It harmonizes **890 projects and 118,965 samples** across **301 disease phenotypes** with consistent annotation, making it the right starting point for disease-marker meta-analyses without re-processing raw reads. The previous release (v2) lives at `gmrepo2022.humangut.info` for reproducibility. Open access, no application required.
+
+### 5. Qiita
+
+[Qiita](https://qiita.ucsd.edu) is the Knight Lab's web-based meta-analysis platform — **460,000+ samples and 50+ TB**, with about 168,000+ samples publicly searchable and analyzable in-browser. Built on QIIME 2, it lets you run analyses without local compute infrastructure. Most studies are openly accessible; some have study-level restrictions set by depositors. Best for researchers who want a no-code or low-code path to cross-study meta-analysis ([Qiita, *Nat Methods* 2018](https://www.nature.com/articles/s41592-018-0141-9)).
+
+### 6. MGnify
+
+EMBL-EBI's [MGnify](https://www.ebi.ac.uk/metagenomics/) is the European counterpart, providing pre-computed taxonomic and functional profiles plus assembly and metagenome-assembled-genome (MAG) catalogs across multiple body sites. The platform now indexes **2.4 billion+ non-redundant proteins**, with body-site-specific MAG catalogs for human gut and several non-human hosts. Open access. Best for projects that need pre-computed function profiles or want to mine MAGs without running their own assembly pipeline ([MGnify, *NAR* 2023](https://academic.oup.com/nar/article/51/D1/D753/6880769)).
+
+### 7. curatedMetagenomicData
+
+[`curatedMetagenomicData`](https://waldronlab.io/curatedMetagenomicData/) is a Bioconductor R package that ships **93 standardized shotgun metagenomic studies covering 22,588 samples**, all reprocessed through MetaPhlAn3 and HUMAnN3 with harmonized metadata. It's the lowest-friction entry point for anyone doing cross-study meta-analysis in R — the alternative is downloading raw reads from SRA and reprocessing them yourself. Open access via Bioconductor. Best for harmonized meta-analysis, machine-learning training sets, and reproducibility-first workflows.
+
+### 8. MetaHIT and the Integrated Gene Catalog
+
+The [MetaHIT consortium's Integrated Gene Catalog](https://pubmed.ncbi.nlm.nih.gov/24997786/) is foundational rather than expanding. The 2014 publication built a non-redundant catalog of **9.88 million microbial genes** from **1,267 European gut samples** (combining 124 original European samples, 249 newly sequenced Chinese samples, and harmonized data from prior studies). It's still cited when defining the "core" gut metagenome. Raw data lives on ENA. The consortium itself is no longer active; cite the IGC paper rather than the consortium site for current work.
+
+## Disease-specific cohorts
+
+Datasets with clinical phenotypes and well-documented patient cohorts.
+
+### 9. IBDMDB
+
+The [Inflammatory Bowel Disease Multi'omics Database](https://ibdmdb.org) is the iHMP IBD cohort: **132 subjects sampled at up to 24 timepoints**, with **1,785 stool samples + 651 biopsies + 529 blood samples = 2,965 specimens** across metagenomics, metatranscriptomics, viromics, metabolomics, host transcriptomics, and serology. The reference paper ([Lloyd-Price et al., *Nature* 2019](https://www.nature.com/articles/s41586-019-1237-9)) is one of the most-cited longitudinal IBD multi-omics resources. Open download from the IBDMDB portal; raw sequence data is also on EGA `phs001626`.
+
+### 10. PRISM (MGH IBD)
+
+The [PRISM cohort](https://csibd-datacommons.mgh.harvard.edu/microbiome.html) at Massachusetts General Hospital provides **960 stool metagenomes from 443 individuals**, with the broader registry tracking 5,500+ enrolled patients. PRISM is the standard reference for studying biologic-therapy response and strain-level dynamics in IBD — many of the highest-impact IBD-microbiome papers of the last five years use it. Access is via SRA/dbGaP and requires a data-access agreement. Best for treatment-response and strain-tracking work.
+
+### 11. 1000IBD
+
+The [1000IBD project](https://1000ibd.org) at the University of Groningen recruited a 1,000-patient European IBD cohort with **461 fecal metagenomes, 315 16S stool samples, and 107 biopsies**, layered with host genomics, transcriptomics, and serology. EGA-controlled (`EGAS00001002702`); academic access by application. Best for IBD work that benefits from European population genetics on the host side.
+
+### 12. DIABIMMUNE
+
+[DIABIMMUNE](https://diabimmune.broadinstitute.org), hosted by the Broad Institute, is the canonical early-life gut microbiome resource: **3,204 16S rRNA samples and 1,154 shotgun metagenomes from 289 / 269 longitudinally sampled infants**, designed to study gut development and the onset of type-1 diabetes-associated autoimmunity. Open access via SRA `PRJNA497734`. Best for early-life microbiome work, vertical transmission studies, and antibiotic-impact cohorts.
+
+### 13. The Cancer Microbiome Atlas (TCMA)
+
+[TCMA](https://tcma.pratt.duke.edu/) at Duke decontaminates microbial reads from TCGA tumor and tissue sequencing, providing a tumor-resident microbial atlas. The colorectal cancer slice contains **125 COAD tumor samples spanning 221 genera**, with broader pan-cancer data available. Summary data is open; raw reads are dbGaP-controlled. Best for tumor-microbiome work in CRC and adjacent gastrointestinal cancers.
+
+### 14. *Clostridioides difficile* BioProjects
+
+There is no single canonical CDI dataset. The most-cited starting points are NCBI BioProjects `PRJNA770733`, `PRJNA494584`, `PRJNA637878`, and `PRJNA386260` — combined, they cover hundreds of stool samples spanning CDI, asymptomatic carriage, non-CDI diarrhea controls, and FMT engraftment longitudinal studies. Open via SRA. For current work, query SRA with `("Clostridioides difficile"[Organism] OR CDI) AND (stool OR fecal) AND metagenome` to surface newer studies.
+
+## Population-scale cohorts
+
+Datasets sized for population genetics, heritability work, and outcome-linkage studies.
+
+### 15. Dutch Microbiome Project / Lifelines-DEEP
+
+The [Dutch Microbiome Project](https://dutchmicrobiomeproject.molgeniscloud.org) (within the Lifelines-DEEP biobank) is the largest deeply phenotyped European cohort with shotgun metagenomics: **8,208 individuals** with extensive lifestyle, dietary, medication, and clinical metadata. EGA-controlled (`EGAS00001005027`); academic access free, commercial access gated. Best for population-scale healthy gut work and host-genetics association studies.
+
+### 16. FINRISK 2002 microbiome
+
+Finland's [THL Biobank](https://thl.fi/en/research-and-development/thl-biobank) hosts the FINRISK 2002 microbiome subcohort: **~7,211 adults** with shallow shotgun metagenomics, linked to long-term mortality and outcome data through Finnish national registries. Access is via biobank application. Best for prospective work where you need decades-long follow-up linkage.
+
+### 17. TwinsUK microbiome
+
+[TwinsUK](https://twinsuk.ac.uk) at King's College London has microbiome data on **1,672 twins** (16S, plus a smaller shotgun + fecal metabolomics subset) within a registry of 15,000+ twin volunteers. Access requires application via the Department of Twin Research. Best for heritability analyses, twin-discordance designs, and longitudinal lifestyle work.
+
+## Stool image datasets
+
+The smallest and most fragmented family. Every paper in this space notes the absence of a single dominant public BSFS dataset.
+
+### 18. Earth Microbiome Project
+
+[The Earth Microbiome Project](https://earthmicrobiome.ucsd.edu) is a 27,000+ sample cross-biome resource where roughly **10% of samples are human host-associated, including stool**. It's the standardized-protocol backbone behind much of the Knight Lab's gut work. Best treated as biome-comparison context rather than a primary stool dataset, but worth indexing for benchmarking pipelines and for the EMP500 multi-omics subset (880 samples).
+
+### 19. Zhang et al. (CVPR Workshop 2022)
+
+The earliest published BSFS computer-vision benchmark: **1,118 macroscopic stool images** (1,103 web-scraped + 15 captured), labeled to the seven Bristol Stool Form Scale types. Released alongside the 2022 [CVPR Workshop paper](https://openaccess.thecvf.com/content/CVPR2022W/CVPM/papers/Zhang_Human_Stools_Classification_for_Gastrointestinal_Health_Based_on_an_Improved_CVPRW_2022_paper.pdf). Available on academic request. Useful as a small benchmark or for transfer-learning pretraining.
+
+### 20. Zhou et al. Smart Toilet (PMLR 2021)
+
+The largest gastroenterologist-labeled BSFS image set in the literature: **3,275 images** with morphology features, originally for the [Smart Toilet PMLR paper](https://proceedings.mlr.press/v149/zhou21a.html) and updated in a 2025 *Neurogastroenterology & Motility* follow-on. Available on academic request from the Stanford team. Currently the strongest BSFS classification reference, particularly for production-grade pipelines.
+
+### 21. DLSUC (American Journal of Gastroenterology, January 2025)
+
+[DLSUC](https://journals.lww.com/ajg/fulltext/2025/01000/deep_learning_model_using_stool_pictures_for.33.aspx) is the largest UC-specific stool image set: **2,161 training + 1,047 test smartphone images from 432 ulcerative colitis patients**, used to predict endoscopic disease activity. Available on academic request from the corresponding authors. Best for disease-activity prediction work and as a clinically labeled complement to BSFS-only sets.
+
+### 22. Hachuel et al. (Sci Rep 2021)
+
+The infant-context counterpart: **~10,000+ user-submitted infant diaper stool images** labeled to a Brussels Infant and Toddler Stool Scale (BITSS) analog of BSFS, published by [Hachuel et al. in *Scientific Reports* 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC7815249/). Restricted access via the authors. Best for diaper-context BSFS analogs and pediatric stool-form work.
+
+### 23. shitspotter
+
+[`shitspotter`](https://github.com/Erotemic/shitspotter) is a CC-BY-SA-licensed dataset of **9,000+ RGB canine feces images with detection bounding boxes**. It is the only mainstream open stool image dataset on GitHub, but **it's detection-only, not BSFS-relevant** — and the subjects are dogs, not humans. Use it for object-detection baselines, *not* for Bristol-scale modeling. Worth listing because it appears in the SERP and would otherwise mislead researchers.
+
+## Curated lists and reference databases
+
+### 24. awesome-microbes
+
+[`awesome-microbes`](https://github.com/stevetsa/awesome-microbes) is the most-cited GitHub README in this space — a community-maintained discovery hub for microbiome tools, datasets, tutorials, and reference resources. Worth scanning for niche resources not listed here. Open (CC).
+
+### 25. Reference taxonomy databases — SILVA, Greengenes2, GTDB
+
+Three reference databases that every stool microbiome pipeline depends on:
+
+- **[SILVA](https://www.arb-silva.de)** — the reference 16S/18S/23S/28S small- and large-subunit rRNA database, with **10M+ aligned rRNA sequences**. The 2026 release moved hosting to DSMZ and now integrates GTDB labels.
+- **[Greengenes2](https://greengenes2.ucsd.edu)** — a unified 16S + whole-genome reference tree with **~330,000 taxa**. The original Greengenes (v13_8) is deprecated; only Greengenes2 should be cited for new work.
+- **[GTDB](https://gtdb.ecogenomic.org)** — the genome-based taxonomy with **700,000+ prokaryote genomes** in the R220 release, providing phylogenomically consistent classification.
+
+These are not stool datasets, but they are the taxonomy backbone for every analysis in the rest of this index.
+
+## Honest gaps in public stool data
+
+Three callouts worth surfacing for searchers, because the answers are non-obvious:
+
+- **There is no Bristol Stool Scale image dataset on Kaggle.** The major BSFS sets (Zhang 2022, Zhou 2021, DLSUC 2025, Hachuel 2021) are academic-on-request and are not mirrored on Kaggle. Roboflow Universe "poop" detection sets exist but are canine or outdoor-yard images, not BSFS-labeled human stool — they are not clinically useful. If a Kaggle competition matters for your work, you'll need to negotiate sharing terms with the dataset authors first.
+- **There is no public BSFS dataset on Hugging Face.** As of May 2026, the only stool dataset on Hugging Face Hub is a mirror of canine `shitspotter`. There is an open opportunity here for a research group willing to publish a curated BSFS Hugging Face dataset under a permissive license.
+- **There is no single canonical CDI dataset.** Researchers studying *C. difficile* infection should treat the four BioProjects above as a starting point, plus the SRA query template above. For consumer citizen-science angles, [Seed's #GiveAShit campaign](https://seed.com/poop/) collects samples directly from the public; the resulting dataset is operationally controlled by Seed/Auggi and inquiries go through them.
+
+## How to choose the right dataset
+
+A short decision tree for the most common project shapes:
+
+- **Training a Bristol Stool Scale image classifier:** request Zhou et al. 2021 first (largest), DLSUC 2025 second (clinical labels). Augment with Zhang 2022 if you can. Plan for limited data — domain adaptation and synthetic augmentation are usually necessary.
+- **Cross-study meta-analysis of microbiome composition:** start with `curatedMetagenomicData` (R) or GMrepo v3 (web). Both ship pre-harmonized abundance tables and metadata.
+- **Disease-marker discovery in IBD:** IBDMDB for multi-omics longitudinal, PRISM for treatment response, 1000IBD if European population genetics matter for your model.
+- **Colorectal cancer microbiome:** TCMA for tumor-resident reads, plus disease-labeled studies in `curatedMetagenomicData` and GMrepo for stool baselines.
+- **Healthy-baseline reference:** HMP/iHMP for protocol-standardized reference, Dutch Microbiome Project for European population scale, Microsetta for citizen-science breadth.
+- **Early-life gut development:** DIABIMMUNE first.
+- **Heritability and lifestyle effects:** TwinsUK and FINRISK 2002.
+- **Smart toilet or sensor pipelines:** Zhou et al. 2021 + DLSUC 2025 for image labels; pair with stool-tracking app data if you have it.
+
+## Licensing and access caveats
+
+Half the datasets on this list sit behind controlled-access mechanisms — important to plan for before committing to a study design.
+
+- **Open SRA / ENA / EBI deposits** are direct download with no application. Suitable for most academic and many commercial uses, subject to per-study restrictions in the readme.
+- **dbGaP (NIH controlled access)** requires a Data Access Request, an institutional signing official, and an IRB approval. Plan for **2–8 weeks** between submission and approval.
+- **EGA (European Genome-Phenome Archive)** has a similar model run by EBI/CRG. Studies are reviewed by a Data Access Committee. Plan for **4–12 weeks**, with significant variability by study.
+- **Biobank applications** (FINRISK / THL Biobank, TwinsUK, Lifelines-DEEP) involve committee review, project-specific scoping, and sometimes fees. Plan for **3–6 months**.
+- **Commercial use** is rarely default-allowed. Most academic-access agreements are for non-commercial research; commercial AI training on these datasets typically requires a separate license. Check `LICENSE.txt` and the dataset's distribution agreement before fine-tuning a commercial model.
+
+For a clinical context primer on what these stool datasets are actually labeling, our [Bristol Stool Chart explainer](/poopcheck-blog/bristol-stool-chart-types-explained/) walks through the seven types in plain language. For why microbiome research itself matters, see [the gut-brain axis explained](/poopcheck-blog/gut-brain-axis-explained/) and [probiotics vs prebiotics](/poopcheck-blog/probiotics-vs-prebiotics/).
+
+## FAQ
+
+**Is there a free Bristol Stool Scale image dataset?**
+Not on Kaggle or Hugging Face. The most-cited BSFS image datasets — Zhou et al. 2021 (3,275 images), DLSUC 2025 (3,208 images), Zhang et al. 2022 (1,118 images), Hachuel et al. 2021 (~10,000+ infant diaper images) — are academic-on-request. Plan to email the corresponding authors and sign a data-use agreement.
+
+**What's the largest public gut microbiome dataset?**
+By raw sample count, Qiita (460,000+ samples; 168k+ public) is the largest. By harmonized analysis-ready scale, GMrepo v3 (118,965 samples across 890 projects) and `curatedMetagenomicData` (22,588 samples across 93 studies) are the standard. The Cell 2024 *Human Microbiome Compendium* integrated 168,000+ samples and is also worth knowing about for very-large-scale work.
+
+**Where can I download 16S rRNA data?**
+The most direct paths are SRA, ENA, and Qiita. SRA hosts raw reads with the broadest coverage; Qiita and MGnify provide pre-computed feature tables for analysis without re-running QIIME 2 / DADA2. For reference taxonomy, use SILVA (2026 release) or Greengenes2.
+
+**Are there stool datasets on Kaggle?**
+Yes for canine and outdoor "poop" detection (Roboflow Universe mirrors), no for Bristol-scale-labeled human stool images. The canine and outdoor sets are not clinically useful for digestive-health ML.
+
+**Can I use these datasets for commercial AI training?**
+Often no without an additional license. Most academic-access agreements (dbGaP, EGA, biobanks) restrict use to non-commercial research. Even for openly-licensed sets, check the LICENSE file: a few are CC-BY-SA (allows commercial use with share-alike), but many are CC-BY-NC. Always read the data-use agreement before fine-tuning a commercial model.
+
+**What's the difference between dbGaP and EGA controlled access?**
+dbGaP (US, NIH) and EGA (Europe, EMBL-EBI/CRG) are the two main controlled-access archives for human genomic and microbiome data. Both require a Data Access Committee review. dbGaP requires an institutional signing official and US-style IRB documentation. EGA is generally more flexible on institutional setup but applies study-by-study. Plan for 2–8 weeks (dbGaP) or 4–12 weeks (EGA) per dataset.
+
+**Does PoopCheck publish a public dataset?**
+Not as of May 2026. PoopCheck is a consumer app, not a research data provider. The team is open to research collaboration inquiries — see the contact below — but there is no published PoopCheck research dataset to download today.
+
+**Is the American Gut Project still accepting samples?**
+Enrollment is paused as of February 2026 and is scheduled to reopen in late 2026. Existing samples and data remain fully accessible through Microsetta / EBI / Qiita / SRA. If you need to collect new citizen-science samples now, plan around the pause or use the Dutch Microbiome Project / TwinsUK as alternatives for already-collected European cohorts.
+
+## The bottom line
+
+The public stool and gut microbiome dataset landscape is far richer than the SERP suggests — but most of it sits in academic portals and biobanks rather than on Kaggle or Hugging Face. For sequencing work, Qiita, MGnify, GMrepo v3, and `curatedMetagenomicData` cover most use cases. For disease cohorts, IBDMDB and PRISM are the gold standard. For Bristol-scale image ML, the field is small and academic-on-request — there is genuine room for a permissively-licensed public BSFS dataset, and the team that publishes one will become the de-facto reference.
+
+PoopCheck is a consumer app, not a research dataset — but if you're studying real-world stool patterns at scale, the team is open to research collaboration inquiries. Reach out at **poopcheck@softallthings.com**.
+
+## Sources
+
+1. [Qiita: rapid, web-enabled microbiome meta-analysis](https://www.nature.com/articles/s41592-018-0141-9). *Nature Methods*, 2018.
+2. [MGnify: the microbiome sequence data analysis resource in 2023](https://academic.oup.com/nar/article/51/D1/D753/6880769). *Nucleic Acids Research*, 2023.
+3. [GMrepo v2: a curated human gut microbiome database with special focus on disease markers and cross-dataset comparison](https://academic.oup.com/nar/article/50/D1/D777/6426060). *Nucleic Acids Research*, 2022.
+4. [An integrated catalog of reference genes in the human gut microbiome (Integrated Gene Catalog)](https://pubmed.ncbi.nlm.nih.gov/24997786/). *Nature Biotechnology*, 2014.
+5. [Multi-omics of the gut microbial ecosystem in inflammatory bowel diseases (IBDMDB)](https://www.nature.com/articles/s41586-019-1237-9). *Nature*, 2019.
+6. [The Integrative Human Microbiome Project](https://www.nature.com/articles/s41586-019-1238-8). *Nature*, 2019.
+7. [The Cancer Microbiome Atlas: a pan-cancer microbial reference resource](https://pmc.ncbi.nlm.nih.gov/articles/PMC7878430/). *Cell Host & Microbe*, 2020.
+8. [1000IBD: a multi-omics cohort study](https://bmcgastroenterol.biomedcentral.com/articles/10.1186/s12876-018-0917-5). *BMC Gastroenterology*, 2018.
+9. [Human Stools Classification for Gastrointestinal Health using an Improved Deep Learning Architecture (Zhang et al.)](https://openaccess.thecvf.com/content/CVPR2022W/CVPM/papers/Zhang_Human_Stools_Classification_for_Gastrointestinal_Health_Based_on_an_Improved_CVPRW_2022_paper.pdf). CVPR Workshop, 2022.
+10. [Smart Toilets for Stool Image Analysis (Zhou et al.)](https://proceedings.mlr.press/v149/zhou21a.html). PMLR, 2021.
+11. [Deep Learning Model Using Stool Pictures for Predicting Endoscopic Mucosal Inflammation in UC](https://journals.lww.com/ajg/fulltext/2025/01000/deep_learning_model_using_stool_pictures_for.33.aspx). *American Journal of Gastroenterology*, January 2025.
+12. [Augmenting gastrointestinal health: A deep learning approach to human stool recognition (Hachuel et al.)](https://pmc.ncbi.nlm.nih.gov/articles/PMC7815249/). *Scientific Reports*, 2021.
+13. [SILVA in 2026: linking rRNA-based phylogeny with genome-derived taxonomy](https://academic.oup.com/nar/article/54/D1/D334/8326456). *Nucleic Acids Research*, 2026.
+14. [Greengenes2 unifies 16S and shotgun-based microbiome studies](https://www.nature.com/articles/s41587-023-01845-1). *Nature Biotechnology*, 2023.
+15. [The Earth Microbiome Project](https://earthmicrobiome.ucsd.edu). UCSD / Knight Lab.
+16. [The Dutch Microbiome Project on EGA](https://ega-archive.org/studies/EGAS00001005027).
+
+<JsonLd schema={[
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "25 Public Stool & Gut Microbiome Datasets (2026): A Researcher's Index",
+    "description": "A complete index of 25 public stool, microbiome, and Bristol-scale image datasets for ML and clinical research.",
+    "url": "https://poopcheck.app/poopcheck-blog/public-stool-and-gut-microbiome-datasets-2026/",
+    "dateModified": "2026-05-08",
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "Public stool & gut microbiome datasets",
+      "numberOfItems": 25,
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "item": {"@type": "Dataset", "name": "Microsetta Initiative / American Gut Project", "url": "https://microsetta.ucsd.edu", "description": "16S + shotgun citizen-science gut microbiome data, 15,000+ participants.", "creator": {"@type": "Organization", "name": "UC San Diego, Knight Lab"}, "license": "https://creativecommons.org/licenses/by/4.0/"}},
+        {"@type": "ListItem", "position": 2, "item": {"@type": "Dataset", "name": "Human Microbiome Project (HMP1)", "url": "https://www.hmpdacc.org/hmp/", "description": "16S and shotgun reference dataset across human body sites, ~31,000 samples and 48 TB combined with iHMP.", "creator": {"@type": "Organization", "name": "NIH HMP Data Coordination Center"}}},
+        {"@type": "ListItem", "position": 3, "item": {"@type": "Dataset", "name": "Integrative HMP / iHMP / HMP2", "url": "https://www.hmpdacc.org/ihmp/", "description": "Multi-omics longitudinal cohorts in IBD, T2D, and pregnancy.", "creator": {"@type": "Organization", "name": "NIH HMP DCC"}}},
+        {"@type": "ListItem", "position": 4, "item": {"@type": "Dataset", "name": "GMrepo v3", "url": "https://gmrepo.humangut.info", "description": "Curated 16S and shotgun gut microbiome data harmonized across 890 projects and 118,965 samples covering 301 disease phenotypes.", "creator": {"@type": "Organization", "name": "GMrepo Consortium"}}},
+        {"@type": "ListItem", "position": 5, "item": {"@type": "Dataset", "name": "Qiita", "url": "https://qiita.ucsd.edu", "description": "Web-based microbiome meta-analysis platform with 460,000+ samples (168,000+ public).", "creator": {"@type": "Organization", "name": "UC San Diego, Knight Lab"}}},
+        {"@type": "ListItem", "position": 6, "item": {"@type": "Dataset", "name": "MGnify", "url": "https://www.ebi.ac.uk/metagenomics/", "description": "EMBL-EBI metagenomics platform with 2.4B+ non-redundant proteins and MAG catalogs.", "creator": {"@type": "Organization", "name": "EMBL-EBI"}}},
+        {"@type": "ListItem", "position": 7, "item": {"@type": "Dataset", "name": "curatedMetagenomicData", "url": "https://waldronlab.io/curatedMetagenomicData/", "description": "Standardized shotgun metagenomic data across 93 studies and 22,588 samples, MetaPhlAn3 + HUMAnN3 processed.", "creator": {"@type": "Organization", "name": "Waldron Lab, CUNY SPH"}}},
+        {"@type": "ListItem", "position": 8, "item": {"@type": "Dataset", "name": "MetaHIT Integrated Gene Catalog", "url": "https://pubmed.ncbi.nlm.nih.gov/24997786/", "description": "Reference catalog of 9.88M microbial genes from 1,267 European gut samples.", "creator": {"@type": "Organization", "name": "MetaHIT Consortium"}}},
+        {"@type": "ListItem", "position": 9, "item": {"@type": "Dataset", "name": "IBDMDB", "url": "https://ibdmdb.org", "description": "Inflammatory Bowel Disease Multi'omics Database — 132 subjects, 2,965 specimens across multiple omics layers.", "creator": {"@type": "Organization", "name": "Broad Institute / iHMP IBD"}}},
+        {"@type": "ListItem", "position": 10, "item": {"@type": "Dataset", "name": "PRISM (MGH IBD)", "url": "https://csibd-datacommons.mgh.harvard.edu/microbiome.html", "description": "960 stool metagenomes from 443 IBD patients with treatment-response phenotypes.", "creator": {"@type": "Organization", "name": "Massachusetts General Hospital"}}},
+        {"@type": "ListItem", "position": 11, "item": {"@type": "Dataset", "name": "1000IBD", "url": "https://1000ibd.org", "description": "European IBD multi-omics cohort with 461 fecal metagenomes and host-genomics layers.", "creator": {"@type": "Organization", "name": "University of Groningen"}}},
+        {"@type": "ListItem", "position": 12, "item": {"@type": "Dataset", "name": "DIABIMMUNE", "url": "https://diabimmune.broadinstitute.org", "description": "Longitudinal infant gut microbiome dataset with 3,204 16S and 1,154 shotgun samples, T1D-onset focused.", "creator": {"@type": "Organization", "name": "Broad Institute"}}},
+        {"@type": "ListItem", "position": 13, "item": {"@type": "Dataset", "name": "The Cancer Microbiome Atlas (TCMA)", "url": "https://tcma.pratt.duke.edu/", "description": "Tumor-resident microbial reads decontaminated from TCGA, with a 125-sample COAD/CRC slice.", "creator": {"@type": "Organization", "name": "Duke University"}}},
+        {"@type": "ListItem", "position": 14, "item": {"@type": "Dataset", "name": "C. difficile NCBI BioProjects", "url": "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA770733", "description": "Multiple SRA BioProjects covering Clostridioides difficile infection, carriage, and FMT longitudinal cohorts."}},
+        {"@type": "ListItem", "position": 15, "item": {"@type": "Dataset", "name": "Dutch Microbiome Project (Lifelines-DEEP)", "url": "https://dutchmicrobiomeproject.molgeniscloud.org", "description": "Population-scale shotgun metagenomics on 8,208 deeply phenotyped individuals.", "creator": {"@type": "Organization", "name": "University of Groningen / Lifelines"}}},
+        {"@type": "ListItem", "position": 16, "item": {"@type": "Dataset", "name": "FINRISK 2002 microbiome", "url": "https://thl.fi/en/research-and-development/thl-biobank", "description": "Shallow shotgun metagenomics on ~7,211 Finnish adults with mortality-linkage follow-up.", "creator": {"@type": "Organization", "name": "Finnish Institute for Health and Welfare (THL)"}}},
+        {"@type": "ListItem", "position": 17, "item": {"@type": "Dataset", "name": "TwinsUK microbiome", "url": "https://twinsuk.ac.uk", "description": "1,672-twin 16S microbiome subset within the UK twin registry.", "creator": {"@type": "Organization", "name": "King's College London"}}},
+        {"@type": "ListItem", "position": 18, "item": {"@type": "Dataset", "name": "Earth Microbiome Project", "url": "https://earthmicrobiome.ucsd.edu", "description": "27,000+ standardized cross-biome microbiome samples, ~10% human host-associated including stool.", "creator": {"@type": "Organization", "name": "UC San Diego, Knight Lab"}}},
+        {"@type": "ListItem", "position": 19, "item": {"@type": "Dataset", "name": "Zhang et al. CVPR 2022 BSFS dataset", "url": "https://openaccess.thecvf.com/content/CVPR2022W/CVPM/papers/Zhang_Human_Stools_Classification_for_Gastrointestinal_Health_Based_on_an_Improved_CVPRW_2022_paper.pdf", "description": "1,118 macroscopic stool images labeled to the seven Bristol Stool Form Scale types."}},
+        {"@type": "ListItem", "position": 20, "item": {"@type": "Dataset", "name": "Zhou et al. Smart Toilet stool image dataset (PMLR 2021)", "url": "https://proceedings.mlr.press/v149/zhou21a.html", "description": "3,275 gastroenterologist-labeled stool images with morphology features."}},
+        {"@type": "ListItem", "position": 21, "item": {"@type": "Dataset", "name": "DLSUC stool image dataset (AJG 2025)", "url": "https://journals.lww.com/ajg/fulltext/2025/01000/deep_learning_model_using_stool_pictures_for.33.aspx", "description": "3,208 smartphone stool images from 432 ulcerative colitis patients for endoscopic-activity prediction."}},
+        {"@type": "ListItem", "position": 22, "item": {"@type": "Dataset", "name": "Hachuel et al. infant diaper stool image dataset (Sci Rep 2021)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7815249/", "description": "10,000+ user-submitted infant diaper stool images labeled with the BITSS scale."}},
+        {"@type": "ListItem", "position": 23, "item": {"@type": "Dataset", "name": "shitspotter (canine)", "url": "https://github.com/Erotemic/shitspotter", "description": "9,000+ CC-BY-SA canine RGB stool images with detection bounding boxes. Detection-only; not BSFS-labeled.", "license": "https://creativecommons.org/licenses/by-sa/4.0/"}},
+        {"@type": "ListItem", "position": 24, "item": {"@type": "Dataset", "name": "awesome-microbes", "url": "https://github.com/stevetsa/awesome-microbes", "description": "Community-curated list of microbiome tools, datasets, and tutorials."}},
+        {"@type": "ListItem", "position": 25, "item": {"@type": "Dataset", "name": "Reference taxonomy databases (SILVA, Greengenes2, GTDB)", "url": "https://www.arb-silva.de", "description": "Reference 16S/18S rRNA (SILVA, 10M+ sequences), unified 16S+WGS tree (Greengenes2), and genome-based taxonomy (GTDB R220+, 700,000+ genomes)."}}
+      ]
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "Is there a free Bristol Stool Scale image dataset?", "acceptedAnswer": {"@type": "Answer", "text": "Not on Kaggle or Hugging Face. The most-cited BSFS image datasets — Zhou et al. 2021 (3,275 images), DLSUC 2025 (3,208 images), Zhang et al. 2022 (1,118 images), and Hachuel et al. 2021 (~10,000+ infant diaper images) — are academic-on-request. Plan to email the corresponding authors and sign a data-use agreement."}},
+      {"@type": "Question", "name": "What's the largest public gut microbiome dataset?", "acceptedAnswer": {"@type": "Answer", "text": "By raw sample count, Qiita (460,000+ samples; 168,000+ public) is the largest. By harmonized analysis-ready scale, GMrepo v3 (118,965 samples across 890 projects) and curatedMetagenomicData (22,588 samples across 93 studies) are the standard. The Cell 2024 Human Microbiome Compendium integrated 168,000+ samples and is also worth knowing about for very-large-scale work."}},
+      {"@type": "Question", "name": "Where can I download 16S rRNA data?", "acceptedAnswer": {"@type": "Answer", "text": "The most direct paths are SRA, ENA, and Qiita. SRA hosts raw reads with the broadest coverage; Qiita and MGnify provide pre-computed feature tables for analysis without re-running QIIME 2 or DADA2. For reference taxonomy, use SILVA (2026 release) or Greengenes2."}},
+      {"@type": "Question", "name": "Are there stool datasets on Kaggle?", "acceptedAnswer": {"@type": "Answer", "text": "Yes for canine and outdoor poop detection (Roboflow Universe mirrors), no for Bristol-scale-labeled human stool images. The canine and outdoor sets are not clinically useful for digestive-health ML."}},
+      {"@type": "Question", "name": "Can I use these datasets for commercial AI training?", "acceptedAnswer": {"@type": "Answer", "text": "Often no without an additional license. Most academic-access agreements (dbGaP, EGA, biobanks) restrict use to non-commercial research. Even for openly-licensed sets, check the LICENSE file: a few are CC-BY-SA, but many are CC-BY-NC. Always read the data-use agreement before fine-tuning a commercial model."}},
+      {"@type": "Question", "name": "What's the difference between dbGaP and EGA controlled access?", "acceptedAnswer": {"@type": "Answer", "text": "dbGaP (US, NIH) and EGA (Europe, EMBL-EBI/CRG) are the two main controlled-access archives for human genomic and microbiome data. Both require Data Access Committee review. dbGaP requires an institutional signing official and US-style IRB documentation. EGA is generally more flexible on institutional setup but applies study-by-study. Plan for 2–8 weeks (dbGaP) or 4–12 weeks (EGA) per dataset."}},
+      {"@type": "Question", "name": "Does PoopCheck publish a public dataset?", "acceptedAnswer": {"@type": "Answer", "text": "Not as of May 2026. PoopCheck is a consumer app, not a research data provider. The team is open to research collaboration inquiries at poopcheck@softallthings.com, but there is no published PoopCheck research dataset to download today."}},
+      {"@type": "Question", "name": "Is the American Gut Project still accepting samples?", "acceptedAnswer": {"@type": "Answer", "text": "Enrollment is paused as of February 2026 and is scheduled to reopen in late 2026. Existing samples and data remain fully accessible through Microsetta, EBI, Qiita, and SRA. If you need to collect new citizen-science samples now, plan around the pause or use the Dutch Microbiome Project or TwinsUK as alternatives for already-collected European cohorts."}}
+    ]
+  }
+]} />

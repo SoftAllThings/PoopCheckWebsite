@@ -2,15 +2,6 @@
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
   "pending": [
     {
-      "slug": "ozempic-and-bowel-changes",
-      "priority": 10,
-      "title": "Ozempic and Bowel Changes: Why GLP-1 Drugs Cause Constipation",
-      "primary_keyword": "ozempic constipation",
-      "category": "conditions",
-      "include_svg": false,
-      "notes": "GLP-1 mechanism (slowed gastric emptying, reduced motility), the constipation/diarrhea split, prevalence in Ozempic/Wegovy/Mounjaro trials (cite NEJM/JAMA), practical management, red flags. High search volume topic in 2026."
-    },
-    {
       "slug": "sibo-explained",
       "priority": 9,
       "title": "SIBO: Causes, Symptoms, and What the Breath Test Actually Tells You",
@@ -121,7 +112,8 @@
     { "slug": "fermented-foods-vs-probiotic-supplements", "published_at": "2026-05-05", "source": "curated" },
     { "slug": "how-hydration-affects-stool", "published_at": "2026-05-06", "source": "curated" },
     { "slug": "exercise-and-bowel-movements", "published_at": "2026-05-07", "source": "curated" },
-    { "slug": "public-stool-and-gut-microbiome-datasets-2026", "published_at": "2026-05-08", "source": "manual-research-index" }
+    { "slug": "public-stool-and-gut-microbiome-datasets-2026", "published_at": "2026-05-08", "source": "manual-research-index" },
+    { "slug": "ozempic-and-bowel-changes", "published_at": "2026-05-09", "source": "curated" }
   ],
   "trending_candidates": []
 }

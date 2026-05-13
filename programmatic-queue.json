@@ -3,14 +3,6 @@
   "pending": [
     {
       "mode": "comparison",
-      "slug": "mysymptoms",
-      "name": "mySymptoms",
-      "website_url": "https://skygazerlabs.com/",
-      "priority": 3,
-      "notes": "Broader symptom diary. PoopCheck wins on AI + gut specificity; mySymptoms wins on multi-domain tracking."
-    },
-    {
-      "mode": "comparison",
       "slug": "stooly",
       "name": "Stooly",
       "website_url": "",
@@ -30,6 +22,7 @@
     { "mode": "comparison", "slug": "dieta-health", "published_at": "2026-04-20", "source": "initial-scaffold" },
     { "mode": "comparison", "slug": "balloon", "published_at": "2026-04-20", "source": "initial-scaffold" },
     { "mode": "comparison", "slug": "bowelle", "published_at": "2026-04-22", "source": "programmatic-writer" },
-    { "mode": "comparison", "slug": "plop", "published_at": "2026-05-06", "source": "programmatic-writer" }
+    { "mode": "comparison", "slug": "plop", "published_at": "2026-05-06", "source": "programmatic-writer" },
+    { "mode": "comparison", "slug": "mysymptoms", "published_at": "2026-05-13", "source": "programmatic-writer" }
   ]
 }

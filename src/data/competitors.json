@@ -145,6 +145,46 @@
         { "title": "Balloon: Best iOS poop trackers for 2025 (includes Plop review)", "url": "https://balloonguthealth.com/blog/best-ios-poop-trackers-for-2025" }
       ],
       "last_verified": "2026-05-06"
+    },
+    {
+      "slug": "mysymptoms",
+      "name": "mySymptoms",
+      "tagline": "Long-running food and symptom diary with a trigger-correlation engine and a dedicated clinician-share portal.",
+      "website_url": "https://www.mysymptoms.net/",
+      "positioning": "A food, symptom and lifestyle diary by SkyGazer Labs, used to surface diet-related triggers across IBS, IBD, low-FODMAP, migraines, eczema and other chronic symptoms. Their own listing copy: \"Helps you explore the connection between your diet and health by easily tracking your meals and symptoms, and sharing detailed journals with your clinicians.\"",
+      "pricing_notes": "Free to download with a 7-day trial. Subscriptions listed on mysymptoms.net at around $9.99/month, $39.99/6 months or $49.99/year (UK: £7.99 / £29.99 / £39.99); correlation analysis is part of the premium tier. Check the App Store, Google Play, or mysymptoms.net/question/prices/ for current numbers.",
+      "features": [
+        { "name": "AI photo analysis of stool", "mysymptoms": false, "poopcheck": true, "note": "mySymptoms is a manual diary across food, symptoms and bowel movements. PoopCheck classifies Bristol type, color and consistency from a photo." },
+        { "name": "Bristol Stool Scale classification", "mysymptoms": "Manual selection in the diary", "poopcheck": "Automatic from photo", "note": "mySymptoms supports Bristol-scale logging as one of its body measures." },
+        { "name": "Food + meal diary with database & barcode scanner", "mysymptoms": true, "poopcheck": false, "note": "mySymptoms's deepest strength — searchable food database, barcode scanner, and custom items." },
+        { "name": "Multi-domain symptom tracking (migraines, skin, sleep, energy, mood)", "mysymptoms": true, "poopcheck": "Gut-specific", "note": "mySymptoms is built for tracking symptoms beyond the gut; PoopCheck stays focused on stool and gut health." },
+        { "name": "Trigger-correlation engine (\"Top Suspects\")", "mysymptoms": true, "poopcheck": false, "note": "Premium feature in mySymptoms — ranks suspected food→symptom links across the diary." },
+        { "name": "Daily gut-health score", "mysymptoms": false, "poopcheck": true },
+        { "name": "AI digestive chat assistant", "mysymptoms": false, "poopcheck": "SOFTie (Premium)" },
+        { "name": "PDF / CSV diary report + clinician web portal", "mysymptoms": true, "poopcheck": false, "note": "\"mySymptoms Clinic\" lets you invite a clinician to view your diary directly online." },
+        { "name": "Apple Health integration", "mysymptoms": false, "poopcheck": true, "note": "mySymptoms's own FAQ states it does not currently integrate with Apple Health." },
+        { "name": "Cloud storage with HIPAA & GDPR compliance", "mysymptoms": true, "poopcheck": true, "note": "Both apps describe encrypted, regulation-aligned cloud storage." },
+        { "name": "iOS + Android availability", "mysymptoms": true, "poopcheck": true, "note": "Both apps ship on iOS and Android." },
+        { "name": "Free tier without paywalled correlation insights", "mysymptoms": "Trial then paid; correlations behind premium", "poopcheck": "Free, no ads — Premium is optional" },
+        { "name": "App store rating", "mysymptoms": "≈4.6★ iOS / ≈4.0★ Android (App Store & Google Play listings)", "poopcheck": "4.8★ combined (~80 reviews)" }
+      ],
+      "strengths": "mySymptoms has had a decade-plus to mature its food-and-symptom diary, and it shows: the food database, barcode scanner, and customisable factors make it one of the most complete manual loggers in this category. The \"Top Suspects\" correlation engine is genuinely useful for surfacing delayed food→symptom links that you'd never spot by eye, and the mySymptoms Clinic web portal gives you a clean, share-with-your-doctor workflow that few consumer trackers offer.",
+      "weaknesses_for_user": "mySymptoms is manual end-to-end — every meal, symptom and bowel movement is tapped in by hand, and recent user reviews flag both \"tedious symptom entry\" and a barcode scanner that often returns generic items rather than the specific brand. The correlation insights that make the app worthwhile sit behind a paid subscription after a 7-day trial, and the app's own FAQ confirms it does not integrate with Apple Health, so daily steps, sleep and other HealthKit data won't flow in automatically.",
+      "when_competitor_is_better": "If you're investigating food intolerances, managing IBS/IBD, on a low-FODMAP elimination, or tracking multi-domain symptoms (migraines, skin flares, joint pain) and want a mature correlation engine with a clinician-share portal, mySymptoms is the more specialised tool — and the right pick if you're willing to log diligently in exchange for trigger insights.",
+      "when_poopcheck_is_better": "If your main question is about your gut and stool — and you want effortless daily tracking (photo in, Bristol type + color + gut-health score out) without a paid subscription gating the analytics — PoopCheck's AI approach gets you insights with far less logging fatigue, and pulls in Apple Health data mySymptoms doesn't.",
+      "sources": [
+        { "title": "mySymptoms – Food Diary & Symptom Tracker on the App Store", "url": "https://apps.apple.com/us/app/mysymptoms-food-diary/id405231632" },
+        { "title": "mySymptoms – Food Diary on Google Play", "url": "https://play.google.com/store/apps/details?id=com.sglabs.mysymptoms" },
+        { "title": "mySymptoms official site (SkyGazer Labs)", "url": "https://www.mysymptoms.net/" },
+        { "title": "mySymptoms pricing page", "url": "https://www.mysymptoms.net/question/prices/" },
+        { "title": "mySymptoms FAQ – app integrations (no Apple Health)", "url": "https://www.mysymptoms.net/question/app-integration/" },
+        { "title": "mySymptoms FAQ – export to Excel / CSV / PDF", "url": "https://www.mysymptoms.net/question/export-to-excel-or-other/" },
+        { "title": "mySymptoms Clinic – clinician share portal", "url": "https://www.mysymptoms.net/clinic-info/" },
+        { "title": "Healthify NZ – mySymptoms reviewed app library entry", "url": "https://healthify.nz/apps/m/mysymptoms-food-diary-symptom-tracker-app" },
+        { "title": "Healthline – Best Gut Health Apps (includes mySymptoms)", "url": "https://www.healthline.com/health/digestive-health/top-iphone-android-apps-gut-health" },
+        { "title": "AppBrain – mySymptoms Android install stats", "url": "https://www.appbrain.com/app/mysymptoms-food-diary/com.sglabs.mysymptoms" }
+      ],
+      "last_verified": "2026-05-13"
     }
   ]
 }

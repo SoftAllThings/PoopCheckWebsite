@@ -2,15 +2,6 @@
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
   "pending": [
     {
-      "slug": "sibo-explained",
-      "priority": 9,
-      "title": "SIBO: Causes, Symptoms, and What the Breath Test Actually Tells You",
-      "primary_keyword": "SIBO small intestinal bacterial overgrowth",
-      "category": "conditions",
-      "include_svg": false,
-      "notes": "Cover hydrogen vs methane vs hydrogen sulfide breath tests, prevalence, link to IBS, treatment options (rifaximin, elemental diet), recurrence rates. Cite Rome IV criteria and recent reviews."
-    },
-    {
       "slug": "magnesium-for-constipation",
       "priority": 9,
       "title": "Magnesium for Constipation: Which Form Actually Works",
@@ -113,7 +104,8 @@
     { "slug": "how-hydration-affects-stool", "published_at": "2026-05-06", "source": "curated" },
     { "slug": "exercise-and-bowel-movements", "published_at": "2026-05-07", "source": "curated" },
     { "slug": "public-stool-and-gut-microbiome-datasets-2026", "published_at": "2026-05-08", "source": "manual-research-index" },
-    { "slug": "ozempic-and-bowel-changes", "published_at": "2026-05-09", "source": "curated" }
+    { "slug": "ozempic-and-bowel-changes", "published_at": "2026-05-09", "source": "curated" },
+    { "slug": "sibo-explained", "published_at": "2026-05-15", "source": "curated" }
   ],
   "trending_candidates": []
 }

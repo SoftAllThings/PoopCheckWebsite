@@ -97,7 +97,8 @@
     { "slug": "public-stool-and-gut-microbiome-datasets-2026", "published_at": "2026-05-08", "source": "manual-research-index" },
     { "slug": "ozempic-and-bowel-changes", "published_at": "2026-05-09", "source": "curated" },
     { "slug": "sibo-explained", "published_at": "2026-05-15", "source": "curated" },
-    { "slug": "magnesium-for-constipation", "published_at": "2026-05-16", "source": "curated" }
+    { "slug": "magnesium-for-constipation", "published_at": "2026-05-16", "source": "curated" },
+    { "slug": "bovine-colostrum-for-gut-health", "published_at": "2026-05-17", "source": "trending" }
   ],
   "trending_candidates": []
 }

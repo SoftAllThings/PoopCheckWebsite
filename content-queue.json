@@ -2,15 +2,6 @@
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
   "pending": [
     {
-      "slug": "bloating-causes-and-remedies",
-      "priority": 9,
-      "title": "Bloating: Causes, Triggers, and What Actually Reduces It",
-      "primary_keyword": "bloating causes and remedies",
-      "category": "gut-health",
-      "include_svg": false,
-      "notes": "Cover food triggers (FODMAPs, lactose, fructose), swallowed air, IBS, SIBO, motility issues. What works: low-FODMAP, slow eating, peppermint oil, fiber timing. Massive search volume."
-    },
-    {
       "slug": "yellow-stool-causes",
       "priority": 8,
       "title": "Yellow Stool: What It Means and When to See a Doctor",
@@ -98,7 +89,8 @@
     { "slug": "ozempic-and-bowel-changes", "published_at": "2026-05-09", "source": "curated" },
     { "slug": "sibo-explained", "published_at": "2026-05-15", "source": "curated" },
     { "slug": "magnesium-for-constipation", "published_at": "2026-05-16", "source": "curated" },
-    { "slug": "bovine-colostrum-for-gut-health", "published_at": "2026-05-17", "source": "trending" }
+    { "slug": "bovine-colostrum-for-gut-health", "published_at": "2026-05-17", "source": "trending" },
+    { "slug": "bloating-causes-and-remedies", "published_at": "2026-05-18", "source": "curated" }
   ],
   "trending_candidates": []
 }

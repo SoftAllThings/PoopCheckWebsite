@@ -2,15 +2,6 @@
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
   "pending": [
     {
-      "slug": "yellow-stool-causes",
-      "priority": 8,
-      "title": "Yellow Stool: What It Means and When to See a Doctor",
-      "primary_keyword": "yellow stool causes",
-      "category": "stool-analysis",
-      "include_svg": false,
-      "notes": "Fills the color-series gap (we have green, black, color overview). Causes: fast transit, bile issues, gallbladder/pancreas, giardia, fat malabsorption. Red flags vs benign."
-    },
-    {
       "slug": "leaky-gut-real-or-myth",
       "priority": 8,
       "title": "Leaky Gut: What the Science Actually Says (and Doesn't)",
@@ -90,7 +81,8 @@
     { "slug": "sibo-explained", "published_at": "2026-05-15", "source": "curated" },
     { "slug": "magnesium-for-constipation", "published_at": "2026-05-16", "source": "curated" },
     { "slug": "bovine-colostrum-for-gut-health", "published_at": "2026-05-17", "source": "trending" },
-    { "slug": "bloating-causes-and-remedies", "published_at": "2026-05-18", "source": "curated" }
+    { "slug": "bloating-causes-and-remedies", "published_at": "2026-05-18", "source": "curated" },
+    { "slug": "yellow-stool-causes", "published_at": "2026-05-19", "source": "curated" }
   ],
   "trending_candidates": []
 }

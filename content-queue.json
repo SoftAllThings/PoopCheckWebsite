@@ -2,51 +2,6 @@
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
   "pending": [
     {
-      "slug": "ozempic-and-bowel-changes",
-      "priority": 10,
-      "title": "Ozempic and Bowel Changes: Why GLP-1 Drugs Cause Constipation",
-      "primary_keyword": "ozempic constipation",
-      "category": "conditions",
-      "include_svg": false,
-      "notes": "GLP-1 mechanism (slowed gastric emptying, reduced motility), the constipation/diarrhea split, prevalence in Ozempic/Wegovy/Mounjaro trials (cite NEJM/JAMA), practical management, red flags. High search volume topic in 2026."
-    },
-    {
-      "slug": "sibo-explained",
-      "priority": 9,
-      "title": "SIBO: Causes, Symptoms, and What the Breath Test Actually Tells You",
-      "primary_keyword": "SIBO small intestinal bacterial overgrowth",
-      "category": "conditions",
-      "include_svg": false,
-      "notes": "Cover hydrogen vs methane vs hydrogen sulfide breath tests, prevalence, link to IBS, treatment options (rifaximin, elemental diet), recurrence rates. Cite Rome IV criteria and recent reviews."
-    },
-    {
-      "slug": "magnesium-for-constipation",
-      "priority": 9,
-      "title": "Magnesium for Constipation: Which Form Actually Works",
-      "primary_keyword": "magnesium for constipation",
-      "category": "nutrition",
-      "include_svg": false,
-      "notes": "Compare magnesium citrate, oxide, glycinate, hydroxide for stool softening. Mechanism (osmotic), effective doses, when not to use (kidney disease), interactions. Very high-intent search."
-    },
-    {
-      "slug": "bloating-causes-and-remedies",
-      "priority": 9,
-      "title": "Bloating: Causes, Triggers, and What Actually Reduces It",
-      "primary_keyword": "bloating causes and remedies",
-      "category": "gut-health",
-      "include_svg": false,
-      "notes": "Cover food triggers (FODMAPs, lactose, fructose), swallowed air, IBS, SIBO, motility issues. What works: low-FODMAP, slow eating, peppermint oil, fiber timing. Massive search volume."
-    },
-    {
-      "slug": "yellow-stool-causes",
-      "priority": 8,
-      "title": "Yellow Stool: What It Means and When to See a Doctor",
-      "primary_keyword": "yellow stool causes",
-      "category": "stool-analysis",
-      "include_svg": false,
-      "notes": "Fills the color-series gap (we have green, black, color overview). Causes: fast transit, bile issues, gallbladder/pancreas, giardia, fat malabsorption. Red flags vs benign."
-    },
-    {
       "slug": "leaky-gut-real-or-myth",
       "priority": 8,
       "title": "Leaky Gut: What the Science Actually Says (and Doesn't)",
@@ -121,7 +76,13 @@
     { "slug": "fermented-foods-vs-probiotic-supplements", "published_at": "2026-05-05", "source": "curated" },
     { "slug": "how-hydration-affects-stool", "published_at": "2026-05-06", "source": "curated" },
     { "slug": "exercise-and-bowel-movements", "published_at": "2026-05-07", "source": "curated" },
-    { "slug": "public-stool-and-gut-microbiome-datasets-2026", "published_at": "2026-05-08", "source": "manual-research-index" }
+    { "slug": "public-stool-and-gut-microbiome-datasets-2026", "published_at": "2026-05-08", "source": "manual-research-index" },
+    { "slug": "ozempic-and-bowel-changes", "published_at": "2026-05-09", "source": "curated" },
+    { "slug": "sibo-explained", "published_at": "2026-05-15", "source": "curated" },
+    { "slug": "magnesium-for-constipation", "published_at": "2026-05-16", "source": "curated" },
+    { "slug": "bovine-colostrum-for-gut-health", "published_at": "2026-05-17", "source": "trending" },
+    { "slug": "bloating-causes-and-remedies", "published_at": "2026-05-18", "source": "curated" },
+    { "slug": "yellow-stool-causes", "published_at": "2026-05-19", "source": "curated" }
   ],
   "trending_candidates": []
 }

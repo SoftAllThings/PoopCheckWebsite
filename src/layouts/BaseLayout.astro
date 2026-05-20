@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import SEO from '../components/seo/SEO.astro';
 import JsonLd from '../components/seo/JsonLd.astro';
+import Analytics from '../components/seo/Analytics.astro';
 import { organizationSchema } from '../utils/schema';
 import type { SEOProps } from '../utils/seo';
 
@@ -29,6 +30,7 @@ const { seo, schema } = Astro.props;
     <SEO {...seo} />
     <JsonLd schema={organizationSchema()} />
     {schema && <JsonLd schema={schema} />}
+    <Analytics />
   </head>
   <body class="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] font-sans antialiased">
     <!-- Skip to content -->

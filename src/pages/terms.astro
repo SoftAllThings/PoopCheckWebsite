@@ -1,6 +1,9 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+
+const TOS_VERSION = 'v1.0';
+const TOS_LAST_UPDATED = '16 May 2026';
 ---
 
 <PageLayout
@@ -16,7 +19,7 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
       </div>
 
       <h1 class="text-3xl md:text-4xl font-bold mb-2">Terms of Service</h1>
-      <p class="text-sm text-[var(--color-text-muted)] mb-10">Last updated: April 10, 2025</p>
+      <p class="text-sm text-[var(--color-text-muted)] mb-10">Version {TOS_VERSION} · Last updated: {TOS_LAST_UPDATED}</p>
 
       <div class="prose prose-invert max-w-none
         prose-headings:font-bold prose-headings:text-[var(--color-text)]
@@ -24,35 +27,140 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
         prose-p:text-[var(--color-text-muted)] prose-p:leading-relaxed
         prose-li:text-[var(--color-text-muted)]
         prose-strong:text-[var(--color-text)]
+        prose-a:text-[var(--color-accent)]
       ">
-        <p>By using PoopCheck, you agree to these Terms of Service. Please read them carefully.</p>
+        <p>These Terms of Service (the <strong>"Terms"</strong>) form a contract between you and Soft All Things LLC (<strong>"PoopCheck"</strong>, <strong>"we"</strong>, <strong>"us"</strong>). They govern your use of the PoopCheck mobile app and the PoopCheck website at <a href="https://www.poopcheck.app">www.poopcheck.app</a> (together, the <strong>"Service"</strong>). By creating an account, signing in, or otherwise using the Service, you agree to these Terms.</p>
 
-        <h2>Service Description</h2>
-        <p>PoopCheck is a wellness and health tracking application that uses AI to analyze stool photos and provide gut health insights. PoopCheck is <strong>not a medical device</strong> and is not intended to diagnose, treat, cure, or prevent any disease or medical condition.</p>
+        <p>These Terms do not, on their own, authorise us to use your personal data for any specific purpose. Our processing of your personal data is described separately in our <a href="/privacy/">Privacy Notice</a>, our Health Data Consent, and our Commercial Data Use Notice, and in the consents you grant in-app. Those documents are informational and consent-based; you can review, grant, and withdraw consents at any time from the Privacy section of the app's Settings.</p>
 
-        <h2>Medical Disclaimer</h2>
-        <p>The information provided by PoopCheck is for informational and wellness tracking purposes only. It should not be used as a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.</p>
+        <h2>1. Who we are and what these Terms do</h2>
+        <p>We are <strong>Soft All Things LLC</strong>, a company registered in the State of Wyoming, USA. If you do not agree to these Terms, please do not use the Service.</p>
 
-        <h2>User Accounts</h2>
-        <p>You are responsible for maintaining the security of your account credentials. You must provide accurate information when creating an account. You may not use the service for any illegal or unauthorized purpose.</p>
+        <h2>2. Definitions</h2>
+        <p>In these Terms, the following capitalised words have the meanings set out below.</p>
+        <ul>
+          <li><strong>"Account"</strong> — your registered PoopCheck account.</li>
+          <li><strong>"Content"</strong> — any image, text, symptom data, lifestyle data, message, or other material you submit to or generate through the Service.</li>
+          <li><strong>"Premium"</strong> — any paid subscription tier offered through the Service.</li>
+          <li><strong>"Privacy Notice"</strong> — the document at <a href="/privacy/">poopcheck.app/privacy</a> describing how we process personal data.</li>
+          <li><strong>"Service"</strong> — the PoopCheck mobile application, the PoopCheck website, and any related features we make available to you.</li>
+          <li><strong>"Wellness Feedback"</strong> — the AI-generated suggestions, information, and observations the Service provides based on your Content.</li>
+        </ul>
 
-        <h2>Acceptable Use</h2>
-        <p>You agree to use PoopCheck only for its intended purpose of personal health and wellness tracking. You may not upload inappropriate content, attempt to reverse-engineer the AI system, or abuse the community features.</p>
+        <h2>3. Eligibility</h2>
+        <p>You may use the Service only if <strong>you are at least 18 years old</strong>. By creating an Account you confirm that you meet this minimum age. We do not knowingly accept users under 18 and we may suspend or close any Account where we have a reasonable basis to believe the user is under 18.</p>
+        <p>You must also be legally able to enter into a binding contract under the laws that apply to you and you must not be barred from using the Service under any sanctions list or applicable export control law.</p>
 
-        <h2>Subscriptions and Payments</h2>
-        <p>Premium subscriptions are billed through Apple App Store or Google Play Store. Subscription terms, pricing, and cancellation policies are governed by the respective app store's terms. Refund requests should be directed to the relevant app store.</p>
+        <h2>4. What the Service is — and what it isn't</h2>
+        <p>PoopCheck is a <strong>wellness tracker</strong>. You can use the Service to capture images of your stool and record symptom and lifestyle context, receive AI-generated Wellness Feedback, track changes over time, and take part in optional features such as community participation, chat, or Premium content.</p>
+        <p><strong>The Service is not a medical device, and it does not provide medical advice, diagnosis, treatment, or prescription.</strong> The Wellness Feedback is informational only and reflects pattern-recognition by software, not clinical judgement. Always consult a qualified healthcare professional for any medical concern. Do not rely on the Service in any emergency. If you think you are experiencing a medical emergency, call your local emergency number.</p>
+        <p>The Service does not always work perfectly. AI output can be inaccurate, incomplete, or out of date. You are responsible for the decisions you make based on the Service and for seeking professional advice when appropriate.</p>
 
-        <h2>Intellectual Property</h2>
-        <p>PoopCheck and its original content, features, and functionality are owned by PoopCheck and are protected by international copyright, trademark, and other intellectual property laws.</p>
+        <h2>5. Your Account</h2>
+        <p>To use most of the Service you need to register an Account. You agree to:</p>
+        <ul>
+          <li>provide accurate information when you register and keep it up to date;</li>
+          <li>keep your credentials confidential and not share your Account with anyone else;</li>
+          <li>tell us promptly at <a href="mailto:poopcheck@softallthings.com">poopcheck@softallthings.com</a> if you suspect any unauthorised use of your Account; and</li>
+          <li>be responsible for activity that takes place under your Account, except where caused by our fault.</li>
+        </ul>
+        <p>You can close your Account at any time from the Settings screen of the app. Closing your Account triggers deletion of your personal data as described in the Privacy Notice.</p>
 
-        <h2>Limitation of Liability</h2>
-        <p>PoopCheck shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the service. Our total liability shall not exceed the amount you paid for the service in the 12 months preceding the claim.</p>
+        <h2>6. Acceptable use</h2>
+        <p>When you use the Service, you agree not to:</p>
+        <ul>
+          <li>use the Service for any unlawful, harmful, fraudulent, infringing, or abusive purpose;</li>
+          <li>submit Content that is not your own — do not upload images of other people without their consent or images you have no right to submit;</li>
+          <li>submit illegal Content, Content depicting minors, or Content that is sexual, threatening, harassing, or hateful;</li>
+          <li>impersonate any person or misrepresent your affiliation with any person or entity;</li>
+          <li>attempt to gain unauthorised access to the Service, other users' Accounts, or any of our systems;</li>
+          <li>interfere with or disrupt the Service, including by uploading malware, scraping at scale, reverse-engineering, or stress-testing without our prior written permission;</li>
+          <li>use the Service to build a competing product, to train a competing model, or to systematically extract data;</li>
+          <li>circumvent any access control, rate limit, or technical protection measure; or</li>
+          <li>use the Service in any way that infringes another person's intellectual property, privacy, or other rights.</li>
+        </ul>
+        <p>We may suspend or close Accounts that breach this section. Where the breach is serious, ongoing, or unlawful, we may do so without notice.</p>
 
-        <h2>Changes to Terms</h2>
-        <p>We reserve the right to modify these terms at any time. We will notify users of significant changes through the app or email.</p>
+        <h2>7. Your Content and the limited licence you give us</h2>
+        <p>You keep all rights you already have in your Content. We do not claim ownership of your Content, and nothing in these Terms transfers ownership of your personal data to us.</p>
+        <p><strong>Limited licence to operate the Service.</strong> So that we can technically deliver the Service to you, you grant us a <strong>limited, worldwide, non-exclusive, royalty-free, revocable licence</strong> to host, store, transmit, process, display, and back up your Content <strong>for the sole purpose of operating the Service for you</strong> and for the period that you have an Account with us. This licence is the minimum we need to make the Service work. It is not a transfer of ownership and it does not authorise any other use.</p>
+        <p><strong>Other uses require a separate consent.</strong> Any use of your Content beyond operating the Service — including (a) training PoopCheck's own AI models, (b) creating commercial aggregate insights, (c) licensing de-identified datasets to third parties, and (d) licensing raw images and linked metadata to named third-party buyers — happens only with an explicit, separate, granular consent you give us in-app, on terms set out in our Privacy Notice, Health Data Consent, and Commercial Data Use Notice. <strong>You can refuse those consents and still use the Service.</strong> Refusing any of (a)–(d) does not affect your ability to use PoopCheck for its core wellness purpose.</p>
+        <p><strong>Withdrawal.</strong> You can withdraw any consent at any time from the Privacy section of the app's Settings. Withdrawal is as easy as granting consent. Withdrawal does not affect the lawfulness of processing carried out before withdrawal, and it does not affect aggregate statistical outputs that no longer identify you and that we have already published or delivered under the consent in force at the time. Future processing for the withdrawn purpose stops immediately, and we will exclude your data from future jobs as described in the Privacy Notice.</p>
+        <p><strong>Community Content.</strong> If you choose to publish Content in any community area of the Service, you also grant us and other users of that community the right to view, share, and interact with that Content within the Service. You can delete community Content you have posted at any time, subject to reasonable backup retention periods.</p>
+        <p><strong>Feedback.</strong> If you send us suggestions, ideas, or feedback about the Service, you agree that we may use them without restriction and without payment to you. This applies to product feedback only and does not affect your personal data rights.</p>
 
-        <h2>Contact</h2>
-        <p>For questions about these Terms, contact us at poopcheck@softallthings.com.</p>
+        <h2>8. Our intellectual property</h2>
+        <p>The Service, including its software, user interface, design, branding, logos, text, graphics, and AI models, is owned by PoopCheck or its licensors and is protected by intellectual-property laws. Except for the rights you are expressly given in these Terms, we do not grant you any right or licence in or to the Service or our intellectual property.</p>
+        <p>You may use the Service only as the Service is intended to be used. You may not copy, modify, distribute, sell, lease, sublicense, decompile, or reverse-engineer any part of the Service except to the extent we are not permitted by law to prohibit it.</p>
+
+        <h2>9. Premium subscriptions and billing</h2>
+        <p>The Service is free to use for its core features. Some features are available only on a paid <strong>Premium</strong> subscription, sold through the Apple App Store or Google Play.</p>
+        <p><strong>Auto-renewal and billing.</strong> Premium subscriptions auto-renew unless you cancel at least 24 hours before the end of the current billing period. Your subscription is billed by Apple or Google, not by us, and is governed by their terms in addition to ours. You can manage and cancel your subscription at any time in your Apple ID or Google Play account settings.</p>
+        <p><strong>Free trials.</strong> Where we offer a free trial, the trial converts into a paid subscription automatically at the end of the trial period unless you cancel before then.</p>
+        <p><strong>Price changes.</strong> We may change the price of Premium with reasonable advance notice. Price changes apply from the next billing period after the notice. You can cancel before the change takes effect.</p>
+        <p><strong>Refunds.</strong> Refunds are governed by the platform that took the payment (Apple or Google). Where applicable consumer law gives you a withdrawal or cancellation right, your rights under that law are not affected by anything in this section. EU and UK consumers have a 14-day right of withdrawal under EU Directive 2011/83/EU and the UK Consumer Contracts Regulations; by starting to use Premium during that period you may, depending on the law that applies to you, lose part or all of that right — we will tell you that clearly in the purchase flow.</p>
+        <p><strong>Taxes.</strong> Stated prices include VAT, GST, or sales tax where required by applicable law. Where they do not, you are responsible for any taxes that apply to your purchase.</p>
+
+        <h2>10. Third-party services</h2>
+        <p>The Service relies on third-party platforms — including Apple, Google, Amazon Web Services, and RevenueCat — for hosting, identity, payment processing, and similar functions. Your relationship with those third parties is governed by their own terms and privacy policies. We do our best to choose reputable providers and we describe them in our Privacy Notice, but we are not responsible for them or for their services.</p>
+        <p>Links from within the Service to third-party websites or services are provided for convenience only. We do not endorse them and we are not responsible for them.</p>
+
+        <h2>11. Term, suspension and termination</h2>
+        <p>These Terms apply from the moment you accept them and continue until your Account is closed.</p>
+        <p><strong>You may close your Account at any time</strong> from the Settings screen of the app. Closing your Account triggers deletion of your personal data as described in the Privacy Notice.</p>
+        <p><strong>We may suspend or close your Account, with or without notice,</strong> if (a) we reasonably believe you have materially breached these Terms, (b) we are required to do so by law or by a competent authority, (c) you have not used the Service for an extended period, or (d) we discontinue the Service or any material part of it. Where we suspend or close your Account for reasons other than your serious breach, we will give you reasonable advance notice and a reasonable opportunity to export your data.</p>
+        <p>Sections that by their nature should survive termination — including Sections 7, 8, 13, 14, 15, 17, 18, and 19 — survive the end of these Terms.</p>
+
+        <h2>12. Changes to these Terms</h2>
+        <p>We may change these Terms from time to time. If a change is material, we will give you reasonable advance notice through the Service or by email, and we will ask you to accept the new Terms before you can continue to use the Service. Continuing to use the Service after the new Terms take effect means you accept the new Terms. If you do not accept, you may close your Account.</p>
+        <p>Where a change is required by law or relates to a new feature you choose to use, it may take effect more quickly.</p>
+
+        <h2>13. Disclaimers</h2>
+        <p>To the maximum extent permitted by the law that applies to you, the Service is provided <strong>"as is" and "as available"</strong>. We do not make any warranty that the Service will be uninterrupted, error-free, secure, accurate, or fit for any particular purpose, and we disclaim all implied warranties.</p>
+        <p><strong>The Service does not provide medical advice.</strong> No Wellness Feedback, AI output, recommendation, chat message, or other Content within the Service is a substitute for advice from a qualified healthcare professional. You use the Service at your own risk.</p>
+        <p>Nothing in this Section excludes or limits any warranty, condition, right, or remedy that the law that applies to you does not allow to be excluded or limited. In particular, if you are a consumer in the EU, UK, or another jurisdiction with statutory consumer guarantees, those guarantees apply alongside these Terms.</p>
+
+        <h2>14. Limitation of liability</h2>
+        <p>To the maximum extent permitted by the law that applies to you, and subject to the next paragraph:</p>
+        <ul>
+          <li>we are not liable for any indirect, incidental, consequential, special, or exemplary damages, or for loss of profits, revenue, data, goodwill, or business opportunity, arising out of or in connection with the Service or these Terms; and</li>
+          <li>our total aggregate liability to you for all claims arising out of or in connection with the Service or these Terms is limited to the greater of (a) the amount you paid us for Premium during the 12 months before the event giving rise to the claim, and (b) USD 100.</li>
+        </ul>
+        <p><strong>Nothing in these Terms excludes or limits our liability for:</strong> (i) death or personal injury caused by our negligence; (ii) fraud or fraudulent misrepresentation; (iii) gross negligence or wilful misconduct; (iv) any liability that the law that applies to you does not allow to be excluded or limited; or (v) any statutory rights you have as a consumer.</p>
+        <p>If you are a consumer in the European Union or the United Kingdom, this section does not affect the mandatory consumer-protection rights you have under the law of your country of residence.</p>
+
+        <h2>15. Indemnification</h2>
+        <p>If you are a business user or you use the Service in connection with a business activity, you agree to indemnify and hold harmless PoopCheck and its directors, employees, and contractors against any third-party claim arising from (a) your breach of these Terms, (b) your unlawful use of the Service, or (c) Content you submit that infringes a third party's rights.</p>
+        <p>This Section does not apply to consumers. If you are a consumer, you are not required to indemnify us beyond what general law requires.</p>
+
+        <h2>16. Force majeure</h2>
+        <p>We are not liable for any failure or delay in performing our obligations under these Terms to the extent the failure or delay is caused by an event outside our reasonable control, including natural disaster, war, terrorism, civil disorder, labour dispute, governmental action, network or telecommunications failure, or any third-party platform outage.</p>
+
+        <h2>17. Governing law</h2>
+        <p>These Terms are governed by the laws of the State of Wyoming, USA, without giving effect to its conflict-of-laws rules.</p>
+        <p><strong>Important note for consumers outside that jurisdiction.</strong> Many countries — including every Member State of the European Union, the United Kingdom, Canada (including Quebec), Australia, and others — give consumers mandatory protections that they cannot waive by contract. Nothing in this section deprives you of any consumer-protection right granted by the law of the country in which you ordinarily live. If you are an EU or UK consumer, you may bring proceedings in the courts of your country of residence.</p>
+
+        <h2>18. Dispute resolution</h2>
+        <p>We hope to resolve any dispute informally first. Before filing any formal claim, please contact us at <a href="mailto:poopcheck@softallthings.com">poopcheck@softallthings.com</a> so we can try to help.</p>
+        <p><strong>Consumer disputes inside the EU.</strong> EU consumers may use the European Commission's Online Dispute Resolution platform at <a href="https://ec.europa.eu/consumers/odr/" rel="noopener">ec.europa.eu/consumers/odr</a>. We are not required to participate in alternative dispute resolution unless required by applicable law.</p>
+        <p><strong>Disputes outside the EU/UK.</strong> For disputes that are not subject to mandatory consumer-protection rules of another jurisdiction, the courts of Wyoming, USA have exclusive jurisdiction.</p>
+        <p>Nothing in this Section affects your right to bring proceedings before a regulator (for example a data-protection authority such as the UK Information Commissioner's Office, the French CNIL, the Irish Data Protection Commission, the Washington State Attorney General, the California Privacy Protection Agency, or the Quebec Commission d'accès à l'information).</p>
+
+        <h2>19. Miscellaneous</h2>
+        <ul>
+          <li><strong>Entire agreement.</strong> These Terms (together with the Privacy Notice and any in-app consent records that apply to you) make up the entire agreement between you and us about the Service. They replace any prior agreement on the same subject.</li>
+          <li><strong>No waiver.</strong> If we do not enforce a right or provision of these Terms, that does not waive it.</li>
+          <li><strong>Severability.</strong> If any part of these Terms is found to be unenforceable, the rest will continue to apply.</li>
+          <li><strong>Assignment.</strong> You may not assign or transfer these Terms without our prior written consent. We may assign these Terms to an affiliate, to a successor in connection with a merger or acquisition, or to any party that assumes responsibility for the Service.</li>
+          <li><strong>No third-party beneficiaries.</strong> These Terms do not give any rights to anyone other than you and us, except where required by law.</li>
+          <li><strong>Notices.</strong> We may give you notices through the Service, by email to the address associated with your Account, or in any other way permitted by law. You may give us notices at <a href="mailto:poopcheck@softallthings.com">poopcheck@softallthings.com</a>.</li>
+          <li><strong>Language.</strong> The English version of these Terms is the governing version. Any translation is provided for convenience only.</li>
+        </ul>
+
+        <h2>20. How to contact us</h2>
+        <p>For general support and any questions about these Terms: <a href="mailto:poopcheck@softallthings.com">poopcheck@softallthings.com</a>.</p>
+        <p>For privacy and data-protection enquiries, please see the <a href="/privacy/">Privacy Notice</a> for the full set of contact channels (including the EU representative once appointed under GDPR Article 27).</p>
+        <p>Registered office: Soft All Things LLC, Wyoming, USA. Postal address available on request.</p>
       </div>
     </div>
   </div>

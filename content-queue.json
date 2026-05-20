@@ -2,15 +2,6 @@
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
   "pending": [
     {
-      "slug": "leaky-gut-real-or-myth",
-      "priority": 8,
-      "title": "Leaky Gut: What the Science Actually Says (and Doesn't)",
-      "primary_keyword": "leaky gut syndrome",
-      "category": "research",
-      "include_svg": false,
-      "notes": "Distinguish increased intestinal permeability (real, measurable) from 'leaky gut syndrome' (wellness umbrella). Cite zonulin research, IBD/celiac links. Differentiates from wellness blogs by being honest about evidence."
-    },
-    {
       "slug": "pencil-thin-stools-when-to-worry",
       "priority": 8,
       "title": "Pencil-Thin Stools: When It's Normal and When to Worry",
@@ -82,7 +73,8 @@
     { "slug": "magnesium-for-constipation", "published_at": "2026-05-16", "source": "curated" },
     { "slug": "bovine-colostrum-for-gut-health", "published_at": "2026-05-17", "source": "trending" },
     { "slug": "bloating-causes-and-remedies", "published_at": "2026-05-18", "source": "curated" },
-    { "slug": "yellow-stool-causes", "published_at": "2026-05-19", "source": "curated" }
+    { "slug": "yellow-stool-causes", "published_at": "2026-05-19", "source": "curated" },
+    { "slug": "leaky-gut-real-or-myth", "published_at": "2026-05-20", "source": "curated" }
   ],
   "trending_candidates": []
 }

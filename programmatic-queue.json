@@ -1,15 +1,6 @@
 {
   "$comment": "Queue for the programmatic-writer agent (.claude/agents/programmatic-writer.md). The agent pops from pending[] by mode (bristol or comparison). Schedule is weekly — don't over-fill. Bristol types 1-7 and the first 3 competitors are already shipped in the initial scaffold; new work goes here.",
-  "pending": [
-    {
-      "mode": "comparison",
-      "slug": "stooly",
-      "name": "Stooly",
-      "website_url": "",
-      "priority": 3,
-      "notes": "Free-with-no-ads AI rival. Direct feature parity — research carefully."
-    }
-  ],
+  "pending": [],
   "published": [
     { "mode": "bristol", "slug": "type-1", "published_at": "2026-04-20", "source": "initial-scaffold" },
     { "mode": "bristol", "slug": "type-2", "published_at": "2026-04-20", "source": "initial-scaffold" },
@@ -23,6 +14,7 @@
     { "mode": "comparison", "slug": "balloon", "published_at": "2026-04-20", "source": "initial-scaffold" },
     { "mode": "comparison", "slug": "bowelle", "published_at": "2026-04-22", "source": "programmatic-writer" },
     { "mode": "comparison", "slug": "plop", "published_at": "2026-05-06", "source": "programmatic-writer" },
-    { "mode": "comparison", "slug": "mysymptoms", "published_at": "2026-05-13", "source": "programmatic-writer" }
+    { "mode": "comparison", "slug": "mysymptoms", "published_at": "2026-05-13", "source": "programmatic-writer" },
+    { "mode": "comparison", "slug": "stooly", "published_at": "2026-05-20", "source": "programmatic-writer" }
   ]
 }

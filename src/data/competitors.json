@@ -185,6 +185,41 @@
         { "title": "AppBrain – mySymptoms Android install stats", "url": "https://www.appbrain.com/app/mysymptoms-food-diary/com.sglabs.mysymptoms" }
       ],
       "last_verified": "2026-05-13"
+    },
+    {
+      "slug": "stooly",
+      "name": "Stooly",
+      "tagline": "Free, ad-free AI poop and gut tracker built around a single daily photo — no subscription, no hardware, iOS-only.",
+      "website_url": "https://stooly.app/",
+      "positioning": "Stooly's own pitch: \"AI-powered gut health tracking with just your phone — free, private, and available anywhere you go.\" The app analyses a single stool photo against the Bristol Stool Scale, returns a gut-health score, and surfaces trends over days, weeks and months. No subscription, no in-app purchases, no ads — the developer (Four Pi Systems LLC) explicitly commits to keeping it free.",
+      "pricing_notes": "Stooly is 100% free with no subscription, no in-app purchases, and no ads, per its own website and App Store listing. There is no premium tier to upgrade to.",
+      "features": [
+        { "name": "AI photo analysis of stool", "stooly": true, "poopcheck": true, "note": "Both apps classify Bristol type, color and consistency from a single photo. Stooly is the closest direct feature-parity rival on this core capability." },
+        { "name": "Bristol Stool Scale classification", "stooly": "Automatic from photo", "poopcheck": "Automatic from photo", "note": "Both ground their AI in the Bristol scale and surface the type to the user." },
+        { "name": "Daily gut-health score", "stooly": true, "poopcheck": true, "note": "Both apps roll the per-log analysis into a single gut-health score that trends over time." },
+        { "name": "Trend and pattern analysis (days / weeks / months)", "stooly": true, "poopcheck": true },
+        { "name": "AI digestive chat assistant", "stooly": false, "poopcheck": "SOFTie (Premium)", "note": "Stooly's public materials don't describe an interactive AI assistant — it's analysis + trends, not chat." },
+        { "name": "Photo handling", "stooly": "Analysed then discarded — never stored on servers", "poopcheck": "Cloud-synced with account controls", "note": "Stooly's privacy stance is its clearest differentiator: photos are deleted immediately after analysis." },
+        { "name": "Community / leaderboard", "stooly": false, "poopcheck": true },
+        { "name": "Gamification / streaks / rewards", "stooly": false, "poopcheck": true },
+        { "name": "Food and lifestyle correlation", "stooly": "Surfaces correlations across diet, sleep and habits in trend view", "poopcheck": "Coming with Premium analytics" },
+        { "name": "Apple Health integration", "stooly": "Not described in public materials", "poopcheck": true },
+        { "name": "Android availability", "stooly": false, "poopcheck": true, "note": "Stooly is iOS-only as of May 2026; PoopCheck ships on both iOS and Android." },
+        { "name": "Free tier with no ads", "stooly": "Free, no ads, no subscription", "poopcheck": "Free, no ads — Premium is optional" },
+        { "name": "Premium tier with deeper analytics", "stooly": false, "poopcheck": "$6.99/mo or $49.99/yr (SOFTie, advanced analytics, exports)" }
+      ],
+      "strengths": "Stooly's hard-line stance on price and privacy is the real differentiator. The app is genuinely free with no subscription tier, no in-app purchases, and no ads, and photos are analysed in-flight then discarded — they're never stored on a server. For users who want AI stool analysis but don't want a cloud library of their photos or a subscription prompt, that combination is unusually clean. The product itself stays focused: a photo, a Bristol-grounded score, and a trend view.",
+      "weaknesses_for_user": "Stooly is iOS-only, so Android users can't run it at all. Because nothing is stored beyond the derived insight, there's no way to revisit the original photo if you want to second-guess an analysis or share it with a clinician. The feature surface is intentionally narrow — no AI chat assistant, no community, no gamification, and no documented Apple Health integration — so power users who want layered analytics or a coach-style experience will find it thin. It's also a young app (March 2026 listing, very few public reviews), so its long-term roadmap is unproven.",
+      "when_competitor_is_better": "If you're on iOS, you want AI stool analysis with the strictest possible privacy posture (photos discarded immediately, no cloud library) and a permanent guarantee of no subscription or ads, Stooly is the cleaner fit. It's also the right pick if you actively want a minimal app and find broader trackers overwhelming.",
+      "when_poopcheck_is_better": "If you're on Android, want an AI digestive chat assistant (SOFTie), gamification and community, Apple Health integration, or the ability to keep your photo history for context, PoopCheck is the better fit. PoopCheck's free tier is also ad-free, so you don't have to give up the no-ads experience to get the broader feature set.",
+      "sources": [
+        { "title": "Stooly — Free AI Gut Health Tracking (official site)", "url": "https://stooly.app/" },
+        { "title": "Stooly – AI Poop & Gut Tracker on the App Store", "url": "https://apps.apple.com/us/app/stooly-ai-poop-gut-tracker/id6760133808" },
+        { "title": "Stooly AI on the App Store (alternate listing)", "url": "https://apps.apple.com/us/app/stooly-ai/id6759056551" },
+        { "title": "Stooly customer reviews aggregator (Sociable Labs)", "url": "https://stooly.sociablelabs.com/" },
+        { "title": "Bristol Stool Scale – Continence Foundation of Australia (clinical reference for both apps' classification)", "url": "https://www.continence.org.au/bristol-stool-chart" }
+      ],
+      "last_verified": "2026-05-20"
     }
   ]
 }

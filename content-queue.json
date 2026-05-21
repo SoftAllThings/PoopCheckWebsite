@@ -2,15 +2,6 @@
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
   "pending": [
     {
-      "slug": "pencil-thin-stools-when-to-worry",
-      "priority": 8,
-      "title": "Pencil-Thin Stools: When It's Normal and When to Worry",
-      "primary_keyword": "pencil thin stools",
-      "category": "conditions",
-      "include_svg": false,
-      "notes": "Common health-anxiety search. Cover benign causes (low fiber, hemorrhoids, transient) vs concerning (persistent narrowing, colon cancer screening guidance). Cite USPSTF colorectal screening guidelines."
-    },
-    {
       "slug": "antibiotics-and-gut-microbiome-recovery",
       "priority": 7,
       "title": "Antibiotics and Your Gut Microbiome: How Long Recovery Actually Takes",
@@ -74,7 +65,8 @@
     { "slug": "bovine-colostrum-for-gut-health", "published_at": "2026-05-17", "source": "trending" },
     { "slug": "bloating-causes-and-remedies", "published_at": "2026-05-18", "source": "curated" },
     { "slug": "yellow-stool-causes", "published_at": "2026-05-19", "source": "curated" },
-    { "slug": "leaky-gut-real-or-myth", "published_at": "2026-05-20", "source": "curated" }
+    { "slug": "leaky-gut-real-or-myth", "published_at": "2026-05-20", "source": "curated" },
+    { "slug": "pencil-thin-stools-when-to-worry", "published_at": "2026-05-21", "source": "curated" }
   ],
   "trending_candidates": []
 }

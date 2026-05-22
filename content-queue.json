@@ -2,15 +2,6 @@
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
   "pending": [
     {
-      "slug": "antibiotics-and-gut-microbiome-recovery",
-      "priority": 7,
-      "title": "Antibiotics and Your Gut Microbiome: How Long Recovery Actually Takes",
-      "primary_keyword": "antibiotics gut microbiome recovery",
-      "category": "gut-health",
-      "include_svg": false,
-      "notes": "Recovery timelines from key studies (months to years for full diversity), antibiotic-specific impact (broad vs narrow spectrum), rescue strategies (fermented foods, prebiotics, S. boulardii). Cite Dethlefsen, Palleja studies."
-    },
-    {
       "slug": "microplastics-in-stool-2026",
       "priority": 7,
       "title": "Microplastics in Stool: What 2026 Research Actually Shows",
@@ -66,7 +57,8 @@
     { "slug": "bloating-causes-and-remedies", "published_at": "2026-05-18", "source": "curated" },
     { "slug": "yellow-stool-causes", "published_at": "2026-05-19", "source": "curated" },
     { "slug": "leaky-gut-real-or-myth", "published_at": "2026-05-20", "source": "curated" },
-    { "slug": "pencil-thin-stools-when-to-worry", "published_at": "2026-05-21", "source": "curated" }
+    { "slug": "pencil-thin-stools-when-to-worry", "published_at": "2026-05-21", "source": "curated" },
+    { "slug": "antibiotics-and-gut-microbiome-recovery", "published_at": "2026-05-22", "source": "curated" }
   ],
   "trending_candidates": []
 }

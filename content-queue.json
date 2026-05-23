@@ -2,15 +2,6 @@
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
   "pending": [
     {
-      "slug": "microplastics-in-stool-2026",
-      "priority": 7,
-      "title": "Microplastics in Stool: What 2026 Research Actually Shows",
-      "primary_keyword": "microplastics in stool",
-      "category": "research",
-      "include_svg": false,
-      "notes": "Cite the 2018 Vienna pilot, 2022-2025 expansion studies, particle counts per gram of feces, IBD correlation work. Honest about what's known vs speculative. Trending search term."
-    },
-    {
       "slug": "postbiotics-explained",
       "priority": 7,
       "title": "Postbiotics Explained: The Third Wave After Probiotics and Prebiotics",
@@ -58,7 +49,8 @@
     { "slug": "yellow-stool-causes", "published_at": "2026-05-19", "source": "curated" },
     { "slug": "leaky-gut-real-or-myth", "published_at": "2026-05-20", "source": "curated" },
     { "slug": "pencil-thin-stools-when-to-worry", "published_at": "2026-05-21", "source": "curated" },
-    { "slug": "antibiotics-and-gut-microbiome-recovery", "published_at": "2026-05-22", "source": "curated" }
+    { "slug": "antibiotics-and-gut-microbiome-recovery", "published_at": "2026-05-22", "source": "curated" },
+    { "slug": "microplastics-in-stool-2026", "published_at": "2026-05-23", "source": "curated" }
   ],
   "trending_candidates": []
 }

@@ -1,5 +1,7 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
+// @ts-expect-error — provided at runtime by @astrojs/cloudflare
+import { env } from 'cloudflare:workers';
 
 export const prerender = false;
 
@@ -36,7 +38,7 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    const apiKey = import.meta.env.RESEND_API_KEY;
+    const apiKey = (env as Record<string, string>).RESEND_API_KEY;
     if (!apiKey) {
       console.error('RESEND_API_KEY not configured');
       return new Response(JSON.stringify({ error: 'Support system is not configured.' }), {

@@ -1,16 +1,6 @@
 {
   "$comment": "Topic backlog for the autonomous blog-writer agent. See .claude/agents/blog-writer.md. Agent pops from pending[] by priority (desc) then insertion order. Moves picked topics to published[]. Hand-edit freely.",
-  "pending": [
-    {
-      "slug": "postbiotics-explained",
-      "priority": 7,
-      "title": "Postbiotics Explained: The Third Wave After Probiotics and Prebiotics",
-      "primary_keyword": "postbiotics",
-      "category": "nutrition",
-      "include_svg": false,
-      "notes": "ISAPP 2021 definition, key compounds (SCFAs, exopolysaccharides, cell-wall fragments), evidence base vs probiotics, clinical applications. Back-link from probiotics-vs-prebiotics post."
-    }
-  ],
+  "pending": [],
   "published": [
     { "slug": "bristol-stool-chart-types-explained", "source": "seed" },
     { "slug": "do-i-have-colon-cancer", "source": "seed" },
@@ -51,7 +41,8 @@
     { "slug": "pencil-thin-stools-when-to-worry", "published_at": "2026-05-21", "source": "curated" },
     { "slug": "antibiotics-and-gut-microbiome-recovery", "published_at": "2026-05-22", "source": "curated" },
     { "slug": "microplastics-in-stool-2026", "published_at": "2026-05-23", "source": "curated" },
-    { "slug": "apple-cider-vinegar-for-gut-health", "published_at": "2026-05-24", "source": "trending" }
+    { "slug": "apple-cider-vinegar-for-gut-health", "published_at": "2026-05-24", "source": "trending" },
+    { "slug": "postbiotics-explained", "published_at": "2026-05-25", "source": "curated" }
   ],
   "trending_candidates": []
 }

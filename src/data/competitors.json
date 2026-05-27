@@ -220,6 +220,45 @@
         { "title": "Bristol Stool Scale – Continence Foundation of Australia (clinical reference for both apps' classification)", "url": "https://www.continence.org.au/bristol-stool-chart" }
       ],
       "last_verified": "2026-05-20"
+    },
+    {
+      "slug": "bearable",
+      "name": "Bearable",
+      "tagline": "Highly customizable mood and symptom tracker with a correlation engine — it logs bowel movements against the Bristol chart, but manually, alongside dozens of other health metrics.",
+      "website_url": "https://bearable.app/",
+      "positioning": "A general-purpose mood, symptom and chronic-illness tracker. Bearable's own pitch: record your \"Mood, Emotions, Sleep, Symptoms, & Energy Levels with just a few taps each day,\" plus endless custom metrics, then surface the correlation between anything you do and how you feel. In 2021 it added a dedicated bowel-movement section — \"Add multiple timestamped entries per day based on the Bristol Stool Chart\" with a customizable tag or note on each — so gut tracking is one module inside a much broader health tracker, not the whole product.",
+      "pricing_notes": "Most features are usable free. Premium is around $6.99/month or $34.99/year (the annual plan is frequently discounted to ~$18.99) with a 7-day free trial, and unlocks correlation reports, custom experiments, unlimited goals, and access to history older than the last 30 days. Bearable also runs a \"Bearable Heroes\" sponsorship program offering free access to people who can't afford a subscription. Check bearable.app/our-pricing-and-principles for current pricing.",
+      "features": [
+        { "name": "AI photo analysis of stool", "bearable": false, "poopcheck": true, "note": "Bearable logs bowel movements manually against the Bristol chart; PoopCheck classifies Bristol type, color and consistency from a single photo." },
+        { "name": "Bristol Stool Scale classification", "bearable": "Manual (tap in, with example pictures)", "poopcheck": "Automatic from photo", "note": "Bearable shows Bristol example images to help you pick the type yourself; it doesn't read the photo for you." },
+        { "name": "Bowel-movement logging with tags (color, urgency, pain, timestamps)", "bearable": true, "poopcheck": "Bristol type + color + consistency from photo", "note": "Bearable supports multiple timestamped entries per day with custom tags and notes." },
+        { "name": "Multi-domain tracking (mood, sleep, energy, pain, medication, nutrition)", "bearable": true, "poopcheck": "Gut-specific", "note": "Bearable's core strength — it tracks far more than the gut. PoopCheck stays focused on stool and gut health." },
+        { "name": "Unlimited custom metrics / factors", "bearable": true, "poopcheck": false, "note": "Define and graph your own variables." },
+        { "name": "Correlation reports across everything you track", "bearable": "Premium", "poopcheck": "Coming with Premium analytics", "note": "Bearable's correlation engine connects symptoms to diet, sleep, meds and more." },
+        { "name": "Custom experiments & goals", "bearable": "Premium", "poopcheck": false },
+        { "name": "Daily gut-health score", "bearable": false, "poopcheck": true, "note": "Bearable produces graphs across many metrics but no single gut-specific score." },
+        { "name": "AI digestive chat assistant", "bearable": false, "poopcheck": "SOFTie (Premium)" },
+        { "name": "Wearable & health-app integrations", "bearable": "Apple Health, Google Fit, Fitbit, Garmin, Oura, Samsung Health", "poopcheck": "Apple Health", "note": "Bearable's integration breadth is a genuine advantage for whole-body tracking." },
+        { "name": "iOS + Android availability", "bearable": true, "poopcheck": true, "note": "Both apps ship on iOS and Android." },
+        { "name": "Free tier", "bearable": "Extensive free tier; correlations and history beyond 30 days need Premium", "poopcheck": "Free, no ads — Premium is optional" },
+        { "name": "Premium pricing", "bearable": "$6.99/mo or $34.99/yr (often discounted to ~$18.99/yr)", "poopcheck": "$6.99/mo or $49.99/yr" },
+        { "name": "App store rating", "bearable": "4.8★ iOS (~4k) / 4.7★ Android (~8.6k)", "poopcheck": "4.8★ combined (~80 reviews)" }
+      ],
+      "strengths": "Bearable is one of the most flexible health trackers available. You can log mood, sleep, energy, pain, medication, nutrition and any number of custom factors, then let its correlation engine surface what's actually moving your symptoms — and it added a dedicated Bristol-chart bowel-movement section with timestamped entries and tags for color, urgency and pain, so gut symptoms slot neatly into the bigger picture. It's mature and well-loved (4.8★ on iOS across roughly 4,000 ratings, 4.7★ on Android across about 8,600), integrates with Apple Health, Fitbit, Garmin, Oura and more, and runs on both platforms.",
+      "weaknesses_for_user": "Bearable is manual end-to-end: you tap in every bowel movement, pick the Bristol type yourself from example images, and add tags by hand — there's no AI that reads a photo for you. Gut tracking is one module among dozens, so it isn't built to go deep on stool the way a dedicated app is — no automatic color or consistency analysis, and no single gut-health score that summarises your day at a glance. The correlation reports and access to history older than 30 days that make the app worthwhile sit behind the Premium subscription.",
+      "when_competitor_is_better": "If you're managing a chronic condition across many dimensions — mood, fatigue, pain, sleep, medications and diet, with bowel movements as just one of them — and you want one app with a powerful correlation engine to connect it all, Bearable is the more flexible fit (and its annual plan undercuts PoopCheck Premium).",
+      "when_poopcheck_is_better": "If your main question is about your gut specifically and you'd rather not hand-log every detail, PoopCheck's AI does the work — photograph your stool and get Bristol type, color, consistency and a single daily gut-health score in seconds, with no manual Bristol picking.",
+      "sources": [
+        { "title": "Bearable – Symptom Tracker (official site)", "url": "https://bearable.app/" },
+        { "title": "Bearable – Our Pricing and Principles", "url": "https://bearable.app/our-pricing-and-principles/" },
+        { "title": "Bearable – Symptom Tracker on the App Store", "url": "https://apps.apple.com/us/app/bearable-symptom-tracker/id1482581097" },
+        { "title": "Bearable – Symptom, Mood & Period Tracker on Google Play", "url": "https://play.google.com/store/apps/details?id=com.bearable&hl=en_US" },
+        { "title": "Bearable bowel-movement tracking feature announcement (official @BearableApp)", "url": "https://x.com/BearableApp/status/1382676258253893635" },
+        { "title": "Bearable App Review 2025: Pros & Cons, Cost (ChoosingTherapy)", "url": "https://www.choosingtherapy.com/bearable-app-review/" },
+        { "title": "The Bearable App – Track Your Health the Easy Way (Despite Pain review)", "url": "https://despitepain.com/review-bearable-app-track-your-health/" },
+        { "title": "Healthline – Best Gut Health Apps (category reference)", "url": "https://www.healthline.com/health/digestive-health/top-iphone-android-apps-gut-health" }
+      ],
+      "last_verified": "2026-05-27"
     }
   ]
 }

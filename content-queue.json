@@ -42,7 +42,8 @@
     { "slug": "antibiotics-and-gut-microbiome-recovery", "published_at": "2026-05-22", "source": "curated" },
     { "slug": "microplastics-in-stool-2026", "published_at": "2026-05-23", "source": "curated" },
     { "slug": "apple-cider-vinegar-for-gut-health", "published_at": "2026-05-24", "source": "trending" },
-    { "slug": "postbiotics-explained", "published_at": "2026-05-25", "source": "curated" }
+    { "slug": "postbiotics-explained", "published_at": "2026-05-25", "source": "curated" },
+    { "slug": "ai-stool-test-colorectal-cancer-detection", "published_at": "2026-05-31", "source": "trending" }
   ],
   "trending_candidates": []
 }

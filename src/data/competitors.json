@@ -259,6 +259,47 @@
         { "title": "Healthline – Best Gut Health Apps (category reference)", "url": "https://www.healthline.com/health/digestive-health/top-iphone-android-apps-gut-health" }
       ],
       "last_verified": "2026-05-27"
+    },
+    {
+      "slug": "clever-poop",
+      "name": "CleverPoop",
+      "tagline": "AI photo-based stool tracker with a wellness-first feel — food, mood and cycle correlations, group leaderboards and a weekly editorial digest.",
+      "website_url": "https://www.cleverpoop.com/",
+      "positioning": "CleverPoop's own pitch: \"Gentle AI poop analysis for everyday gut wellness\" — a 30-second check-in that uses image recognition to classify each stool against the Bristol Stool Chart, then tracks how it correlates with food, mood, cycle and lifestyle. Built by indie developer Manuel Cadarso, it sits closer to the wellness-app end of the category than to the IBS-clinic end.",
+      "pricing_notes": "Free to download on both iOS and Android, with in-app purchases. CleverPoop's release notes confirm both subscription and lifetime purchase tiers are offered; the public listings don't surface a fixed price, so check the App Store or Google Play in-app purchase list for current numbers.",
+      "features": [
+        { "name": "AI photo analysis of stool", "clever_poop": true, "poopcheck": true, "note": "Both apps classify Bristol type from a photo. CleverPoop frames it as a 30-second check-in; PoopCheck additionally surfaces color and consistency as separate signals." },
+        { "name": "Bristol Stool Scale classification", "clever_poop": "Automatic from photo", "poopcheck": "Automatic from photo", "note": "Both apps ground their AI in the Bristol scale." },
+        { "name": "Food + mood + cycle correlation", "clever_poop": true, "poopcheck": "Coming with Premium analytics", "note": "CleverPoop's clearest differentiator on tracking: it correlates poop data with food, mood, menstrual cycle and lifestyle factors." },
+        { "name": "Advanced symptom metrics (IBS type, bloating, pain level, duration)", "clever_poop": true, "poopcheck": false, "note": "Per CleverPoop's release notes — advanced fields for users tracking IBS-style symptoms in detail." },
+        { "name": "Daily gut-health / poop score", "clever_poop": "Poop Score", "poopcheck": "Daily gut-health score", "note": "Both apps roll daily analyses into a single number. The vocabulary differs (Poop Score vs. gut-health score) but the function is the same." },
+        { "name": "7-day digestive health report", "clever_poop": true, "poopcheck": "Coming with Premium analytics" },
+        { "name": "AI digestive chat assistant", "clever_poop": false, "poopcheck": "SOFTie (Premium)", "note": "CleverPoop's public materials describe insights and articles, not a back-and-forth AI assistant." },
+        { "name": "Public / private groups & leaderboard", "clever_poop": true, "poopcheck": "Global community & leaderboard", "note": "CleverPoop adds private friend-style groups on top of a global leaderboard; PoopCheck offers a global community and leaderboard." },
+        { "name": "Badges / gamification", "clever_poop": true, "poopcheck": true },
+        { "name": "Editorial gut-health content in-app / on-site", "clever_poop": "The Gut Gazette — weekly articles with clinicians & researchers", "poopcheck": "PoopCheck blog (poopcheck.app/poopcheck-blog/)", "note": "Both publish ongoing gut-health content. CleverPoop bundles theirs into a weekly Gut Gazette; PoopCheck publishes daily on the blog." },
+        { "name": "Multi-language support", "clever_poop": "English, Spanish, French, Portuguese (BR), Hindi", "poopcheck": "English", "note": "CleverPoop's Gut Gazette is published in five languages; PoopCheck's content is English-only today." },
+        { "name": "Apple Health integration", "clever_poop": "Not described in public materials", "poopcheck": true },
+        { "name": "iOS + Android availability", "clever_poop": true, "poopcheck": true, "note": "Both apps ship on iOS and Android." },
+        { "name": "Free tier without ads", "clever_poop": "Free download with in-app purchases; public listings don't flag ads", "poopcheck": "Free, no ads — Premium is optional" },
+        { "name": "Premium pricing transparency", "clever_poop": "Subscription + lifetime tiers exist; prices not published on the public site", "poopcheck": "$6.99/mo or $49.99/yr, listed publicly" },
+        { "name": "App store rating", "clever_poop": "~4.4★ on the US App Store (small review base — roughly 11 ratings)", "poopcheck": "4.8★ combined (~80 reviews across iOS and Android)" }
+      ],
+      "strengths": "CleverPoop's most distinctive feature is how broadly it correlates poop with the rest of your day — food, mood, menstrual cycle and lifestyle inputs all feed the same view, so users who suspect hormone- or stress-driven gut changes have a built-in way to see them. The advanced symptom fields (IBS type, bloating, pain level, duration) give it more depth than most wellness-leaning trackers, and the weekly Gut Gazette — published in five languages with clinician and researcher input — is genuine editorial work, not just push notifications.",
+      "weaknesses_for_user": "CleverPoop is a young indie app: the US App Store review base is small (about a dozen ratings at the time of writing), the long-term roadmap is unproven, and public pricing isn't transparent — you have to start a checkout flow to see the subscription and lifetime tiers. There's no documented Apple Health integration, so sleep, steps and HealthKit data don't flow in automatically, and there's no AI chat assistant for asking follow-up questions about a result.",
+      "when_competitor_is_better": "If you want an AI stool tracker that explicitly tracks menstrual cycle alongside food and mood, an in-app community of public and private groups to compare stats with friends, and editorial gut-health content in your language (Spanish, French, Portuguese or Hindi as well as English), CleverPoop is the better fit. It's also the right pick if a wellness-first, lower-key tone resonates more than a data-dashboard tone.",
+      "when_poopcheck_is_better": "If you want transparent published pricing ($6.99/mo or $49.99/yr), Apple Health integration, an AI digestive chat assistant (SOFTie) that contextualises your results, or the reassurance of a larger review base (4.8★ across roughly 80 combined iOS and Android reviews), PoopCheck is the more proven, more transparent everyday app.",
+      "sources": [
+        { "title": "CleverPoop — Gentle AI poop analysis for everyday gut wellness (official site)", "url": "https://www.cleverpoop.com/" },
+        { "title": "CleverPoop on the US App Store", "url": "https://apps.apple.com/us/app/cleverpoop/id6743215191" },
+        { "title": "CleverPoop Gut Health Tracker on the Canadian App Store", "url": "https://apps.apple.com/ca/app/cleverpoop-gut-health-tracker/id6743215191" },
+        { "title": "CleverPoop — Your Poop Tracker on Google Play", "url": "https://play.google.com/store/apps/details?id=com.cleverpoop.app" },
+        { "title": "CleverPoop — Bristol Stool Chart: Understand Digestive Health", "url": "https://www.cleverpoop.com/bristol-stool-chart-explained" },
+        { "title": "CleverPoop — Why You Need an AI Poop Analyzer in Your Life", "url": "https://www.cleverpoop.com/the-gut-gazette/cleverpoop-ai-analyzer" },
+        { "title": "CleverPoop — The Gut Gazette (weekly gut-health articles)", "url": "https://www.cleverpoop.com/the-gut-gazette" },
+        { "title": "CleverPoop — Terms of Service (developer: Manuel Cadarso)", "url": "https://www.cleverpoop.com/terms-of-service" }
+      ],
+      "last_verified": "2026-06-10"
     }
   ]
 }

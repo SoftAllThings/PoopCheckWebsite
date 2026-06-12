@@ -2,14 +2,14 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 
-const PRIVACY_VERSION = 'v1.1';
-const PRIVACY_LAST_UPDATED = '20 May 2026';
+const PRIVACY_VERSION = 'v2.0';
+const PRIVACY_LAST_UPDATED = '6 June 2026';
 ---
 
 <PageLayout
   seo={{
     title: 'Privacy Notice',
-    description: 'PoopCheck Privacy Notice. How we collect, use, share, and protect your personal data — including your health data — under GDPR, CPRA, MHMDA, Quebec Law 25, PIPEDA, and other applicable laws.',
+    description: 'PoopCheck Privacy Notice. How we collect, use, and protect your data, including your health data.',
   }}
 >
   <div class="py-12 md:py-20">
@@ -24,347 +24,28 @@ const PRIVACY_LAST_UPDATED = '20 May 2026';
       <div class="prose prose-invert max-w-none
         prose-headings:font-bold prose-headings:text-[var(--color-text)]
         prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-4
-        prose-h3:text-base prose-h3:mt-8 prose-h3:mb-3
         prose-p:text-[var(--color-text-muted)] prose-p:leading-relaxed
-        prose-li:text-[var(--color-text-muted)]
         prose-strong:text-[var(--color-text)]
         prose-a:text-[var(--color-accent)]
-        prose-table:text-sm
-        prose-th:text-[var(--color-text)] prose-th:font-semibold
-        prose-td:text-[var(--color-text-muted)]
       ">
         <h2>In short</h2>
-        <p>PoopCheck is a wellness app that helps you track your gut health. To do that, we process the photos you take, the symptoms you record, and the lifestyle answers you give us. Some of this is <strong>health data</strong>, which the law protects more strictly.</p>
-        <ul>
-          <li><strong>You stay in control.</strong> You can refuse any optional consent and still use the app. You can withdraw any consent at any time from Settings → Privacy.</li>
-          <li><strong>We do not "own" your data.</strong> You keep your rights in your content. We process your data under the legal basis described below.</li>
-          <li><strong>Core wellness use is required.</strong> To analyse your photos and give you Wellness Feedback we need explicit consent to process health data. If you withdraw this consent, the app can no longer function for you.</li>
-          <li><strong>Optional uses are independent.</strong> AI training, commercial aggregate insights, de-identified dataset licensing, raw-image licensing, and marketing — each is a separate consent. None is required to use the app.</li>
-          <li><strong>You have full rights.</strong> You can access, export, correct, restrict, and delete your data, at any time, free of charge.</li>
-          <li><strong>We do not sell data without your explicit, separate authorization.</strong> If you are in Washington, that authorization meets the My Health My Data Act standard (signed, dated, named buyer, ≤ 1 year).</li>
-        </ul>
-        <p>If you want to skip the rest of this notice, the most important screen is <strong>Settings → Privacy</strong> in the app. Everything below explains what that screen lets you do and why.</p>
-
-        <h2>1. Who we are</h2>
-        <p>This Service is operated by <strong>Soft All Things LLC</strong>, a company registered in the State of Wyoming, USA, with its registered office available on request.</p>
-        <ul>
-          <li>General contact: <a href="mailto:poopcheck@softallthings.com">poopcheck@softallthings.com</a></li>
-          <li>Privacy &amp; data-protection contact: <a href="mailto:dpo@poopcheck.app">dpo@poopcheck.app</a> (to be set up; in the meantime <a href="mailto:poopcheck@softallthings.com">poopcheck@softallthings.com</a> is routed to the privacy contact)</li>
-          <li>EU representative under GDPR Art. 27: to be appointed before EU launch/scale</li>
-          <li>Quebec "Person in Charge of the Protection of Personal Information" under Law 25: to be designated</li>
-        </ul>
-        <p>For the purposes of GDPR/UK GDPR we are the <strong>controller</strong> of your personal data. Where the law in your country uses a different term ("business" under CPRA; "data fiduciary" under various US state laws), we play the equivalent role.</p>
-
-        <h2>2. What this notice covers</h2>
-        <p>This notice describes how we collect, use, share, retain, and protect personal data through the Service. It applies to anyone who uses the PoopCheck mobile application or visits the PoopCheck website.</p>
-        <p>This notice does <strong>not</strong> cover:</p>
-        <ul>
-          <li>the practices of third parties whose services we link to (each has its own privacy notice);</li>
-          <li>any in-app document that asks for an explicit consent — those documents (the Health Data Consent, the Commercial Data Use Notice, the Third-Party Sharing / Buyer Authorization Disclosure) elaborate specific purposes and are linked from the relevant in-app screens; or</li>
-          <li>the <a href="/terms/">Terms of Service</a>, which is the contract that governs your use of the Service and not a data-use document.</li>
-        </ul>
-
-        <h2>3. What personal data we collect</h2>
-        <p>We collect the data described in the table below. We do not collect any category of personal data that is not listed here.</p>
-        <table>
-          <thead>
-            <tr><th>Category</th><th>Examples</th><th>How we collect it</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>Identity</strong></td><td>Firebase user ID, email, username, display photo</td><td>You provide it when you register; or your sign-in provider (Apple, Google) provides it.</td></tr>
-            <tr><td><strong>Account state</strong></td><td>Premium status, subscription product IDs, RevenueCat subscriber ID, entitlement state</td><td>From Apple, Google, and RevenueCat during your subscription.</td></tr>
-            <tr><td><strong>Device &amp; engagement</strong></td><td>OS, app version, FCM push token, timezone, login count, last login, scan count, streak days</td><td>Automatically when you use the app.</td></tr>
-            <tr><td><strong>Demographic</strong></td><td>Age band (one of six brackets, 18+ only), biological sex, country</td><td>You provide it during onboarding.</td></tr>
-            <tr><td><strong>Body metrics</strong> <em>(health data)</em></td><td>Height, weight</td><td>You provide it during onboarding.</td></tr>
-            <tr><td><strong>Lifestyle &amp; health context</strong> <em>(health data)</em></td><td>Diet, hydration, sleep, stress, coffee/alcohol, known digestive sensitivities (IBS, lactose intolerance, celiac)</td><td>You provide it during onboarding and over time.</td></tr>
-            <tr><td><strong>Stool image</strong> <em>(health data)</em></td><td>The photograph you capture or upload</td><td>You provide it each time you log a scan.</td></tr>
-            <tr><td><strong>Per-scan symptom data</strong> <em>(health data)</em></td><td>Smell, pain, duration, frequency, food groups, water intake, last meal, stress, toilet time, caffeine</td><td>You provide it with each scan.</td></tr>
-            <tr><td><strong>AI analysis output</strong> <em>(derived health data)</em></td><td>Bristol type prediction, colour, consistency, shape, mucus, blood, quantity, narrative analysis, recommendations</td><td>We generate it from your image and answers.</td></tr>
-            <tr><td><strong>Community content</strong></td><td>Posts, comments, likes, follows</td><td>You provide it when you take part in community features (optional).</td></tr>
-            <tr><td><strong>Communication tokens</strong></td><td>FCM push token, chat thread IDs</td><td>Generated when you grant push permission and use chat.</td></tr>
-            <tr><td><strong>Product analytics events</strong></td><td>Around 60 events prefixed <code>pc_</code> (e.g. scan started, paywall viewed)</td><td>Automatically when you use the app. No free-text or image URLs in payloads.</td></tr>
-            <tr><td><strong>Consent records</strong></td><td>Each consent grant/withdrawal with timestamp, document version, IP, user agent, jurisdiction, method</td><td>Recorded when you act on a consent. Required by GDPR Art. 7(1).</td></tr>
-            <tr><td><strong>Crash &amp; error diagnostics</strong></td><td>Stack traces, device state at the time of a crash</td><td>Automatically when something fails.</td></tr>
-          </tbody>
-        </table>
-        <p>We do <strong>not</strong> collect or process: precise geolocation; contact lists or photos from your device beyond the specific photos you choose to log; social-media tracking pixels (no Meta, TikTok, Snap, or similar SDKs); third-party advertising identifiers (no cross-app tracking; iOS App Tracking Transparency is not currently triggered).</p>
-
-        <h2>4. Why we use your data and on what legal basis</h2>
-        <p>The table below sets out every purpose for which we process your personal data, the legal basis under GDPR, and whether the purpose is required to use the Service.</p>
-        <table>
-          <thead>
-            <tr><th>Purpose</th><th>What we do</th><th>Legal basis</th><th>Required?</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Account &amp; authentication</td><td>Create and maintain your Firebase identity and profile.</td><td>Art. 6(1)(b) — contract</td><td>Yes</td></tr>
-            <tr><td>Wellness Feedback (core)</td><td>Process your image, symptoms, and lifestyle answers through the AI engine to give you results.</td><td>Art. 6(1)(b) + Art. 9(2)(a) — explicit consent for health data</td><td>Yes — app cannot work without it</td></tr>
-            <tr><td>Service reliability</td><td>Crash diagnostics, uptime monitoring, error logs.</td><td>Art. 6(1)(f) — legitimate interests</td><td>Yes</td></tr>
-            <tr><td>Product analytics</td><td>Pseudonymous event-level analytics to understand usage.</td><td>Art. 6(1)(f) — legitimate interests</td><td>Yes</td></tr>
-            <tr><td>Internal AI model training</td><td>Use your data to improve PoopCheck's own AI engine.</td><td>Art. 9(2)(a) — explicit consent</td><td><strong>No</strong></td></tr>
-            <tr><td>Commercial aggregate insights</td><td>Generate and sell aggregate statistics in which you are not individually identifiable.</td><td>Art. 9(2)(a) — explicit consent</td><td><strong>No</strong></td></tr>
-            <tr><td>Commercial de-identified dataset licensing</td><td>License row-level, de-identified datasets to approved buyers under contract.</td><td>Art. 9(2)(a) — explicit consent</td><td><strong>No</strong></td></tr>
-            <tr><td>Commercial raw-image licensing</td><td>License raw images plus metadata to named buyers under contract and a buyer-specific authorization.</td><td>Art. 9(2)(a) — explicit consent + separate licensing authorization (signed and dated for WA under MHMDA)</td><td><strong>No</strong></td></tr>
-            <tr><td>Marketing communications</td><td>Promotional emails and push notifications.</td><td>Art. 6(1)(a) — explicit consent</td><td><strong>No</strong></td></tr>
-            <tr><td>Subscription management</td><td>Process your Premium subscription.</td><td>Art. 6(1)(b) — contract</td><td>Required only for Premium</td></tr>
-            <tr><td>Legal &amp; regulatory</td><td>Respond to lawful requests, defend claims, maintain audit logs.</td><td>Art. 6(1)(c); Art. 6(1)(f)</td><td>Yes</td></tr>
-          </tbody>
-        </table>
-        <p>Each of the four optional purposes (internal AI training; aggregate insights; de-identified dataset licensing; raw-image licensing) is <strong>independent</strong>. Refusing one does not affect the others, and refusing any of them does not affect your ability to use PoopCheck for its core wellness purpose.</p>
-
-        <h2>5. Health data — special-category processing</h2>
-        <p>The data we collect through your scans, your symptom logs, and your lifestyle answers (including conditions like IBS, lactose intolerance, and celiac disease) is <strong>health data</strong>:</p>
-        <ul>
-          <li>under GDPR Article 9, this is "special category data";</li>
-          <li>under the Washington My Health My Data Act, this is "consumer health data";</li>
-          <li>under the California Privacy Rights Act, this is "sensitive personal information";</li>
-          <li>under Quebec Law 25, this is "sensitive personal information" requiring heightened protection;</li>
-          <li>under various other US state laws, this is treated as a sensitive category requiring opt-in.</li>
-        </ul>
-        <p>Because of this, we rely on <strong>your explicit consent (GDPR Art. 9(2)(a))</strong> to process your health data for any purpose. You give that consent during onboarding, you can review it any time in <strong>Settings → Privacy</strong>, and you can withdraw it at any time. Withdrawal of the <em>core</em> health-data-processing consent means the app can no longer function for you, because the Service is built around analysing health data.</p>
-        <p>We never bundle health-data consent into Terms of Service acceptance. Acceptance of the Terms of Service is a contract; consent to process health data is a separate, freely-given, specific, informed, unambiguous opt-in.</p>
-
-        <h2>6. AI processing and automated decisions</h2>
-        <p>The Service uses AI models to analyse your stool images and lifestyle context. These models predict things like Bristol stool type, colour, consistency, and possible patterns. The output is <strong>informational only</strong> and is not a medical diagnosis.</p>
-        <p>Under GDPR Article 22, you have the right not to be subject to decisions based solely on automated processing that produce legal or similarly significant effects. PoopCheck's wellness feedback is not a "legal or similarly significant" decision, but we still respect the spirit of Art. 22:</p>
-        <ul>
-          <li>you can ask us to provide a <strong>human review</strong> of any AI output that you believe is incorrect or unfair (write to <a href="mailto:poopcheck@softallthings.com">poopcheck@softallthings.com</a>);</li>
-          <li>we will explain the meaningful logic involved on request, to the extent we can without revealing proprietary model details that would undermine the integrity of the Service; and</li>
-          <li>we do not use AI to make automated decisions about your eligibility, insurance, employment, credit, or any other consequential matter.</li>
-        </ul>
-
-        <h2>7. Who we share data with</h2>
-        <p>We share data only as described below. We never share your health data for a commercial purpose without an explicit, separate consent (and, where required, a separate authorization).</p>
-
-        <h3>7.1 Sub-processors (parties acting on our instructions)</h3>
-        <p>These third parties process your data on our behalf, under contracts that prohibit them from using your data for their own purposes:</p>
-        <table>
-          <thead>
-            <tr><th>Sub-processor</th><th>Role</th><th>Region</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>Google (Firebase)</strong></td><td>Authentication, document database (Firestore), file storage, cloud functions, push messaging, product analytics, crash diagnostics</td><td>Multi-region (default: US)</td></tr>
-            <tr><td><strong>Amazon Web Services</strong></td><td>Backend hosting and S3 image storage (bucket <code>poops-softai</code>)</td><td>United States</td></tr>
-            <tr><td><strong>RevenueCat</strong></td><td>Subscription state management</td><td>United States</td></tr>
-            <tr><td><strong>Apple</strong></td><td>App Store distribution, Apple Sign-In identity, APNs push transport</td><td>Global</td></tr>
-            <tr><td><strong>Google (Sign-In, Play, FCM)</strong></td><td>Play Store distribution, Google Sign-In identity, FCM push transport</td><td>Global</td></tr>
-            <tr><td><strong>PostHog</strong></td><td>Pseudonymous website product analytics (pageviews, clicks, form interactions). Website only — not used by the mobile app.</td><td>United States (US Cloud)</td></tr>
-            <tr><td><strong>Resend</strong></td><td>Transactional email delivery for the website support form.</td><td>United States</td></tr>
-          </tbody>
-        </table>
-        <p>We do not currently use any other sub-processor (no Sentry/Bugsnag beyond Crashlytics, no Meta/TikTok/Snap pixel, no AppsFlyer/Adjust/Branch, no Mailchimp/Customer.io/Braze).</p>
-
-        <h3>7.2 Commercial data programs (only with your consent)</h3>
-        <p>We run three commercial data programs. Each one runs on a separate consent that you can grant or refuse independently. The details — what each program is, what data it uses, who buys it, and how to refuse it — are in the Commercial Data Use Notice.</p>
-        <table>
-          <thead>
-            <tr><th>Program</th><th>What we do</th><th>Buyers</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>Internal AI training</strong></td><td>Use your data to improve PoopCheck's own AI engine.</td><td>No external buyer — PoopCheck only.</td></tr>
-            <tr><td><strong>Tier 1 — Aggregate insights</strong></td><td>Generate aggregate statistics in which you are not individually identifiable. Sell those statistics.</td><td>Approved buyers under contract (research institutions, gut-health publications, supplement brands).</td></tr>
-            <tr><td><strong>Tier 2 — De-identified dataset licensing</strong></td><td>License row-level datasets derived from images and metadata, with direct identifiers stripped and bucketing/suppression applied.</td><td>Approved buyers under contract (research institutions, AI labs, gut-health publishers, supplement and consumer-health brands).</td></tr>
-            <tr><td><strong>Tier 3 — Raw image licensing</strong></td><td>License raw images plus linked metadata under a per-buyer authorization.</td><td>Specifically named buyers, declared at the moment we ask for your authorization. For Washington consumers, the authorization meets the MHMDA "valid authorization" standard.</td></tr>
-          </tbody>
-        </table>
-        <p>We do not currently have any HIPAA-covered entity (hospital, insurer, US clinical-care provider acting on behalf of a covered entity) in our buyer pipeline. If we ever consider one, the relationship would create a HIPAA Business Associate obligation and we will not proceed without the additional contracts and security controls that HIPAA requires.</p>
-
-        <h3>7.3 Legal disclosure</h3>
-        <p>We may disclose your data where we are required to do so by law, by a court order, by a competent regulator, or where strictly necessary to protect the rights, property, or safety of users or third parties. Where lawful, we challenge over-broad requests and notify the affected user.</p>
-
-        <h3>7.4 Corporate transactions</h3>
-        <p>If we are involved in a merger, acquisition, restructuring, or sale of assets, your data may be transferred to the resulting entity. We will notify you in advance, and you will have the same rights with respect to your data after the transfer.</p>
-
-        <h2>8. International data transfers</h2>
-        <p>Our backend and S3 storage are hosted in the <strong>United States</strong>. If you live in the European Economic Area, the United Kingdom, Switzerland, or Canada, this means your personal data is transferred to a country whose data-protection law is not equivalent to yours. We rely on the following safeguards:</p>
-        <ul>
-          <li><strong>EU Standard Contractual Clauses (Module 2 — Controller-to-Processor)</strong> with each US-hosted sub-processor (incorporated by reference in the Google Cloud DPA, the AWS DPA, the PostHog DPA, and the Resend DPA);</li>
-          <li><strong>UK International Data Transfer Addendum</strong> for UK personal data;</li>
-          <li><strong>Swiss-specific equivalents</strong> where applicable;</li>
-          <li><strong>Transfer Impact Assessment</strong> documenting the destination country's surveillance laws and the supplementary measures we apply (encryption in transit and at rest, access controls, audit logging, short-lived presigned URLs);</li>
-          <li><strong>EU-US Data Privacy Framework</strong> certification where the receiving party is certified, as an additional safeguard.</li>
-        </ul>
-        <p>You can request a copy of the safeguards (with confidential commercial terms redacted) by emailing the privacy contact above. If we license your data to a buyer outside the EEA, UK, Switzerland, or Canada under your explicit consent, the same transfer analysis is performed and recorded before the export.</p>
-
-        <h2>9. How long we keep your data</h2>
-        <p>We keep your data for as long as we need it, and no longer.</p>
-        <table>
-          <thead>
-            <tr><th>Data category</th><th>Default retention</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Account record (identity, profile)</td><td>While your account is active; deleted within 30 days of account closure.</td></tr>
-            <tr><td>Scans (image, symptoms, AI analysis)</td><td>While your account is active; deleted within 30 days of account closure.</td></tr>
-            <tr><td>Consent records</td><td>7 years after the consent ends, in pseudonymous form, for regulatory defence.</td></tr>
-            <tr><td>Product analytics events</td><td>14 months (Firebase Analytics default) or shorter as we tune it.</td></tr>
-            <tr><td>Crash diagnostics</td><td>90 days.</td></tr>
-            <tr><td>Aggregate statistical outputs already delivered to a buyer</td><td>May continue to exist with the buyer if they cannot reasonably re-identify you. We require buyers to delete or restrict identifiable data on your withdrawal.</td></tr>
-            <tr><td>Backups</td><td>Standard provider retention (typically up to 35 days); overwritten by routine backup rotation after deletion.</td></tr>
-            <tr><td>Records related to a legal claim, dispute, or regulatory request</td><td>Duration of the matter plus the applicable statute of limitations.</td></tr>
-          </tbody>
-        </table>
-        <p>Where law requires longer retention (for example, tax records related to a Premium subscription), we follow the legal requirement.</p>
-
-        <h2>10. Your privacy rights</h2>
-        <p>You have rights over your personal data. They differ slightly between jurisdictions, but we offer the strictest version to everyone.</p>
-        <table>
-          <thead>
-            <tr><th>Right</th><th>What it means</th><th>Where it comes from</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>Access</strong></td><td>Get a copy of the personal data we hold about you.</td><td>GDPR Art. 15; CPRA "Right to Know"; PIPEDA; Law 25; other state laws.</td></tr>
-            <tr><td><strong>Portability</strong></td><td>Get a copy in a structured, machine-readable format.</td><td>GDPR Art. 20; CPRA "Right to Know"; Quebec Law 25 (from 2024).</td></tr>
-            <tr><td><strong>Rectification / Correction</strong></td><td>Correct inaccurate data.</td><td>GDPR Art. 16; CPRA "Right to Correct"; PIPEDA; Law 25; other state laws.</td></tr>
-            <tr><td><strong>Erasure / Deletion</strong></td><td>Have your data deleted.</td><td>GDPR Art. 17; CPRA "Right to Delete"; MHMDA; PIPEDA; other state laws.</td></tr>
-            <tr><td><strong>Restriction</strong></td><td>Have us stop using your data without deleting it.</td><td>GDPR Art. 18.</td></tr>
-            <tr><td><strong>Objection</strong></td><td>Object to processing based on legitimate interests.</td><td>GDPR Art. 21.</td></tr>
-            <tr><td><strong>Withdraw consent</strong></td><td>Withdraw any consent at any time, as easily as you gave it.</td><td>GDPR Art. 7(3); MHMDA; CPRA; Quebec Law 25; all consent-based regimes.</td></tr>
-            <tr><td><strong>Opt out of "sale" or "sharing"</strong></td><td>Stop us from selling or sharing personal data for cross-context behavioural advertising (we do not do the latter).</td><td>CPRA; Virginia, Colorado, Connecticut, Utah, Texas, Oregon comprehensive laws.</td></tr>
-            <tr><td><strong>Limit use of sensitive PI</strong></td><td>Restrict use of your sensitive personal information to only the purposes strictly necessary to provide the Service.</td><td>CPRA — distinct from "Do Not Sell".</td></tr>
-            <tr><td><strong>Human review of automated decisions</strong></td><td>Have a human review a decision based solely on automated processing that significantly affects you.</td><td>GDPR Art. 22 (the spirit of which we apply).</td></tr>
-            <tr><td><strong>Lodge a complaint</strong></td><td>Complain to a data-protection regulator.</td><td>GDPR Art. 77; state-AG and other regulator complaints worldwide.</td></tr>
-          </tbody>
-        </table>
-
-        <h2>11. How to exercise your rights</h2>
-        <p>You can exercise most rights directly from the app:</p>
-        <ul>
-          <li><strong>Settings → Privacy → My consents</strong> — grant, refuse, or withdraw any consent. One tap each.</li>
-          <li><strong>Settings → Privacy → Do Not Sell or Share My Personal Information</strong> — one tap turns off all commercial consents.</li>
-          <li><strong>Settings → Privacy → Limit Use of My Sensitive Personal Information</strong> — one tap restricts use of your health data to only what we need to provide the Service. (Distinct from "Do Not Sell" — both controls are available.)</li>
-          <li><strong>Settings → Privacy → Download my data</strong> — request a JSON export of everything we hold about you. We email you a link.</li>
-          <li><strong>Settings → Account → Delete my account</strong> — request full deletion. We cascade the deletion across Firebase, our backend, AWS S3, and RevenueCat. You receive an email confirmation when it completes (within 30 days).</li>
-          <li><strong>Settings → Privacy → My Health My Data rights</strong> (Washington residents) — dedicated page describing your MHMDA rights and how to use them. Revoking the core health-data-processing consent triggers deletion as MHMDA requires.</li>
-        </ul>
-        <p>If you prefer to email us, write to <a href="mailto:poopcheck@softallthings.com">poopcheck@softallthings.com</a> with your request. We respond within <strong>30 days</strong> (GDPR/UK GDPR), <strong>45 days</strong> (CPRA, with a possible 45-day extension), or shorter where the law requires. We may need to verify your identity before acting — usually by confirming the email address associated with your account.</p>
-        <p>We do not charge for exercising your rights. We may charge a reasonable fee or refuse to act only where a request is manifestly unfounded or excessive (GDPR Art. 12(5)).</p>
-        <p>You can also lodge a complaint with a data-protection authority, including:</p>
-        <ul>
-          <li><strong>United Kingdom</strong> — Information Commissioner's Office (ICO) — <a href="https://ico.org.uk" rel="noopener">ico.org.uk</a></li>
-          <li><strong>Ireland</strong> (lead supervisory authority for EU users where applicable) — Data Protection Commission — <a href="https://www.dataprotection.ie" rel="noopener">dataprotection.ie</a></li>
-          <li><strong>France</strong> — Commission nationale de l'informatique et des libertés (CNIL) — <a href="https://www.cnil.fr" rel="noopener">cnil.fr</a></li>
-          <li><strong>Germany</strong> — your state data-protection authority — <a href="https://www.bfdi.bund.de" rel="noopener">bfdi.bund.de</a></li>
-          <li><strong>California</strong> — California Privacy Protection Agency — <a href="https://cppa.ca.gov" rel="noopener">cppa.ca.gov</a>; California Attorney General — <a href="https://oag.ca.gov/privacy" rel="noopener">oag.ca.gov/privacy</a></li>
-          <li><strong>Washington</strong> — Washington State Attorney General — <a href="https://www.atg.wa.gov" rel="noopener">atg.wa.gov</a> (private right of action also exists under MHMDA)</li>
-          <li><strong>Quebec</strong> — Commission d'accès à l'information du Québec — <a href="https://www.cai.gouv.qc.ca" rel="noopener">cai.gouv.qc.ca</a></li>
-          <li><strong>Canada (federal)</strong> — Office of the Privacy Commissioner of Canada — <a href="https://www.priv.gc.ca" rel="noopener">priv.gc.ca</a></li>
-        </ul>
-
-        <h2>12. Security</h2>
-        <p>We protect your data with technical and organisational measures appropriate to the risk:</p>
-        <ul>
-          <li>encryption in transit (HTTPS/TLS) and at rest (Google Cloud KMS for Firebase; AWS KMS / SSE-S3 for the <code>poops-softai</code> bucket);</li>
-          <li>short-lived presigned URLs for image access (1 hour, regenerated on demand);</li>
-          <li>explicit EXIF / GPS metadata stripping on upload;</li>
-          <li>least-privilege access controls; periodic access reviews;</li>
-          <li>segregation of production data from development environments;</li>
-          <li>third-party sub-processor selection and DPA review;</li>
-          <li>a written incident-response plan and a 72-hour breach-notification process under GDPR Art. 33;</li>
-          <li>annual review of the DPIA, ROPA, and transfer-impact assessment.</li>
-        </ul>
-        <p>No security measure is perfect. If we discover a security incident affecting your data, we will notify you and the relevant regulator(s) without undue delay where required by law.</p>
-
-        <h2>13. Children</h2>
-        <p>The Service is intended for adults only. <strong>You must be at least 18 years old to use PoopCheck.</strong> We do not knowingly collect personal data from anyone under 18. If we learn that we have collected data from a person under 18, we will delete it without delay. You can report suspected use by a minor to <a href="mailto:poopcheck@softallthings.com">poopcheck@softallthings.com</a>.</p>
-        <p>Because we do not knowingly serve users under 13, COPPA does not apply.</p>
-
-        <h2>14. Cookies, analytics, and tracking</h2>
-        <p><strong>Mobile app.</strong> The PoopCheck app is a native mobile application and does not use cookies. It uses Firebase Analytics for pseudonymous event-level usage analytics (event names prefixed <code>pc_</code>). It uses Firebase Crashlytics for crash diagnostics. Neither product collects free-text user input or image URLs. The app does not include any third-party SDK that tracks you across other apps or websites; consequently, on iOS, we do not currently trigger the App Tracking Transparency (ATT) prompt.</p>
-        <p><strong>Website.</strong> The PoopCheck website uses <a href="https://posthog.com/" rel="noopener">PostHog</a> for pseudonymous, event-level product analytics (pageviews, clicks, and form interactions). PostHog stores a first-party cookie (typically named <code>ph_&lt;token&gt;_posthog</code>) on your device to keep a stable anonymous visitor identifier across page loads. We do <strong>not</strong> enable session recording; we do <strong>not</strong> capture the values you type into form inputs; and we operate PostHog in "identified-only" mode, so anonymous visitors are not associated with a person profile. We also respect the browser <strong>Do Not Track</strong> signal — when DNT is enabled in your browser, no analytics events are sent. Website analytics data is processed in PostHog's US Cloud region; we have signed PostHog's Data Processing Agreement, which incorporates EU Standard Contractual Clauses for transfers from the EEA, UK, and Switzerland. To opt out at any time, enable Do Not Track in your browser, or clear the PostHog cookie. We do not use marketing pixels, behavioural advertising trackers, or any other third-party website analytics.</p>
-
-        <h2>15. Marketing communications</h2>
-        <p>We send marketing emails or push notifications only with your explicit opt-in consent. You can withdraw this consent at any time in <strong>Settings → Privacy</strong> or by clicking the unsubscribe link in any marketing email. Withdrawal applies to future communications; it does not affect operational communications about your account, billing, security, or legal changes.</p>
-        <p>We do not sell or share your data with third-party advertisers and we do not engage in cross-context behavioural advertising. If we ever change this, we will update this notice and ask for fresh consent — your current consents will not roll over.</p>
-
-        <h2>16. Region-specific addenda</h2>
-
-        <h3>16.1 European Union and United Kingdom (GDPR / UK GDPR)</h3>
-        <p>If you are in the EU, the UK, the EEA, or Switzerland, you have all the rights in Section 10 and the following additional points apply:</p>
-        <ul>
-          <li><strong>Controller:</strong> Soft All Things LLC, address above.</li>
-          <li><strong>EU representative (Art. 27):</strong> to be appointed before EU launch/scale.</li>
-          <li><strong>DPO:</strong> <a href="mailto:dpo@poopcheck.app">dpo@poopcheck.app</a> (to be designated).</li>
-          <li><strong>Legal basis</strong> for each purpose is set out in Section 4.</li>
-          <li><strong>Special-category data</strong> is processed only on the basis of your explicit consent (Art. 9(2)(a)).</li>
-          <li><strong>International transfers</strong> are protected by the safeguards described in Section 8.</li>
-          <li><strong>Right to lodge a complaint</strong> with your local supervisory authority or with the lead supervisory authority (currently expected to be the Irish DPC where we eventually establish an EU presence).</li>
-          <li><strong>Your statutory consumer rights</strong> under your country's law are not affected by anything in this notice or in the Terms of Service.</li>
-        </ul>
-
-        <h3>16.2 California (CCPA / CPRA)</h3>
-        <p>If you are a California resident:</p>
-        <ul>
-          <li><strong>Categories of personal information</strong> we collect: identifiers, demographic data, internet/network activity, geolocation (country only), sensitive personal information (health data, account credentials), commercial information, inferences from any of the above. (See Section 3 for examples.)</li>
-          <li><strong>Sources</strong> of personal information: directly from you; from your device when you use the Service; from Apple, Google, and RevenueCat for subscription state.</li>
-          <li><strong>Business purposes</strong> for collecting: providing the Service, securing the Service, communicating with you, and (with your separate consent) the four commercial purposes named in Section 4.</li>
-          <li><strong>Disclosures for a business purpose:</strong> to the sub-processors named in Section 7.1.</li>
-          <li><strong>"Sale" or "share" of personal information:</strong> we do <strong>not</strong> "sell" or "share" personal information for cross-context behavioural advertising. We may, with your explicit and separate consent, license commercial datasets (Tier 1 / Tier 2) or raw images (Tier 3) — those programs are commercial data licensing under a contract, not advertising, and they are independently refusable.</li>
-          <li><strong>Sensitive Personal Information (SPI)</strong> — we collect SPI (health data, account credentials). You have the right to <strong>limit our use of SPI</strong> to only what is necessary to provide the Service. Use <strong>Settings → Privacy → Limit Use of My Sensitive Personal Information</strong> in the app.</li>
-          <li><strong>"Do Not Sell or Share My Personal Information"</strong> — accessible from <strong>Settings → Privacy</strong> in the app. We honour the <strong>Global Privacy Control (GPC)</strong> signal where transmitted (currently on the website; the app exposes the same controls in Settings).</li>
-          <li><strong>No discrimination:</strong> we will not deny you the Service, charge you more, or provide a degraded Service because you exercised a privacy right.</li>
-          <li><strong>Authorised agent:</strong> you may use an authorised agent to make a request, subject to verification.</li>
-          <li><strong>Retention</strong> — see Section 9.</li>
-          <li><strong>Notice at collection</strong> — this section, the in-app point-of-capture notice on the photo-logging screen, and the "Learn more" sheets in the consent gate together constitute the CPRA notice at collection.</li>
-          <li><strong>California Privacy Protection Agency contact</strong> — <a href="https://cppa.ca.gov" rel="noopener">cppa.ca.gov</a>.</li>
-        </ul>
-
-        <h3>16.3 Washington State (My Health My Data Act)</h3>
-        <p>If you are a Washington consumer, the following additional rights and protections apply to "Consumer Health Data" under MHMDA:</p>
-        <ul>
-          <li><strong>What counts as Consumer Health Data:</strong> under MHMDA the term is <strong>very broad</strong>. It includes everything we list as "health data" in Section 3 plus inferences that could be drawn from non-health data. Treat every category in Section 3 marked "health data" or "derived health data" as Consumer Health Data, and assume MHMDA also covers inferences we draw from any combination of your data.</li>
-          <li><strong>Sources:</strong> directly from you; from your device.</li>
-          <li><strong>Categories with whom we share:</strong> the sub-processors in Section 7.1; and, <strong>only with your explicit and separate authorization</strong>, the commercial buyers under our Tier 2 and Tier 3 programs.</li>
-          <li><strong>No sale without a valid authorization.</strong> We do not "sell" Consumer Health Data without a separate, signed, and dated authorization that names the buyer and is valid for no more than one year. The authorization is requested, captured, and stored on a dedicated screen — it is not bundled into the Privacy Notice, the Terms of Service, or the general consent gate.</li>
-          <li><strong>MHMDA rights</strong> — access (a list of third parties to whom we have shared your Consumer Health Data), confirmation, withdrawal of consent and authorization, and <strong>deletion (which cascades to all our records and to our sub-processors)</strong>. Use <strong>Settings → Privacy → My Health My Data rights</strong>.</li>
-          <li><strong>No discrimination</strong> for exercising MHMDA rights.</li>
-          <li><strong>Private right of action</strong> — MHMDA provides a private right of action for violations. You can also complain to the Washington State Attorney General at <a href="https://www.atg.wa.gov" rel="noopener">atg.wa.gov</a>.</li>
-        </ul>
-
-        <h3>16.4 Quebec (Law 25)</h3>
-        <p>If you are a Quebec resident:</p>
-        <ul>
-          <li><strong>Person in Charge of the Protection of Personal Information:</strong> to be designated.</li>
-          <li><strong>Privacy Impact Assessment</strong> — we have completed a PIA for the Service in line with Law 25's requirements. A summary is available on request.</li>
-          <li><strong>Default privacy settings</strong> — we configure default settings to give you the highest level of privacy protection compatible with the Service.</li>
-          <li><strong>Consent</strong> — we obtain your specific and granular consent for each purpose described in Section 4. Health-related data and biometric inferences require express, manifestly free and informed consent.</li>
-          <li><strong>Cross-border transfers</strong> — your personal data is transferred outside Quebec to the United States. The transfer impact assessment and contractual safeguards are described in Section 8.</li>
-          <li><strong>Rights</strong> — access, correction, deletion, withdrawal of consent, portability (in effect from 22 September 2024), and the right to lodge a complaint with the Commission d'accès à l'information du Québec.</li>
-        </ul>
-
-        <h3>16.5 Canada (PIPEDA)</h3>
-        <p>If you are in another Canadian province:</p>
-        <ul>
-          <li><strong>Privacy Officer:</strong> to be designated.</li>
-          <li><strong>Consent</strong> is our principal lawful basis. You may withdraw consent at any time, subject to legal or contractual restrictions and reasonable notice.</li>
-          <li><strong>Rights</strong> — access, correction, and the right to lodge a complaint with the Office of the Privacy Commissioner of Canada.</li>
-        </ul>
-
-        <h3>16.6 Other US state comprehensive privacy laws</h3>
-        <p>If you are a resident of Virginia, Colorado, Connecticut, Utah, Texas, Oregon, Montana, Iowa, Indiana, Tennessee, Florida, Delaware, New Hampshire, New Jersey, Nebraska, Maryland, Minnesota, Rhode Island, or any other state with a comprehensive privacy law in force at the time you read this:</p>
-        <ul>
-          <li>you have rights to <strong>access</strong>, <strong>correct</strong>, <strong>delete</strong>, and <strong>opt out of sale</strong> of your personal information;</li>
-          <li>for <strong>sensitive data</strong> (which includes health data), we process only with your <strong>opt-in consent</strong> as required by your state law;</li>
-          <li>you have the right to <strong>opt out of profiling</strong> producing legal or significantly similar effects (this does not apply to PoopCheck's wellness feedback, which is not such a decision);</li>
-          <li>you may appeal a refusal of a privacy request by writing to <a href="mailto:poopcheck@softallthings.com">poopcheck@softallthings.com</a> with "Privacy Appeal" in the subject;</li>
-          <li>universal opt-out mechanisms (e.g. GPC) are honoured where transmitted.</li>
-        </ul>
-
-        <h2>17. Changes to this Notice</h2>
-        <p>We may change this Notice from time to time. When the change is material — for example, a new processing purpose, a new buyer class, a new sub-processor handling health data, or a change in legal basis — we will:</p>
-        <ul>
-          <li>mint a new immutable version of this Notice;</li>
-          <li>notify you in-app or by email; and</li>
-          <li>prompt you to re-consent where the change affects an existing consent.</li>
-        </ul>
-        <p>Minor or clarifying changes are described in the change log without re-consent.</p>
-
-        <h2>18. Contact</h2>
-        <ul>
-          <li><strong>General support:</strong> <a href="mailto:poopcheck@softallthings.com">poopcheck@softallthings.com</a></li>
-          <li><strong>Privacy and data-protection enquiries:</strong> <a href="mailto:dpo@poopcheck.app">dpo@poopcheck.app</a> (to be set up; in the meantime <a href="mailto:poopcheck@softallthings.com">poopcheck@softallthings.com</a> is routed to the privacy contact)</li>
-          <li><strong>EU representative under GDPR Art. 27:</strong> to be appointed.</li>
-          <li><strong>Quebec Person in Charge:</strong> to be designated.</li>
-          <li><strong>Registered office:</strong> Soft All Things LLC, Wyoming, USA. Postal address available on request.</li>
-        </ul>
+        <p>PoopCheck helps you track your gut health. To do that we process your photos, symptoms, and lifestyle answers — some of which is health data. We also use this data to improve our AI, and we may license or sell it to third parties in de-identified form. Accepting these uses is required to use the app; if you do not accept, PoopCheck cannot analyse your scans. You can access, export, correct, or delete your data at any time, and marketing and the sale of raw, identifiable images are always separate and optional.</p>
+        <h2>1. What we collect</h2>
+        <p>We collect your account details (email, username, sign-in info); your stool images and the symptoms and lifestyle answers you give (health data); the AI analysis we generate from them; basic device and usage data; and your subscription status. We do not collect your precise location, and we do not use cross-app advertising trackers.</p>
+        <h2>2. How we use your data (required to use the app)</h2>
+        <p>When you use PoopCheck, your data is used to: analyse your scan and give you feedback (using our own AI, and trusted third-party AI to improve accuracy); store your scans so history, charts, and tracking work; train and improve PoopCheck&#x27;s own AI; measure and improve scan accuracy; and produce, license, and sell de-identified insights and datasets to third parties (such as researchers, AI developers, and health and wellness brands). Accepting these uses is required — without your consent the app cannot work.</p>
+        <h2>3. Health data and your consent</h2>
+        <p>Your scans, symptoms, and lifestyle answers are health data, which the law protects more strictly. We process it on the basis of your explicit consent (GDPR Article 9 and equivalents), which you give before your first scan. Withdrawing this consent stops the processing and, as a result, the app can no longer work for you.</p>
+        <h2>4. Optional uses (separate consent)</h2>
+        <p>Two things are never required and are always your choice: marketing emails, and the sale of raw, identifiable images to specifically named buyers (for Washington residents, only under a signed, dated authorization). You can refuse or withdraw either at any time without losing access to the app.</p>
+        <h2>5. Who we share with</h2>
+        <p>We share data with service providers who process it for us under contract (Google/Firebase, Amazon Web Services, RevenueCat, Apple), and with the third parties we license or sell de-identified data to (such as researchers, AI developers, and health and wellness brands). We may also disclose data where the law requires it, or as part of a merger or sale of the business. We do not sell your data for advertising.</p>
+        <h2>6. Storage, security, and retention</h2>
+        <p>Your data is stored on encrypted servers in the United States, and we strip location metadata from your images. We keep your data while your account is active and delete it within 30 days of account closure, except limited records we are required to keep (such as proof of consent). No system is perfectly secure, but we use industry-standard protections.</p>
+        <h2>7. Your rights</h2>
+        <p>You can access, export, correct, restrict, and delete your data, and withdraw consent, at any time and free of charge, from Settings or by emailing us. You can also complain to your local data-protection regulator. We do not knowingly collect data from children under 13.</p>
+        <h2>8. International transfers, changes, and contact</h2>
+        <p>If your data crosses borders (for example, to our US servers), we use appropriate legal safeguards. We may update this notice and will tell you about important changes. Contact us at poopcheck@softallthings.com.</p>
       </div>
     </div>
   </div>

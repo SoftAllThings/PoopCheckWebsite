@@ -20,6 +20,8 @@ export default defineConfig({
     '/playground': '/demo/',
     '/track-your-health': '/features/poop-tracking/',
     '/privacy-policy': '/privacy/',
+    // Health Data Consent page removed; its material is covered by the Privacy Notice
+    '/health-data-consent': '/privacy/',
     '/contact-us': '/support/',
     '/cart': '/',
 

@@ -300,6 +300,42 @@
         { "title": "CleverPoop — Terms of Service (developer: Manuel Cadarso)", "url": "https://www.cleverpoop.com/terms-of-service" }
       ],
       "last_verified": "2026-06-10"
+    },
+    {
+      "slug": "poop-scanner",
+      "name": "Poop Scanner: AI Identifier",
+      "tagline": "iOS-only AI stool identifier that scans a photo and returns Bristol-scale insights — priced as a weekly / monthly / yearly subscription.",
+      "website_url": "https://apps.apple.com/us/app/poop-scanner-ai-identifier/id6738114805",
+      "positioning": "A single-purpose AI scanner from Owl Apps LLC: point the camera at a stool, get an AI-generated Bristol-scale identification and gut-health insights. Sold primarily via the App Store with a weekly subscription upsell and no Android release.",
+      "pricing_notes": "Poop Scanner: AI Identifier is subscription-only after a limited free trial: $4.99/week, $14.99/month, or $34.99/year, per its App Store listing. Weekly pricing is unusually aggressive for a health tracker — a full year of the weekly plan costs about $259, versus $34.99 on the annual plan.",
+      "features": [
+        { "name": "AI photo analysis of stool", "poop_scanner": true, "poopcheck": true, "note": "Both apps identify Bristol type from a photo. Poop Scanner focuses on single-scan identification; PoopCheck also derives color, consistency and a daily gut-health score from the same shot." },
+        { "name": "Bristol Stool Scale classification", "poop_scanner": "Automatic from photo", "poopcheck": "Automatic from photo" },
+        { "name": "iOS availability", "poop_scanner": "iOS 18.0+ only (also macOS 15.0+ on Apple Silicon and visionOS 2.0+)", "poopcheck": "iOS 15.0+", "note": "Poop Scanner's App Store listing requires iOS 18.0 or later — older iPhones cannot install it." },
+        { "name": "Android availability", "poop_scanner": false, "poopcheck": true, "note": "PoopCheck ships on Google Play; Poop Scanner: AI Identifier has no Android release at time of writing." },
+        { "name": "Free tier without paywall on core scans", "poop_scanner": "Trial only — usage caps behind subscription", "poopcheck": "Free tier includes AI analysis, Bristol classification, colour + consistency and a daily gut-health score with no time-limited trial" },
+        { "name": "Daily gut-health / poop score", "poop_scanner": "Not surfaced in public materials", "poopcheck": "Daily gut-health score" },
+        { "name": "Colour analysis (green, yellow, black, pale, red-flag)", "poop_scanner": "Not surfaced in public materials", "poopcheck": true },
+        { "name": "Consistency analysis beyond Bristol type", "poop_scanner": "Not surfaced in public materials", "poopcheck": true },
+        { "name": "Trend history + long-term charts", "poop_scanner": "Basic tracking mentioned in listing", "poopcheck": "Advanced analytics + trend charts (Premium)" },
+        { "name": "AI digestive chat assistant", "poop_scanner": false, "poopcheck": "SOFTie (Premium)" },
+        { "name": "Community + leaderboard", "poop_scanner": false, "poopcheck": true },
+        { "name": "Personalised reports + export", "poop_scanner": "Not documented", "poopcheck": "Export detailed reports (Premium)" },
+        { "name": "Premium subscription pricing", "poop_scanner": "$4.99/week, $14.99/month, $34.99/year", "poopcheck": "$6.99/month or $49.99/year (no weekly plan)" },
+        { "name": "App-store rating", "poop_scanner": "Small review base on the US App Store", "poopcheck": "4.8★ combined (~80 reviews across iOS and Android)" }
+      ],
+      "strengths": "Poop Scanner: AI Identifier does one thing and tries to do it fast: open the camera, snap the stool, get an AI-generated Bristol identification. If all you want is a lightweight single-purpose scanner on a recent iPhone, and you don't need long-term tracking, community features or a chat assistant, the workflow is intentionally minimal. Owl Apps also supports macOS on Apple Silicon and visionOS 2, which is unusual for a category dominated by mobile-only apps.",
+      "weaknesses_for_user": "The app is iOS-only and requires iOS 18.0 or later, so anyone on Android or an older iPhone can't run it. Pricing is subscription-heavy — the weekly $4.99 plan works out to more than $250 a year — and the App Store listing doesn't surface a durable free tier, an AI chat, colour or consistency analysis, or a trending gut-health score. Public information about the developer and long-term roadmap is thin.",
+      "when_competitor_is_better": "If you're on a recent iPhone or Apple Silicon Mac, you want a single-purpose Bristol scanner without community, chat or long-term tracking, and you're happy paying by the week or month, Poop Scanner: AI Identifier fits that narrow slot. It's also the choice if you specifically want a visionOS build today.",
+      "when_poopcheck_is_better": "If you're on Android, you want colour and consistency analysis alongside Bristol classification, a daily gut-health score that trends over time, an AI digestive chat assistant (SOFTie), a real free tier without a weekly-subscription upsell, and transparent pricing ($6.99/month or $49.99/year), PoopCheck is the more complete and lower-friction everyday app.",
+      "sources": [
+        { "title": "Poop Scanner: AI Identifier on the US App Store (Owl Apps LLC)", "url": "https://apps.apple.com/us/app/poop-scanner-ai-identifier/id6738114805" },
+        { "title": "Poop Scanner: AI Identifier on the Malaysia App Store", "url": "https://apps.apple.com/my/app/poop-scanner-ai-identifier/id6738114805" },
+        { "title": "AppsHive — Best Poop Tracker Apps of 2026 (category roundup listing Poop Scanner and competitors)", "url": "https://www.appshive.co/apps/health-fitness/poop-tracker" },
+        { "title": "Balloon Gut Health — Best iOS poop trackers roundup (context on the AI-scanner category)", "url": "https://balloonguthealth.com/blog/best-ios-poop-trackers-for-2025" },
+        { "title": "Bristol MK, Heaton KW. Stool form scale as a useful guide to intestinal transit time. Scand J Gastroenterol. 1997 — Bristol Stool Scale foundational reference", "url": "https://pubmed.ncbi.nlm.nih.gov/9299672/" }
+      ],
+      "last_verified": "2026-07-08"
     }
   ]
 }

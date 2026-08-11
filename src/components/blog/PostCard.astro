@@ -1,6 +1,4 @@
 ---
-import { postImage } from '../../utils/seo';
-
 interface Props {
   title: string;
   description: string;
@@ -11,9 +9,9 @@ interface Props {
   featured?: boolean;
 }
 
-const { title, description, date, category, slug, image: explicitImage, featured } = Astro.props;
-
-const image = postImage(slug, explicitImage);
+// Only a real illustration from frontmatter is shown. The generated card is a
+// title graphic for social feeds; rendering it here would print the title twice.
+const { title, description, date, category, slug, image, featured } = Astro.props;
 
 const categoryLabels: Record<string, string> = {
   'gut-health': 'Gut Health',
@@ -33,17 +31,17 @@ const formattedDate = date.toLocaleDateString('en-US', {
 ---
 
 <article class="group gradient-border p-0 overflow-hidden hover:bg-[var(--color-elevated)] transition-colors">
-  <div class="aspect-[1200/630] overflow-hidden">
-    <img
-      src={image}
-      alt={title}
-      width="1200"
-      height="630"
-      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-      loading="lazy"
-      decoding="async"
-    />
-  </div>
+  {image && (
+    <div class="aspect-[1200/630] overflow-hidden">
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  )}
   <div class="p-6">
     <div class="flex items-center gap-3 mb-3">
       <a

@@ -108,19 +108,24 @@ const readingTime = Math.ceil(
         </div>
       </header>
 
-      {/* Hero image — width/height are set so this never causes layout shift */}
-      <div class="mb-10 rounded-2xl overflow-hidden bg-[var(--color-surface)]">
-        <img
-          src={image}
-          alt={imageAlt}
-          width={SITE.imageWidth}
-          height={SITE.imageHeight}
-          class="w-full h-auto"
-          loading="eager"
-          decoding="async"
-          fetchpriority="high"
-        />
-      </div>
+      {/*
+        Hero renders only for a real illustration set in frontmatter. The
+        generated card at postImage() is a title-on-background graphic built for
+        social feeds, where it stands alone — on-page it sits directly under the
+        <h1> and just repeats it. It stays in og:image and Article schema.
+      */}
+      {explicitImage && (
+        <div class="mb-10 rounded-2xl overflow-hidden bg-[var(--color-surface)]">
+          <img
+            src={explicitImage}
+            alt={imageAlt}
+            class="w-full h-auto"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </div>
+      )}
 
       <!-- Content -->
       <div class="prose prose-invert prose-lg max-w-none

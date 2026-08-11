@@ -76,18 +76,19 @@ const formattedDate = date.toLocaleDateString('en-US', {
 
       {toc && <TableOfContents headings={headings} />}
 
-      <div class="mb-10 rounded-2xl overflow-hidden">
-        <img
-          src={image}
-          alt={imageAlt}
-          width={SITE.imageWidth}
-          height={SITE.imageHeight}
-          class="w-full h-auto"
-          loading="eager"
-          decoding="async"
-          fetchpriority="high"
-        />
-      </div>
+      {/* Real illustrations only — the generated card is for social, not the page. */}
+      {explicitImage && (
+        <div class="mb-10 rounded-2xl overflow-hidden">
+          <img
+            src={explicitImage}
+            alt={imageAlt}
+            class="w-full h-auto"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </div>
+      )}
 
       <div class="prose prose-invert prose-lg max-w-none
         prose-headings:font-bold prose-headings:text-[var(--color-text)]

@@ -3,7 +3,7 @@ import PageLayout from './PageLayout.astro';
 import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedPosts from '../components/blog/RelatedPosts.astro';
 import { articleSchema } from '../utils/schema';
-import { getCanonicalUrl, SITE } from '../utils/seo';
+import { getCanonicalUrl, postImage, SITE } from '../utils/seo';
 
 interface Props {
   title: string;
@@ -12,12 +12,16 @@ interface Props {
   updated?: Date;
   author?: string;
   category: string;
+  slug: string;
   image?: string;
   imageAlt?: string;
   tags?: string[];
 }
 
-const { title, description, date, updated, author, category, image, imageAlt, tags } = Astro.props;
+const { title, description, date, updated, author, category, slug, image: explicitImage, imageAlt: explicitAlt, tags } = Astro.props;
+
+const image = postImage(slug, explicitImage);
+const imageAlt = explicitAlt || title;
 
 const categoryLabels: Record<string, string> = {
   'gut-health': 'Gut Health',
@@ -36,7 +40,8 @@ const schema = articleSchema({
   title,
   description,
   url: getCanonicalUrl(Astro.url.pathname),
-  image: image ? `${SITE.url}${image}` : undefined,
+  image,
+  imageAlt,
   datePublished: date.toISOString(),
   dateModified: updated?.toISOString(),
   author: author || 'PoopCheck Team',
@@ -103,18 +108,19 @@ const readingTime = Math.ceil(
         </div>
       </header>
 
-      {/* Hero image */}
-      {image && (
-        <div class="mb-10 rounded-2xl overflow-hidden aspect-[16/9] bg-[var(--color-surface)]">
-          <img
-            src={image}
-            alt={imageAlt || title}
-            class="w-full h-full object-cover"
-            loading="eager"
-            decoding="async"
-          />
-        </div>
-      )}
+      {/* Hero image — width/height are set so this never causes layout shift */}
+      <div class="mb-10 rounded-2xl overflow-hidden bg-[var(--color-surface)]">
+        <img
+          src={image}
+          alt={imageAlt}
+          width={SITE.imageWidth}
+          height={SITE.imageHeight}
+          class="w-full h-auto"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </div>
 
       <!-- Content -->
       <div class="prose prose-invert prose-lg max-w-none

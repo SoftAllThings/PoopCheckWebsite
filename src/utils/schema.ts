@@ -1,5 +1,30 @@
 import { SITE } from './seo';
 
+/** Absolute URL for any site-relative asset path. Schema.org requires absolute. */
+export function absoluteUrl(path: string): string {
+  return path.startsWith('http') ? path : `${SITE.url}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+/**
+ * A full ImageObject rather than a bare URL string. Google uses width/height and
+ * caption to decide whether an image is eligible for rich results and Google Images.
+ */
+export function imageObject(props: {
+  url: string;
+  width?: number;
+  height?: number;
+  caption?: string;
+}) {
+  return {
+    '@type': 'ImageObject',
+    url: absoluteUrl(props.url),
+    contentUrl: absoluteUrl(props.url),
+    width: props.width ?? SITE.imageWidth,
+    height: props.height ?? SITE.imageHeight,
+    ...(props.caption ? { caption: props.caption } : {}),
+  };
+}
+
 export function organizationSchema() {
   return {
     '@context': 'https://schema.org',
@@ -7,7 +32,8 @@ export function organizationSchema() {
     name: SITE.name,
     legalName: 'Soft All Things LLC',
     url: SITE.url,
-    logo: `${SITE.url}/logo.png`,
+    logo: imageObject({ url: SITE.logo, width: 600, height: 600, caption: `${SITE.name} logo` }),
+    image: imageObject({ url: SITE.image, caption: SITE.description }),
     description: SITE.description,
     email: 'poopcheck@softallthings.com',
     foundingDate: '2025-01',
@@ -158,7 +184,11 @@ export interface ArticleSchemaProps {
   title: string;
   description: string;
   url: string;
+  /** Primary image. Falls back to the site card so `image` is never absent. */
   image?: string;
+  imageAlt?: string;
+  /** Extra in-article images to declare for Google Images. */
+  images?: Array<{ url: string; width?: number; height?: number; caption?: string }>;
   datePublished: string;
   dateModified?: string;
   author?: string;
@@ -167,13 +197,18 @@ export interface ArticleSchemaProps {
 
 export function articleSchema(props: ArticleSchemaProps) {
   const type = props.medical ? ['Article', 'MedicalWebPage'] : 'Article';
+  const primary = imageObject({
+    url: props.image || SITE.image,
+    caption: props.imageAlt || props.title,
+  });
+  const extra = (props.images || []).map(imageObject);
   const base = {
     '@context': 'https://schema.org',
     '@type': type,
     headline: props.title,
     description: props.description,
     url: props.url,
-    image: props.image,
+    image: extra.length ? [primary, ...extra] : primary,
     datePublished: props.datePublished,
     dateModified: props.dateModified || props.datePublished,
     author: {
@@ -183,10 +218,7 @@ export function articleSchema(props: ArticleSchemaProps) {
     publisher: {
       '@type': 'Organization',
       name: SITE.name,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${SITE.url}/logo.png`,
-      },
+      logo: imageObject({ url: SITE.logo, width: 600, height: 600, caption: `${SITE.name} logo` }),
     },
   };
 

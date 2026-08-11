@@ -1,0 +1,74 @@
+{
+  "$comment": "Single source of truth for the poop colour chart. Consumed by src/pages/poop-color-chart.astro and by scripts/generate-images.mjs when rendering the shareable PNG.",
+  "flags": {
+    "normal": { "label": "Typically normal", "color": "#A3FFBF" },
+    "watch": { "label": "Worth watching", "color": "#FFB86B" },
+    "urgent": { "label": "See a doctor", "color": "#FF6B6B" }
+  },
+  "colors": [
+    {
+      "slug": "medium-brown",
+      "name": "Medium Brown",
+      "hex": "#7A5230",
+      "meaning": "Normal. Bile pigment plus healthy transit time.",
+      "flag": "normal",
+      "detail": "This is the target. Bile starts out green in the liver, and gut bacteria break it down into stercobilin during a normal 24–72 hour transit — which is what makes stool brown. Consistent medium brown means your bile flow and transit time are both working."
+    },
+    {
+      "slug": "light-brown-tan",
+      "name": "Light Brown / Tan",
+      "hex": "#A98055",
+      "meaning": "Usually normal. Often a higher-fiber or higher-dairy diet.",
+      "flag": "normal",
+      "detail": "A lighter shade is usually diet, not disease — high fiber intake bulks and lightens stool, and so does a dairy-heavy day. If it drifts toward pale grey or clay and stays there, treat it as the pale category instead."
+    },
+    {
+      "slug": "dark-brown",
+      "name": "Dark Brown",
+      "hex": "#4A3020",
+      "meaning": "Normal. Slower transit, iron supplements, or darker foods.",
+      "flag": "normal",
+      "detail": "Longer time in the colon means more water reabsorbed and more pigment concentration. Iron supplements, red wine, dark chocolate and heavily pigmented foods all darken stool. Dark brown is fine; genuinely black and tarry is not."
+    },
+    {
+      "slug": "green",
+      "name": "Green",
+      "hex": "#4C7A34",
+      "meaning": "Fast transit, leafy greens, or food coloring. Usually harmless.",
+      "flag": "watch",
+      "detail": "Green usually means bile didn't get the full transit time it needed to break down to brown — so it is most often a speed problem, not a disease. Spinach, kale, matcha, blue or green food dye, and iron supplements also do it. Persistent green with diarrhea is worth a conversation."
+    },
+    {
+      "slug": "yellow-greasy",
+      "name": "Yellow / Greasy",
+      "hex": "#D6B84C",
+      "meaning": "Possible fat malabsorption. Persistent + floating: see a doctor.",
+      "flag": "watch",
+      "detail": "Yellow, greasy, foul-smelling stool that floats and leaves a film is called steatorrhea, and it means fat is passing through undigested. Occasional episodes follow a very fatty meal. A persistent pattern is associated with celiac disease, pancreatic insufficiency and giardia — get it evaluated."
+    },
+    {
+      "slug": "pale-clay",
+      "name": "Pale / Clay",
+      "hex": "#D8CDB8",
+      "meaning": "Possible bile duct or liver issue. Get this checked.",
+      "flag": "urgent",
+      "detail": "Stool is brown because of bile. Pale, chalky or clay-coloured stool suggests bile isn't reaching the intestine — which can point to a blocked bile duct, gallstones, hepatitis or a pancreatic problem. This is one of the few stool colours that warrants a prompt appointment even without other symptoms, especially alongside dark urine or yellowing skin."
+    },
+    {
+      "slug": "red",
+      "name": "Red",
+      "hex": "#A32B2B",
+      "meaning": "Beets can do this. So can lower-GI bleeding. Rule it out.",
+      "flag": "urgent",
+      "detail": "Beets, tomato, cranberry and red dye are common and harmless causes. But red also means fresh blood from the lower GI tract — haemorrhoids and fissures most often, and less commonly polyps, IBD or colorectal cancer. If you haven't eaten anything red, or it repeats, get it checked rather than assuming."
+    },
+    {
+      "slug": "black-tarry",
+      "name": "Black / Tarry",
+      "hex": "#1E1712",
+      "meaning": "Iron or bismuth — or upper-GI bleeding. Seek care promptly.",
+      "flag": "urgent",
+      "detail": "Iron supplements, bismuth (Pepto-Bismol), black liquorice and activated charcoal all turn stool black harmlessly. The concerning version is melena: black, sticky, tar-like stool with a distinctive strong smell, which is digested blood from an upper-GI bleed. If you aren't taking iron or bismuth, treat black tarry stool as urgent."
+    }
+  ]
+}

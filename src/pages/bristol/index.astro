@@ -1,19 +1,38 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import EmbedChart from '../../components/seo/EmbedChart.astro';
 import { articleSchema, breadcrumbSchema } from '../../utils/schema';
 import { getCanonicalUrl, SITE } from '../../utils/seo';
 import bristolData from '../../data/bristol.json';
+import bristolImages from '../../data/bristol-images.json';
 
 const url = getCanonicalUrl(Astro.url.pathname);
-const title = 'Bristol Stool Scale: Complete Guide to All 7 Types';
-const description = 'Every Bristol Stool type explained — what each one looks like, what it means, causes, when to worry, and how to shift toward the healthy range.';
+const title = 'Bristol Stool Chart: All 7 Types With Pictures';
+const description = 'The full Bristol Stool Chart with pictures of all 7 stool types — what each one looks like, what it means, when to worry, and how to reach the healthy range.';
+
+const CHART = {
+  src: '/images/charts/bristol-stool-chart.png',
+  width: 1200,
+  height: 1678,
+  alt: 'The Bristol Stool Chart — illustrations of all 7 stool types, from Type 1 separate hard lumps (severe constipation) through Type 4 smooth and snake-like (ideal) to Type 7 entirely liquid (diarrhea).',
+};
+
+const artFor = (type: number) => bristolImages.images.find((i: any) => i.type === type)!;
 
 const schema = [
   articleSchema({
     title,
     description,
     url,
+    image: CHART.src,
+    imageAlt: CHART.alt,
+    images: bristolImages.images.map((i: any) => ({
+      url: i.file,
+      width: bristolImages.width,
+      height: bristolImages.height,
+      caption: i.alt,
+    })),
     datePublished: '2026-04-20T00:00:00Z',
     dateModified: '2026-04-20T00:00:00Z',
     author: 'PoopCheck Team',
@@ -36,7 +55,7 @@ const signalColor: Record<string, string> = {
 };
 ---
 
-<PageLayout seo={{ title, description, type: 'article' }} schema={schema}>
+<PageLayout seo={{ title, description, type: 'article', image: CHART.src, imageAlt: CHART.alt }} schema={schema}>
   <article class="py-12 md:py-20">
     <div class="max-w-5xl mx-auto px-5">
 
@@ -46,7 +65,7 @@ const signalColor: Record<string, string> = {
 
       <header class="mb-12 text-center">
         <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-          The Bristol Stool Scale
+          The Bristol Stool Chart
         </h1>
         <p class="mt-4 text-lg text-[var(--color-text-muted)] leading-relaxed max-w-3xl mx-auto">
           Developed in 1997 at the Bristol Royal Infirmary, the Bristol Stool Scale
@@ -56,14 +75,38 @@ const signalColor: Record<string, string> = {
         </p>
       </header>
 
+      <EmbedChart
+        src={CHART.src}
+        alt={CHART.alt}
+        width={CHART.width}
+        height={CHART.height}
+        title="The Bristol Stool Chart"
+        caption="The Bristol Stool Chart: all 7 stool types with pictures, from Type 1 (severe constipation) to Type 7 (diarrhea). Types 3–4 are the healthy range."
+        creditPath="/bristol/"
+        eager={true}
+      />
+
+      <h2 class="text-2xl font-bold mb-6 mt-16">All 7 Bristol stool types, with pictures</h2>
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
         {bristolData.types.map((t: any) => {
           const color = signalColor[t.health_signal] || 'var(--color-primary)';
+          const art = artFor(t.type);
           return (
             <a
               href={`/bristol/${t.slug}/`}
-              class="group relative rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)] p-6 hover:border-[var(--color-primary)]/50 transition-colors"
+              class="group relative rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)] overflow-hidden hover:border-[var(--color-primary)]/50 transition-colors"
             >
+              <img
+                src={art.file}
+                alt={art.alt}
+                width={bristolImages.width}
+                height={bristolImages.height}
+                loading="lazy"
+                decoding="async"
+                class="w-full h-auto"
+              />
+              <div class="p-6">
               <div class="flex items-start justify-between mb-4">
                 <div class="text-4xl font-bold" style={`color: ${color};`}>
                   {t.type}
@@ -75,12 +118,13 @@ const signalColor: Record<string, string> = {
                   {t.health_signal_label}
                 </div>
               </div>
-              <h2 class="text-xl font-bold mb-2 group-hover:text-[var(--color-primary)] transition-colors">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-[var(--color-primary)] transition-colors">
                 {t.name}
-              </h2>
+              </h3>
               <p class="text-sm text-[var(--color-text-muted)]">
                 {t.appearance}
               </p>
+              </div>
             </a>
           );
         })}

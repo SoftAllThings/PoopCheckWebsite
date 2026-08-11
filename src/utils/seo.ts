@@ -1,3 +1,5 @@
+import generated from '../data/generated-images.json';
+
 export interface SEOProps {
   title: string;
   description: string;
@@ -17,7 +19,12 @@ export const SITE = {
   description:
     'Understand your gut in seconds. AI-powered stool analysis, daily gut health score, and personalized insights. Join 25,000+ users tracking their digestive health.',
   url: 'https://poopcheck.app',
-  image: '/og-default.svg',
+  // Must be a raster: Facebook, X, LinkedIn and iMessage all refuse to render
+  // SVG in og:image, which left every share as a blank card.
+  image: '/images/og/default.png',
+  imageWidth: 1200,
+  imageHeight: 630,
+  logo: '/images/logo/poopcheck-logo.png',
   locale: 'en_US',
   appStore: 'https://apps.apple.com/us/app/poopcheck-ai-stool-tracker/id6737857695',
   playStore:
@@ -36,6 +43,27 @@ export const STATS = {
 export function formatTitle(pageTitle?: string): string {
   if (!pageTitle) return `${SITE.name}: ${SITE.tagline}`;
   return `${pageTitle} | ${SITE.name}`;
+}
+
+/**
+ * Every post and guide gets a generated 1200x630 card at a predictable path
+ * (see scripts/generate-images.mjs). Resolving by slug rather than requiring
+ * `image:` frontmatter means new posts are never published imageless — which
+ * previously left all 52 of them with no hero, no social card, and no
+ * `image` property in their Article schema.
+ *
+ * The manifest guards the case where a post is committed before `npm run images`
+ * has run for it: rather than emitting a broken <img>, we fall back to the site
+ * card. Run `npm run images` after adding a post to give it its own.
+ */
+export function postImage(slug: string, explicit?: string): string {
+  if (explicit) return explicit;
+  return generated.blog.includes(slug) ? `/images/og/blog/${slug}.png` : SITE.image;
+}
+
+export function guideImage(slug: string, explicit?: string): string {
+  if (explicit) return explicit;
+  return generated.guides.includes(slug) ? `/images/og/guides/${slug}.png` : SITE.image;
 }
 
 export function getCanonicalUrl(path: string): string {

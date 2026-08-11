@@ -164,6 +164,25 @@ Re-read the full post once top-to-bottom against this checklist. If **any** item
 - [ ] **Brand voice** matches `.agents/product-marketing-context.md` §7 (Brand Voice)
 - [ ] If the post covers a medical condition/symptom, note in the commit message that a richer schema type (`MedicalWebPage`, `FAQPage`) could be layered in later. Do **not** open the schema-markup skill or edit `src/utils/schema.ts`
 
+### Step 8 — Generate the post's images (MANDATORY)
+
+Every post needs a hero/social card. It is **not** written by hand and it is **not**
+set in frontmatter — it is generated from the title and category:
+
+```bash
+npm run images
+```
+
+This writes `public/images/og/blog/<slug>.png` and updates
+`src/data/generated-images.json`. Both must be staged in Step 10.
+
+If you skip this, the post falls back to the generic site card: no hero image, a
+weaker social share, and a less specific `image` in its Article schema. A post
+without its own card is a half-finished post.
+
+Requires `rsvg-convert` (`brew install librsvg`). If the command fails because
+the binary is missing, say so in your final log rather than pushing without it.
+
 Then run a build sanity check:
 
 ```bash
@@ -172,13 +191,13 @@ npm run build
 
 If the Astro build fails (schema error, MDX syntax, collision), **fix it** — don't push a broken state. If you can't fix it, abort and leave the working tree clean (git stash or reset).
 
-### Step 8 — Update queue
+### Step 9 — Update queue
 
 Open `content-queue.json`:
 - **Curated mode**: remove the picked topic from `pending`, append to `published` with today's date.
 - **Trending mode**: append the picked topic to `published` with `source: "trending"` so it doesn't collide later.
 
-### Step 9 — Commit & push
+### Step 10 — Commit & push
 
 Commit message style (match existing: lowercase, short, descriptive — see `git log`):
 
@@ -192,7 +211,9 @@ Or for trending:
 new post (trending): <slug>
 ```
 
-Stage exactly the files you touched: the new MDX, the edited older post (back-link), and `content-queue.json`. **Never** `git add -A`.
+Stage exactly the files you touched: the new MDX, the edited older post (back-link),
+`content-queue.json`, the generated `public/images/og/blog/<slug>.png`, and
+`src/data/generated-images.json`. **Never** `git add -A`.
 
 Then `git push origin master`. The GH Actions workflow at `.github/workflows/deploy.yml` will build and deploy to Cloudflare within ~2–3 minutes.
 

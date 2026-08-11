@@ -1,0 +1,286 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import Figure from '../components/seo/Figure.astro';
+import { articleSchema, breadcrumbSchema, faqSchema, imageObject } from '../utils/schema';
+import { getCanonicalUrl, SITE } from '../utils/seo';
+import bristolData from '../data/bristol.json';
+import bristolImages from '../data/bristol-images.json';
+import colorData from '../data/stool-colors.json';
+
+const url = getCanonicalUrl(Astro.url.pathname);
+const title = 'Poop Pictures: What Healthy and Unhealthy Stool Looks Like';
+const description =
+  'Pictures of all 7 stool types and 8 stool colors, side by side. Compare what you saw against labelled images and find out what is normal and what is not.';
+
+const BRISTOL_CHART = {
+  src: '/images/charts/bristol-stool-chart.png',
+  width: 1200,
+  height: 1678,
+  alt: 'Pictures of all 7 Bristol stool types — separate hard lumps, lumpy sausage, cracked sausage, smooth snake, soft blobs, mushy ragged pieces and entirely liquid — with what each one means.',
+};
+
+const COLOR_CHART = {
+  src: '/images/charts/poop-color-chart.png',
+  width: 1200,
+  height: 1374,
+  alt: 'Pictures of eight stool colors — medium brown, light brown, dark brown, green, yellow, pale clay, red and black — with what each color means.',
+};
+
+const typeFor = (n: number) => bristolData.types.find((t: any) => t.type === n)!;
+
+const faqItems = [
+  {
+    question: 'What does healthy poop look like?',
+    answer:
+      'Healthy stool looks like a smooth, soft, sausage- or snake-shaped single piece — Type 4 on the Bristol Stool Chart — in some shade of brown. It should pass easily without straining and hold together rather than breaking apart or smearing. Type 3, a sausage with surface cracks, is equally healthy.',
+  },
+  {
+    question: 'What does unhealthy poop look like?',
+    answer:
+      'On the constipated end, small separate hard lumps like nuts (Type 1) or a lumpy sausage (Type 2) mean stool spent too long in the colon. On the loose end, mushy pieces with ragged edges (Type 6) or entirely liquid stool (Type 7) mean it moved through too fast. On color, pale clay, red without a dietary cause, or black and tarry are the three that need medical attention.',
+  },
+  {
+    question: 'How can I compare my stool to these pictures?',
+    answer:
+      'Match on two axes rather than one. First find the consistency that looks closest on the Bristol chart, then find the closest color on the color chart. A single unusual result is rarely meaningful — what matters is whether the same type or color keeps recurring over a week or more.',
+  },
+  {
+    question: 'Are these real photos of poop?',
+    answer:
+      'No. These are medical illustrations drawn to depict each Bristol type and stool color accurately. Illustrations are the standard used in clinical settings because they show the defining features of each type more clearly and consistently than photographs.',
+  },
+];
+
+const schema = [
+  articleSchema({
+    title,
+    description,
+    url,
+    image: BRISTOL_CHART.src,
+    imageAlt: BRISTOL_CHART.alt,
+    images: [
+      { url: COLOR_CHART.src, width: COLOR_CHART.width, height: COLOR_CHART.height, caption: COLOR_CHART.alt },
+      ...bristolImages.images.map((i: any) => ({
+        url: i.file,
+        width: bristolImages.width,
+        height: bristolImages.height,
+        caption: i.alt,
+      })),
+    ],
+    datePublished: '2026-08-12T00:00:00Z',
+    dateModified: '2026-08-12T00:00:00Z',
+    author: 'PoopCheck Team',
+    medical: true,
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: `${SITE.url}/` },
+    { name: 'Poop Pictures', url },
+  ]),
+  faqSchema(faqItems),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ImageGallery',
+    name: title,
+    description,
+    url,
+    associatedMedia: bristolImages.images.map((i: any) =>
+      imageObject({ url: i.file, width: bristolImages.width, height: bristolImages.height, caption: i.alt })
+    ),
+  },
+];
+
+const signalColor: Record<string, string> = {
+  ideal: 'var(--color-primary)',
+  healthy: 'var(--color-primary)',
+  'borderline-loose': '#FFD98E',
+  'mild-constipation': '#FFB86B',
+  'mild-diarrhea': '#FFB86B',
+  'severe-constipation': '#FF6B6B',
+  diarrhea: '#FF6B6B',
+};
+---
+
+<PageLayout
+  seo={{ title, description, type: 'article', image: BRISTOL_CHART.src, imageAlt: BRISTOL_CHART.alt }}
+  schema={schema}
+>
+  <article class="py-12 md:py-20">
+    <div class="max-w-5xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[{ label: 'Poop Pictures', href: '/poop-pictures/' }]} />
+      </div>
+
+      <header class="mb-12 text-center">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          Poop Pictures: What Healthy and Unhealthy Stool Looks Like
+        </h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)] leading-relaxed max-w-3xl mx-auto">
+          Most people have no reference point for what is normal. Below are labelled
+          pictures of all seven stool consistencies and all eight stool colors, so you
+          can compare what you actually saw against something concrete.
+        </p>
+      </header>
+
+      <h2 class="text-2xl md:text-3xl font-bold mb-3">Pictures of all 7 stool types</h2>
+      <p class="text-[var(--color-text-muted)] mb-8 max-w-3xl">
+        The Bristol Stool Chart is the clinical standard for classifying stool
+        consistency. Types 3 and 4 are the healthy range — everything above is too
+        slow, everything below is too fast.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        {bristolImages.images.map((img: any, idx: number) => {
+          const t = typeFor(img.type);
+          const color = signalColor[t.health_signal] || 'var(--color-primary)';
+          return (
+            <a
+              href={`/bristol/${img.slug}/`}
+              class="group rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)] overflow-hidden hover:border-[var(--color-primary)]/50 transition-colors"
+            >
+              <img
+                src={img.file}
+                alt={img.alt}
+                width={bristolImages.width}
+                height={bristolImages.height}
+                loading={idx < 3 ? 'eager' : 'lazy'}
+                decoding="async"
+                class="w-full h-auto"
+              />
+              <div class="p-5">
+                <div class="flex items-center justify-between gap-2 mb-2">
+                  <h3 class="font-bold group-hover:text-[var(--color-primary)] transition-colors">
+                    Type {img.type}: {img.name}
+                  </h3>
+                </div>
+                <div
+                  class="inline-block text-xs font-semibold px-2.5 py-1 rounded-full mb-3"
+                  style={`background-color: color-mix(in oklab, ${color} 15%, transparent); color: ${color};`}
+                >
+                  {t.health_signal_label}
+                </div>
+                <p class="text-sm text-[var(--color-text-muted)]">{t.appearance}</p>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+
+      <h2 class="text-2xl md:text-3xl font-bold mb-3">The full Bristol chart</h2>
+      <p class="text-[var(--color-text-muted)] mb-2 max-w-3xl">
+        All seven types in one image, free to save or republish with credit.
+      </p>
+      <Figure
+        src={BRISTOL_CHART.src}
+        alt={BRISTOL_CHART.alt}
+        width={BRISTOL_CHART.width}
+        height={BRISTOL_CHART.height}
+        caption="All 7 Bristol stool types with pictures. Types 3–4 are the healthy range. Full detail on the Bristol Stool Chart page."
+      />
+      <p class="text-sm text-[var(--color-text-muted)] mb-16">
+        <a href="/bristol/" class="text-[var(--color-accent)] hover:underline">
+          See the full Bristol Stool Chart guide, with causes and fixes for each type →
+        </a>
+      </p>
+
+      <h2 class="text-2xl md:text-3xl font-bold mb-3">Pictures of all 8 stool colors</h2>
+      <p class="text-[var(--color-text-muted)] mb-8 max-w-3xl">
+        Stool is brown because of bile. A shift in color usually reflects diet,
+        transit speed, or bile flow — three of these eight are worth a doctor's visit.
+      </p>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
+        {colorData.colors.map((c: any) => {
+          const flag = (colorData.flags as any)[c.flag];
+          return (
+            <a
+              href={`/poop-color-chart/#${c.slug}`}
+              class="group rounded-xl border border-[var(--color-border)]/50 bg-[var(--color-surface)] overflow-hidden hover:border-[var(--color-primary)]/50 transition-colors"
+            >
+              <div class="h-24" style={`background-color: ${c.hex};`} aria-hidden="true"></div>
+              <div class="p-4">
+                <h3 class="font-semibold text-sm mb-1.5 group-hover:text-[var(--color-primary)] transition-colors">
+                  {c.name}
+                </h3>
+                <span class="text-xs font-semibold" style={`color: ${flag.color};`}>{flag.label}</span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+
+      <Figure
+        src={COLOR_CHART.src}
+        alt={COLOR_CHART.alt}
+        width={COLOR_CHART.width}
+        height={COLOR_CHART.height}
+        caption="The poop color chart: eight stool colors and what each one means."
+      />
+      <p class="text-sm text-[var(--color-text-muted)] mb-16">
+        <a href="/poop-color-chart/" class="text-[var(--color-accent)] hover:underline">
+          See the full poop color chart, with causes for every color →
+        </a>
+      </p>
+
+      <div class="prose prose-invert prose-lg max-w-none
+        prose-headings:font-bold prose-headings:text-[var(--color-text)]
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+        prose-p:text-[var(--color-text-muted)] prose-p:leading-relaxed
+        prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline
+        prose-strong:text-[var(--color-text)]
+        prose-li:text-[var(--color-text-muted)]
+      ">
+        <h2>How to use these pictures</h2>
+        <p>
+          Match on two axes, not one. Find the consistency that looks closest on the
+          Bristol chart, then find the closest color. "Type 6 and yellow" is a far more
+          useful description than "it looked wrong", both for your own tracking and for
+          a conversation with a doctor.
+        </p>
+        <p>
+          Then watch the pattern rather than the instance. One unusual bowel movement
+          after a heavy meal or a stressful day means very little. The same type or
+          color recurring across a week or two is the signal worth acting on.
+        </p>
+
+        <h2>When pictures are not enough</h2>
+        <ul>
+          <li>Blood in or on the stool, or black tarry stool, with no dietary explanation.</li>
+          <li>Pale or clay-colored stool, particularly with dark urine or yellowing skin.</li>
+          <li>Persistent Type 1–2 or Type 6–7 lasting more than two weeks.</li>
+          <li>Any change alongside unexplained weight loss, fever, or severe pain.</li>
+          <li>Pencil-thin stools that persist.</li>
+        </ul>
+
+        <p><em>
+          These are medical illustrations, not photographs, and this page is not medical
+          advice or a diagnosis. PoopCheck is a tracker and classifier, not a substitute
+          for medical care. See a qualified clinician about any concerning symptom.
+        </em></p>
+
+        <h2>FAQ</h2>
+        {faqItems.map((f) => (
+          <>
+            <h3>{f.question}</h3>
+            <p>{f.answer}</p>
+          </>
+        ))}
+      </div>
+
+      <div class="mt-16 p-8 rounded-2xl bg-gradient-to-br from-[var(--color-accent)]/10 to-[var(--color-primary)]/10 border border-[var(--color-border)]/50 text-center">
+        <h2 class="text-xl font-bold mb-2">Skip the comparing</h2>
+        <p class="text-sm text-[var(--color-text-muted)] mb-4">
+          PoopCheck classifies Bristol type, color and consistency from a photo in
+          seconds — and remembers the pattern so you don't have to.
+        </p>
+        <a
+          href="/download/"
+          class="inline-flex items-center px-6 py-3 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold hover:opacity-90 transition-opacity glow-primary"
+        >
+          Download Free
+        </a>
+      </div>
+    </div>
+  </article>
+</PageLayout>

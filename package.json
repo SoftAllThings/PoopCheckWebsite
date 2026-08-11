@@ -7,6 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "images": "node scripts/generate-images.mjs",
     "build": "astro build",
     "postbuild": "node scripts/patch-wrangler.mjs",
     "deploy": "npm run build && wrangler deploy -c dist/server/wrangler.json",

@@ -1,0 +1,197 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import EmbedChart from '../components/seo/EmbedChart.astro';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../utils/schema';
+import { getCanonicalUrl, SITE } from '../utils/seo';
+import colorData from '../data/stool-colors.json';
+
+const url = getCanonicalUrl(Astro.url.pathname);
+const title = 'Poop Color Chart: What Every Stool Color Means (With Pictures)';
+const description =
+  'A poop color chart covering brown, green, yellow, pale, red and black stool — what each color means, what causes it, and which colors need a doctor.';
+
+const CHART = {
+  src: '/images/charts/poop-color-chart.png',
+  width: 1200,
+  height: 1374,
+  alt: 'Poop color chart showing eight stool colors — medium brown, light brown, dark brown, green, yellow, pale clay, red and black — with what each color means and whether it needs medical attention.',
+};
+
+const flags: Record<string, { label: string; color: string }> = colorData.flags;
+
+const faqItems = [
+  {
+    question: 'What color should poop be?',
+    answer:
+      'Healthy stool is some shade of brown — anywhere from light tan to dark brown. Bile from the liver starts out green and is broken down by gut bacteria into stercobilin during normal transit, which produces the brown color. Consistent brown means bile flow and transit time are both working normally.',
+  },
+  {
+    question: 'What poop colors are dangerous?',
+    answer:
+      'Three warrant prompt medical attention: pale or clay-colored stool (suggests bile is not reaching the intestine, pointing to a liver, gallbladder or pancreatic problem), red stool with no dietary explanation (possible lower-GI bleeding), and black tarry stool with a strong smell when you are not taking iron or bismuth (possible upper-GI bleeding).',
+  },
+  {
+    question: 'Why is my poop green?',
+    answer:
+      'Green stool most often means food moved through your colon too fast for bile to break down from green to brown. Leafy greens, matcha, blue or green food dye, and iron supplements also cause it. Occasional green stool is harmless; green stool with persistent diarrhea is worth discussing with a doctor.',
+  },
+  {
+    question: 'Does poop color change with diet?',
+    answer:
+      'Yes, and diet is the single most common explanation. Beets and tomato can turn stool red, leafy greens turn it green, iron and dark chocolate darken it, and a very fatty meal can make it pale and greasy for a day. Diet-driven changes resolve within a day or two — a color that persists for a week or more is the one to investigate.',
+  },
+  {
+    question: 'How long should I wait before seeing a doctor about stool color?',
+    answer:
+      'For pale, red or black stool with no dietary explanation, do not wait — book an appointment. For green or yellow stool, give it a few days to resolve on its own; if it persists beyond two weeks, or comes with pain, weight loss, fever or blood, see a clinician.',
+  },
+];
+
+const schema = [
+  articleSchema({
+    title,
+    description,
+    url,
+    image: CHART.src,
+    imageAlt: CHART.alt,
+    datePublished: '2026-08-12T00:00:00Z',
+    dateModified: '2026-08-12T00:00:00Z',
+    author: 'PoopCheck Team',
+    medical: true,
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: `${SITE.url}/` },
+    { name: 'Poop Color Chart', url },
+  ]),
+  faqSchema(faqItems),
+];
+---
+
+<PageLayout seo={{ title, description, type: 'article', image: CHART.src, imageAlt: CHART.alt }} schema={schema}>
+  <article class="py-12 md:py-20">
+    <div class="max-w-4xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[{ label: 'Poop Color Chart', href: '/poop-color-chart/' }]} />
+      </div>
+
+      <header class="mb-10 text-center">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          Poop Color Chart
+        </h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)] leading-relaxed max-w-2xl mx-auto">
+          Stool is brown because of bile. When the color shifts, it is usually
+          telling you something about your diet, your transit speed, or your bile
+          flow. Here is what each color means — and the three that are worth a
+          doctor's appointment.
+        </p>
+      </header>
+
+      <EmbedChart
+        src={CHART.src}
+        alt={CHART.alt}
+        width={CHART.width}
+        height={CHART.height}
+        title="The Poop Color Chart"
+        caption="The poop color chart: eight stool colors, what causes each one, and which need medical attention."
+        creditPath="/poop-color-chart/"
+        eager={true}
+      />
+
+      <h2 class="text-2xl font-bold mb-6 mt-16">Every stool color, explained</h2>
+
+      <div class="space-y-5">
+        {colorData.colors.map((c: any) => {
+          const flag = flags[c.flag];
+          return (
+            <div
+              id={c.slug}
+              class="rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)] p-6 scroll-mt-24"
+            >
+              <div class="flex items-start gap-4 mb-3 flex-wrap">
+                <div
+                  class="w-14 h-14 rounded-xl shrink-0 border border-white/10"
+                  style={`background-color: ${c.hex};`}
+                  aria-hidden="true"
+                >
+                </div>
+                <div class="flex-1 min-w-[200px]">
+                  <h3 class="text-xl font-bold">{c.name}</h3>
+                  <p class="text-sm text-[var(--color-text-muted)] mt-1">{c.meaning}</p>
+                </div>
+                <div
+                  class="text-xs font-semibold px-3 py-1.5 rounded-full self-center"
+                  style={`background-color: color-mix(in oklab, ${flag.color} 15%, transparent); color: ${flag.color}; border: 1px solid color-mix(in oklab, ${flag.color} 30%, transparent);`}
+                >
+                  {flag.label}
+                </div>
+              </div>
+              <p class="text-[var(--color-text-muted)] leading-relaxed">{c.detail}</p>
+            </div>
+          );
+        })}
+      </div>
+
+      <div class="prose prose-invert prose-lg max-w-none mt-16
+        prose-headings:font-bold prose-headings:text-[var(--color-text)]
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+        prose-p:text-[var(--color-text-muted)] prose-p:leading-relaxed
+        prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline
+        prose-strong:text-[var(--color-text)]
+        prose-li:text-[var(--color-text-muted)]
+      ">
+        <h2>Color is only half the picture</h2>
+        <p>
+          Color tells you about bile and transit speed. Consistency tells you about
+          hydration, fiber and motility. Reading them together is far more useful
+          than either alone — yellow and greasy means something quite different from
+          yellow and well-formed.
+        </p>
+        <p>
+          The clinical tool for consistency is the{' '}
+          <a href="/bristol/">Bristol Stool Chart</a>, which sorts stool into seven
+          types from hard pellets to fully liquid. Pair the color you found above
+          with your Bristol type for a much more specific picture.
+        </p>
+
+        <h2>When to see a doctor about stool color</h2>
+        <ul>
+          <li><strong>Book promptly:</strong> pale or clay-colored stool, especially with dark urine or yellowing skin.</li>
+          <li><strong>Book promptly:</strong> black, tarry, strong-smelling stool when you are not taking iron or bismuth.</li>
+          <li><strong>Book promptly:</strong> red stool or visible blood with no dietary explanation.</li>
+          <li><strong>Investigate if persistent:</strong> yellow greasy stool that floats, for more than two weeks.</li>
+          <li><strong>Always:</strong> any color change alongside unexplained weight loss, fever, or severe abdominal pain.</li>
+        </ul>
+
+        <p><em>
+          This page summarizes widely-accepted medical information and is not medical
+          advice or a diagnosis. PoopCheck is a tracker, not a diagnostic tool. See a
+          qualified clinician about any concerning symptom.
+        </em></p>
+
+        <h2>FAQ</h2>
+        {faqItems.map((f) => (
+          <>
+            <h3>{f.question}</h3>
+            <p>{f.answer}</p>
+          </>
+        ))}
+      </div>
+
+      <div class="mt-16 p-8 rounded-2xl bg-gradient-to-br from-[var(--color-accent)]/10 to-[var(--color-primary)]/10 border border-[var(--color-border)]/50 text-center">
+        <h2 class="text-xl font-bold mb-2">Stop guessing at the color</h2>
+        <p class="text-sm text-[var(--color-text-muted)] mb-4">
+          PoopCheck reads color, Bristol type and consistency from a photo in seconds,
+          then tracks how they change over time.
+        </p>
+        <a
+          href="/download/"
+          class="inline-flex items-center px-6 py-3 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold hover:opacity-90 transition-opacity glow-primary"
+        >
+          Download Free
+        </a>
+      </div>
+    </div>
+  </article>
+</PageLayout>

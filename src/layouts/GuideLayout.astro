@@ -3,26 +3,31 @@ import PageLayout from './PageLayout.astro';
 import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import TableOfContents from '../components/blog/TableOfContents.astro';
 import { articleSchema } from '../utils/schema';
-import { getCanonicalUrl, SITE } from '../utils/seo';
+import { getCanonicalUrl, guideImage, SITE } from '../utils/seo';
 
 interface Props {
   title: string;
   description: string;
   date: Date;
   updated?: Date;
+  slug: string;
   image?: string;
   imageAlt?: string;
   toc?: boolean;
   headings: { depth: number; slug: string; text: string }[];
 }
 
-const { title, description, date, updated, image, imageAlt, toc = true, headings } = Astro.props;
+const { title, description, date, updated, slug, image: explicitImage, imageAlt: explicitAlt, toc = true, headings } = Astro.props;
+
+const image = guideImage(slug, explicitImage);
+const imageAlt = explicitAlt || title;
 
 const schema = articleSchema({
   title,
   description,
   url: getCanonicalUrl(Astro.url.pathname),
-  image: image ? `${SITE.url}${image}` : undefined,
+  image,
+  imageAlt,
   datePublished: date.toISOString(),
   dateModified: updated?.toISOString(),
 });
@@ -71,11 +76,18 @@ const formattedDate = date.toLocaleDateString('en-US', {
 
       {toc && <TableOfContents headings={headings} />}
 
-      {image && (
-        <div class="mb-10 rounded-2xl overflow-hidden">
-          <img src={image} alt={imageAlt || title} class="w-full h-auto" loading="eager" />
-        </div>
-      )}
+      <div class="mb-10 rounded-2xl overflow-hidden">
+        <img
+          src={image}
+          alt={imageAlt}
+          width={SITE.imageWidth}
+          height={SITE.imageHeight}
+          class="w-full h-auto"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </div>
 
       <div class="prose prose-invert prose-lg max-w-none
         prose-headings:font-bold prose-headings:text-[var(--color-text)]

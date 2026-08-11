@@ -1,9 +1,11 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import Figure from '../../components/seo/Figure.astro';
 import { articleSchema, breadcrumbSchema, faqSchema } from '../../utils/schema';
 import { getCanonicalUrl, SITE } from '../../utils/seo';
 import bristolData from '../../data/bristol.json';
+import bristolImages from '../../data/bristol-images.json';
 
 export function getStaticPaths() {
   return bristolData.types.map((t: any) => ({
@@ -19,6 +21,9 @@ const title = `${entry.name} — What It Means for Your Health`;
 const description = `${entry.appearance} Here's what ${entry.name} signals about your digestive health, when to worry, and evidence-based ways to shift toward the healthy Bristol range.`.slice(0, 160);
 
 const sources = shared.filter((s: any) => entry.sources.includes(s.id));
+
+const art = bristolImages.images.find((i: any) => i.type === entry.type)!;
+const imageAlt = `Bristol Stool Chart Type ${entry.type} illustration — ${entry.appearance} Classified as ${entry.health_signal_label.toLowerCase()}.`;
 
 const faqItems = [
   {
@@ -46,6 +51,16 @@ const schema = [
     title,
     description,
     url,
+    image: art.file,
+    imageAlt,
+    images: [
+      {
+        url: '/images/charts/bristol-stool-chart.png',
+        width: 1200,
+        height: 1678,
+        caption: 'The full Bristol Stool Chart — all 7 stool types with illustrations and what each one means.',
+      },
+    ],
     datePublished: '2026-04-20T00:00:00Z',
     dateModified: '2026-04-20T00:00:00Z',
     author: 'PoopCheck Team',
@@ -71,7 +86,7 @@ const signalColor: Record<string, string> = {
 const accent = signalColor[entry.health_signal] || 'var(--color-primary)';
 ---
 
-<PageLayout seo={{ title, description, type: 'article' }} schema={schema}>
+<PageLayout seo={{ title, description, type: 'article', image: art.file, imageAlt }} schema={schema}>
   <article class="py-12 md:py-20">
     <div class="max-w-3xl mx-auto px-5">
 
@@ -99,67 +114,15 @@ const accent = signalColor[entry.health_signal] || 'var(--color-primary)';
         </p>
       </header>
 
-      {/* SVG: simple visual of this type */}
-      <figure class="mb-12">
-        <svg viewBox="0 0 1200 400" width="100%" height="auto" role="img" aria-labelledby={`bristol-${entry.type}-title bristol-${entry.type}-desc`} style="background: #121212; border-radius: 16px;">
-          <title id={`bristol-${entry.type}-title`}>{`Bristol Stool Scale ${entry.name}: ${entry.short_name}`}</title>
-          <desc id={`bristol-${entry.type}-desc`}>{`Simplified visual of ${entry.name}: ${entry.appearance} This health signal corresponds to ${entry.health_signal_label.toLowerCase()}.`}</desc>
-          <rect width="1200" height="400" fill="#121212"/>
-          <text x="600" y="80" text-anchor="middle" fill="#FFFFFF" font-size="28" font-weight="600">{`Type ${entry.type}`}</text>
-          <text x="600" y="115" text-anchor="middle" fill="#9BF0FF" font-size="16">{entry.short_name}</text>
-          {entry.type === 1 && (
-            <g>
-              {[280, 380, 480, 580, 680, 780, 880].map((x: number) => (
-                <circle cx={x} cy="240" r="25" fill={accent} />
-              ))}
-            </g>
-          )}
-          {entry.type === 2 && (
-            <g>
-              <rect x="280" y="215" width="640" height="50" rx="10" fill={accent}/>
-              {[340, 440, 540, 640, 740, 840].map((x: number) => (
-                <circle cx={x} cy="240" r="12" fill="#121212" opacity="0.4" />
-              ))}
-            </g>
-          )}
-          {entry.type === 3 && (
-            <g>
-              <rect x="240" y="210" width="720" height="60" rx="30" fill={accent}/>
-              {[380, 500, 620, 740, 860].map((x: number) => (
-                <line x1={x} y1="225" x2={x} y2="255" stroke="#121212" stroke-width="2" opacity="0.4" />
-              ))}
-            </g>
-          )}
-          {entry.type === 4 && (
-            <g>
-              <path d="M 240 240 Q 400 200 600 240 T 960 240" stroke={accent} stroke-width="55" fill="none" stroke-linecap="round"/>
-            </g>
-          )}
-          {entry.type === 5 && (
-            <g>
-              {[{x:340,r:45},{x:500,r:50},{x:680,r:42},{x:860,r:48}].map(({x,r}: any) => (
-                <ellipse cx={x} cy="240" rx={r} ry={r*0.6} fill={accent}/>
-              ))}
-            </g>
-          )}
-          {entry.type === 6 && (
-            <g>
-              {[300, 420, 540, 660, 780, 900].map((x: number, i: number) => (
-                <circle cx={x} cy={230 + (i % 2) * 20} r={22 + (i % 3) * 4} fill={accent} opacity={0.85}/>
-              ))}
-            </g>
-          )}
-          {entry.type === 7 && (
-            <g>
-              <ellipse cx="600" cy="245" rx="380" ry="30" fill={accent} opacity="0.9"/>
-              {[320, 450, 600, 750, 880].map((x: number) => (
-                <circle cx={x} cy="245" r="4" fill="#FFFFFF" opacity="0.7"/>
-              ))}
-            </g>
-          )}
-          <text x="600" y="370" text-anchor="middle" fill="#FFFFFF" font-size="14" opacity="0.7">{entry.appearance}</text>
-        </svg>
-      </figure>
+      <Figure
+        src={art.file}
+        alt={imageAlt}
+        width={bristolImages.width}
+        height={bristolImages.height}
+        caption={`Bristol Stool Chart Type ${entry.type}: ${entry.short_name}. ${entry.health_signal_label}.`}
+        eager={true}
+        class="mb-12"
+      />
 
       <div class="prose prose-invert prose-lg max-w-none
         prose-headings:font-bold prose-headings:text-[var(--color-text)]

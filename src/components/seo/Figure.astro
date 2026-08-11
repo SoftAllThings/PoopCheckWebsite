@@ -1,0 +1,52 @@
+---
+/**
+ * An indexable image.
+ *
+ * Google Images only indexes images referenced by a real `<img src>` — inline
+ * `<svg>` is invisible to it. Everything visual that we want to rank must go
+ * through this component. The `<figcaption>` is not decoration: surrounding
+ * caption text is one of the strongest signals Google uses to understand what
+ * an image depicts.
+ */
+interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  caption?: string;
+  /** Above the fold — skip lazy loading so it isn't an LCP penalty. */
+  eager?: boolean;
+  class?: string;
+  /** Render edge-to-edge with no rounded card treatment. */
+  bare?: boolean;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  caption,
+  eager = false,
+  class: className = '',
+  bare = false,
+} = Astro.props;
+---
+
+<figure class={`my-8 ${className}`}>
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={eager ? 'eager' : 'lazy'}
+    decoding="async"
+    fetchpriority={eager ? 'high' : 'auto'}
+    class={`w-full h-auto ${bare ? '' : 'rounded-2xl border border-white/8 bg-[var(--color-surface)]'}`}
+  />
+  {caption && (
+    <figcaption class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed text-center">
+      {caption}
+    </figcaption>
+  )}
+</figure>

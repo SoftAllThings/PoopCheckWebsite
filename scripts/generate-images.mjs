@@ -2,26 +2,32 @@
 /**
  * Generates every raster image the site serves, from SVG sources built here.
  *
- * Run locally, commit the output. This is deliberately NOT part of `npm run build`:
- * it shells out to `rsvg-convert` (brew install librsvg), which isn't available on
- * the Cloudflare/CI builder. The PNGs are checked into git and served as static assets.
- *
  *   npm run images
+ *
+ * Rasterises with sharp, which ships prebuilt librsvg — so this runs anywhere
+ * `npm ci` runs, including the scheduled cloud agent that writes the weekly blog
+ * post. It is deliberately NOT part of `npm run build`: the PNGs are committed
+ * and served as static assets, so the Cloudflare builder never has to do this work.
+ *
+ * Fonts are the one environment-dependent part. librsvg resolves font-family
+ * through the host's fontconfig, so a machine without Inter falls back to its
+ * default sans (Helvetica on macOS, DejaVu/Liberation on Linux). Cards stay
+ * legible either way; re-run this locally and commit to normalise the set.
  *
  * Outputs:
  *   public/images/og/default.png            1200x630  site-wide social card
  *   public/images/og/blog/<slug>.png        1200x630  per-post hero + social card
+ *   public/images/bristol/*.png             1200x630  per-type illustrations
  *   public/images/charts/*.png              embeddable link-bait charts
  */
 
-import { execFileSync } from 'node:child_process';
-import { mkdirSync, readdirSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import sharp from 'sharp';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC = join(ROOT, 'public');
-const TMP = join(ROOT, '.astro', 'image-gen');
 
 const C = {
   bg: '#121212',
@@ -81,12 +87,14 @@ function dataUri(absPath) {
  * differ per type. Sample one to letterbox the card in a matching colour so the
  * artwork can be contained (not cropped) without a visible seam.
  */
-function backgroundOf(absPath, fallback = '#F4D7C7') {
+async function backgroundOf(absPath, fallback = '#F4D7C7') {
   try {
-    const out = execFileSync('magick', [absPath, '-format', '%[hex:p{2,2}]', 'info:'], {
-      encoding: 'utf8',
-    }).trim();
-    return `#${out.slice(0, 6)}`;
+    const { data } = await sharp(absPath)
+      .extract({ left: 2, top: 2, width: 1, height: 1 })
+      .raw()
+      .toBuffer({ resolveWithObject: true });
+    const hex = [data[0], data[1], data[2]].map((n) => n.toString(16).padStart(2, '0')).join('');
+    return `#${hex}`;
   } catch {
     return fallback;
   }
@@ -96,13 +104,16 @@ function backgroundOf(absPath, fallback = '#F4D7C7') {
 const pillWidth = (label, fontSize) => Math.ceil(label.length * fontSize * 0.56) + 36;
 
 /** Render an SVG string to PNG at the given pixel size. */
-function render(svg, outRel, width, height) {
-  mkdirSync(TMP, { recursive: true });
-  const tmpSvg = join(TMP, 'frame.svg');
-  writeFileSync(tmpSvg, svg);
+async function render(svg, outRel, width, height) {
   const out = join(PUBLIC, outRel);
   mkdirSync(dirname(out), { recursive: true });
-  execFileSync('rsvg-convert', ['-w', String(width), '-h', String(height), tmpSvg, '-o', out]);
+  await sharp(Buffer.from(svg), { density: 96 })
+    .resize(width, height, { fit: 'fill' })
+    // Every card paints a full-bleed opaque background rect, so the alpha
+    // channel is always fully opaque — dropping it is ~25% off each file.
+    .flatten({ background: C.bg })
+    .png({ compressionLevel: 9 })
+    .toFile(out);
   return out;
 }
 
@@ -140,7 +151,7 @@ const wordmark = (x, y, size = 28, anchor = 'start') => `
 // 1. Default OG card
 // ---------------------------------------------------------------------------
 
-function ogDefault() {
+async function ogDefault() {
   const svg = `<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
   ${defs}
   <rect width="1200" height="630" fill="${C.bg}"/>
@@ -154,7 +165,7 @@ function ogDefault() {
   <text x="600" y="470" text-anchor="middle" font-family="${FONT}" font-size="19" font-weight="500"
         fill="${C.muted}" letter-spacing="2.5">BRISTOL STOOL SCALE · GUT HEALTH SCORE · DAILY LOG</text>
 </svg>`;
-  render(svg, 'images/og/default.png', 1200, 630);
+  await render(svg, 'images/og/default.png', 1200, 630);
   console.log('  og/default.png');
 }
 
@@ -172,7 +183,7 @@ const CATEGORY = {
   research: { label: 'Research', hue: '#D9B8FF' },
 };
 
-function postCard({ title, category, slug }) {
+async function postCard({ title, category, slug }) {
   const cat = CATEGORY[category] || CATEGORY['gut-health'];
   const lines = wrap(title, 60, 940, 3);
   const startY = 300 - (lines.length - 1) * 37;
@@ -199,10 +210,10 @@ function postCard({ title, category, slug }) {
   <text x="1110" y="566" text-anchor="end" font-family="${FONT}" font-size="19"
         fill="${C.muted}" letter-spacing="0.3">poopcheck.app</text>
 </svg>`;
-  render(svg, `images/og/blog/${slug}.png`, 1200, 630);
+  await render(svg, `images/og/blog/${slug}.png`, 1200, 630);
 }
 
-function blogCards() {
+async function blogCards() {
   const generated = { blog: [], guides: [] };
   const dir = join(ROOT, 'src', 'content', 'blog');
   const files = readdirSync(dir).filter((f) => f.endsWith('.mdx') || f.endsWith('.md'));
@@ -214,7 +225,7 @@ function blogCards() {
       return m ? m[1] : '';
     };
     const slug = file.replace(/\.mdx?$/, '');
-    postCard({ title: pick('title'), category: pick('category'), slug });
+    await postCard({ title: pick('title'), category: pick('category'), slug });
     generated.blog.push(slug);
   }
   console.log(`  og/blog/*.png (${files.length} posts)`);
@@ -245,7 +256,7 @@ function blogCards() {
   ${wordmark(90, 566, 30)}
   <text x="1110" y="566" text-anchor="end" font-family="${FONT}" font-size="19" fill="${C.muted}">poopcheck.app</text>
 </svg>`;
-    render(svg, `images/og/guides/${slug}.png`, 1200, 630);
+    await render(svg, `images/og/guides/${slug}.png`, 1200, 630);
     generated.guides.push(slug);
   }
   console.log(`  og/guides/*.png (${guides.length} guides)`);
@@ -270,12 +281,12 @@ function blogCards() {
 // card for each type page) and named for what they actually depict.
 // ---------------------------------------------------------------------------
 
-function bristolTypeImages() {
+async function bristolTypeImages() {
   const bristol = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'bristol.json'), 'utf8'));
   const manifest = [];
   for (const t of bristol.types) {
     const src = join(PUBLIC, 'images', 'types', `${t.type}.png`);
-    const plate = backgroundOf(src);
+    const plate = await backgroundOf(src);
     const img = dataUri(src);
     const name = t.name.replace(/^Type \d+:\s*/, '');
     const fileSlug = `bristol-stool-type-${t.type}-${name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
@@ -290,7 +301,7 @@ function bristolTypeImages() {
   <text x="600" y="600" text-anchor="middle" font-family="${FONT}" font-size="21"
         fill="#2A2018" opacity="0.62">${esc(t.health_signal_label)} · poopcheck.app</text>
 </svg>`;
-    render(svg, rel, 1200, 630);
+    await render(svg, rel, 1200, 630);
     manifest.push({ type: t.type, slug: t.slug, file: `/${rel}`, name, alt: `Bristol Stool Chart Type ${t.type}: ${t.appearance}` });
   }
   writeFileSync(
@@ -304,7 +315,7 @@ function bristolTypeImages() {
 // 4. Bristol Stool Chart — the embeddable, link-earning asset
 // ---------------------------------------------------------------------------
 
-function bristolChart() {
+async function bristolChart() {
   const bristol = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'bristol.json'), 'utf8'));
   const W = 1200;
   const HEADER = 210;
@@ -322,13 +333,13 @@ function bristolChart() {
     diarrhea: '#FF6B6B',
   };
 
-  const rows = bristol.types
-    .map((t, i) => {
+  const rows = (await Promise.all(
+    bristol.types.map(async (t, i) => {
       const y = HEADER + i * ROW;
       const accent = signalColor[t.health_signal] || C.accent;
       const typePath = join(PUBLIC, 'images', 'types', `${t.type}.png`);
       const img = dataUri(typePath);
-      const plate = backgroundOf(typePath);
+      const plate = await backgroundOf(typePath);
       const name = t.name.replace(/^Type \d+:\s*/, '');
       const desc = wrap(t.appearance, 20, 440, 3);
       const label = t.health_signal_label;
@@ -362,7 +373,7 @@ function bristolChart() {
           font-weight="600" fill="${accent}">${esc(label)}</text>
   </g>`;
     })
-    .join('');
+  )).join('');
 
   const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
   ${defs}
@@ -379,7 +390,7 @@ function bristolChart() {
   </text>
   ${wordmark(1140, H - 40, 26, 'end')}
 </svg>`;
-  render(svg, 'images/charts/bristol-stool-chart.png', W, H);
+  await render(svg, 'images/charts/bristol-stool-chart.png', W, H);
   console.log(`  charts/bristol-stool-chart.png (${W}x${H})`);
 }
 
@@ -391,7 +402,7 @@ const colorData = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'stool-color
 const STOOL_COLORS = colorData.colors;
 const FLAG = colorData.flags;
 
-function colorChart() {
+async function colorChart() {
   const W = 1200;
   const HEADER = 210;
   const ROW = 132;
@@ -437,7 +448,7 @@ function colorChart() {
   </text>
   ${wordmark(1140, H - 50, 26, 'end')}
 </svg>`;
-  render(svg, 'images/charts/poop-color-chart.png', W, H);
+  await render(svg, 'images/charts/poop-color-chart.png', W, H);
   console.log(`  charts/poop-color-chart.png (${W}x${H})`);
 }
 
@@ -445,7 +456,7 @@ function colorChart() {
 // 5. Publisher logo — schema.org requires a real raster at a stable URL
 // ---------------------------------------------------------------------------
 
-function publisherLogo() {
+async function publisherLogo() {
   const svg = `<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
   ${defs}
   <rect width="600" height="600" rx="120" fill="${C.bg}"/>
@@ -454,25 +465,18 @@ function publisherLogo() {
   <text x="300" y="372" text-anchor="middle" font-family="${FONT}" font-size="86" font-weight="700"
         fill="url(#brand)" letter-spacing="-2">Check</text>
 </svg>`;
-  render(svg, 'images/logo/poopcheck-logo.png', 600, 600);
+  await render(svg, 'images/logo/poopcheck-logo.png', 600, 600);
   console.log('  logo/poopcheck-logo.png');
 }
 
 // ---------------------------------------------------------------------------
 
 console.log('Generating images…');
-try {
-  execFileSync('rsvg-convert', ['--version'], { stdio: 'ignore' });
-} catch {
-  console.error('rsvg-convert not found. Install it with: brew install librsvg');
-  process.exit(1);
-}
 
-publisherLogo();
-ogDefault();
-blogCards();
-bristolTypeImages();
-bristolChart();
-colorChart();
-rmSync(TMP, { recursive: true, force: true });
+await publisherLogo();
+await ogDefault();
+await blogCards();
+await bristolTypeImages();
+await bristolChart();
+await colorChart();
 console.log('Done.');

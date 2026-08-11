@@ -176,12 +176,15 @@ npm run images
 This writes `public/images/og/blog/<slug>.png` and updates
 `src/data/generated-images.json`. Both must be staged in Step 10.
 
-If you skip this, the post falls back to the generic site card: no hero image, a
-weaker social share, and a less specific `image` in its Article schema. A post
-without its own card is a half-finished post.
+It rasterises via `sharp`, which is a normal npm dependency — no system packages,
+no `brew`. It works wherever `npm ci` has run, including this agent's own sandbox.
 
-Requires `rsvg-convert` (`brew install librsvg`). If the command fails because
-the binary is missing, say so in your final log rather than pushing without it.
+If the command fails anyway, **do not abort the run**. The post degrades safely:
+`postImage()` falls back to the site-wide card, so the page still renders and still
+has a valid `image` in its Article schema — it just doesn't get bespoke artwork.
+Push the post, and state plainly in your final log that image generation failed and
+`npm run images` needs re-running locally. A post with a generic card beats a
+skipped week.
 
 Then run a build sanity check:
 

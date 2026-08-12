@@ -1,0 +1,50 @@
+{
+  "$comment": "Low/high FODMAP reference grouped by food category. Consumed by src/pages/low-fodmap-food-list.astro and scripts/generate-images.mjs. FODMAP content is portion-dependent — Monash University tests and updates specific serving thresholds, and this chart is a category-level orientation, not a replacement for their app.",
+  "attribution": {
+    "label": "Monash University FODMAP Diet",
+    "url": "https://www.monashfodmap.com/",
+    "note": "Monash developed the low FODMAP diet and is the authority on tested serving sizes. Thresholds change as foods are retested."
+  },
+  "phases": [
+    { "name": "Elimination", "duration": "2–6 weeks", "what": "Cut high-FODMAP foods to establish whether symptoms respond at all." },
+    { "name": "Reintroduction", "duration": "6–8 weeks", "what": "Challenge one FODMAP group at a time to find which ones you personally react to." },
+    { "name": "Personalisation", "duration": "Ongoing", "what": "Return everything you tolerate. The long-term diet should be as broad as your gut allows." }
+  ],
+  "groups": [
+    {
+      "name": "Vegetables",
+      "low": ["Carrot", "Cucumber", "Zucchini", "Bell pepper (red)", "Eggplant", "Green beans", "Lettuce", "Spinach", "Potato", "Tomato", "Bok choy"],
+      "high": ["Onion", "Garlic", "Cauliflower", "Mushrooms", "Asparagus", "Snow peas", "Artichoke", "Leek bulb"]
+    },
+    {
+      "name": "Fruit",
+      "low": ["Unripe banana", "Blueberries", "Grapes", "Kiwi", "Orange", "Strawberries", "Pineapple", "Cantaloupe"],
+      "high": ["Apple", "Pear", "Mango", "Watermelon", "Cherries", "Peach", "Plum", "Dried fruit"]
+    },
+    {
+      "name": "Grains",
+      "low": ["Oats", "Rice", "Quinoa", "Sourdough spelt", "Corn tortilla", "Gluten-free bread"],
+      "high": ["Wheat bread", "Rye", "Barley", "Couscous", "Regular pasta"]
+    },
+    {
+      "name": "Protein",
+      "low": ["Eggs", "Chicken", "Beef", "Fish", "Firm tofu", "Tempeh"],
+      "high": ["Large servings of legumes", "Silken tofu", "Marinades containing garlic or onion"]
+    },
+    {
+      "name": "Dairy",
+      "low": ["Lactose-free milk", "Hard cheese", "Cheddar", "Parmesan", "Brie", "Camembert", "Butter"],
+      "high": ["Cow's milk", "Yogurt", "Ice cream", "Ricotta", "Cottage cheese"]
+    },
+    {
+      "name": "Nuts & seeds",
+      "low": ["Almonds (10 or fewer)", "Walnuts", "Pumpkin seeds", "Peanuts", "Macadamias"],
+      "high": ["Cashews", "Pistachios"]
+    },
+    {
+      "name": "Sweeteners",
+      "low": ["Maple syrup", "Table sugar", "Stevia"],
+      "high": ["Honey", "Agave", "High-fructose corn syrup", "Sorbitol", "Mannitol", "Xylitol"]
+    }
+  ]
+}

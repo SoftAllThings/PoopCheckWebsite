@@ -1,0 +1,91 @@
+{
+  "$comment": "Baby stool color reference. Consumed by src/pages/baby-poop-color-chart.astro and scripts/generate-images.mjs. Guidance follows mainstream pediatric sources (NHS, AAP, Seattle Children's). The three urgent colors — white/pale, red, and black after meconium — are the clinically important ones and must never be softened.",
+  "sources": [
+    { "id": "nhs-baby-poo", "label": "NHS — Baby poo", "url": "https://www.nhs.uk/conditions/baby/caring-for-a-newborn/nappies/" },
+    { "id": "aap-stool", "label": "American Academy of Pediatrics — Baby's first stools & stool color", "url": "https://www.healthychildren.org/English/ages-stages/baby/diapers-clothing/Pages/Bowel-Movements-in-Babies.aspx" },
+    { "id": "biliary-atresia", "label": "Children's Liver Disease Foundation — pale stool & biliary atresia screening", "url": "https://childliverdisease.org/" }
+  ],
+  "colors": [
+    {
+      "slug": "meconium-black",
+      "name": "Black / Dark Green (Meconium)",
+      "hex": "#1F2318",
+      "when": "First 24–48 hours",
+      "meaning": "Normal. Sticky, tar-like meconium — the material the gut built up before birth.",
+      "flag": "normal",
+      "detail": "Meconium is thick, sticky and almost odorless. It should clear within the first two to three days. If a newborn has not passed any meconium in the first 24–48 hours, tell your midwife or pediatrician — that is the thing to flag, not the color itself."
+    },
+    {
+      "slug": "transitional-green",
+      "name": "Dark Green / Brown-Green",
+      "hex": "#3F4A2E",
+      "when": "Days 2–4",
+      "meaning": "Normal transitional stool as milk feeding takes over from meconium.",
+      "flag": "normal",
+      "detail": "A looser, lighter mix as meconium clears and milk digestion begins. Seeing this by day three is a good sign that feeding is established."
+    },
+    {
+      "slug": "mustard-yellow",
+      "name": "Mustard Yellow, Seedy",
+      "hex": "#D2A63C",
+      "when": "Breastfed, day 4 onward",
+      "meaning": "Normal and ideal for a breastfed baby. Loose, grainy, mild-smelling.",
+      "flag": "normal",
+      "detail": "The classic breastfed stool: runny, mustard-colored, with small pale 'seeds' of undigested milk fat. Often very frequent in the early weeks — a breastfed newborn may pass stool at nearly every feed. Loose does not mean diarrhea at this age."
+    },
+    {
+      "slug": "tan-brown",
+      "name": "Tan / Yellow-Brown",
+      "hex": "#A87F52",
+      "when": "Formula-fed",
+      "meaning": "Normal for formula. Thicker and pastier than breastfed stool, with a stronger smell.",
+      "flag": "normal",
+      "detail": "Formula-fed babies produce firmer, more paste-like stool in tan to yellow-brown, and usually pass it less often than breastfed babies. Both patterns are normal — they simply reflect what the baby is digesting."
+    },
+    {
+      "slug": "bright-green",
+      "name": "Bright / Frothy Green",
+      "hex": "#4F8438",
+      "when": "Any age",
+      "meaning": "Usually harmless. Iron-fortified formula, a fast feed, or a passing bug.",
+      "flag": "watch",
+      "detail": "Common causes are iron-fortified formula, a foremilk-heavy feed, something in the parent's diet, or a mild viral illness. Green alone in a baby who is feeding well, gaining weight and content is not a concern. Green plus poor feeding, fever, or lethargy is worth a call."
+    },
+    {
+      "slug": "brown",
+      "name": "Brown",
+      "hex": "#7A5230",
+      "when": "Once on solids",
+      "meaning": "Normal. Stool darkens and firms as solid food is introduced.",
+      "flag": "normal",
+      "detail": "Expect thicker, browner, distinctly smellier stool once solids start, often with recognizable food fragments. Undigested pieces of vegetable or fruit are normal and not a sign of poor digestion."
+    },
+    {
+      "slug": "white-pale",
+      "name": "White / Pale / Chalky",
+      "hex": "#E4DDCE",
+      "when": "Any age",
+      "meaning": "Urgent. Can signal the liver is not delivering bile to the gut.",
+      "flag": "urgent",
+      "detail": "Chalky, clay or putty-colored stool means little or no bile is reaching the intestine, and it is the key early sign of biliary atresia. Treatment outcomes depend heavily on how early it is caught — ideally within the first eight weeks of life. Do not wait and watch. Contact a doctor the same day, and photograph the diaper in natural light to show them."
+    },
+    {
+      "slug": "red-blood",
+      "name": "Red / Streaks of Blood",
+      "hex": "#A32B2B",
+      "when": "Any age",
+      "meaning": "Get it checked. Often minor, but blood in a baby's diaper always warrants a call.",
+      "flag": "urgent",
+      "detail": "Beets, tomato and some medicines can tint stool red harmlessly. Genuine blood most often comes from a small anal fissure from straining, or a cow's-milk protein allergy. Streaks of blood mixed with mucus, or a baby who seems unwell, needs prompt assessment. Either way, phone rather than assume."
+    },
+    {
+      "slug": "black-after-meconium",
+      "name": "Black (after day 4)",
+      "hex": "#171310",
+      "when": "After meconium has cleared",
+      "meaning": "Urgent. Once meconium has passed, black stool can mean digested blood.",
+      "flag": "urgent",
+      "detail": "Iron supplements can darken stool harmlessly, and a breastfed baby may swallow blood from a cracked nipple. But genuinely black, tarry stool after the first few days can be melena — digested blood from higher in the gut. If the baby is not on iron, treat it as urgent."
+    }
+  ]
+}

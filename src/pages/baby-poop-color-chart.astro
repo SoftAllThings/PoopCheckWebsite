@@ -1,0 +1,226 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import EmbedChart from '../components/seo/EmbedChart.astro';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../utils/schema';
+import { getCanonicalUrl, SITE } from '../utils/seo';
+import babyData from '../data/baby-stool-colors.json';
+import charts from '../data/chart-images.json';
+
+const url = getCanonicalUrl(Astro.url.pathname);
+const title = 'Baby Poop Color Chart: What Every Diaper Color Means';
+const description =
+  'A baby poop color chart for every stage — meconium, breastfed, formula, and solids. What each color means, and the three that need a doctor the same day.';
+
+const CHART = charts.charts['baby-poop-color-chart'];
+const PRINT = charts.charts['baby-poop-color-chart-printable'];
+const ALT =
+  'Baby poop color chart showing nine diaper colors — black meconium, dark green transitional, mustard yellow, tan, bright green, brown, white, red and black — with what each means and which need a doctor.';
+
+const flags: Record<string, { label: string; color: string }> = {
+  normal: { label: 'Normal', color: 'var(--color-primary)' },
+  watch: { label: 'Usually fine', color: '#FFB86B' },
+  urgent: { label: 'Call a doctor', color: '#FF6B6B' },
+};
+
+const urgent = babyData.colors.filter((c: any) => c.flag === 'urgent');
+
+const faqItems = [
+  {
+    question: 'What color should baby poop be?',
+    answer:
+      'It depends on age and feeding. The first few days bring black, tar-like meconium, which is normal. Breastfed babies then settle into loose mustard-yellow, seedy stool. Formula-fed babies produce thicker tan to yellow-brown stool. Once solids start, it darkens to brown. All of these are normal.',
+  },
+  {
+    question: 'What baby poop colors are dangerous?',
+    answer:
+      'Three. White, pale or chalky stool can mean bile is not reaching the gut and is the key early sign of biliary atresia — contact a doctor the same day. Red stool or blood streaks always warrant a call, even though the cause is often a minor anal fissure or a milk protein allergy. Black, tarry stool after meconium has cleared, in a baby not taking iron, can be digested blood.',
+  },
+  {
+    question: 'Is green baby poop normal?',
+    answer:
+      'Usually, yes. Green stool is commonly caused by iron-fortified formula, a foremilk-heavy feed, something in a breastfeeding parent’s diet, or a mild viral illness. If the baby is feeding well, gaining weight and generally content, green alone is not a concern. Green combined with poor feeding, fever, or unusual lethargy is worth a call.',
+  },
+  {
+    question: 'Why is my newborn’s poop black?',
+    answer:
+      'In the first 24 to 48 hours, black is meconium — the sticky, tar-like material the gut accumulated before birth, and entirely normal. It should clear within two to three days. Black stool appearing after meconium has passed is different, and in a baby not on iron supplements it should be treated as urgent.',
+  },
+  {
+    question: 'How often should a baby poop?',
+    answer:
+      'The range is very wide. A breastfed newborn may pass stool at nearly every feed, while an older breastfed baby can go several days between movements and still be perfectly healthy. Formula-fed babies are typically less frequent than breastfed newborns. Consistency and comfort matter more than frequency — a soft stool passed without distress is fine, however often it arrives.',
+  },
+];
+
+const schema = [
+  articleSchema({
+    title,
+    description,
+    url,
+    image: CHART.src,
+    imageAlt: ALT,
+    images: [{ url: PRINT.src, width: PRINT.width, height: PRINT.height, caption: `${ALT} Printable version.` }],
+    datePublished: '2026-08-12T00:00:00Z',
+    dateModified: '2026-08-12T00:00:00Z',
+    author: 'PoopCheck Team',
+    medical: true,
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: `${SITE.url}/` },
+    { name: 'Baby Poop Color Chart', url },
+  ]),
+  faqSchema(faqItems),
+];
+---
+
+<PageLayout seo={{ title, description, type: 'article', image: CHART.src, imageAlt: ALT }} schema={schema}>
+  <article class="py-12 md:py-20">
+    <div class="max-w-4xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[{ label: 'Baby Poop Color Chart', href: '/baby-poop-color-chart/' }]} />
+      </div>
+
+      <header class="mb-8 text-center">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          Baby Poop Color Chart
+        </h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)] leading-relaxed max-w-2xl mx-auto">
+          Newborn stool changes dramatically in the first week, then again with
+          formula and again with solids. Almost all of it is normal. Here is what
+          each color means — and the three that need a doctor the same day.
+        </p>
+      </header>
+
+      {/* The urgent cases go above the fold. A worried parent should not have to scroll. */}
+      <div class="mb-10 rounded-2xl border border-[#FF6B6B]/35 bg-[#FF6B6B]/[0.07] p-6">
+        <h2 class="text-lg font-bold mb-3 text-[#FF6B6B]">Call a doctor today if you see these</h2>
+        <ul class="space-y-2">
+          {urgent.map((c: any) => (
+            <li class="flex items-start gap-3">
+              <span
+                class="w-5 h-5 rounded-md shrink-0 mt-0.5 border border-white/15"
+                style={`background-color: ${c.hex};`}
+                aria-hidden="true"
+              ></span>
+              <span class="text-[var(--color-text-muted)] text-sm leading-relaxed">
+                <strong class="text-[var(--color-text)]">{c.name}</strong> — {c.meaning}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-4 text-xs text-[var(--color-text-muted)]">
+          Photograph the diaper in natural light before you change it — color is hard
+          to describe over the phone and easy to show.
+        </p>
+      </div>
+
+      <EmbedChart
+        src={CHART.src}
+        alt={ALT}
+        width={CHART.width}
+        height={CHART.height}
+        title="Baby Poop Color Chart"
+        caption="Baby poop color chart: every diaper color from meconium through solids, with what each one means."
+        creditPath="/baby-poop-color-chart/"
+        eager={true}
+        printable={{ src: PRINT.src, width: PRINT.width, height: PRINT.height }}
+      />
+
+      <h2 class="text-2xl font-bold mb-6 mt-16">Every diaper color, explained</h2>
+
+      <div class="space-y-5">
+        {babyData.colors.map((c: any) => {
+          const flag = flags[c.flag];
+          return (
+            <div
+              id={c.slug}
+              class="rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)] p-6 scroll-mt-24"
+            >
+              <div class="flex items-start gap-4 mb-3 flex-wrap">
+                <div
+                  class="w-14 h-14 rounded-xl shrink-0 border border-white/10"
+                  style={`background-color: ${c.hex};`}
+                  aria-hidden="true"
+                ></div>
+                <div class="flex-1 min-w-[200px]">
+                  <h3 class="text-xl font-bold">{c.name}</h3>
+                  <p class="text-sm text-[var(--color-text-muted)] mt-1">
+                    <em>{c.when}</em> — {c.meaning}
+                  </p>
+                </div>
+                <div
+                  class="text-xs font-semibold px-3 py-1.5 rounded-full self-center"
+                  style={`background-color: color-mix(in oklab, ${flag.color} 15%, transparent); color: ${flag.color}; border: 1px solid color-mix(in oklab, ${flag.color} 30%, transparent);`}
+                >
+                  {flag.label}
+                </div>
+              </div>
+              <p class="text-[var(--color-text-muted)] leading-relaxed">{c.detail}</p>
+            </div>
+          );
+        })}
+      </div>
+
+      <div class="prose prose-invert prose-lg max-w-none mt-16
+        prose-headings:font-bold prose-headings:text-[var(--color-text)]
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+        prose-p:text-[var(--color-text-muted)] prose-p:leading-relaxed
+        prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline
+        prose-strong:text-[var(--color-text)]
+        prose-li:text-[var(--color-text-muted)]
+      ">
+        <h2>What changes, and when</h2>
+        <p>
+          The first week is the most dramatic. Meconium clears in two to three days,
+          transitional stool follows, and by day four or five a feeding pattern
+          establishes itself. Breastfed and formula-fed stool then look genuinely
+          different from each other, and neither is a problem.
+        </p>
+        <p>
+          Solids change everything again — thicker, browner, considerably smellier,
+          and often containing recognizable pieces of food. That is normal digestion,
+          not a failure of it.
+        </p>
+
+        <h2>Frequency matters less than you think</h2>
+        <p>
+          A breastfed newborn might fill a diaper at nearly every feed. An older
+          breastfed baby might go several days without one and be entirely well.
+          What matters is that the stool is soft and passed without distress. A hard,
+          pellet-like stool that clearly hurts is worth raising even if it arrives
+          daily.
+        </p>
+
+        <p><em>
+          This page summarizes mainstream pediatric guidance and is not medical advice
+          or a diagnosis. Trust your instincts — if something seems wrong with your
+          baby, contact your pediatrician regardless of what a chart says.
+        </em></p>
+
+        <h2>FAQ</h2>
+        {faqItems.map((f) => (
+          <>
+            <h3>{f.question}</h3>
+            <p>{f.answer}</p>
+          </>
+        ))}
+
+        <h2>Sources</h2>
+        <ul>
+          {babyData.sources.map((s: any) => (
+            <li><a href={s.url} rel="nofollow noopener" target="_blank">{s.label}</a></li>
+          ))}
+        </ul>
+
+        <h2>Related</h2>
+        <ul>
+          <li><a href="/poop-color-chart/">Poop color chart for adults</a></li>
+          <li><a href="/bristol/">The Bristol Stool Chart</a></li>
+          <li><a href="/poopcheck-blog/how-green-stool-in-infants-predicts-future-bowel-health-insights/">Green stool in infants</a></li>
+        </ul>
+      </div>
+    </div>
+  </article>
+</PageLayout>

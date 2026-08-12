@@ -1,5 +1,5 @@
 {
-  "$comment": "Single source of truth for the poop colour chart. Consumed by src/pages/poop-color-chart.astro and by scripts/generate-images.mjs when rendering the shareable PNG.",
+  "$comment": "Single source of truth for the poop color chart. Consumed by src/pages/poop-color-chart.astro and by scripts/generate-images.mjs when rendering the shareable PNG.",
   "flags": {
     "normal": { "label": "Typically normal", "color": "#A3FFBF" },
     "watch": { "label": "Worth watching", "color": "#FFB86B" },
@@ -20,7 +20,7 @@
       "hex": "#A98055",
       "meaning": "Usually normal. Often a higher-fiber or higher-dairy diet.",
       "flag": "normal",
-      "detail": "A lighter shade is usually diet, not disease — high fiber intake bulks and lightens stool, and so does a dairy-heavy day. If it drifts toward pale grey or clay and stays there, treat it as the pale category instead."
+      "detail": "A lighter shade is usually diet, not disease — high fiber intake bulks and lightens stool, and so does a dairy-heavy day. If it drifts toward pale gray or clay and stays there, treat it as the pale category instead."
     },
     {
       "slug": "dark-brown",
@@ -52,7 +52,7 @@
       "hex": "#D8CDB8",
       "meaning": "Possible bile duct or liver issue. Get this checked.",
       "flag": "urgent",
-      "detail": "Stool is brown because of bile. Pale, chalky or clay-coloured stool suggests bile isn't reaching the intestine — which can point to a blocked bile duct, gallstones, hepatitis or a pancreatic problem. This is one of the few stool colours that warrants a prompt appointment even without other symptoms, especially alongside dark urine or yellowing skin."
+      "detail": "Stool is brown because of bile. Pale, chalky or clay-colored stool suggests bile isn't reaching the intestine — which can point to a blocked bile duct, gallstones, hepatitis or a pancreatic problem. This is one of the few stool colors that warrants a prompt appointment even without other symptoms, especially alongside dark urine or yellowing skin."
     },
     {
       "slug": "red",
@@ -60,7 +60,7 @@
       "hex": "#A32B2B",
       "meaning": "Beets can do this. So can lower-GI bleeding. Rule it out.",
       "flag": "urgent",
-      "detail": "Beets, tomato, cranberry and red dye are common and harmless causes. But red also means fresh blood from the lower GI tract — haemorrhoids and fissures most often, and less commonly polyps, IBD or colorectal cancer. If you haven't eaten anything red, or it repeats, get it checked rather than assuming."
+      "detail": "Beets, tomato, cranberry and red dye are common and harmless causes. But red also means fresh blood from the lower GI tract — hemorrhoids and fissures most often, and less commonly polyps, IBD or colorectal cancer. If you haven't eaten anything red, or it repeats, get it checked rather than assuming."
     },
     {
       "slug": "black-tarry",
@@ -68,7 +68,7 @@
       "hex": "#1E1712",
       "meaning": "Iron or bismuth — or upper-GI bleeding. Seek care promptly.",
       "flag": "urgent",
-      "detail": "Iron supplements, bismuth (Pepto-Bismol), black liquorice and activated charcoal all turn stool black harmlessly. The concerning version is melena: black, sticky, tar-like stool with a distinctive strong smell, which is digested blood from an upper-GI bleed. If you aren't taking iron or bismuth, treat black tarry stool as urgent."
+      "detail": "Iron supplements, bismuth (Pepto-Bismol), black licorice and activated charcoal all turn stool black harmlessly. The concerning version is melena: black, sticky, tar-like stool with a distinctive strong smell, which is digested blood from an upper-GI bleed. If you aren't taking iron or bismuth, treat black tarry stool as urgent."
     }
   ]
 }

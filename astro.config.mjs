@@ -22,19 +22,51 @@ const slugsIn = (dir) =>
 const BLOG_SLUGS = new Set(slugsIn('./src/content/blog'));
 const GUIDE_SLUGS = new Set(slugsIn('./src/content/guides'));
 
+/**
+ * Each chart plus its light printable variant — both are separate indexable assets.
+ *
+ * @param {string} slug
+ * @param {string} title
+ * @param {string} caption
+ */
+const chart = (slug, title, caption) => [
+  { url: `${SITE_URL}/images/charts/${slug}.png`, caption, title },
+  {
+    url: `${SITE_URL}/images/charts/${slug}-printable.png`,
+    caption: `${caption} Printable white-background version.`,
+    title: `${title} (printable)`,
+  },
+];
+
 const CHARTS = {
-  bristol: {
-    url: `${SITE_URL}/images/charts/bristol-stool-chart.png`,
-    caption:
-      'The Bristol Stool Chart — all 7 stool types with pictures, from Type 1 (severe constipation) to Type 7 (diarrhea).',
-    title: 'Bristol Stool Chart',
-  },
-  color: {
-    url: `${SITE_URL}/images/charts/poop-color-chart.png`,
-    caption:
-      'The Poop Color Chart — what brown, green, yellow, pale, red and black stool mean, and which colors need a doctor.',
-    title: 'Poop Color Chart',
-  },
+  bristol: [
+    {
+      url: `${SITE_URL}/images/charts/bristol-stool-chart.png`,
+      caption:
+        'The Bristol Stool Chart — all 7 stool types with pictures, from Type 1 (severe constipation) to Type 7 (diarrhea).',
+      title: 'Bristol Stool Chart',
+    },
+  ],
+  color: chart(
+    'poop-color-chart',
+    'Poop Color Chart',
+    'The Poop Color Chart — what brown, green, yellow, pale, red and black stool mean, and which colors need a doctor.'
+  ),
+  baby: chart(
+    'baby-poop-color-chart',
+    'Baby Poop Color Chart',
+    'Baby Poop Color Chart — what every diaper color means from meconium to solids, and the three that need a doctor.'
+  ),
+  fiber: chart(
+    'high-fiber-foods-chart',
+    'High-Fiber Foods Chart',
+    'High-Fiber Foods Chart — 20 foods ranked by grams of dietary fiber per serving, with the daily target marked.'
+  ),
+  fodmap: chart(
+    'low-fodmap-food-list',
+    'Low FODMAP Food List',
+    'Low FODMAP Food List — low and high FODMAP foods across seven categories for the elimination phase.'
+  ),
 };
 
 /** @type {Array<{url: string, caption: string, title: string}>} */
@@ -53,14 +85,17 @@ const typeImages = bristolImages.images.map((/** @type {any} */ i) => ({
 function imagesForUrl(loc) {
   const path = new URL(loc).pathname;
 
-  if (path === '/bristol/') return [CHARTS.bristol, ...typeImages];
-  if (path === '/poop-color-chart/') return [CHARTS.color];
-  if (path === '/poop-pictures/') return [CHARTS.bristol, CHARTS.color, ...typeImages];
+  if (path === '/bristol/') return [...CHARTS.bristol, ...typeImages];
+  if (path === '/poop-color-chart/') return CHARTS.color;
+  if (path === '/baby-poop-color-chart/') return CHARTS.baby;
+  if (path === '/high-fiber-foods-chart/') return CHARTS.fiber;
+  if (path === '/low-fodmap-food-list/') return CHARTS.fodmap;
+  if (path === '/poop-pictures/') return [...CHARTS.bristol, CHARTS.color[0], ...typeImages];
 
   const bristolType = path.match(/^\/bristol\/type-(\d)\/$/);
   if (bristolType) {
     const match = typeImages.find((i) => i.title.includes(`Type ${bristolType[1]} `));
-    return match ? [match, CHARTS.bristol] : [CHARTS.bristol];
+    return match ? [match, ...CHARTS.bristol] : CHARTS.bristol;
   }
 
   const post = path.match(/^\/poopcheck-blog\/([^/]+)\/$/);

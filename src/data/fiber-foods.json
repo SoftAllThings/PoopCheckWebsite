@@ -1,0 +1,32 @@
+{
+  "$comment": "Dietary fiber per standard serving. Values are rounded from USDA FoodData Central. Consumed by src/pages/high-fiber-foods-chart.astro and scripts/generate-images.mjs.",
+  "targets": {
+    "women": 25,
+    "men": 38,
+    "averageIntake": 15,
+    "note": "Adequate Intake for adults under 50 (Institute of Medicine). Average US intake is roughly 15 g/day — most people are short by a third to a half."
+  },
+  "source": { "label": "USDA FoodData Central", "url": "https://fdc.nal.usda.gov/" },
+  "foods": [
+    { "name": "Split peas, cooked", "serving": "1 cup", "grams": 16.3, "group": "Legumes" },
+    { "name": "Lentils, cooked", "serving": "1 cup", "grams": 15.6, "group": "Legumes" },
+    { "name": "Black beans, cooked", "serving": "1 cup", "grams": 15.0, "group": "Legumes" },
+    { "name": "Chickpeas, cooked", "serving": "1 cup", "grams": 12.5, "group": "Legumes" },
+    { "name": "Chia seeds", "serving": "1 oz (28 g)", "grams": 9.8, "group": "Nuts & seeds" },
+    { "name": "Avocado", "serving": "1 medium", "grams": 10.0, "group": "Fruit" },
+    { "name": "Raspberries", "serving": "1 cup", "grams": 8.0, "group": "Fruit" },
+    { "name": "Artichoke, cooked", "serving": "1 medium", "grams": 6.9, "group": "Vegetables" },
+    { "name": "Whole-wheat pasta, cooked", "serving": "1 cup", "grams": 6.3, "group": "Grains" },
+    { "name": "Prunes", "serving": "1/2 cup", "grams": 6.2, "group": "Fruit" },
+    { "name": "Barley, pearled, cooked", "serving": "1 cup", "grams": 6.0, "group": "Grains" },
+    { "name": "Pear, with skin", "serving": "1 medium", "grams": 5.5, "group": "Fruit" },
+    { "name": "Broccoli, cooked", "serving": "1 cup", "grams": 5.1, "group": "Vegetables" },
+    { "name": "Apple, with skin", "serving": "1 medium", "grams": 4.4, "group": "Fruit" },
+    { "name": "Brussels sprouts, cooked", "serving": "1 cup", "grams": 4.1, "group": "Vegetables" },
+    { "name": "Oatmeal, cooked", "serving": "1 cup", "grams": 4.0, "group": "Grains" },
+    { "name": "Sweet potato, with skin", "serving": "1 medium", "grams": 3.8, "group": "Vegetables" },
+    { "name": "Almonds", "serving": "1 oz (23 nuts)", "grams": 3.5, "group": "Nuts & seeds" },
+    { "name": "Popcorn, air-popped", "serving": "3 cups", "grams": 3.5, "group": "Grains" },
+    { "name": "Flaxseed, ground", "serving": "1 tbsp", "grams": 2.0, "group": "Nuts & seeds" }
+  ]
+}

@@ -395,61 +395,343 @@ async function bristolChart() {
 }
 
 // ---------------------------------------------------------------------------
-// 4. Poop Colour Chart — second embeddable asset
+// 4. Themed chart renderers
+//
+// Each chart ships twice: the dark on-brand version for the page, and a light
+// "printable" version. Printable variants matter more than they look — "printable"
+// is a heavy modifier on these queries, and a chart someone prints and pins to a
+// fridge is a chart they came to the site to get.
 // ---------------------------------------------------------------------------
 
-const colorData = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'stool-colors.json'), 'utf8'));
-const STOOL_COLORS = colorData.colors;
-const FLAG = colorData.flags;
+const THEMES = {
+  dark: {
+    id: 'dark',
+    bg: C.bg,
+    surface: C.surface,
+    text: C.text,
+    muted: C.muted,
+    hairline: 'url(#hairline)',
+    stroke: '#FFFFFF',
+    strokeOpacity: 0.14,
+    fillOpacity: 0.13,
+    // Flag/accent colours read fine on near-black.
+    remap: (hex) => hex,
+    wordmarkFill: null,
+  },
+  print: {
+    id: 'print',
+    bg: '#FFFFFF',
+    surface: '#F4F4F2',
+    text: '#161616',
+    muted: '#585858',
+    hairline: '#D8D8D4',
+    stroke: '#000000',
+    strokeOpacity: 0.16,
+    fillOpacity: 0.16,
+    // The dark theme's pastels are illegible on white; swap for the site's
+    // documented light-mode tokens and darker warn/urgent tones.
+    remap: (hex) =>
+      ({
+        '#A3FFBF': '#0D7A32',
+        '#9BF0FF': '#046A88',
+        '#FFB86B': '#B45309',
+        '#FFD98E': '#8A6100',
+        '#FF6B6B': '#B91C1C',
+      })[String(hex).toUpperCase()] || hex,
+    wordmarkFill: '#161616',
+  },
+};
 
-async function colorChart() {
+/**
+ * Footnote on the left, wordmark on the right, on separate baselines so a long
+ * disclaimer can never run underneath the logo.
+ */
+const footnoteBlock = (t, footnote, H) => {
+  const lines = wrap(footnote, 17, 980, 2);
+  const first = H - 46 - (lines.length - 1) * 22;
+  return `
+  <text x="60" y="${first}" font-family="${FONT}" font-size="17" fill="${t.muted}">
+    ${lines.map((l, i) => `<tspan x="60" dy="${i === 0 ? 0 : 22}">${esc(l)}</tspan>`).join('')}
+  </text>
+  ${themedWordmark(t, 1140, H - 46)}`;
+};
+
+/** Wordmark that stays legible on a white sheet. */
+const themedWordmark = (t, x, y, size = 26, anchor = 'end') =>
+  t.wordmarkFill
+    ? `<text x="${x}" y="${y}" text-anchor="${anchor}" font-family="${FONT}" font-size="${size}"
+             font-weight="700" fill="${t.wordmarkFill}">PoopCheck</text>`
+    : wordmark(x, y, size, anchor);
+
+/**
+ * Rows of: colour swatch, name, one-line meaning, status pill.
+ * Backs both the poop colour chart and the baby poop colour chart.
+ */
+async function swatchChart({ items, flags, title, subtitle, footnote, out, meta }, theme) {
+  const t = THEMES[theme];
   const W = 1200;
   const HEADER = 210;
-  const ROW = 132;
+  const hasWhen = items.some((i) => i.when);
+  const ROW = hasWhen ? 148 : 132;
   const FOOTER = 108;
-  const H = HEADER + ROW * STOOL_COLORS.length + FOOTER;
+  const H = HEADER + ROW * items.length + FOOTER;
 
-  const rows = STOOL_COLORS.map((c, i) => {
-    const y = HEADER + i * ROW;
-    const flag = FLAG[c.flag];
-    const desc = wrap(c.meaning, 20, 640, 2);
-    const pw = pillWidth(flag.label, 15);
-    const px = 1102 - pw;
-    return `
+  const rows = items
+    .map((c, i) => {
+      const y = HEADER + i * ROW;
+      const flag = flags[c.flag];
+      const flagColor = t.remap(flag.color);
+      const desc = wrap(c.meaning, 20, hasWhen ? 560 : 640, 2);
+      const pw = pillWidth(flag.label, 15);
+      const px = 1102 - pw;
+      return `
   <g>
-    <rect x="60" y="${y}" width="1080" height="${ROW - 20}" rx="16" fill="${C.surface}"/>
+    <rect x="60" y="${y}" width="1080" height="${ROW - 20}" rx="16" fill="${t.surface}"/>
     <rect x="84" y="${y + 20}" width="72" height="72" rx="16" fill="${c.hex}"
-          stroke="#FFFFFF" stroke-opacity="0.14"/>
-    <text x="184" y="${y + 50}" font-family="${FONT}" font-size="26" font-weight="700" fill="${C.text}">
+          stroke="${t.stroke}" stroke-opacity="${t.strokeOpacity}"/>
+    <text x="184" y="${y + 46}" font-family="${FONT}" font-size="26" font-weight="700" fill="${t.text}">
       ${esc(c.name)}
     </text>
-    <text x="184" y="${y + 80}" font-family="${FONT}" font-size="19" fill="${C.muted}">
+    ${c.when ? `<text x="184" y="${y + 72}" font-family="${FONT}" font-size="17" font-style="italic" fill="${t.muted}">${esc(c.when)}</text>` : ''}
+    <text x="184" y="${y + (c.when ? 102 : 78)}" font-family="${FONT}" font-size="19" fill="${t.muted}">
       ${desc.map((l, k) => `<tspan x="184" dy="${k === 0 ? 0 : 25}">${esc(l)}</tspan>`).join('')}
     </text>
-    <rect x="${px}" y="${y + 36}" width="${pw}" height="40" rx="20" fill="${flag.color}" fill-opacity="0.13"
-          stroke="${flag.color}" stroke-opacity="0.32"/>
-    <text x="${px + pw / 2}" y="${y + 62}" text-anchor="middle" font-family="${FONT}" font-size="15"
-          font-weight="600" fill="${flag.color}">${esc(flag.label)}</text>
+    <rect x="${px}" y="${y + (ROW - 20) / 2 - 20}" width="${pw}" height="40" rx="20" fill="${flagColor}"
+          fill-opacity="${t.fillOpacity}" stroke="${flagColor}" stroke-opacity="0.34"/>
+    <text x="${px + pw / 2}" y="${y + (ROW - 20) / 2 + 6}" text-anchor="middle" font-family="${FONT}"
+          font-size="15" font-weight="600" fill="${flagColor}">${esc(flag.label)}</text>
   </g>`;
-  }).join('');
+    })
+    .join('');
 
   const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
   ${defs}
-  <rect width="${W}" height="${H}" fill="${C.bg}"/>
+  <rect width="${W}" height="${H}" fill="${t.bg}"/>
   <text x="600" y="88" text-anchor="middle" font-family="${FONT}" font-size="54" font-weight="700"
-        fill="${C.text}" letter-spacing="-1.5">The Poop Color Chart</text>
-  <text x="600" y="130" text-anchor="middle" font-family="${FONT}" font-size="23" fill="${C.muted}">
-    What every stool color means — and which ones are worth a doctor&apos;s visit
-  </text>
-  <rect x="360" y="158" width="480" height="1.5" rx="1" fill="url(#hairline)"/>
+        fill="${t.text}" letter-spacing="-1.5">${esc(title)}</text>
+  <text x="600" y="130" text-anchor="middle" font-family="${FONT}" font-size="23" fill="${t.muted}">${esc(subtitle)}</text>
+  <rect x="360" y="158" width="480" height="1.5" rx="1" fill="${t.hairline}"/>
   ${rows}
-  <text x="60" y="${H - 50}" font-family="${FONT}" font-size="18" fill="${C.muted}">
-    Informational only — not a diagnosis. Red, black, or pale stool warrants medical advice.
-  </text>
-  ${wordmark(1140, H - 50, 26, 'end')}
+  ${footnoteBlock(t, footnote, H)}
 </svg>`;
-  await render(svg, 'images/charts/poop-color-chart.png', W, H);
-  console.log(`  charts/poop-color-chart.png (${W}x${H})`);
+  await render(svg, out, W, H);
+  if (meta) meta.push({ out, width: W, height: H });
+  return { width: W, height: H };
+}
+
+/** Horizontal bar chart with a target reference line. Backs the fibre chart. */
+async function barChart({ items, title, subtitle, unit, target, targetLabel, footnote, out, meta }, theme) {
+  const t = THEMES[theme];
+  const W = 1200;
+  const HEADER = 226;
+  const ROW = 56;
+  const FOOTER = 112;
+  const H = HEADER + ROW * items.length + FOOTER;
+
+  const LABEL_W = 430;
+  const BAR_X = LABEL_W + 80;
+  const BAR_MAX = 1100 - BAR_X - 70;
+  // Scale to the target when it exceeds every bar. No single food hits a full
+  // day's fiber, and that gap is the point of the chart — a line floating off
+  // the right edge would hide it.
+  const max = Math.max(...items.map((i) => i.value), target || 0);
+  const accent = t.remap(C.primary);
+  const targetX = target ? BAR_X + (target / max) * BAR_MAX : null;
+
+  const rows = items
+    .map((it, i) => {
+      const y = HEADER + i * ROW;
+      const w = Math.max(4, (it.value / max) * BAR_MAX);
+      return `
+  <g>
+    ${i % 2 === 0 ? `<rect x="60" y="${y - 6}" width="1080" height="${ROW - 6}" rx="10" fill="${t.surface}"/>` : ''}
+    <text x="84" y="${y + 26}" font-family="${FONT}" font-size="20" font-weight="600" fill="${t.text}">${esc(it.name)}</text>
+    <text x="${84 + LABEL_W - 90}" y="${y + 26}" text-anchor="end" font-family="${FONT}" font-size="16"
+          fill="${t.muted}">${esc(it.serving)}</text>
+    <rect x="${BAR_X}" y="${y + 8}" width="${w}" height="24" rx="6" fill="${accent}" fill-opacity="0.85"/>
+    <text x="${BAR_X + w + 12}" y="${y + 26}" font-family="${FONT}" font-size="18" font-weight="700"
+          fill="${t.text}">${it.value}${unit}</text>
+  </g>`;
+    })
+    .join('');
+
+  // Flip the label to the inside when the line sits near the right edge,
+  // which it does whenever the target exceeds every bar.
+  const labelRight = targetX !== null && targetX > W - 320;
+  const targetLine =
+    targetX !== null
+      ? `<line x1="${targetX}" y1="${HEADER - 22}" x2="${targetX}" y2="${HEADER + ROW * items.length - 4}"
+              stroke="${t.remap(C.accent)}" stroke-width="2" stroke-dasharray="6 5" opacity="0.85"/>
+         <text x="${labelRight ? targetX - 10 : targetX + 8}" y="${HEADER - 30}"
+               text-anchor="${labelRight ? 'end' : 'start'}" font-family="${FONT}" font-size="15"
+               font-weight="600" fill="${t.remap(C.accent)}">${esc(targetLabel)}</text>`
+      : '';
+
+  const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+  ${defs}
+  <rect width="${W}" height="${H}" fill="${t.bg}"/>
+  <text x="600" y="88" text-anchor="middle" font-family="${FONT}" font-size="52" font-weight="700"
+        fill="${t.text}" letter-spacing="-1.5">${esc(title)}</text>
+  <text x="600" y="130" text-anchor="middle" font-family="${FONT}" font-size="22" fill="${t.muted}">${esc(subtitle)}</text>
+  <rect x="360" y="158" width="480" height="1.5" rx="1" fill="${t.hairline}"/>
+  ${targetLine}
+  ${rows}
+  ${footnoteBlock(t, footnote, H)}
+</svg>`;
+  await render(svg, out, W, H);
+  if (meta) meta.push({ out, width: W, height: H });
+  return { width: W, height: H };
+}
+
+/** Two-column allowed/avoid lists per category. Backs the FODMAP chart. */
+async function listChart({ groups, title, subtitle, lowLabel, highLabel, footnote, out, meta }, theme) {
+  const t = THEMES[theme];
+  const W = 1200;
+  const HEADER = 250;
+  const FOOTER = 112;
+  const LINE = 27;
+  const COL_W = 470;
+
+  const ok = t.remap(C.primary);
+  const no = t.remap('#FF6B6B');
+
+  // Height depends on the longest column in each group.
+  const blocks = groups.map((g) => {
+    const lowLines = g.low.flatMap((s) => wrap(`• ${s}`, 18, COL_W - 40, 2));
+    const highLines = g.high.flatMap((s) => wrap(`• ${s}`, 18, COL_W - 40, 2));
+    const h = 58 + Math.max(lowLines.length, highLines.length) * LINE + 26;
+    return { g, lowLines, highLines, h };
+  });
+  const H = HEADER + blocks.reduce((s, b) => s + b.h + 16, 0) + FOOTER;
+
+  let y = HEADER;
+  const body = blocks
+    .map(({ g, lowLines, highLines, h }) => {
+      const top = y;
+      y += h + 16;
+      const col = (lines, x) =>
+        lines
+          .map((l, k) => `<tspan x="${x}" dy="${k === 0 ? 0 : LINE}">${esc(l)}</tspan>`)
+          .join('');
+      return `
+  <g>
+    <rect x="60" y="${top}" width="1080" height="${h}" rx="16" fill="${t.surface}"/>
+    <text x="84" y="${top + 38}" font-family="${FONT}" font-size="24" font-weight="700" fill="${t.text}">${esc(g.name)}</text>
+    <text x="108" y="${top + 74}" font-family="${FONT}" font-size="18" fill="${t.text}" opacity="0.92">
+      ${col(lowLines, 108, ok)}
+    </text>
+    <text x="${108 + COL_W + 60}" y="${top + 74}" font-family="${FONT}" font-size="18" fill="${t.text}" opacity="0.92">
+      ${col(highLines, 108 + COL_W + 60, no)}
+    </text>
+    <rect x="${108 + COL_W + 22}" y="${top + 52}" width="2" height="${h - 74}" rx="1" fill="${t.muted}" opacity="0.25"/>
+  </g>`;
+    })
+    .join('');
+
+  const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+  ${defs}
+  <rect width="${W}" height="${H}" fill="${t.bg}"/>
+  <text x="600" y="88" text-anchor="middle" font-family="${FONT}" font-size="52" font-weight="700"
+        fill="${t.text}" letter-spacing="-1.5">${esc(title)}</text>
+  <text x="600" y="130" text-anchor="middle" font-family="${FONT}" font-size="22" fill="${t.muted}">${esc(subtitle)}</text>
+  <rect x="360" y="158" width="480" height="1.5" rx="1" fill="${t.hairline}"/>
+  <text x="108" y="${HEADER - 34}" font-family="${FONT}" font-size="19" font-weight="700" fill="${ok}">${esc(lowLabel)}</text>
+  <text x="${108 + COL_W + 60}" y="${HEADER - 34}" font-family="${FONT}" font-size="19" font-weight="700" fill="${no}">${esc(highLabel)}</text>
+  ${body}
+  ${footnoteBlock(t, footnote, H)}
+</svg>`;
+  await render(svg, out, W, H);
+  if (meta) meta.push({ out, width: W, height: H });
+  return { width: W, height: H };
+}
+
+// ---------------------------------------------------------------------------
+// 5. The chart set
+// ---------------------------------------------------------------------------
+
+const colorData = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'stool-colors.json'), 'utf8'));
+const babyData = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'baby-stool-colors.json'), 'utf8'));
+const fiberData = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'fiber-foods.json'), 'utf8'));
+const fodmapData = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'fodmap-foods.json'), 'utf8'));
+
+const BABY_FLAGS = {
+  normal: { label: 'Normal', color: C.primary },
+  watch: { label: 'Usually fine', color: '#FFB86B' },
+  urgent: { label: 'Call a doctor', color: '#FF6B6B' },
+};
+
+async function charts() {
+  /** @type {Array<{out: string, width: number, height: number}>} */
+  const built = [];
+
+  for (const theme of ['dark', 'print']) {
+    const suffix = theme === 'print' ? '-printable' : '';
+
+    await swatchChart(
+      {
+        items: colorData.colors,
+        flags: colorData.flags,
+        title: 'The Poop Color Chart',
+        subtitle: "What every stool color means — and which ones are worth a doctor's visit",
+        footnote: 'Informational only — not a diagnosis. Red, black, or pale stool warrants medical advice.',
+        out: `images/charts/poop-color-chart${suffix}.png`,
+        meta: built,
+      },
+      theme
+    );
+
+    await swatchChart(
+      {
+        items: babyData.colors,
+        flags: BABY_FLAGS,
+        title: 'Baby Poop Color Chart',
+        subtitle: 'What each diaper color means — from meconium to solids, and the three to act on',
+        footnote: 'White, red, or black stool needs a doctor the same day. Photograph the diaper in natural light.',
+        out: `images/charts/baby-poop-color-chart${suffix}.png`,
+        meta: built,
+      },
+      theme
+    );
+
+    await barChart(
+      {
+        items: fiberData.foods.map((f) => ({ name: f.name, serving: f.serving, value: f.grams })),
+        title: 'High-Fiber Foods Chart',
+        subtitle: 'Grams of dietary fiber per standard serving',
+        unit: 'g',
+        target: fiberData.targets.women,
+        targetLabel: `${fiberData.targets.women} g — daily target (women)`,
+        footnote: `Values from ${fiberData.source.label}. Adults need ${fiberData.targets.women}–${fiberData.targets.men} g/day; average intake is about ${fiberData.targets.averageIntake} g.`,
+        out: `images/charts/high-fiber-foods-chart${suffix}.png`,
+        meta: built,
+      },
+      theme
+    );
+
+    await listChart(
+      {
+        groups: fodmapData.groups,
+        title: 'Low FODMAP Food List',
+        subtitle: 'What to eat and what to pause during the elimination phase',
+        lowLabel: 'LOW FODMAP — enjoy',
+        highLabel: 'HIGH FODMAP — pause',
+        footnote: `FODMAP content is portion-dependent. Based on ${fodmapData.attribution.label}; check their app for tested serving sizes.`,
+        out: `images/charts/low-fodmap-food-list${suffix}.png`,
+        meta: built,
+      },
+      theme
+    );
+  }
+
+  // Dimensions are needed by the pages to set width/height and avoid layout shift.
+  const manifest = Object.fromEntries(
+    built.map((b) => [b.out.replace('images/charts/', '').replace('.png', ''), { src: `/${b.out}`, width: b.width, height: b.height }])
+  );
+  writeFileSync(
+    join(ROOT, 'src', 'data', 'chart-images.json'),
+    JSON.stringify({ $comment: 'Generated by scripts/generate-images.mjs — do not edit by hand.', charts: manifest }, null, 2) + '\n'
+  );
+  for (const b of built) console.log(`  ${b.out.replace('images/', '')} (${b.width}x${b.height})`);
 }
 
 // ---------------------------------------------------------------------------
@@ -478,5 +760,5 @@ await ogDefault();
 await blogCards();
 await bristolTypeImages();
 await bristolChart();
-await colorChart();
+await charts();
 console.log('Done.');

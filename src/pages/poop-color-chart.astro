@@ -5,18 +5,17 @@ import EmbedChart from '../components/seo/EmbedChart.astro';
 import { articleSchema, breadcrumbSchema, faqSchema } from '../utils/schema';
 import { getCanonicalUrl, SITE } from '../utils/seo';
 import colorData from '../data/stool-colors.json';
+import charts from '../data/chart-images.json';
 
 const url = getCanonicalUrl(Astro.url.pathname);
 const title = 'Poop Color Chart: What Every Stool Color Means (With Pictures)';
 const description =
   'A poop color chart covering brown, green, yellow, pale, red and black stool — what each color means, what causes it, and which colors need a doctor.';
 
-const CHART = {
-  src: '/images/charts/poop-color-chart.png',
-  width: 1200,
-  height: 1374,
-  alt: 'Poop color chart showing eight stool colors — medium brown, light brown, dark brown, green, yellow, pale clay, red and black — with what each color means and whether it needs medical attention.',
-};
+const CHART = charts.charts['poop-color-chart'];
+const PRINT = charts.charts['poop-color-chart-printable'];
+const ALT =
+  'Poop color chart showing eight stool colors — medium brown, light brown, dark brown, green, yellow, pale clay, red and black — with what each color means and whether it needs medical attention.';
 
 const flags: Record<string, { label: string; color: string }> = colorData.flags;
 
@@ -54,7 +53,8 @@ const schema = [
     description,
     url,
     image: CHART.src,
-    imageAlt: CHART.alt,
+    imageAlt: ALT,
+    images: [{ url: PRINT.src, width: PRINT.width, height: PRINT.height, caption: `${ALT} Printable version.` }],
     datePublished: '2026-08-12T00:00:00Z',
     dateModified: '2026-08-12T00:00:00Z',
     author: 'PoopCheck Team',
@@ -68,7 +68,7 @@ const schema = [
 ];
 ---
 
-<PageLayout seo={{ title, description, type: 'article', image: CHART.src, imageAlt: CHART.alt }} schema={schema}>
+<PageLayout seo={{ title, description, type: 'article', image: CHART.src, imageAlt: ALT }} schema={schema}>
   <article class="py-12 md:py-20">
     <div class="max-w-4xl mx-auto px-5">
       <div class="mb-8">
@@ -89,13 +89,14 @@ const schema = [
 
       <EmbedChart
         src={CHART.src}
-        alt={CHART.alt}
+        alt={ALT}
         width={CHART.width}
         height={CHART.height}
         title="The Poop Color Chart"
         caption="The poop color chart: eight stool colors, what causes each one, and which need medical attention."
         creditPath="/poop-color-chart/"
         eager={true}
+        printable={{ src: PRINT.src, width: PRINT.width, height: PRINT.height }}
       />
 
       <h2 class="text-2xl font-bold mb-6 mt-16">Every stool color, explained</h2>

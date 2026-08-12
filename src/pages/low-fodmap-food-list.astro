@@ -1,0 +1,218 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import EmbedChart from '../components/seo/EmbedChart.astro';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../utils/schema';
+import { getCanonicalUrl, SITE } from '../utils/seo';
+import fodmapData from '../data/fodmap-foods.json';
+import charts from '../data/chart-images.json';
+
+const url = getCanonicalUrl(Astro.url.pathname);
+const title = 'Low FODMAP Food List: What to Eat and Avoid (Printable)';
+const description =
+  'A low FODMAP food list by category — what to eat and what to pause during elimination. Covers vegetables, fruit, grains, dairy and sweeteners. Free printable chart.';
+
+const CHART = charts.charts['low-fodmap-food-list'];
+const PRINT = charts.charts['low-fodmap-food-list-printable'];
+const ALT =
+  'Low FODMAP food list chart comparing low and high FODMAP foods across seven categories — vegetables, fruit, grains, protein, dairy, nuts and seeds, and sweeteners.';
+
+const faqItems = [
+  {
+    question: 'What are FODMAPs?',
+    answer:
+      'FODMAPs are short-chain carbohydrates that the small intestine absorbs poorly — fermentable oligosaccharides, disaccharides, monosaccharides and polyols. They draw water into the gut and are rapidly fermented by bacteria in the colon, producing gas. In people with IBS, that combination triggers bloating, pain and altered bowel habits.',
+  },
+  {
+    question: 'How long should the elimination phase last?',
+    answer:
+      'Two to six weeks, and no longer. Elimination is a diagnostic step, not a destination. If symptoms have not improved after six weeks, FODMAPs are probably not your trigger and continuing to restrict does more harm than good.',
+  },
+  {
+    question: 'Is the low FODMAP diet meant to be permanent?',
+    answer:
+      'No — and staying on it long term is the most common mistake. Restriction reduces the diversity of fiber reaching your gut bacteria, which is bad for the microbiome. The point of reintroduction is to identify which specific FODMAP groups affect you so you can return everything else permanently.',
+  },
+  {
+    question: 'Does portion size matter?',
+    answer:
+      'Enormously. FODMAP content is dose-dependent, so many foods are perfectly fine in a small serving and problematic in a large one. Ten almonds are low FODMAP; a handful of thirty is not. This is why the Monash app publishes tested serving sizes rather than a simple yes-or-no list.',
+  },
+  {
+    question: 'Can I do the low FODMAP diet without a dietitian?',
+    answer:
+      'You can start elimination on your own, but reintroduction is where a dietitian earns their fee — that phase is structured, easy to misread, and determines what you eat for years afterward. Monash and most gastroenterology guidelines recommend doing it with professional support.',
+  },
+];
+
+const schema = [
+  articleSchema({
+    title,
+    description,
+    url,
+    image: CHART.src,
+    imageAlt: ALT,
+    images: [{ url: PRINT.src, width: PRINT.width, height: PRINT.height, caption: `${ALT} Printable version.` }],
+    datePublished: '2026-08-12T00:00:00Z',
+    dateModified: '2026-08-12T00:00:00Z',
+    author: 'PoopCheck Team',
+    medical: true,
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: `${SITE.url}/` },
+    { name: 'Low FODMAP Food List', url },
+  ]),
+  faqSchema(faqItems),
+];
+---
+
+<PageLayout seo={{ title, description, type: 'article', image: CHART.src, imageAlt: ALT }} schema={schema}>
+  <article class="py-12 md:py-20">
+    <div class="max-w-4xl mx-auto px-5">
+      <div class="mb-8">
+        <Breadcrumbs items={[{ label: 'Low FODMAP Food List', href: '/low-fodmap-food-list/' }]} />
+      </div>
+
+      <header class="mb-10 text-center">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          Low FODMAP Food List
+        </h1>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)] leading-relaxed max-w-2xl mx-auto">
+          What to eat and what to pause during the elimination phase, by category.
+          Roughly three in four people with IBS get meaningful symptom relief from a
+          properly run low FODMAP diet — but it is a diagnostic tool, not a
+          permanent way of eating.
+        </p>
+      </header>
+
+      <EmbedChart
+        src={CHART.src}
+        alt={ALT}
+        width={CHART.width}
+        height={CHART.height}
+        title="Low FODMAP Food List"
+        caption="Low and high FODMAP foods across seven categories. FODMAP content is portion-dependent."
+        creditPath="/low-fodmap-food-list/"
+        eager={true}
+        printable={{ src: PRINT.src, width: PRINT.width, height: PRINT.height }}
+      />
+
+      <h2 class="text-2xl font-bold mb-3 mt-16">The three phases</h2>
+      <p class="text-[var(--color-text-muted)] mb-6 max-w-3xl">
+        Most of the value is in phases two and three. Stopping after elimination is
+        the single most common way this diet goes wrong.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-16">
+        {fodmapData.phases.map((p: any, i: number) => (
+          <div class="rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)] p-6">
+            <div class="text-xs font-semibold text-[var(--color-accent)] mb-2">STEP {i + 1}</div>
+            <h3 class="text-lg font-bold mb-1">{p.name}</h3>
+            <div class="text-sm text-[var(--color-text-muted)] mb-3">{p.duration}</div>
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">{p.what}</p>
+          </div>
+        ))}
+      </div>
+
+      <h2 class="text-2xl font-bold mb-6">Food list by category</h2>
+
+      <div class="space-y-5">
+        {fodmapData.groups.map((g: any) => (
+          <div class="rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)] p-6">
+            <h3 class="text-xl font-bold mb-4">{g.name}</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <div class="text-xs font-bold tracking-wide mb-3 text-[var(--color-primary)]">
+                  LOW FODMAP — ENJOY
+                </div>
+                <ul class="space-y-1.5">
+                  {g.low.map((f: string) => (
+                    <li class="text-sm text-[var(--color-text-muted)] flex gap-2">
+                      <span class="text-[var(--color-primary)]" aria-hidden="true">+</span>
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <div class="text-xs font-bold tracking-wide mb-3 text-[#FF6B6B]">
+                  HIGH FODMAP — PAUSE
+                </div>
+                <ul class="space-y-1.5">
+                  {g.high.map((f: string) => (
+                    <li class="text-sm text-[var(--color-text-muted)] flex gap-2">
+                      <span class="text-[#FF6B6B]" aria-hidden="true">−</span>
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="prose prose-invert prose-lg max-w-none mt-16
+        prose-headings:font-bold prose-headings:text-[var(--color-text)]
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+        prose-p:text-[var(--color-text-muted)] prose-p:leading-relaxed
+        prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline
+        prose-strong:text-[var(--color-text)]
+        prose-li:text-[var(--color-text-muted)]
+      ">
+        <h2>Portion size changes the answer</h2>
+        <p>
+          FODMAP content is dose-dependent, which is why a flat "allowed / not
+          allowed" list can only ever be an orientation. Ten almonds are low FODMAP
+          and thirty are not. A quarter of an avocado is fine where a whole one is
+          not. Monash tests and publishes specific serving thresholds, and they change
+          as foods are retested — their app is the authority, not this page.
+        </p>
+
+        <h2>Don't stay in elimination</h2>
+        <p>
+          Restricting FODMAPs long term starves the gut bacteria that ferment them,
+          and reduced microbial diversity is not a good trade for symptom control you
+          could get from a narrower restriction. Once you know which groups affect
+          you, everything else goes back on the plate.
+        </p>
+
+        <h2>Track what actually changes</h2>
+        <p>
+          Reintroduction only works if you can tell whether a challenge caused a
+          reaction, and memory is unreliable a week later. Logging stool
+          consistency on the <a href="/bristol/">Bristol scale</a> alongside each
+          challenge turns a vague impression into a pattern you can act on.
+        </p>
+
+        <p><em>
+          General information, not dietary advice for a specific medical condition.
+          The low FODMAP diet is intended for diagnosed IBS and is best run with a
+          registered dietitian, particularly the reintroduction phase.
+        </em></p>
+
+        <h2>FAQ</h2>
+        {faqItems.map((f) => (
+          <>
+            <h3>{f.question}</h3>
+            <p>{f.answer}</p>
+          </>
+        ))}
+
+        <h2>Attribution</h2>
+        <p>
+          <a href={fodmapData.attribution.url} rel="nofollow noopener" target="_blank">
+            {fodmapData.attribution.label}
+          </a>. {fodmapData.attribution.note}
+        </p>
+
+        <h2>Related</h2>
+        <ul>
+          <li><a href="/poopcheck-blog/low-fodmap-diet-guide/">The full low FODMAP diet guide</a></li>
+          <li><a href="/poopcheck-blog/ibs-plague-of-the-millenium/">IBS: what we know</a></li>
+          <li><a href="/high-fiber-foods-chart/">High-fiber foods chart</a></li>
+        </ul>
+      </div>
+    </div>
+  </article>
+</PageLayout>

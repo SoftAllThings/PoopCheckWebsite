@@ -1,6 +1,8 @@
 ---
+// `||` not `??`: an unset GitHub Actions secret arrives as an empty string
+// rather than undefined, which `??` would happily pass through as api_host.
 const posthogKey = import.meta.env.PUBLIC_POSTHOG_KEY;
-const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST ?? 'https://us.i.posthog.com';
+const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com';
 const enabled = Boolean(posthogKey) && import.meta.env.PROD;
 ---
 

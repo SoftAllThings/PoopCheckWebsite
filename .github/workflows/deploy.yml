@@ -27,3 +27,9 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # Analytics.astro gates on PUBLIC_POSTHOG_KEY being present at build
+          # time. Without these the production bundle ships with no tag at all,
+          # which is what happened from launch until now — the key only ever
+          # existed in a local .env. Inert until the secrets are set.
+          PUBLIC_POSTHOG_KEY: ${{ secrets.PUBLIC_POSTHOG_KEY }}
+          PUBLIC_POSTHOG_HOST: ${{ secrets.PUBLIC_POSTHOG_HOST }}

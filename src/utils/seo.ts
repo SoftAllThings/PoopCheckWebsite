@@ -38,7 +38,7 @@ export const SITE = {
 // client-side from getPublicStats; these are the static fallbacks/baseline.
 export const STATS = {
   users: { short: '25K+', long: '25,000+' },
-  analyses: { short: '140K+', long: '140,000+' },
+  analyses: { short: '180K+', long: '180,000+' },
   reviews: { short: '2.4K+', long: '2,400+' },
   rating: '4.8',
 };

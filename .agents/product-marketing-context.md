@@ -11,7 +11,7 @@
 - **One-liner:** PoopCheck is the AI stool-analysis app that turns every bathroom trip into a data point for your gut health.
 - **What it does (2–3 sentences):** Users photograph their stool. Our AI classifies it by Bristol Stool Scale type, color, and consistency; extracts health signals; and logs a daily gut-health score. Premium users get personalized reports, an AI digestive assistant (SOFTie), and trend analysis.
 - **Product category:** consumer health / gut-health app (shelf alongside symptom trackers, period trackers, sleep trackers).
-- **Type:** freemium mobile app (iOS + Android), 80k+ registered users.
+- **Type:** freemium mobile app (iOS + Android), 25k+ registered users.
 - **Tech:** React Native client, Firebase backend, SoftAI API for vision + language.
 
 ### Business model
@@ -82,7 +82,7 @@
 - **AI vision-based classification** — no other app does this. It's our moat.
 - **Bristol + color + consistency simultaneously** — not just "did you go today."
 - **Daily gut-health score** — one number users check and trend.
-- **Scale** — 80k+ users' data informs the AI, which is a compounding advantage.
+- **Scale** — 25k+ users' data informs the AI, which is a compounding advantage.
 
 ### Where competitors win (acknowledge honestly in comparison pages)
 - Cara Care has a real dietitian-connection feature.

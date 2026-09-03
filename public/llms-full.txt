@@ -1,6 +1,6 @@
 # PoopCheck — Complete Reference
 
-> PoopCheck is an AI-powered stool analysis and gut health tracking mobile application with over 80,000 users worldwide. It is available for free on iOS and Android.
+> PoopCheck is an AI-powered stool analysis and gut health tracking mobile application with over 25,000 users worldwide. It is available for free on iOS and Android.
 
 ## What is PoopCheck?
 
@@ -36,7 +36,7 @@ A contextual AI chat assistant that answers questions about analysis results, pr
 Comprehensive digestive health reports with trends, patterns, and recommendations that can be exported as PDFs and shared with healthcare providers.
 
 ### Community
-A global community of 80,000+ users with public post sharing, leaderboard system, and notification features. User data remains private unless explicitly shared.
+A global community of 25,000+ users with public post sharing, leaderboard system, and notification features. User data remains private unless explicitly shared.
 
 ## Pricing
 

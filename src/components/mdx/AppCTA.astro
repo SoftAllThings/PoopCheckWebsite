@@ -1,26 +1,40 @@
 ---
-import { SITE } from '../../utils/seo';
+/**
+ * The one app CTA used inside and after blog articles.
+ *
+ * Links to /download/, never straight to the stores. /download/ is a working
+ * step, not a leak — 596 pageviews produced 333 store clicks — and it is also
+ * a ranking page (1,857 impressions, position 6.7) fed by 19 internal links.
+ * Bypassing it would drop the social proof and the one choke point where
+ * install intent is measurable.
+ *
+ * Was previously dead code with hardcoded copy and direct store links, imported
+ * by zero files.
+ */
+interface Props {
+  heading?: string;
+  body?: string;
+  /** Reported as `location` on the download_cta_click event. */
+  location?: string;
+}
+
+const {
+  heading = 'Ready to track your gut health?',
+  body = 'Download PoopCheck free and get your first AI stool analysis in seconds.',
+  location = 'article',
+} = Astro.props;
 ---
 
-<div class="not-prose my-8 p-6 rounded-2xl bg-gradient-to-br from-[var(--color-accent)]/10 to-[var(--color-primary)]/10 border border-[var(--color-border)]/50 text-center">
-  <h3 class="text-lg font-bold text-[var(--color-text)] mb-2">Track your gut health with PoopCheck</h3>
-  <p class="text-sm text-[var(--color-text-muted)] mb-4">Free AI stool analysis, daily gut score, and personalized insights.</p>
-  <div class="flex flex-wrap items-center justify-center gap-3">
-    <a
-      href={SITE.appStore}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center px-5 py-2.5 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] text-sm font-semibold hover:opacity-90 transition-opacity"
-    >
-      App Store
-    </a>
-    <a
-      href={SITE.playStore}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center px-5 py-2.5 rounded-full border border-[var(--color-border)] text-[var(--color-text)] text-sm font-semibold hover:bg-[var(--color-surface)] transition-colors"
-    >
-      Google Play
-    </a>
-  </div>
+<div
+  data-track-location={location}
+  class="not-prose my-10 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-[var(--color-accent)]/10 to-[var(--color-primary)]/10 border border-[var(--color-border)]/50 text-center"
+>
+  <h3 class="text-lg md:text-xl font-bold text-[var(--color-text)] mb-2">{heading}</h3>
+  <p class="text-sm text-[var(--color-text-muted)] mb-5 max-w-md mx-auto leading-relaxed">{body}</p>
+  <a
+    href="/download/"
+    class="inline-flex items-center px-6 py-3 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold hover:opacity-90 transition-opacity glow-primary"
+  >
+    Scan your first photo free
+  </a>
 </div>

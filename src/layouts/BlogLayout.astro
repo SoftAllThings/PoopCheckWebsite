@@ -3,7 +3,10 @@ import PageLayout from './PageLayout.astro';
 import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedPosts from '../components/blog/RelatedPosts.astro';
 import { articleSchema } from '../utils/schema';
-import { getCanonicalUrl, postImage, SITE } from '../utils/seo';
+import { getCanonicalUrl, postImage } from '../utils/seo';
+import { categoryLabel } from '../utils/categories';
+import AppCTA from '../components/mdx/AppCTA.astro';
+import { MID_ARTICLE_CTA } from '../utils/blog-cta';
 
 interface Props {
   title: string;
@@ -15,23 +18,12 @@ interface Props {
   slug: string;
   image?: string;
   imageAlt?: string;
-  tags?: string[];
 }
 
-const { title, description, date, updated, author, category, slug, image: explicitImage, imageAlt: explicitAlt, tags } = Astro.props;
+const { title, description, date, updated, author, category, slug, image: explicitImage, imageAlt: explicitAlt } = Astro.props;
 
 const image = postImage(slug, explicitImage);
 const imageAlt = explicitAlt || title;
-
-const categoryLabels: Record<string, string> = {
-  'gut-health': 'Gut Health',
-  'stool-analysis': 'Stool Analysis',
-  'bristol-stool-scale': 'Bristol Stool Scale',
-  nutrition: 'Nutrition',
-  conditions: 'Conditions',
-  'app-updates': 'App Updates',
-  research: 'Research',
-};
 
 // MedicalWebPage type applies to all blog categories EXCEPT app-updates (which are product news, not medical content)
 const isMedical = category !== 'app-updates';
@@ -48,15 +40,13 @@ const schema = articleSchema({
   medical: isMedical,
 });
 
+const midCta = MID_ARTICLE_CTA[slug];
+
 const formattedDate = date.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
 });
-
-const readingTime = Math.ceil(
-  (Astro.slots.has('default') ? 1500 : 500) / 200
-);
 ---
 
 <PageLayout
@@ -79,7 +69,7 @@ const readingTime = Math.ceil(
         <Breadcrumbs
           items={[
             { label: 'Blog', href: '/poopcheck-blog/' },
-            { label: categoryLabels[category] || category, href: `/poopcheck-blog/category/${category}/` },
+            { label: categoryLabel(category), href: `/poopcheck-blog/category/${category}/` },
             { label: title, href: Astro.url.pathname },
           ]}
         />
@@ -92,7 +82,7 @@ const readingTime = Math.ceil(
             href={`/poopcheck-blog/category/${category}/`}
             class="px-3 py-1 rounded-full text-xs font-semibold bg-[var(--color-primary)]/10 text-[var(--color-primary)] hover:bg-[var(--color-primary)]/20 transition-colors"
           >
-            {categoryLabels[category] || category}
+            {categoryLabel(category)}
           </a>
           <span class="text-sm text-[var(--color-text-muted)]">{formattedDate}</span>
         </div>
@@ -143,21 +133,48 @@ const readingTime = Math.ceil(
         <slot />
       </div>
 
-      {/* Tags */}
-      {tags && tags.length > 0 && (
-        <div class="mt-12 pt-8 border-t border-[var(--color-border)]/50">
-          <div class="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <a
-                href={`/poopcheck-blog/tag/${tag}/`}
-                class="px-3 py-1 rounded-full text-xs font-medium bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:text-[var(--color-primary)] hover:bg-[var(--color-primary)]/10 transition-colors border border-[var(--color-border)]/50"
-              >
-                #{tag}
-              </a>
-            ))}
-          </div>
-        </div>
+      {midCta && (
+        <>
+          {/*
+            Mid-article CTA for the triage set. Cloned into the article body
+            before a heading partway down, rather than imported into each MDX
+            file — membership lives in src/utils/blog-cta.ts so re-triaging next
+            quarter is a one-line edit.
+
+            No JS means no mid CTA and the end CTA still renders, which is an
+            acceptable floor for a CTA (not for content). The script runs inline
+            immediately after .prose, so the headings are already parsed and
+            insertion happens before anything below it paints — no layout shift.
+          */}
+          <template id="mid-article-cta">
+            <AppCTA heading={midCta.heading} body={midCta.body} location="article_mid" />
+          </template>
+          <script is:inline>
+            (() => {
+              const tpl = document.getElementById('mid-article-cta');
+              const prose = document.querySelector('.prose');
+              if (!tpl || !prose) return;
+              const heads = prose.querySelectorAll(':scope > h2');
+              // Roughly 40% in, but never the first heading and never the last.
+              const target = heads[Math.min(Math.max(1, Math.round(heads.length * 0.4)), heads.length - 1)];
+              if (target) target.before(tpl.content.cloneNode(true));
+            })();
+          </script>
+        </>
       )}
+
+      <!--
+        CTA sits directly after the article body, before Related Posts.
+        It used to render last, which put a grid of exit links between the end
+        of the read and the only conversion moment on the page.
+
+        data-hide-sticky-cta suppresses MobileStickyCTA while this is on screen —
+        blog posts don't render DownloadCTA, so without it the sticky bar
+        overlapped the article footer.
+      -->
+      <div data-hide-sticky-cta>
+        <AppCTA location="article_end" />
+      </div>
 
       <!-- Author card -->
       <div class="mt-12 gradient-border p-6 flex items-start gap-4">
@@ -174,18 +191,6 @@ const readingTime = Math.ceil(
 
       <!-- Related -->
       <RelatedPosts currentSlug={Astro.url.pathname.split('/poopcheck-blog/')[1]?.replace(/\/$/, '') || ''} category={category} />
-
-      <!-- CTA -->
-      <div class="mt-12 p-8 rounded-2xl bg-gradient-to-br from-[var(--color-accent)]/10 to-[var(--color-primary)]/10 border border-[var(--color-border)]/50 text-center">
-        <h3 class="text-xl font-bold mb-2">Ready to track your gut health?</h3>
-        <p class="text-sm text-[var(--color-text-muted)] mb-4">Download PoopCheck free and get your first AI stool analysis in seconds.</p>
-        <a
-          href="/download/"
-          class="inline-flex items-center px-6 py-3 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold hover:opacity-90 transition-opacity glow-primary"
-        >
-          Download Free
-        </a>
-      </div>
     </div>
   </article>
 </PageLayout>

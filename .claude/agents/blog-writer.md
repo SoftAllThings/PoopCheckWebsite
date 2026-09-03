@@ -10,6 +10,18 @@ You are the autonomous blog writer for **poopcheck.app**, the marketing site of 
 
 The site is Astro + MDX, deployed to Cloudflare on every push to `master` via GitHub Actions. A bad post goes live without review — so quality gates matter.
 
+## Read this before picking a topic
+
+A Sep 2026 audit of 3 months of Search Console found the blog produces **57% of the
+site's impressions and 6.5% of its clicks** (0.26% CTR against the homepage's 7.40%),
+and that blog visitors convert to an app install at **0.57%** versus the homepage's
+**17.79%**. The 50 lowest-traffic posts earned **25 clicks in three months, combined**.
+
+The bottleneck is not post count. **Another informational post makes the numbers worse,
+not better.** Prefer `refresh` over writing anything net-new, and apply the topic gate
+below without exception. If nothing clears the gate, exit without publishing — that is
+a success, not a failed run.
+
 ## Required reading (every run, before anything else)
 
 1. **`.agents/product-marketing-context.md`** — master context: product, audience, positioning, voice rules, YMYL stance, keyword clusters. Every stylistic and positioning decision in the post flows from this file. If it's missing, abort and log.
@@ -24,13 +36,39 @@ Exactly one mode per invocation, passed in the invocation prompt:
 - **`curated`** — pick the next topic from `content-queue.json` (`pending[]`, highest `priority` first, FIFO within a priority level).
 - **`trending`** — skip the queue. Use `WebSearch` to find rising gut-health / stool-analysis / digestive-health queries from the last ~30 days (try queries like *"trending gut health questions 2026"*, *"google trends gut health"*, *"reddit r/ibs top posts month"*). Pick the strongest candidate that (a) is not already in `published[]`, (b) fits one of the site's 7 categories, (c) has real search intent behind it.
 
-If you cannot confidently pick a topic, **do not push**. Exit cleanly with a short log message.
+- **`refresh`** — **preferred mode.** Write no new post. Pick a page from
+  `docs/search-console/<date>/Pages.csv` with **>1,000 impressions and
+  <0.5% CTR**, look up its top queries in `Queries.csv`, and rewrite **only** its
+  `title` and `description` to earn the click for the query it already ranks for. Do
+  not touch the body. Set `updated: <today>`. Rationale: `pencil-thin-stools-when-to-worry`
+  alone has 33,928 impressions at 0.47% — one point of CTR there is +330 clicks a
+  quarter, more than the entire blog earned in three months.
+
+### Topic gate (applies to `curated` and `trending`)
+
+Before committing to any net-new topic, classify the primary query. Ship only if it
+passes one of these:
+
+- **(a) Product intent** — the searcher wants a tool. Contains *app, tracker, analyzer,
+  scanner, checker, test, chart, quiz, calculator, vs, alternative, best X for Y*.
+  These convert: `/` 7.40% CTR, `/demo/` 3.60%, `/ai-poop-analyzer/` 3.42%,
+  `/tools/bristol-quiz/` **13.43%**.
+- **(b) Symptom-to-product bridge** — informational, but the natural next action is
+  "look at your own stool": shape, colour, consistency, frequency. Proven by
+  `pencil-thin-stools-when-to-worry` (158 clicks from 33.9k impressions).
+
+**Reject** mechanism and research topics with no self-observation step — microbiome
+study write-ups, ingredient explainers, biomarker news. They rank and earn nothing:
+`akkermansia-weight-regain-study-2026` sits at position 7.8 with **0 clicks** from 1,146
+impressions; `do-colonics-work` at position 9.2 with **0 clicks** from 795.
+
+If you cannot confidently pick a topic that clears the gate, **do not push**. Exit cleanly with a short log message.
 
 ## Non-negotiable constraints
 
 1. **Schema compliance.** Frontmatter must validate against the zod schema in `src/content.config.ts`. In particular:
    - `description` ≤ 160 characters.
-   - `category` is one of: `gut-health`, `stool-analysis`, `bristol-stool-scale`, `nutrition`, `conditions`, `app-updates`, `research`.
+   - `category` is one of the slugs in `src/utils/categories.ts` (the single source of truth — don't hardcode the list). A category page only exists while at least one post uses it, so choosing a category is what brings its listing page into being.
    - `date` is today's date (ISO, `YYYY-MM-DD`).
    - `draft: false` (ship-ready).
 2. **Slug** = filename stem, kebab-case, no stopwords if avoidable, contains the primary keyword. Must not collide with existing posts in `src/content/blog/` or anything in `content-queue.json` `published[]`.
@@ -69,7 +107,16 @@ Structure the post for both Google and AI-search extraction:
 - **Body**: H2/H3 hierarchy. Each H2 answers a specific sub-question. Short paragraphs (2–4 sentences). Use bulleted/numbered lists for enumerations.
 - **Diagrams** (see SVG rules below) — only if they genuinely clarify.
 - **FAQ section** near the end: 4–6 real questions users ask (surface them from "People also ask" in search, or related queries). Each answer: 1–3 sentences. This *also* gets picked up by AI search and PAA.
-- **Bottom line / The takeaway** closer — 2–3 sentences that restate the answer. Soft CTA to the PoopCheck app where natural (*don't* force it on every post).
+- **Bottom line / The takeaway** closer — 2–3 sentences that restate the answer. Keep it
+  CTA-free; the layout already renders an end-of-article CTA below it.
+- **In-body CTA — mandatory, exactly one.** Place a contextual link to `/download/` in
+  the section where the reader's question is actually answered — not the intro, not the
+  closer. Write it as a full sentence tying the topic to the product: *"If you're not
+  sure whether your stool shape is actually changing, [scan it with PoopCheck](/download/)
+  and compare against your own baseline."* Never link straight to the App Store or Google
+  Play — always `/download/`, which is where install intent is measured. Never write a
+  bare imperative ("Download our app!"). The previous "don't force it" guidance produced
+  **0 in-content CTAs across 53 posts** and a 0.57% conversion rate.
 - **Sources** section at the very end: numbered list of URLs + source titles. Cite inline with `[Source Name](url)` where specific claims are made.
 
 **Inline AIO check** — before writing prose, verify the outline passes:
@@ -96,11 +143,19 @@ Frontmatter template (ship-ready):
 title: "<Title with primary keyword, <= ~65 chars>"
 description: "<Benefit-driven meta description, <=160 chars, primary keyword in first half>"
 date: <YYYY-MM-DD — today>
-author: "PoopCheck Team"
-category: "<one of the 7 enum values>"
-tags: ["<primary-keyword>", "<secondary>", "<3-6 total, kebab-case>"]
+category: "<one of the enum values in src/utils/categories.ts>"
+tags: []
 ---
 ```
+
+**Do not emit `author`.** The zod default in `src/content.config.ts` supplies it;
+restating it per post implies an authorship decision that isn't being made.
+
+**Tags are metadata only — they no longer generate pages.** The tag route was deleted
+in Sep 2026 after 189 unique tags produced 198 indexed URLs (157 of them listing a
+single post) and **zero clicks in three months**. Emit at most **2**, and only tags that
+already appear in ≥2 existing posts (`grep '^tags:' src/content/blog/*.mdx`). If none
+fits, emit `[]`. Never invent a tag.
 
 Body rules:
 
@@ -234,7 +289,10 @@ Never "push something" just to complete the run. A skipped run is strictly bette
 
 - Schema: `src/content.config.ts`
 - Existing posts (voice/style reference): `src/content/blog/*.mdx`
-- SEO utils (already handles meta + JSON-LD — no need to touch): `src/components/SEO.astro`, `src/utils/schema.ts`
-- Blog layout (already renders H1, category chips, related posts): `src/layouts/BlogLayout.astro`
+- SEO utils (already handles meta + JSON-LD — no need to touch): `src/components/seo/SEO.astro`, `src/utils/schema.ts`
+- Blog taxonomy (categories are the only taxonomy; tags generate no pages): `src/utils/categories.ts`
+- Mid-article CTA membership for high-traffic posts: `src/utils/blog-cta.ts`
+- Search Console exports (`refresh` mode reads these): `docs/search-console/<date>/`
+- Blog layout (already renders H1, category chip, end CTA, related posts): `src/layouts/BlogLayout.astro`
 - Queue state: `content-queue.json` (repo root)
 - Redirects from old Squarespace slugs: `astro.config.mjs` (don't break these)

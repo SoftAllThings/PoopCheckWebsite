@@ -43,7 +43,15 @@ if (existsSync(redirectsPath)) {
     }
     return rebuilt;
   });
-  const fixed = out.join('\n');
+  // 3) Retire the removed tag pages.
+  //    Astro's `redirects` config rejects a dynamic source pointing at a single
+  //    static destination, so this wildcard is appended here instead. It covers
+  //    all ~198 previously-indexed /poopcheck-blog/tag/* URLs in one rule.
+  //    Google will treat a bulk redirect to an index as a soft 404 and drop the
+  //    URLs either way; this exists so humans with bookmarks land somewhere real.
+  const TAG_RULE = '/poopcheck-blog/tag/* /poopcheck-blog/ 301';
+  const fixed = out.join('\n').replace(/\n*$/, '\n') + `${TAG_RULE}\n`;
   writeFileSync(redirectsPath, fixed);
   console.log('Normalized splat redirects: * -> :splat and stripped /index.html');
+  console.log(`Appended tag-page retirement rule: ${TAG_RULE}`);
 }

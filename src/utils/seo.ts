@@ -10,7 +10,10 @@ export interface SEOProps {
   publishedTime?: string;
   modifiedTime?: string;
   author?: string;
+  /** Keep the page out of the index. Links are still followed unless `nofollow`. */
   noindex?: boolean;
+  /** Only set alongside `noindex` when link equity should NOT flow onward. */
+  nofollow?: boolean;
 }
 
 export const SITE = {

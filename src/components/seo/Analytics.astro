@@ -6,6 +6,131 @@ const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || 'https://us.i.posthog
 const enabled = Boolean(posthogKey) && import.meta.env.PROD;
 ---
 
+{/*
+  Conversion tracking.
+
+  Ships on every page, including dev, where it is a silent no-op without
+  posthog — so the wiring can be exercised locally with `?pctrack=debug`,
+  which logs every event to the console instead of guessing in production.
+
+  Location is inferred from DOM landmarks rather than hand-annotating the ~18
+  components that hold a CTA. An explicit `data-track-location` always wins.
+
+  This is additive: autocapture keeps firing exactly as before. It exists
+  because store clicks were previously only recoverable by regex over
+  `$elements_chain`, which no dashboard can query comfortably.
+*/}
+<script is:inline>
+  (() => {
+    const debug = new URLSearchParams(location.search).has('pctrack');
+    const path = location.pathname;
+
+    /** Coarse page class. Registered as a super-property (see below). */
+    function pageType(p) {
+      if (p === '/') return 'home';
+      if (p === '/poopcheck-blog/') return 'blog_index';
+      if (p.startsWith('/poopcheck-blog/category/')) return 'blog_category';
+      if (p.startsWith('/poopcheck-blog/')) return 'blog_post';
+      if (p.startsWith('/guides/')) return 'guide';
+      if (p.startsWith('/compare/')) return 'compare';
+      if (p.startsWith('/bristol')) return 'bristol';
+      if (p.startsWith('/tools/')) return 'tool';
+      if (p.startsWith('/features/')) return 'feature';
+      if (p.startsWith('/business')) return 'business';
+      if (p === '/download/') return 'download';
+      if (/chart|fodmap|poop-pictures/.test(p)) return 'chart';
+      return 'other';
+    }
+    const PAGE_TYPE = pageType(path);
+
+    /**
+     * Attach page_type to EVERY event, including $pageview and $autocapture.
+     * This is the highest-leverage line here: it makes the existing autocapture
+     * baseline sliceable by section without adding a single new event, so
+     * "blog vs homepage" stops being an $elements_chain regex.
+     * register() overwrites per page load, which is correct for an MPA.
+     */
+    if (window.posthog && typeof window.posthog.register === 'function') {
+      window.posthog.register({ page_type: PAGE_TYPE });
+    }
+
+    /** Send a named event. No-ops until posthog exists; logs under ?pctrack. */
+    function track(event, props) {
+      const payload = { path, page_type: PAGE_TYPE, ...props };
+      if (debug) console.log('[pctrack]', event, payload);
+      if (window.posthog && typeof window.posthog.capture === 'function') {
+        window.posthog.capture(event, payload);
+      }
+    }
+    window.pcTrack = track;
+
+    /** Where on the page a click happened, for comparing CTA placements. */
+    function locationOf(el) {
+      const explicit = el.closest('[data-track-location]');
+      if (explicit) return explicit.getAttribute('data-track-location');
+      if (el.closest('[data-sticky-cta]')) return 'sticky';
+      if (el.closest('header')) return 'header';
+      if (el.closest('footer')) return 'footer';
+      if (el.closest('.prose')) return 'in_content';
+      return 'page';
+    }
+
+    document.addEventListener(
+      'click',
+      (e) => {
+        const el = e.target instanceof Element ? e.target.closest('a, button') : null;
+        if (!el) return;
+
+        const named = el.closest('[data-track]');
+        const href = el.getAttribute('href') || '';
+        const where = locationOf(el);
+
+        // from_download_page separates the working path (/download/ → store,
+        // ~79% pass-through) from an incidental footer click on a blog post.
+        // Without it the store-click total is uninterpretable.
+        const store = href.includes('apps.apple.com')
+          ? 'apple'
+          : href.includes('play.google.com')
+            ? 'google'
+            : null;
+
+        if (store) {
+          track('store_click', {
+            store,
+            location: where,
+            from_download_page: path === '/download/',
+          });
+        } else if (/^\/download\/?$/.test(href.split('?')[0].split('#')[0])) {
+          track('download_cta_click', { location: where });
+        } else if (named) {
+          track(named.getAttribute('data-track'), { location: where });
+        }
+      },
+      { capture: true, passive: true }
+    );
+
+    // Scroll depth, blog posts only — the question is whether readers reach the
+    // end CTA at all, which pageviews alone cannot answer.
+    if (location.pathname.startsWith('/poopcheck-blog/')) {
+      const hit = new Set();
+      const onScroll = () => {
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - window.innerHeight;
+        if (max <= 0) return;
+        const pct = ((window.scrollY / max) * 100) | 0;
+        for (const mark of [50, 90]) {
+          if (pct >= mark && !hit.has(mark)) {
+            hit.add(mark);
+            track('blog_scroll_depth', { depth: mark });
+          }
+        }
+        if (hit.size === 2) window.removeEventListener('scroll', onScroll);
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+  })();
+</script>
+
 {
   enabled && (
     <script

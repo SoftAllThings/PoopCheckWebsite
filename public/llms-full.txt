@@ -66,9 +66,9 @@ Photos are encrypted in transit and at rest. Users can delete their account and 
 - [Features](https://poopcheck.app/features/): All features overview
 - [AI Analysis](https://poopcheck.app/features/ai-stool-analysis/): AI analysis deep-dive
 - [Pricing](https://poopcheck.app/pricing/): Free vs Premium plans
-- [Blog](https://poopcheck.app/blog/): Gut health articles
+- [Blog](https://poopcheck.app/poopcheck-blog/): Gut health articles
 - [Guides](https://poopcheck.app/guides/): Comprehensive health guides
-- [Playground](https://poopcheck.app/playground/): Try AI analysis online
+- [Demo](https://poopcheck.app/demo/): Try AI analysis online
 - [Download](https://poopcheck.app/download/): App download links
-- [About](https://poopcheck.app/about/): Company mission
+- [About](https://poopcheck.app/about-poopcheck/): Company mission
 - [Support](https://poopcheck.app/support/): FAQ and help

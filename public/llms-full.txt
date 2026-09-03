@@ -72,3 +72,6 @@ Photos are encrypted in transit and at rest. Users can delete their account and 
 - [Download](https://poopcheck.app/download/): App download links
 - [About](https://poopcheck.app/about-poopcheck/): Company mission
 - [Support](https://poopcheck.app/support/): FAQ and help
+- [For Business](https://poopcheck.app/business/): API and dataset licensing
+- [Stool Analysis API](https://poopcheck.app/business/api/): CV endpoint returning Bristol type, color, consistency, mucus and blood indicators
+- [Annotated Dataset](https://poopcheck.app/business/data/): Largest annotated stool image dataset; research and commercial licenses

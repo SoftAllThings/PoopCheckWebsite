@@ -1,7 +1,7 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
-import { serviceSchema, faqSchema } from '../../utils/schema';
+import { serviceSchema, faqSchema, datasetSchema } from '../../utils/schema';
 import { SITE, STATS } from '../../utils/seo';
 
 const included = [
@@ -52,6 +52,36 @@ const schemas = [
     serviceType: 'Medical Imaging Dataset',
   }),
   faqSchema(faqs),
+  // Google Dataset Search is a separate index from web search, and it is where
+  // ML teams and researchers actually go looking for training data. This page
+  // described a dataset in prose but never declared one in markup, so it was
+  // invisible to that vertical.
+  datasetSchema({
+    name: 'PoopCheck Annotated Stool Image Dataset',
+    description:
+      `${STATS.analyses.long} real-world stool photographs captured through the PoopCheck app, each labeled with Bristol Stool Scale type (1–7) plus multi-label color, consistency, shape, mucus and blood-indicator annotations. Collected across devices, lighting conditions and demographics rather than under laboratory conditions. Available under research and commercial licenses.`,
+    url: `${SITE.url}/business/data/`,
+    licenseUrl: `${SITE.url}/business/data/`,
+    keywords: [
+      'stool image dataset',
+      'Bristol Stool Scale',
+      'gastrointestinal health',
+      'medical image classification',
+      'computer vision',
+      'digestive health',
+      'annotated medical images',
+      'stool classification',
+    ],
+    size: `${STATS.analyses.long} images`,
+    variableMeasured: [
+      'Bristol Stool Scale type',
+      'Stool color category',
+      'Consistency',
+      'Shape',
+      'Mucus indicator',
+      'Blood indicator',
+    ],
+  }),
 ];
 ---
 

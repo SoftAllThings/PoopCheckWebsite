@@ -180,6 +180,67 @@ export function serviceSchema(props: ServiceSchemaProps) {
   };
 }
 
+export interface DatasetSchemaProps {
+  name: string;
+  description: string;
+  url: string;
+  /** Landing page describing licence terms. */
+  licenseUrl: string;
+  keywords: string[];
+  /** e.g. '2023-01-01/..' for an ongoing collection. */
+  temporalCoverage?: string;
+  /** What each record measures — Dataset Search surfaces these. */
+  variableMeasured?: string[];
+  /** Approximate record count, for `size`. */
+  size?: string;
+}
+
+/**
+ * schema.org/Dataset — the markup Google Dataset Search indexes.
+ *
+ * Worth its own helper because Dataset Search is a separate vertical from web
+ * search, with its own index, and it is where researchers and ML teams actually
+ * look for training data. A commercial dataset is eligible: `isAccessibleForFree`
+ * false plus a licence URL is the supported pattern, not a disqualifier.
+ */
+export function datasetSchema(props: DatasetSchemaProps) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name: props.name,
+    description: props.description,
+    url: props.url,
+    license: props.licenseUrl,
+    keywords: props.keywords,
+    isAccessibleForFree: false,
+    ...(props.temporalCoverage ? { temporalCoverage: props.temporalCoverage } : {}),
+    ...(props.size ? { size: props.size } : {}),
+    ...(props.variableMeasured
+      ? {
+          variableMeasured: props.variableMeasured.map((v) => ({
+            '@type': 'PropertyValue',
+            name: v,
+          })),
+        }
+      : {}),
+    creator: {
+      '@type': 'Organization',
+      name: SITE.name,
+      url: SITE.url,
+    },
+    includedInDataCatalog: {
+      '@type': 'DataCatalog',
+      name: `${SITE.name} Data`,
+      url: absoluteUrl('/business/data/'),
+    },
+    distribution: {
+      '@type': 'DataDownload',
+      encodingFormat: 'application/json',
+      contentUrl: props.licenseUrl,
+    },
+  };
+}
+
 export interface ArticleSchemaProps {
   title: string;
   description: string;

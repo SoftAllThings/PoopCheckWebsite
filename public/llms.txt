@@ -13,6 +13,16 @@ PoopCheck uses computer vision and AI to analyze stool photos using the Bristol 
 - [Demo](https://poopcheck.app/demo/): Try AI stool analysis online
 - [Download](https://poopcheck.app/download/): Download for iOS and Android
 
+## For Businesses & Developers
+
+PoopCheck licenses the technology behind the app. There is no other publicly
+available commercial API for Bristol Stool Form Scale image classification.
+
+- [For Business](https://poopcheck.app/business/): Stool analysis API and annotated dataset licensing for health startups, researchers and ML teams
+- [Stool Analysis API](https://poopcheck.app/business/api/): Computer-vision endpoint returning Bristol Stool Scale type (1-7), color, consistency, shape, mucus and blood indicators from a single photo. Access by request.
+- [Annotated Stool Dataset](https://poopcheck.app/business/data/): The largest annotated stool image collection in existence - real-world smartphone photos labeled with Bristol type plus multi-label color and pathology annotations. Research licenses include publication rights; commercial licenses available. Custom subsets can be scoped.
+- [Public stool & microbiome dataset index](https://poopcheck.app/poopcheck-blog/public-stool-and-gut-microbiome-datasets-2026/): Independent index of 26 stool and gut-microbiome datasets, with access routes and licensing terms for each
+
 ## Guides
 
 - [Blog](https://poopcheck.app/poopcheck-blog/): Latest gut health articles and research

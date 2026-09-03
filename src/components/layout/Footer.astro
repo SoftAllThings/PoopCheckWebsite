@@ -47,8 +47,16 @@ const footerLinks = {
         <p class="mt-3 text-[var(--color-text-muted)] text-sm max-w-xs leading-relaxed">
           Understand your gut in seconds. AI-powered stool analysis and gut health tracking for everyone.
         </p>
-        <!-- App Store badges -->
-        <div class="mt-6 flex flex-wrap gap-3">
+        <!--
+          App Store badges.
+
+          data-hide-sticky-cta suppresses MobileStickyCTA while these are on
+          screen. The mechanism already existed but its only target lived in
+          DownloadCTA, which most pages don't render — so on blog posts, guides
+          and the legal pages the sticky bar sat on top of the very store
+          buttons it duplicates. Tagging the footer fixes every page at once.
+        -->
+        <div data-hide-sticky-cta data-track-location="footer" class="mt-6 flex flex-wrap gap-3">
           <a
             href={SITE.appStore}
             target="_blank"

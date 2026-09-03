@@ -149,6 +149,15 @@ export default defineConfig({
     // Old category redirects → blog index
     '/poopcheck-blog/category/Bristol+Stool+Chart': '/poopcheck-blog/',
     '/poopcheck-blog/category/Diet+%26+Nutrition': '/poopcheck-blog/',
+
+    // Tag pages were removed (198 of 309 sitemap URLs, 157 of them listing a
+    // single post, zero clicks in three months). Astro's `redirects` can't map
+    // a dynamic source onto one static destination, so the wildcard rule that
+    // retires them is appended to _redirects in scripts/patch-wrangler.mjs.
+
+    // /category/app-updates/ had zero posts; categories now derive from real
+    // post counts, so the route no longer generates it.
+    '/poopcheck-blog/category/app-updates': '/poopcheck-blog/',
   },
 
   vite: {
@@ -167,7 +176,10 @@ export default defineConfig({
     mdx(),
     react(),
     sitemap({
-      filter: (page) => !page.includes('/api/'),
+      // Exclude the API routes only. The old `includes('/api/')` also swallowed
+      // the real marketing page /business/api/, which was live but missing from
+      // every sitemap we ever submitted.
+      filter: (page) => !new URL(page).pathname.startsWith('/api/'),
       changefreq: 'weekly',
       priority: 0.7,
       serialize(item) {

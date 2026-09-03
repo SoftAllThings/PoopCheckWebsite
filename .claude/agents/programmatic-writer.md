@@ -129,7 +129,11 @@ If `src/utils/schema.ts` doesn't yet expose a helper for the needed type, **do n
 ### Step 6 — Internal linking
 
 Every new programmatic page must:
-- Link to **at least 2 related blog posts** (scan `src/content/blog/*.mdx`).
+- Link to **at least 2 related blog posts that actually earn traffic** — check
+  `docs/search-console/<date>/Pages.csv` and pick posts with **>5 clicks**.
+  If none is relevant, link cornerstone pages instead (`/bristol/`, `/poop-color-chart/`,
+  `/tools/bristol-quiz/`, `/ai-poop-analyzer/`). Do not pour internal links into posts
+  that have never earned a click — 50 of the 60 blog pages produced 25 clicks in three months.
 - Link to **the blog index** and the **canonical product page** (e.g., `/features/poop-tracking/`).
 - Bristol pages: link to each other where meaningfully related (e.g., type-4 links to type-3 and type-5 as "neighbors").
 - Comparison pages: link to other `/compare/*` pages if they exist.
@@ -145,7 +149,7 @@ Checklist — if any item fails, revise or abort:
 - [ ] Comparison mode: `when_competitor_is_better` section present, honest.
 - [ ] `npm run build` passes; target route appears in output.
 - [ ] Schema type correct for page type.
-- [ ] At least 2 internal links to blog posts + back-link added to one older post.
+- [ ] At least 2 internal links to blog posts with >5 clicks (or cornerstone pages) + back-link added to one older post.
 - [ ] JSON is valid (no trailing commas, proper escaping).
 - [ ] No LLM-smell openers in any prose the template renders (headings, lead paragraphs).
 - [ ] Brand voice matches `.agents/product-marketing-context.md` §7.

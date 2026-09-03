@@ -1,4 +1,6 @@
 ---
+import { categoryLabel } from '../../utils/categories';
+
 interface Props {
   title: string;
   description: string;
@@ -12,16 +14,6 @@ interface Props {
 // Only a real illustration from frontmatter is shown. The generated card is a
 // title graphic for social feeds; rendering it here would print the title twice.
 const { title, description, date, category, slug, image, featured } = Astro.props;
-
-const categoryLabels: Record<string, string> = {
-  'gut-health': 'Gut Health',
-  'stool-analysis': 'Stool Analysis',
-  'bristol-stool-scale': 'Bristol Stool Scale',
-  nutrition: 'Nutrition',
-  conditions: 'Conditions',
-  'app-updates': 'App Updates',
-  research: 'Research',
-};
 
 const formattedDate = date.toLocaleDateString('en-US', {
   year: 'numeric',
@@ -48,7 +40,7 @@ const formattedDate = date.toLocaleDateString('en-US', {
         href={`/poopcheck-blog/category/${category}/`}
         class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[var(--color-primary)]/10 text-[var(--color-primary)]"
       >
-        {categoryLabels[category] || category}
+        {categoryLabel(category)}
       </a>
       <span class="text-xs text-[var(--color-text-muted)]">{formattedDate}</span>
     </div>

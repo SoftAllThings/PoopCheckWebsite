@@ -1,19 +1,16 @@
 ---
+import { getCollection } from 'astro:content';
+import { CATEGORY_LABELS, categoriesWithPosts } from '../../utils/categories';
+
 interface Props {
   active?: string;
 }
 
 const { active } = Astro.props;
 
-const categories = [
-  { slug: 'gut-health', label: 'Gut Health' },
-  { slug: 'stool-analysis', label: 'Stool Analysis' },
-  { slug: 'bristol-stool-scale', label: 'Bristol Stool Scale' },
-  { slug: 'nutrition', label: 'Nutrition' },
-  { slug: 'conditions', label: 'Conditions' },
-  { slug: 'app-updates', label: 'App Updates' },
-  { slug: 'research', label: 'Research' },
-];
+// Only surface categories that actually have posts. `app-updates` has none, and
+// linking it shipped an indexed, empty "No articles yet" page to Google.
+const categories = categoriesWithPosts(await getCollection('blog'));
 
 const activeClasses = 'px-4 py-2 rounded-full text-sm font-medium bg-[var(--color-primary)] text-[var(--color-text-dark)]';
 const inactiveClasses = 'px-4 py-2 rounded-full text-sm font-medium bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-elevated)] transition-colors border border-[var(--color-border)]/50';
@@ -23,12 +20,12 @@ const inactiveClasses = 'px-4 py-2 rounded-full text-sm font-medium bg-[var(--co
   <a href="/poopcheck-blog/" class={!active ? activeClasses : inactiveClasses}>
     All
   </a>
-  {categories.map((cat) => (
+  {categories.map((slug) => (
     <a
-      href={`/poopcheck-blog/category/${cat.slug}/`}
-      class={active === cat.slug ? activeClasses : inactiveClasses}
+      href={`/poopcheck-blog/category/${slug}/`}
+      class={active === slug ? activeClasses : inactiveClasses}
     >
-      {cat.label}
+      {CATEGORY_LABELS[slug]}
     </a>
   ))}
 </div>

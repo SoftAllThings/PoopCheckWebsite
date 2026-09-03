@@ -211,10 +211,14 @@ export function articleSchema(props: ArticleSchemaProps) {
     image: extra.length ? [primary, ...extra] : primary,
     datePublished: props.datePublished,
     dateModified: props.dateModified || props.datePublished,
-    author: {
-      '@type': 'Person',
-      name: props.author || 'PoopCheck Team',
-    },
+    // "PoopCheck Team" is an organization, not a person. Typing it as Person
+    // was a schema mismatch Rich Results flags, and on YMYL health content a
+    // fake person reads worse than an honest corporate byline. A real personal
+    // name (once we have one) still emits Person.
+    author:
+      props.author && props.author !== 'PoopCheck Team'
+        ? { '@type': 'Person', name: props.author }
+        : { '@type': 'Organization', name: SITE.name, url: SITE.url },
     publisher: {
       '@type': 'Organization',
       name: SITE.name,
@@ -225,7 +229,10 @@ export function articleSchema(props: ArticleSchemaProps) {
   if (props.medical) {
     return {
       ...base,
-      lastReviewed: props.dateModified || props.datePublished,
+      // `lastReviewed` deliberately omitted. On MedicalWebPage it asserts that
+      // a medical review took place; we were emitting dateModified under that
+      // name, which claims an editorial process that doesn't exist. Re-add it
+      // only when a named reviewer actually reviews the post.
       audience: {
         '@type': 'Audience',
         audienceType: 'consumers',

@@ -1,4 +1,104 @@
+# poopcheck.app
+#
+# Policy: answer engines are welcome, training crawlers are not.
+#
+# An answer bot fetches a page to respond to a live user question and cites the
+# source, which sends a real visitor back. That is a search engine with extra
+# steps, so it gets search-engine treatment. A training crawler ingests the
+# content, returns no citation and no click, and gets refused.
+#
+# NOTE: a crawler obeys only the single most specific matching group. Once a bot
+# has its own named group it ignores `User-agent: *` entirely — which is why the
+# named groups below fully override the wildcard. `Sitemap:` is group-independent
+# and applies to everyone.
+#
+# This file is only authoritative once Cloudflare's Managed robots.txt is turned
+# off (AI Crawl Control). While that setting is on, Cloudflare prepends its own
+# block above this content and its rules win. Blocking at the edge is a separate
+# setting again: robots.txt is advisory, a 403 is enforcement.
+
 User-agent: *
 Allow: /
+
+# Content signals (contentsignals.org): search and AI-answer grounding are
+# permitted; training on this content is not.
+Content-Signal: search=yes, ai-input=yes, ai-train=no, use=reference
+
+
+# ---------------------------------------------------------------------------
+# AI answer / search bots — ALLOWED
+# ---------------------------------------------------------------------------
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+
+# ---------------------------------------------------------------------------
+# Model-training crawlers — DISALLOWED
+# ---------------------------------------------------------------------------
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: omgili
+Disallow: /
+
+User-agent: PanguBot
+Disallow: /
+
+User-agent: Timpibot
+Disallow: /
+
 
 Sitemap: https://poopcheck.app/sitemap-index.xml

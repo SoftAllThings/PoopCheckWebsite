@@ -14,6 +14,7 @@ const {
   modifiedTime,
   author,
   noindex = false,
+  nofollow = false,
 } = Astro.props;
 
 const formattedTitle = formatTitle(title);
@@ -26,7 +27,7 @@ const imageUrl = image?.startsWith('http') ? image : `${SITE.url}${image}`;
 <meta name="title" content={formattedTitle} />
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalUrl} />
-{noindex && <meta name="robots" content="noindex, nofollow" />}
+{noindex && <meta name="robots" content={`noindex, ${nofollow ? 'nofollow' : 'follow'}`} />}
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={type} />

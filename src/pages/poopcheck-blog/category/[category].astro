@@ -4,38 +4,29 @@ import PostCard from '../../../components/blog/PostCard.astro';
 import Breadcrumbs from '../../../components/seo/Breadcrumbs.astro';
 import CategoryFilter from '../../../components/blog/CategoryFilter.astro';
 import { getCollection } from 'astro:content';
+import {
+  CATEGORY_DESCRIPTIONS,
+  categoriesWithPosts,
+  categoryLabel,
+  type CategorySlug,
+} from '../../../utils/categories';
 
-const categoryLabels: Record<string, string> = {
-  'gut-health': 'Gut Health',
-  'stool-analysis': 'Stool Analysis',
-  'bristol-stool-scale': 'Bristol Stool Scale',
-  nutrition: 'Nutrition',
-  conditions: 'Conditions',
-  'app-updates': 'App Updates',
-  research: 'Research',
-};
-
-const categoryDescriptions: Record<string, string> = {
-  'gut-health': 'Evidence-based articles on improving gut health, supporting your microbiome, and building digestive resilience — from the PoopCheck team.',
-  'stool-analysis': 'Stool color, shape, consistency, and what they reveal about your digestive health. Expert stool analysis articles from PoopCheck.',
-  'bristol-stool-scale': 'Master the Bristol Stool Scale (Types 1–7). Learn what each type means and track your digestive health with PoopCheck.',
-  nutrition: 'How diet, fermented foods, fiber, and spices shape your gut. Nutrition-focused digestive health articles from PoopCheck.',
-  conditions: 'IBS, colon cancer, hemorrhoids, and other digestive conditions — symptoms, causes, and when to see a doctor. From PoopCheck.',
-  'app-updates': 'The latest PoopCheck app updates, new features, and release notes for our AI stool analyzer.',
-  research: 'Emerging research on the gut microbiome, digestion, and stool analysis — breaking down the latest science for everyday health.',
-};
-
+/**
+ * Paths come from categories that actually have posts, not a hardcoded list.
+ * The old list generated /category/app-updates/ with zero posts on it.
+ */
 export async function getStaticPaths() {
-  const categories = ['gut-health', 'stool-analysis', 'bristol-stool-scale', 'nutrition', 'conditions', 'app-updates', 'research'];
-  return categories.map((category) => ({
+  return categoriesWithPosts(await getCollection('blog')).map((category) => ({
     params: { category },
     props: { category },
   }));
 }
 
-const { category } = Astro.props;
-const label = categoryLabels[category] || category;
-const description = categoryDescriptions[category] || `Read our latest articles about ${label.toLowerCase()} from the PoopCheck team.`;
+const { category } = Astro.props as { category: CategorySlug };
+const label = categoryLabel(category);
+const description =
+  CATEGORY_DESCRIPTIONS[category] ||
+  `Read our latest articles about ${label.toLowerCase()} from the PoopCheck team.`;
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft && data.category === category))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());

@@ -204,6 +204,26 @@ const schemas = [
         </div>
       </section>
 
+      <!--
+        Sibling cross-links. Both product pages were dead ends: /business/api/
+        had zero inbound internal links from anywhere on the site, which is a
+        large part of why it does not rank. Linking the pair plus the hub gives
+        each one a real place in the site graph.
+      -->
+      <section class="mb-20">
+        <h2 class="text-2xl md:text-3xl font-bold mb-6">Also available</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <a href="/business/api/" class="gradient-border p-6 block hover:opacity-90 transition-opacity">
+            <h3 class="font-semibold mb-2">Stool analysis API</h3>
+            <p class="text-sm text-[var(--color-text-muted)]">Send a photo, get Bristol type, colour, consistency, mucus and blood indicators back as JSON.</p>
+          </a>
+          <a href="/business/" class="gradient-border p-6 block hover:opacity-90 transition-opacity">
+            <h3 class="font-semibold mb-2">PoopCheck for Business</h3>
+            <p class="text-sm text-[var(--color-text-muted)]">Overview of everything we license — API access, annotated data, and how teams build on it.</p>
+          </a>
+        </div>
+      </section>
+
       <!-- Contact form -->
       <section id="contact">
         <div class="gradient-border p-8 md:p-10">

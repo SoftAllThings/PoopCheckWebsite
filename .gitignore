@@ -6,3 +6,9 @@ dist/
 .env.*
 !.env.example
 .DS_Store
+
+# Raw dataset exports. These contain real user health data — production account
+# IDs, EXIF (incl. GPS), and re-identifying profile fields. Never commit.
+# Run `npm run dataset:sample` to produce a de-identified set for publication.
+samples/
+dataset-sample/

@@ -6,9 +6,10 @@ const navItems = [
   { label: 'Pricing', href: '/pricing/' },
   { label: 'Blog', href: '/poopcheck-blog/' },
   { label: 'Guides', href: '/guides/' },
+  { label: 'Gut Index', href: '/data/' },
   { label: 'FAQ', href: '/faq/' },
   { label: 'Live Demo', href: '/demo/' },
-  { label: 'For Business', href: '/business/' },
+  { label: 'Business', href: '/business/' },
 ];
 ---
 
@@ -28,7 +29,7 @@ const navItems = [
     <!-- Download CTA -->
     <a
       href="/download/"
-      class="hidden md:inline-flex items-center px-5 py-2 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold text-sm hover:opacity-90 transition-opacity glow-primary"
+      class="hidden lg:inline-flex items-center px-5 py-2 rounded-full bg-[var(--color-primary)] text-[var(--color-text-dark)] font-semibold text-sm hover:opacity-90 transition-opacity glow-primary"
     >
       Download App
     </a>
@@ -36,7 +37,7 @@ const navItems = [
     <!-- Mobile Menu Button -->
     <button
       id="mobile-menu-btn"
-      class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg text-[var(--color-text)] hover:bg-[var(--color-surface)] transition-colors"
+      class="lg:hidden flex items-center justify-center w-10 h-10 rounded-lg text-[var(--color-text)] hover:bg-[var(--color-surface)] transition-colors"
       aria-label="Toggle menu"
       aria-expanded="false"
     >
@@ -50,7 +51,7 @@ const navItems = [
   </div>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden md:hidden border-t border-[var(--color-border)]/50 bg-[var(--color-bg)]/95 backdrop-blur-xl">
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-[var(--color-border)]/50 bg-[var(--color-bg)]/95 backdrop-blur-xl">
     <nav class="px-5 py-4 flex flex-col gap-1">
       {navItems.map((item) => (
         <a

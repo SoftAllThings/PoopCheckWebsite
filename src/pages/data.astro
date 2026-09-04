@@ -262,15 +262,63 @@ const schema = [
           </div>
         </div>
 
-        <div class="mt-7 rounded-2xl border border-[var(--color-border)] bg-[var(--color-elevated)] p-5 md:flex md:items-center md:justify-between md:gap-6">
-          <p class="text-[var(--color-text)]">
-            <strong class="font-semibold">Not sure which one is yours?</strong>
-            <span class="text-[var(--color-text-muted)]">
-              Take a photo and PoopCheck places it on this exact scale in seconds —
-              then tracks where yours sits over time.
-            </span>
-          </p>
-          <a href="/download/" class="cta mt-4 md:mt-0 md:shrink-0">Scan yours</a>
+        <div class="mt-7 rounded-2xl border border-[var(--color-border)] bg-[var(--color-elevated)] p-5">
+          <div id="scan-idle" class="md:flex md:items-center md:justify-between md:gap-6">
+            <p class="text-[var(--color-text)]">
+              <strong class="font-semibold">Not sure which one is yours?</strong>
+              <span class="text-[var(--color-text-muted)]">
+                Take a photo and the same AI that classified all
+                {sample} records will place yours on the scale — right here, in
+                seconds.
+              </span>
+            </p>
+            <button type="button" id="scan-btn" class="cta mt-4 md:mt-0 md:shrink-0">
+              Scan yours
+            </button>
+            <input
+              type="file"
+              id="scan-input"
+              accept="image/jpeg,image/png,image/webp"
+              capture="environment"
+              class="sr-only"
+            />
+          </div>
+
+          <div id="scan-busy" hidden class="flex items-center gap-3">
+            <span class="scan-spinner" aria-hidden="true"></span>
+            <span id="scan-status" role="status" aria-live="polite" class="text-[var(--color-text-muted)]"
+              >Analyzing your photo…</span
+            >
+          </div>
+
+          <div id="scan-done" hidden>
+            <p class="text-[var(--color-text)]">
+              <strong class="font-semibold">Your photo reads as
+                <span id="scan-type" class="text-[var(--color-primary)]"></span>.</strong>
+              <span id="scan-confidence" class="text-[var(--color-text-muted)]"></span>
+            </p>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)]">
+              Placed on the scale above. The photo was analyzed and not stored —
+              the app keeps your history so you can see which way yours is
+              trending.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-3">
+              <a href="/download/" class="cta">Track yours over time</a>
+              <button type="button" id="scan-again" class="cta cta-secondary">
+                Scan another
+              </button>
+            </div>
+          </div>
+
+          <div id="scan-error" hidden>
+            <p id="scan-error-msg" class="text-[var(--color-text)]"></p>
+            <div class="mt-4 flex flex-wrap gap-3">
+              <a href="/download/" class="cta">Get unlimited scans</a>
+              <button type="button" id="scan-retry" class="cta cta-secondary">
+                Try again
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -494,6 +542,25 @@ const schema = [
   .gh-index .yours-btn[aria-pressed='true'] .bristol-glyph {
     fill: var(--color-text);
   }
+  .gh-index .scan-spinner {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex: none;
+    border-radius: 50%;
+    border: 2px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+    border-top-color: var(--color-primary);
+    animation: scan-spin 0.8s linear infinite;
+  }
+  @keyframes scan-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .gh-index .scan-spinner {
+      animation-duration: 2.4s;
+    }
+  }
   .gh-index .cta {
     display: inline-block;
     text-align: center;
@@ -674,7 +741,8 @@ const schema = [
         .reduce((sum, b) => sum + b.pct, 0);
       const ratio = 100 / row.pct;
       // A decimal reads as precision below 10 and as noise above it.
-      const oneIn = ratio < 10 ? ratio.toFixed(1) : String(Math.round(ratio));
+      const oneIn =
+        ratio < 10 ? ratio.toFixed(1).replace(/\.0$/, '') : String(Math.round(ratio));
 
       const headline =
         rank === 1
@@ -719,6 +787,128 @@ const schema = [
         btn.setAttribute('aria-pressed', 'true');
         renderYours(Number(btn.dataset.yours));
       });
+    });
+
+    /**
+     * Photo -> placement. Posts to the same /api/analyze/ endpoint the live demo
+     * uses (SSE, rate-limited to one free scan per IP per day) and drops the
+     * returned Bristol type straight into the comparison above, so the answer
+     * lands on the distribution rather than in a separate result panel.
+     */
+    const scan = {
+      idle: document.getElementById('scan-idle')!,
+      busy: document.getElementById('scan-busy')!,
+      done: document.getElementById('scan-done')!,
+      error: document.getElementById('scan-error')!,
+      status: document.getElementById('scan-status')!,
+      input: document.getElementById('scan-input') as HTMLInputElement,
+    };
+
+    function scanShow(pane: 'idle' | 'busy' | 'done' | 'error') {
+      for (const key of ['idle', 'busy', 'done', 'error'] as const) {
+        (scan[key] as HTMLElement).hidden = key !== pane;
+      }
+    }
+
+    /** Reads the SSE stream, returning the payload of the `result` event. */
+    async function readAnalysis(res: Response): Promise<any> {
+      const reader = res.body!.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      let event = '';
+      let data: string[] = [];
+      let out: any = null;
+
+      const flush = () => {
+        if (!event || !data.length) return;
+        try {
+          const parsed = JSON.parse(data.join(''));
+          if (event === 'result') out = parsed;
+          else if (event === 'progress' && parsed.label) scan.status.textContent = parsed.label;
+          else if (event === 'error') throw new Error(parsed.message || 'Analysis failed');
+        } catch (err) {
+          if (!(err instanceof SyntaxError)) throw err;
+        }
+        event = '';
+        data = [];
+      };
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() ?? '';
+        for (const line of lines) {
+          if (line.startsWith('event: ')) {
+            flush();
+            event = line.slice(7).trim();
+          } else if (line.startsWith('data: ')) {
+            data.push(line.slice(6));
+          } else if (line === '') {
+            flush();
+          }
+        }
+      }
+      flush();
+      return out;
+    }
+
+    async function runScan(file: File) {
+      scanShow('busy');
+      scan.status.textContent = 'Analyzing your photo…';
+      try {
+        const body = new FormData();
+        body.append('image', file);
+        const res = await fetch('/api/analyze/', { method: 'POST', body });
+
+        if (!res.ok || !res.body) {
+          const payload = await res.json().catch(() => ({}));
+          throw new Error(
+            payload.message ||
+              payload.error ||
+              'The analyzer could not be reached. Please try again.'
+          );
+        }
+
+        const result = await readAnalysis(res);
+        // "Type 4" -> 4
+        const type = Number(String(result?.primaryPrediction?.type ?? '').replace(/\D+/g, ''));
+        if (!type || type < 1 || type > 7) {
+          throw new Error('That photo could not be classified. Try a clearer, closer shot.');
+        }
+
+        document.getElementById('scan-type')!.textContent = `Bristol type ${type}`;
+        const confidence = Number(result?.primaryPrediction?.confidence);
+        document.getElementById('scan-confidence')!.textContent = Number.isFinite(confidence)
+          ? `${confidence.toFixed(0)}% confidence.`
+          : '';
+
+        // Drive the comparison above from the photo.
+        const btn = document.querySelector<HTMLButtonElement>(`[data-yours="${type}"]`);
+        btn?.click();
+        scanShow('done');
+        document.getElementById('yours-headline')?.scrollIntoView({
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            ? 'auto'
+            : 'smooth',
+          block: 'center',
+        });
+      } catch (err) {
+        document.getElementById('scan-error-msg')!.textContent =
+          err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+        scanShow('error');
+      } finally {
+        scan.input.value = '';
+      }
+    }
+
+    document.getElementById('scan-btn')?.addEventListener('click', () => scan.input.click());
+    document.getElementById('scan-again')?.addEventListener('click', () => scan.input.click());
+    document.getElementById('scan-retry')?.addEventListener('click', () => scanShow('idle'));
+    scan.input?.addEventListener('change', () => {
+      const file = scan.input.files?.[0];
+      if (file) void runScan(file);
     });
 
     update('all');

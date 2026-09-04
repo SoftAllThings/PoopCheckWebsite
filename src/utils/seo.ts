@@ -20,7 +20,7 @@ export const SITE = {
   name: 'PoopCheck',
   tagline: 'AI Stool Tracker',
   description:
-    'Understand your gut in seconds. AI-powered stool analysis, daily gut health score, and personalized insights. Join 25,000+ users tracking their digestive health.',
+    'Understand your gut in seconds. AI-powered stool analysis, daily gut health score, and personalized insights. Join 28,000+ users tracking their digestive health.',
   url: 'https://poopcheck.app',
   // Must be a raster: Facebook, X, LinkedIn and iMessage all refuse to render
   // SVG in og:image, which left every share as a blank card.
@@ -37,8 +37,8 @@ export const SITE = {
 // Canonical numbers used across marketing copy. Live counts are hydrated
 // client-side from getPublicStats; these are the static fallbacks/baseline.
 export const STATS = {
-  users: { short: '25K+', long: '25,000+' },
-  analyses: { short: '180K+', long: '180,000+' },
+  users: { short: '28K+', long: '28,000+' },
+  analyses: { short: '185K+', long: '185,000+' },
   reviews: { short: '2.4K+', long: '2,400+' },
   rating: '4.8',
 };

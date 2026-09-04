@@ -1,0 +1,731 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import { datasetSchema } from '../utils/schema';
+import { getCanonicalUrl } from '../utils/seo';
+import index from '../data/poop-index.json';
+
+const url = getCanonicalUrl(Astro.url.pathname);
+const total = index.totalRecords.toLocaleString('en-US');
+
+const title = `What ${total} Analyzed Stools Actually Look Like`;
+const description = `The real distribution of ${total} AI-analyzed stool records — Bristol type, color, consistency, blood and mucus rates. Explore the only public dataset of its kind.`;
+
+/** Bristol type 4 is the reference point every panel is compared against. */
+const flaggedByType = Object.entries(index.byType).map(([type, t]) => ({
+  type: Number(type),
+  flagged: t.health.find((h) => h.label === 'Flagged')?.pct ?? 0,
+}));
+const healthiest = flaggedByType.reduce((a, b) => (a.flagged <= b.flagged ? a : b));
+
+/**
+ * A glyph per Bristol type, drawn as the form the scale describes — separate
+ * lumps through to liquid. Carries the meaning the number alone doesn't.
+ */
+const GLYPHS: Record<number, string> = {
+  1: '<circle cx="8" cy="12" r="3.2"/><circle cx="16" cy="12" r="3.2"/><circle cx="24" cy="12" r="3.2"/>',
+  2: '<circle cx="9" cy="12" r="4.4"/><circle cx="16" cy="12" r="4.8"/><circle cx="23" cy="12" r="4.4"/>',
+  3: '<rect x="3" y="8.5" width="26" height="7" rx="3.5"/><rect x="10" y="8.5" width="1.4" height="7" fill="var(--color-surface)"/><rect x="17" y="8.5" width="1.4" height="7" fill="var(--color-surface)"/><rect x="23" y="8.5" width="1.4" height="7" fill="var(--color-surface)"/>',
+  4: '<rect x="2" y="9" width="28" height="6" rx="3"/>',
+  5: '<circle cx="8" cy="12" r="4.2"/><circle cx="17" cy="12" r="4.2"/><circle cx="25" cy="12" r="3.4"/>',
+  6: '<path d="M4 12c1-3 3-1 4-3s3 1 4-1 3 2 4 0 3 1 4-1 3 2 4 1 2 2 1 3c-2 2-5 1-7 2s-4-1-6 0-4-1-6 0-3-1-2-1z"/>',
+  7: '<path d="M3 13c3-2 5 2 8 0s5 2 8 0 5 2 8 0v3c-3 2-5-2-8 0s-5-2-8 0-5-2-8 0z"/>',
+};
+
+const schema = [
+  datasetSchema({
+    name: 'PoopCheck Gut Health Index',
+    description: `Aggregate distributions from ${total} AI-analyzed stool records: Bristol Stool Scale type, color, consistency, shape, quantity, blood and mucus presence, and buoyancy.`,
+    url,
+    licenseUrl: getCanonicalUrl('/business/data/'),
+    keywords: [
+      'Bristol Stool Scale',
+      'stool classification',
+      'gut health',
+      'stool image dataset',
+      'digestive health statistics',
+    ],
+    variableMeasured: [
+      'Bristol Stool Scale type',
+      'Stool color',
+      'Consistency',
+      'Shape',
+      'Quantity',
+      'Blood presence',
+      'Mucus presence',
+      'Buoyancy',
+    ],
+    size: `${index.totalRecords} records`,
+  }),
+];
+---
+
+<PageLayout seo={{ title, description, canonical: url }} schema={schema}>
+  <div class="gh-index mx-auto max-w-6xl px-4 py-10">
+    <Breadcrumbs
+      items={[{ label: 'Gut Health Index', href: '/data/' }]}
+    />
+
+    <!-- Hero -->
+    <header class="mt-8 mb-14">
+      <p class="text-sm uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+        The Gut Health Index
+      </p>
+      <h1 class="mt-3 text-4xl md:text-6xl font-bold leading-[1.05]">
+        What <span class="gradient-text" id="hero-count" data-target={index.totalRecords}>{total}</span> analyzed stools
+        actually look like
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg text-[var(--color-text-muted)]">
+        Every medical site tells you what healthy stool <em>should</em> look like.
+        None of them can tell you what it actually looks like across a real
+        population. This is that data — {total} records classified by PoopCheck's
+        AI, aggregated and published in full.
+      </p>
+      <p class="mt-4 text-sm text-[var(--color-text-muted)]">
+        Updated {index.generatedAt} · Aggregate counts only — no individual record
+        is published
+      </p>
+    </header>
+
+    <!-- Interactive spine -->
+    <section aria-labelledby="explore-heading" class="mb-16">
+      <h2 id="explore-heading" class="text-2xl font-semibold">
+        Explore by Bristol type
+      </h2>
+      <p class="mt-2 mb-6 text-[var(--color-text-muted)]">
+        Select a type to see how every other measurement changes. Each bar's height
+        is that type's share of all {total} records, scaled against the most
+        common type.
+      </p>
+
+      <!-- Bristol selector: single hue, selection carried by state not identity -->
+      <div
+        id="bristol-selector"
+        role="group"
+        aria-label="Filter by Bristol Stool Scale type"
+        class="grid grid-cols-4 sm:grid-cols-8 gap-2"
+      >
+        <button
+          type="button"
+          data-type="all"
+          aria-pressed="true"
+          class="bristol-btn is-active flex flex-col justify-end rounded-xl border p-3 h-36 text-left transition"
+        >
+          <span class="bristol-fill" style="height:100%"></span>
+          <span class="relative z-10 flex h-full flex-col justify-between">
+            <svg class="bristol-glyph" viewBox="0 0 32 24" width="34" height="26" aria-hidden="true">
+              <rect x="3" y="4" width="26" height="4" rx="2" />
+              <rect x="3" y="10" width="26" height="4" rx="2" opacity="0.65" />
+              <rect x="3" y="16" width="26" height="4" rx="2" opacity="0.4" />
+            </svg>
+            <span>
+              <span class="block text-xs text-[var(--color-text-muted)]">All</span>
+              <span class="block text-lg font-bold">100%</span>
+            </span>
+          </span>
+        </button>
+        {
+          index.bristol.map((b) => (
+            <button
+              type="button"
+              data-type={b.type}
+              aria-pressed="false"
+              class="bristol-btn flex flex-col justify-end rounded-xl border p-3 h-36 text-left transition"
+            >
+              <span class="bristol-fill" style={`height:${(b.pct / 36.05) * 100}%`} />
+              <span class="relative z-10 flex h-full flex-col justify-between">
+                <svg
+                  class="bristol-glyph"
+                  viewBox="0 0 32 24"
+                  width="34"
+                  height="26"
+                  aria-hidden="true"
+                  set:html={GLYPHS[b.type]}
+                />
+                <span>
+                  <span class="block text-xs text-[var(--color-text-muted)]">
+                    Type {b.type}
+                  </span>
+                  <span class="block text-lg font-bold">{b.pct}%</span>
+                </span>
+              </span>
+            </button>
+          ))
+        }
+      </div>
+
+      <p
+        id="filter-summary"
+        aria-live="polite"
+        class="mt-5 text-sm text-[var(--color-text-muted)]"
+      >
+      </p>
+
+      <!-- Reactive panels -->
+      <div class="mt-8 grid gap-5 md:grid-cols-2">
+        <div class="panel">
+          <h3 class="panel-title">Color</h3>
+          <div id="chart-color" class="mt-4 space-y-2.5"></div>
+        </div>
+        <div class="panel">
+          <h3 class="panel-title">Consistency</h3>
+          <div id="chart-consistency" class="mt-4 space-y-2.5"></div>
+        </div>
+        <div class="panel">
+          <h3 class="panel-title">Shape</h3>
+          <div id="chart-shape" class="mt-4 space-y-2.5"></div>
+        </div>
+        <div class="panel">
+          <h3 class="panel-title">Quantity</h3>
+          <div id="chart-quantity" class="mt-4 space-y-2.5"></div>
+        </div>
+      </div>
+
+      <div class="mt-5 grid gap-5 grid-cols-2 lg:grid-cols-4">
+        <div class="panel stat"><span class="stat-label">Flagged by AI</span><span id="stat-flagged" class="stat-value"></span></div>
+        <div class="panel stat"><span class="stat-label">Blood present</span><span id="stat-blood" class="stat-value"></span></div>
+        <div class="panel stat"><span class="stat-label">Mucus present</span><span id="stat-mucus" class="stat-value"></span></div>
+        <div class="panel stat"><span class="stat-label">Floats</span><span id="stat-float" class="stat-value"></span></div>
+      </div>
+    </section>
+
+    <!-- Personal comparison: the payoff -->
+    <section aria-labelledby="yours-heading" class="mb-16">
+      <div class="compare-shell">
+        <h2 id="yours-heading" class="text-2xl md:text-3xl font-semibold">
+          Where does yours fall?
+        </h2>
+        <p class="mt-2 max-w-2xl text-[var(--color-text-muted)]">
+          Pick the shape closest to your last one and see how it sits against all
+          {total} analyzed stools.
+        </p>
+
+        <div
+          id="yours-picker"
+          role="group"
+          aria-label="Pick the Bristol type closest to yours"
+          class="mt-6 grid grid-cols-4 sm:grid-cols-7 gap-2"
+        >
+          {
+            index.bristol.map((b) => (
+              <button
+                type="button"
+                data-yours={b.type}
+                aria-pressed="false"
+                class="yours-btn rounded-xl border p-3 text-center transition"
+              >
+                <svg
+                  class="bristol-glyph mx-auto"
+                  viewBox="0 0 32 24"
+                  width="38"
+                  height="28"
+                  aria-hidden="true"
+                  set:html={GLYPHS[b.type]}
+                />
+                <span class="mt-1 block text-xs text-[var(--color-text-muted)]">
+                  Type {b.type}
+                </span>
+              </button>
+            ))
+          }
+        </div>
+
+        <div id="yours-result" hidden class="mt-7">
+          <p id="yours-headline" class="text-3xl md:text-4xl font-bold leading-tight"></p>
+          <p id="yours-sub" class="mt-3 max-w-2xl text-[var(--color-text-muted)]"></p>
+
+          <div class="mt-6 grid gap-3 sm:grid-cols-3">
+            <div class="panel stat">
+              <span class="stat-label">Share of all records</span>
+              <span id="yours-share" class="stat-value"></span>
+            </div>
+            <div class="panel stat">
+              <span class="stat-label">Flagged by the AI</span>
+              <span id="yours-flagged" class="stat-value"></span>
+            </div>
+            <div class="panel stat">
+              <span class="stat-label">Rarer than</span>
+              <span id="yours-rarer" class="stat-value"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-7 rounded-2xl border border-[var(--color-border)] bg-[var(--color-elevated)] p-5 md:flex md:items-center md:justify-between md:gap-6">
+          <p class="text-[var(--color-text)]">
+            <strong class="font-semibold">Not sure which one is yours?</strong>
+            <span class="text-[var(--color-text-muted)]">
+              Take a photo and PoopCheck places it on this exact scale in seconds —
+              then tracks where yours sits over time.
+            </span>
+          </p>
+          <a href="/download/" class="cta mt-4 md:mt-0 md:shrink-0">Scan yours</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signature finding -->
+    <section aria-labelledby="curve-heading" class="mb-16">
+      <h2 id="curve-heading" class="text-2xl font-semibold">
+        The data rediscovers the Bristol scale on its own
+      </h2>
+      <p class="mt-2 mb-6 max-w-3xl text-[var(--color-text-muted)]">
+        The AI classifies a stool's type and judges its health independently. Plot
+        one against the other and a U-curve appears: type {healthiest.type} is
+        flagged least often, at {healthiest.flagged}%, with the rate climbing
+        toward both extremes. Nobody told the model that type 4 is the ideal — the
+        {total} records say so.
+      </p>
+      <div class="panel">
+        <div id="chart-curve" class="overflow-x-auto"></div>
+      </div>
+    </section>
+
+    <!-- Methodology -->
+    <section aria-labelledby="method-heading" class="mb-14">
+      <h2 id="method-heading" class="text-2xl font-semibold">How this is measured</h2>
+      <div class="mt-4 grid gap-5 md:grid-cols-3 text-sm text-[var(--color-text-muted)]">
+        <div class="panel">
+          <h3 class="panel-title">Source</h3>
+          <p class="mt-2">
+            {total} stool records submitted to PoopCheck and classified by its
+            image model. Each record carries a Bristol type, color, consistency,
+            shape, quantity, blood and mucus level, and buoyancy.
+          </p>
+        </div>
+        <div class="panel">
+          <h3 class="panel-title">Privacy</h3>
+          <p class="mt-2">
+            Only aggregate counts are published. No image, account identifier, or
+            individual record leaves the database, and any bucket under
+            {index.minCellSize} records is suppressed so nothing here is
+            re-identifiable.
+          </p>
+        </div>
+        <div class="panel">
+          <h3 class="panel-title">Limits</h3>
+          <p class="mt-2">
+            This is a self-selected app population, not a clinical sample — people
+            log when something seems off, which skews it away from the general
+            public. Health flags are the model's judgment, not a diagnosis. No
+            time-based trends are shown, because record timestamps are backfilled
+            and would not reflect real logging behavior.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conversion -->
+    <section class="grid gap-5 md:grid-cols-2">
+      <div class="panel flex flex-col">
+        <h2 class="text-xl font-semibold">One stool is a data point</h2>
+        <p class="mt-2 flex-1 text-[var(--color-text-muted)]">
+          The pattern is what matters. PoopCheck logs every scan against this
+          scale, so you see which way yours is trending rather than guessing from
+          a single day.
+        </p>
+        <a href="/download/" class="cta mt-5">Start tracking</a>
+      </div>
+      <div class="panel flex flex-col">
+        <h2 class="text-xl font-semibold">License the underlying data</h2>
+        <p class="mt-2 flex-1 text-[var(--color-text-muted)]">
+          The full record-level dataset — {total} labelled stool images with
+          structured annotations — is available for research and commercial ML
+          under licence.
+        </p>
+        <a href="/business/data/" class="cta cta-secondary mt-5">Dataset licensing</a>
+      </div>
+    </section>
+  </div>
+
+  <script id="poop-index-data" type="application/json" set:html={JSON.stringify(index)}></script>
+</PageLayout>
+
+<style is:global>
+  .gh-index .panel {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+  }
+  .gh-index .panel-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+  }
+  .gh-index .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .gh-index .stat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+  }
+  .gh-index .stat-value {
+    font-size: 1.9rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    transition: color 0.2s ease;
+  }
+
+  /* Bristol selector — one hue; selection is state, not identity */
+  .gh-index .bristol-btn {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-surface);
+    border-color: var(--color-border);
+    cursor: pointer;
+  }
+  .gh-index .bristol-btn:hover {
+    border-color: color-mix(in srgb, var(--color-primary) 50%, transparent);
+  }
+  .gh-index .bristol-btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  .gh-index .bristol-fill {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: color-mix(in srgb, var(--color-primary) 18%, transparent);
+    transition: background 0.25s ease;
+  }
+  .gh-index .bristol-glyph {
+    fill: var(--color-text-muted);
+    transition: fill 0.25s ease;
+  }
+  .gh-index .bristol-btn.is-active .bristol-glyph {
+    fill: var(--color-text);
+  }
+  .gh-index .bristol-btn.is-active {
+    border-color: var(--color-primary);
+  }
+  .gh-index .bristol-btn.is-active .bristol-fill {
+    background: color-mix(in srgb, var(--color-primary) 42%, transparent);
+  }
+
+  /* Horizontal bars */
+  .gh-index .row {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr 3.5rem;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+  }
+  .gh-index .row-label {
+    color: var(--color-text);
+  }
+  .gh-index .row-track {
+    display: block;
+    position: relative;
+    height: 1.5rem;
+    background: var(--color-elevated);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .gh-index .row-fill {
+    display: block;
+    height: 100%;
+    border-radius: 0 4px 4px 0;
+    /* 2px surface gap between fill and track end */
+    transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .gh-index .row-value {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-muted);
+  }
+  .gh-index .row-suppressed {
+    font-style: italic;
+    color: var(--color-text-muted);
+  }
+  /* Semantic swatch ring: brown and near-black fall under 3:1 on this surface */
+  .gh-index .swatch-ring {
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-text) 35%, transparent);
+  }
+
+  .gh-index .compare-shell {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    background:
+      radial-gradient(
+        120% 140% at 0% 0%,
+        color-mix(in srgb, var(--color-primary) 9%, transparent),
+        transparent 60%
+      ),
+      var(--color-surface);
+  }
+  .gh-index .yours-btn {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+    cursor: pointer;
+  }
+  .gh-index .yours-btn:hover {
+    border-color: color-mix(in srgb, var(--color-primary) 55%, transparent);
+  }
+  .gh-index .yours-btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  .gh-index .yours-btn[aria-pressed='true'] {
+    border-color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-primary) 14%, var(--color-surface));
+  }
+  .gh-index .yours-btn[aria-pressed='true'] .bristol-glyph {
+    fill: var(--color-text);
+  }
+  .gh-index .cta {
+    display: inline-block;
+    text-align: center;
+    padding: 0.7rem 1.25rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    background: var(--color-primary);
+    color: var(--color-text-dark);
+  }
+  .gh-index .cta-secondary {
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gh-index .row-fill,
+    .gh-index .bristol-fill,
+    .gh-index .stat-value {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  type Slice = { label: string; value: number; count: number | null; pct: number | null };
+  type Bucket = {
+    n: number;
+    color: Slice[]; consistency: Slice[]; shape: Slice[]; quantity: Slice[];
+    health: Slice[]; floating: Slice[];
+    bloodPct: number; mucusPct: number; painAvg: number; smellAvg: number;
+  };
+
+  const node = document.getElementById('poop-index-data');
+  if (node?.textContent) {
+    const index = JSON.parse(node.textContent) as {
+      totalRecords: number;
+      minCellSize: number;
+      bristol: Array<{ type: number; count: number; pct: number }>;
+      all: Bucket;
+      byType: Record<string, Bucket>;
+    };
+
+    /**
+     * Stool colors are drawn literally — a green stool reads green. That is a
+     * semantic encoding, so these hues are fixed rather than drawn from a
+     * categorical ramp. Brown and near-black fall below 3:1 on this surface, so
+     * every swatch carries a visible label and an inset ring for relief.
+     */
+    const SWATCH: Record<string, string> = {
+      Black: '#3A3A3A', White: '#EDE8DA', Green: '#7FA03C', Yellow: '#E0B33A',
+      Red: '#C4453C', Brown: '#8B5A2B', Orange: '#E08A34',
+    };
+
+    const nf = new Intl.NumberFormat('en-US');
+    const bucketFor = (t: string): Bucket => (t === 'all' ? index.all : index.byType[t]);
+
+    /** Horizontal bars. `semantic` switches from the single data hue to literal swatches. */
+    function renderBars(el: HTMLElement, slices: Slice[], semantic = false) {
+      const max = Math.max(...slices.map((s) => s.pct ?? 0), 1);
+      el.innerHTML = slices
+        .map((s) => {
+          if (s.pct === null) {
+            return `<div class="row"><span class="row-label">${s.label}</span>
+              <span class="row-suppressed">under ${index.minCellSize} records — suppressed</span>
+              <span class="row-value">—</span></div>`;
+          }
+          const fill = semantic ? SWATCH[s.label] : 'color-mix(in srgb, var(--color-primary) 55%, transparent)';
+          const ring = semantic ? ' swatch-ring' : '';
+          return `<div class="row">
+            <span class="row-label">${s.label}</span>
+            <span class="row-track" title="${s.label}: ${s.pct}% — ${nf.format(s.count ?? 0)} records">
+              <span class="row-fill${ring}" style="width:${(s.pct / max) * 100}%;background:${fill}"></span>
+            </span>
+            <span class="row-value">${s.pct}%</span>
+          </div>`;
+        })
+        .join('');
+    }
+
+    /** Single-series line over the ordinal Bristol axis. */
+    function renderCurve() {
+      const pts = index.bristol.map((b) => ({
+        type: b.type,
+        pct: index.byType[String(b.type)].health.find((h) => h.label === 'Flagged')?.pct ?? 0,
+      }));
+      const W = 720, H = 260, PAD = { t: 24, r: 24, b: 40, l: 44 };
+      const iw = W - PAD.l - PAD.r, ih = H - PAD.t - PAD.b;
+      const min = Math.min(...pts.map((p) => p.pct));
+      const x = (i: number) => PAD.l + (i / (pts.length - 1)) * iw;
+      const y = (v: number) => PAD.t + ih - (v / 100) * ih;
+      const best = pts.find((p) => p.pct === min)!;
+
+      const gridlines = [0, 25, 50, 75, 100]
+        .map((v) => `<line x1="${PAD.l}" x2="${W - PAD.r}" y1="${y(v)}" y2="${y(v)}"
+            stroke="var(--color-border)" stroke-width="1"/>
+          <text x="${PAD.l - 10}" y="${y(v) + 4}" text-anchor="end" font-size="11"
+            fill="var(--color-text-muted)">${v}%</text>`)
+        .join('');
+
+      const path = pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${x(i)},${y(p.pct)}`).join(' ');
+
+      const dots = pts
+        .map((p, i) => {
+          const isBest = p.type === best.type;
+          return `<g><circle cx="${x(i)}" cy="${y(p.pct)}" r="${isBest ? 7 : 5}"
+              fill="${isBest ? 'var(--color-premium)' : 'var(--color-primary)'}"
+              stroke="var(--color-surface)" stroke-width="2"><title>Type ${p.type}: ${p.pct}% flagged</title></circle>
+            <text x="${x(i)}" y="${y(p.pct) - 14}" text-anchor="middle" font-size="12"
+              font-weight="600" fill="var(--color-text)">${p.pct}%</text>
+            <text x="${x(i)}" y="${H - 14}" text-anchor="middle" font-size="12"
+              fill="var(--color-text-muted)">Type ${p.type}</text></g>`;
+        })
+        .join('');
+
+      const callout = `<text x="${x(pts.indexOf(best))}" y="${y(best.pct) + 30}"
+        text-anchor="middle" font-size="12" font-weight="600" fill="var(--color-premium)">
+        lowest — the healthy reference</text>`;
+
+      document.getElementById('chart-curve')!.innerHTML = `
+        <svg viewBox="0 0 ${W} ${H}" width="100%" style="min-width:520px" role="img"
+          aria-label="Share of records the AI flagged as unhealthy, by Bristol type. Type ${best.type} is lowest at ${best.pct} percent, rising toward both extremes.">
+          ${gridlines}
+          <path d="${path}" fill="none" stroke="var(--color-primary)" stroke-width="2"
+            stroke-linejoin="round" stroke-linecap="round"/>
+          ${dots}${callout}
+        </svg>`;
+    }
+
+    function update(type: string) {
+      const b = bucketFor(type);
+      renderBars(document.getElementById('chart-color')!, b.color, true);
+      renderBars(document.getElementById('chart-consistency')!, b.consistency);
+      renderBars(document.getElementById('chart-shape')!, b.shape);
+      renderBars(document.getElementById('chart-quantity')!, b.quantity);
+
+      const flagged = b.health.find((h) => h.label === 'Flagged')?.pct ?? 0;
+      const floats = b.floating.find((f) => f.label === 'Floats')?.pct ?? 0;
+      document.getElementById('stat-flagged')!.textContent = `${flagged}%`;
+      document.getElementById('stat-blood')!.textContent = `${b.bloodPct}%`;
+      document.getElementById('stat-mucus')!.textContent = `${b.mucusPct}%`;
+      document.getElementById('stat-float')!.textContent = `${floats}%`;
+
+      document.getElementById('filter-summary')!.textContent =
+        type === 'all'
+          ? `Showing all ${nf.format(index.totalRecords)} records.`
+          : `Showing ${nf.format(b.n)} records classified as Bristol type ${type} — ` +
+            `${((100 * b.n) / index.totalRecords).toFixed(2)}% of the dataset.`;
+    }
+
+    document.querySelectorAll<HTMLButtonElement>('.bristol-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.bristol-btn').forEach((b) => {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-pressed', 'true');
+        update(btn.dataset.type!);
+      });
+    });
+
+    /** Count-up on the hero figure; skipped when the viewer prefers less motion. */
+    function countUp() {
+      const el = document.getElementById('hero-count');
+      const target = Number(el?.dataset.target ?? 0);
+      if (!el || !target) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const DURATION = 1100;
+      const start = performance.now();
+      const tick = (now: number) => {
+        const t = Math.min((now - start) / DURATION, 1);
+        // ease-out cubic: fast start, settles on the real number
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = nf.format(Math.round(target * eased));
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+
+    /**
+     * Personal comparison. Ranks the picked type against the whole dataset and
+     * phrases it as a "1 in N" — the framing people actually repeat.
+     */
+    function renderYours(type: number) {
+      const row = index.bristol.find((b) => b.type === type)!;
+      const bucket = index.byType[String(type)];
+      const flagged = bucket.health.find((h) => h.label === 'Flagged')?.pct ?? 0;
+
+      const ranked = [...index.bristol].sort((a, b) => b.pct - a.pct);
+      const rank = ranked.findIndex((b) => b.type === type) + 1;
+      // Share of records whose type is *less* common than this one.
+      const rarerThan = index.bristol
+        .filter((b) => b.pct < row.pct)
+        .reduce((sum, b) => sum + b.pct, 0);
+      const ratio = 100 / row.pct;
+      // A decimal reads as precision below 10 and as noise above it.
+      const oneIn = ratio < 10 ? ratio.toFixed(1) : String(Math.round(ratio));
+
+      const headline =
+        rank === 1
+          ? 'Yours is the most common stool on record.'
+          : `About 1 in ${oneIn} stools looks like yours.`;
+
+      const best = index.bristol
+        .map((b) => ({
+          type: b.type,
+          flagged: index.byType[String(b.type)].health.find((h) => h.label === 'Flagged')?.pct ?? 0,
+        }))
+        .reduce((a, b) => (a.flagged <= b.flagged ? a : b));
+
+      const versus =
+        type === best.type
+          ? `That is the healthiest signature in the dataset — type ${best.type} is flagged less often than any other.`
+          : `The AI flags type ${type} ${flagged}% of the time, against ${best.flagged}% for type ${best.type}, the least-flagged type.`;
+
+      document.getElementById('yours-headline')!.textContent = headline;
+      document.getElementById('yours-sub')!.textContent =
+        `Type ${type} accounts for ${row.pct}% of all ${nf.format(index.totalRecords)} ` +
+        `analyzed stools — ${nf.format(row.count)} of them, ${placing(rank)}. ${versus}`;
+      document.getElementById('yours-share')!.textContent = `${row.pct}%`;
+      document.getElementById('yours-flagged')!.textContent = `${flagged}%`;
+      document.getElementById('yours-rarer')!.textContent =
+        rarerThan === 0 ? 'Nothing' : `${rarerThan.toFixed(1)}%`;
+      document.getElementById('yours-result')!.hidden = false;
+    }
+
+    /** Where the type places among the seven, in words. */
+    function placing(rank: number): string {
+      if (rank === 1) return 'the single most common of the seven';
+      if (rank === 7) return 'the rarest of the seven';
+      return `the ${['', '', '2nd', '3rd', '4th', '5th', '6th'][rank]} most common of the seven`;
+    }
+
+    document.querySelectorAll<HTMLButtonElement>('.yours-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document
+          .querySelectorAll('.yours-btn')
+          .forEach((b) => b.setAttribute('aria-pressed', 'false'));
+        btn.setAttribute('aria-pressed', 'true');
+        renderYours(Number(btn.dataset.yours));
+      });
+    });
+
+    update('all');
+    renderCurve();
+    countUp();
+  }
+</script>

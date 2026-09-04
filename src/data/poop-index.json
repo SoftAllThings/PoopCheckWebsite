@@ -1,0 +1,1300 @@
+{
+  "generatedAt": "2026-09-04",
+  "totalRecords": 139562,
+  "minCellSize": 50,
+  "bristol": [
+    {
+      "type": 1,
+      "count": 2537,
+      "pct": 1.82
+    },
+    {
+      "type": 2,
+      "count": 1456,
+      "pct": 1.04
+    },
+    {
+      "type": 3,
+      "count": 50306,
+      "pct": 36.05
+    },
+    {
+      "type": 4,
+      "count": 37612,
+      "pct": 26.95
+    },
+    {
+      "type": 5,
+      "count": 20033,
+      "pct": 14.35
+    },
+    {
+      "type": 6,
+      "count": 23392,
+      "pct": 16.76
+    },
+    {
+      "type": 7,
+      "count": 4226,
+      "pct": 3.03
+    }
+  ],
+  "all": {
+    "n": 139562,
+    "color": [
+      {
+        "label": "Black",
+        "value": 0,
+        "count": 2207,
+        "pct": 1.58
+      },
+      {
+        "label": "White",
+        "value": 1,
+        "count": 74,
+        "pct": 0.05
+      },
+      {
+        "label": "Green",
+        "value": 2,
+        "count": 2812,
+        "pct": 2.01
+      },
+      {
+        "label": "Yellow",
+        "value": 3,
+        "count": 7283,
+        "pct": 5.22
+      },
+      {
+        "label": "Red",
+        "value": 4,
+        "count": 837,
+        "pct": 0.6
+      },
+      {
+        "label": "Brown",
+        "value": 5,
+        "count": 124236,
+        "pct": 89.02
+      },
+      {
+        "label": "Orange",
+        "value": 6,
+        "count": 2113,
+        "pct": 1.51
+      }
+    ],
+    "consistency": [
+      {
+        "label": "Hard",
+        "value": 0,
+        "count": 22949,
+        "pct": 16.44
+      },
+      {
+        "label": "Soft",
+        "value": 1,
+        "count": 56969,
+        "pct": 40.82
+      },
+      {
+        "label": "Normal",
+        "value": 2,
+        "count": 53374,
+        "pct": 38.24
+      },
+      {
+        "label": "Liquid",
+        "value": 3,
+        "count": 6270,
+        "pct": 4.49
+      }
+    ],
+    "shape": [
+      {
+        "label": "Sausage",
+        "value": 0,
+        "count": 60553,
+        "pct": 43.39
+      },
+      {
+        "label": "Lumpy",
+        "value": 1,
+        "count": 24262,
+        "pct": 17.38
+      },
+      {
+        "label": "Flat",
+        "value": 2,
+        "count": 550,
+        "pct": 0.39
+      },
+      {
+        "label": "Blob",
+        "value": 3,
+        "count": 49717,
+        "pct": 35.62
+      },
+      {
+        "label": "Liquid",
+        "value": 4,
+        "count": 4480,
+        "pct": 3.21
+      }
+    ],
+    "quantity": [
+      {
+        "label": "Small",
+        "value": 0,
+        "count": 13082,
+        "pct": 9.37
+      },
+      {
+        "label": "Normal",
+        "value": 1,
+        "count": 109849,
+        "pct": 78.71
+      },
+      {
+        "label": "Large",
+        "value": 2,
+        "count": 16631,
+        "pct": 11.92
+      }
+    ],
+    "health": [
+      {
+        "label": "Healthy",
+        "value": 0,
+        "count": 51841,
+        "pct": 37.15
+      },
+      {
+        "label": "Flagged",
+        "value": 1,
+        "count": 87721,
+        "pct": 62.85
+      }
+    ],
+    "floating": [
+      {
+        "label": "Sinks",
+        "value": 0,
+        "count": 128314,
+        "pct": 91.94
+      },
+      {
+        "label": "Floats",
+        "value": 1,
+        "count": 11248,
+        "pct": 8.06
+      }
+    ],
+    "bloodPct": 5.2,
+    "mucusPct": 14.22,
+    "painAvg": 1.06,
+    "smellAvg": 1.2
+  },
+  "byType": {
+    "1": {
+      "n": 2537,
+      "color": [
+        {
+          "label": "Black",
+          "value": 0,
+          "count": 122,
+          "pct": 4.81
+        },
+        {
+          "label": "White",
+          "value": 1,
+          "count": null,
+          "pct": null
+        },
+        {
+          "label": "Green",
+          "value": 2,
+          "count": 75,
+          "pct": 2.96
+        },
+        {
+          "label": "Yellow",
+          "value": 3,
+          "count": 81,
+          "pct": 3.19
+        },
+        {
+          "label": "Red",
+          "value": 4,
+          "count": null,
+          "pct": null
+        },
+        {
+          "label": "Brown",
+          "value": 5,
+          "count": 2227,
+          "pct": 87.78
+        },
+        {
+          "label": "Orange",
+          "value": 6,
+          "count": null,
+          "pct": null
+        }
+      ],
+      "consistency": [
+        {
+          "label": "Hard",
+          "value": 0,
+          "count": 1427,
+          "pct": 56.25
+        },
+        {
+          "label": "Soft",
+          "value": 1,
+          "count": 527,
+          "pct": 20.77
+        },
+        {
+          "label": "Normal",
+          "value": 2,
+          "count": 522,
+          "pct": 20.58
+        },
+        {
+          "label": "Liquid",
+          "value": 3,
+          "count": 61,
+          "pct": 2.4
+        }
+      ],
+      "shape": [
+        {
+          "label": "Sausage",
+          "value": 0,
+          "count": 525,
+          "pct": 20.69
+        },
+        {
+          "label": "Lumpy",
+          "value": 1,
+          "count": 1477,
+          "pct": 58.22
+        },
+        {
+          "label": "Flat",
+          "value": 2,
+          "count": null,
+          "pct": null
+        },
+        {
+          "label": "Blob",
+          "value": 3,
+          "count": 492,
+          "pct": 19.39
+        },
+        {
+          "label": "Liquid",
+          "value": 4,
+          "count": null,
+          "pct": null
+        }
+      ],
+      "quantity": [
+        {
+          "label": "Small",
+          "value": 0,
+          "count": 796,
+          "pct": 31.38
+        },
+        {
+          "label": "Normal",
+          "value": 1,
+          "count": 1568,
+          "pct": 61.81
+        },
+        {
+          "label": "Large",
+          "value": 2,
+          "count": 173,
+          "pct": 6.82
+        }
+      ],
+      "health": [
+        {
+          "label": "Healthy",
+          "value": 0,
+          "count": 523,
+          "pct": 20.61
+        },
+        {
+          "label": "Flagged",
+          "value": 1,
+          "count": 2014,
+          "pct": 79.39
+        }
+      ],
+      "floating": [
+        {
+          "label": "Sinks",
+          "value": 0,
+          "count": 2346,
+          "pct": 92.47
+        },
+        {
+          "label": "Floats",
+          "value": 1,
+          "count": 191,
+          "pct": 7.53
+        }
+      ],
+      "bloodPct": 6.23,
+      "mucusPct": 12.57,
+      "painAvg": 1.12,
+      "smellAvg": 1.16
+    },
+    "2": {
+      "n": 1456,
+      "color": [
+        {
+          "label": "Black",
+          "value": 0,
+          "count": null,
+          "pct": null
+        },
+        {
+          "label": "White",
+          "value": 1,
+          "count": null,
+          "pct": null
+        },
+        {
+          "label": "Green",
+          "value": 2,
+          "count": null,
+          "pct": null
+        },
+        {
+          "label": "Yellow",
+          "value": 3,
+          "count": null,
+          "pct": null
+        },
+        {
+          "label": "Red",
+          "value": 4,
+          "count": null,
+          "pct": null
+        },
+        {
+          "label": "Brown",
+          "value": 5,
+          "count": 1303,
+          "pct": 89.49
+        },
+        {
+          "label": "Orange",
+          "value": 6,
+          "count": null,
+          "pct": null
+        }
+      ],
+      "consistency": [
+        {
+          "label": "Hard",
+          "value": 0,
+          "count": 813,
+          "pct": 55.84
+        },
+        {
+          "label": "Soft",
+          "value": 1,
+          "count": 261,
+          "pct": 17.93
+        },
+        {
+          "label": "Normal",
+          "value": 2,
+          "count": 372,
+          "pct": 25.55
+        },
+        {
+          "label": "Liquid",
+          "value": 3,
+          "count": null,
+          "pct": null
+        }
+      ],
+      "shape": [
+        {
+          "label": "Sausage",
+          "value": 0,
+          "count": 626,
+          "pct": 42.99
+        },
+        {
+          "label": "Lumpy",
+          "value": 1,
+          "count": 616,
+          "pct": 42.31
+        },
+        {
+          "label": "Flat",
+          "value": 2,
+          "count": null,
+          "pct": null
+        },
+        {
+          "label": "Blob",
+          "value": 3,
+          "count": 209,
+          "pct": 14.35
+        },
+        {
+          "label": "Liquid",
+          "value": 4,
+          "count": null,
+          "pct": null
+        }
+      ],
+      "quantity": [
+        {
+          "label": "Small",
+          "value": 0,
+          "count": 136,
+          "pct": 9.34
+        },
+        {
+          "label": "Normal",
+          "value": 1,
+          "count": 1193,
+          "pct": 81.94
+        },
+        {
+          "label": "Large",
+          "value": 2,
+          "count": 127,
+          "pct": 8.72
+        }
+      ],
+      "health": [
+        {
+          "label": "Healthy",
+          "value": 0,
+          "count": 349,
+          "pct": 23.97
+        },
+        {
+          "label": "Flagged",
+          "value": 1,
+          "count": 1107,
+          "pct": 76.03
+        }
+      ],
+      "floating": [
+        {
+          "label": "Sinks",
+          "value": 0,
+          "count": 1363,
+          "pct": 93.61
+        },
+        {
+          "label": "Floats",
+          "value": 1,
+          "count": 93,
+          "pct": 6.39
+        }
+      ],
+      "bloodPct": 10.92,
+      "mucusPct": 16.48,
+      "painAvg": 1.04,
+      "smellAvg": 1.05
+    },
+    "3": {
+      "n": 50306,
+      "color": [
+        {
+          "label": "Black",
+          "value": 0,
+          "count": 886,
+          "pct": 1.76
+        },
+        {
+          "label": "White",
+          "value": 1,
+          "count": null,
+          "pct": null
+        },
+        {
+          "label": "Green",
+          "value": 2,
+          "count": 971,
+          "pct": 1.93
+        },
+        {
+          "label": "Yellow",
+          "value": 3,
+          "count": 2252,
+          "pct": 4.48
+        },
+        {
+          "label": "Red",
+          "value": 4,
+          "count": 292,
+          "pct": 0.58
+        },
+        {
+          "label": "Brown",
+          "value": 5,
+          "count": 45427,
+          "pct": 90.3
+        },
+        {
+          "label": "Orange",
+          "value": 6,
+          "count": 442,
+          "pct": 0.88
+        }
+      ],
+      "consistency": [
+        {
+          "label": "Hard",
+          "value": 0,
+          "count": 11328,
+          "pct": 22.52
+        },
+        {
+          "label": "Soft",
+          "value": 1,
+          "count": 16043,
+          "pct": 31.89
+        },
+        {
+          "label": "Normal",
+          "value": 2,
+          "count": 21637,
+          "pct": 43.01
+        },
+        {
+          "label": "Liquid",
+          "value": 3,
+          "count": 1298,
+          "pct": 2.58
+        }
+      ],
+      "shape": [
+        {
+          "label": "Sausage",
+          "value": 0,
+          "count": 24181,
+          "pct": 48.07
+        },
+        {
+          "label": "Lumpy",
+          "value": 1,
+          "count": 11646,
+          "pct": 23.15
+        },
+        {
+          "label": "Flat",
+          "value": 2,
+          "count": 110,
+          "pct": 0.22
+        },
+        {
+          "label": "Blob",
+          "value": 3,
+          "count": 13408,
+          "pct": 26.65
+        },
+        {
+          "label": "Liquid",
+          "value": 4,
+          "count": 961,
+          "pct": 1.91
+        }
+      ],
+      "quantity": [
+        {
+          "label": "Small",
+          "value": 0,
+          "count": 5376,
+          "pct": 10.69
+        },
+        {
+          "label": "Normal",
+          "value": 1,
+          "count": 40156,
+          "pct": 79.82
+        },
+        {
+          "label": "Large",
+          "value": 2,
+          "count": 4774,
+          "pct": 9.49
+        }
+      ],
+      "health": [
+        {
+          "label": "Healthy",
+          "value": 0,
+          "count": 20735,
+          "pct": 41.22
+        },
+        {
+          "label": "Flagged",
+          "value": 1,
+          "count": 29571,
+          "pct": 58.78
+        }
+      ],
+      "floating": [
+        {
+          "label": "Sinks",
+          "value": 0,
+          "count": 48192,
+          "pct": 95.8
+        },
+        {
+          "label": "Floats",
+          "value": 1,
+          "count": 2114,
+          "pct": 4.2
+        }
+      ],
+      "bloodPct": 4.55,
+      "mucusPct": 12.14,
+      "painAvg": 1.07,
+      "smellAvg": 1.18
+    },
+    "4": {
+      "n": 37612,
+      "color": [
+        {
+          "label": "Black",
+          "value": 0,
+          "count": 303,
+          "pct": 0.81
+        },
+        {
+          "label": "White",
+          "value": 1,
+          "count": null,
+          "pct": null
+        },
+        {
+          "label": "Green",
+          "value": 2,
+          "count": 476,
+          "pct": 1.27
+        },
+        {
+          "label": "Yellow",
+          "value": 3,
+          "count": 1569,
+          "pct": 4.17
+        },
+        {
+          "label": "Red",
+          "value": 4,
+          "count": null,
+          "pct": null
+        },
+        {
+          "label": "Brown",
+          "value": 5,
+          "count": 34761,
+          "pct": 92.42
+        },
+        {
+          "label": "Orange",
+          "value": 6,
+          "count": 449,
+          "pct": 1.19
+        }
+      ],
+      "consistency": [
+        {
+          "label": "Hard",
+          "value": 0,
+          "count": 5698,
+          "pct": 15.15
+        },
+        {
+          "label": "Soft",
+          "value": 1,
+          "count": 9311,
+          "pct": 24.76
+        },
+        {
+          "label": "Normal",
+          "value": 2,
+          "count": 22178,
+          "pct": 58.97
+        },
+        {
+          "label": "Liquid",
+          "value": 3,
+          "count": 425,
+          "pct": 1.13
+        }
+      ],
+      "shape": [
+        {
+          "label": "Sausage",
+          "value": 0,
+          "count": 25598,
+          "pct": 68.06
+        },
+        {
+          "label": "Lumpy",
+          "value": 1,
+          "count": 4871,
+          "pct": 12.95
+        },
+        {
+          "label": "Flat",
+          "value": 2,
+          "count": 128,
+          "pct": 0.34
+        },
+        {
+          "label": "Blob",
+          "value": 3,
+          "count": 6690,
+          "pct": 17.79
+        },
+        {
+          "label": "Liquid",
+          "value": 4,
+          "count": 325,
+          "pct": 0.86
+        }
+      ],
+      "quantity": [
+        {
+          "label": "Small",
+          "value": 0,
+          "count": 1515,
+          "pct": 4.03
+        },
+        {
+          "label": "Normal",
+          "value": 1,
+          "count": 31124,
+          "pct": 82.75
+        },
+        {
+          "label": "Large",
+          "value": 2,
+          "count": 4973,
+          "pct": 13.22
+        }
+      ],
+      "health": [
+        {
+          "label": "Healthy",
+          "value": 0,
+          "count": 21591,
+          "pct": 57.4
+        },
+        {
+          "label": "Flagged",
+          "value": 1,
+          "count": 16021,
+          "pct": 42.6
+        }
+      ],
+      "floating": [
+        {
+          "label": "Sinks",
+          "value": 0,
+          "count": 36185,
+          "pct": 96.21
+        },
+        {
+          "label": "Floats",
+          "value": 1,
+          "count": 1427,
+          "pct": 3.79
+        }
+      ],
+      "bloodPct": 2.45,
+      "mucusPct": 6.81,
+      "painAvg": 1.04,
+      "smellAvg": 1.18
+    },
+    "5": {
+      "n": 20033,
+      "color": [
+        {
+          "label": "Black",
+          "value": 0,
+          "count": 187,
+          "pct": 0.93
+        },
+        {
+          "label": "White",
+          "value": 1,
+          "count": null,
+          "pct": null
+        },
+        {
+          "label": "Green",
+          "value": 2,
+          "count": 409,
+          "pct": 2.04
+        },
+        {
+          "label": "Yellow",
+          "value": 3,
+          "count": 1436,
+          "pct": 7.17
+        },
+        {
+          "label": "Red",
+          "value": 4,
+          "count": 235,
+          "pct": 1.17
+        },
+        {
+          "label": "Brown",
+          "value": 5,
+          "count": 17326,
+          "pct": 86.49
+        },
+        {
+          "label": "Orange",
+          "value": 6,
+          "count": 424,
+          "pct": 2.12
+        }
+      ],
+      "consistency": [
+        {
+          "label": "Hard",
+          "value": 0,
+          "count": 1970,
+          "pct": 9.83
+        },
+        {
+          "label": "Soft",
+          "value": 1,
+          "count": 12639,
+          "pct": 63.09
+        },
+        {
+          "label": "Normal",
+          "value": 2,
+          "count": 4283,
+          "pct": 21.38
+        },
+        {
+          "label": "Liquid",
+          "value": 3,
+          "count": 1141,
+          "pct": 5.7
+        }
+      ],
+      "shape": [
+        {
+          "label": "Sausage",
+          "value": 0,
+          "count": 4971,
+          "pct": 24.81
+        },
+        {
+          "label": "Lumpy",
+          "value": 1,
+          "count": 3342,
+          "pct": 16.68
+        },
+        {
+          "label": "Flat",
+          "value": 2,
+          "count": 264,
+          "pct": 1.32
+        },
+        {
+          "label": "Blob",
+          "value": 3,
+          "count": 10773,
+          "pct": 53.78
+        },
+        {
+          "label": "Liquid",
+          "value": 4,
+          "count": 683,
+          "pct": 3.41
+        }
+      ],
+      "quantity": [
+        {
+          "label": "Small",
+          "value": 0,
+          "count": 2450,
+          "pct": 12.23
+        },
+        {
+          "label": "Normal",
+          "value": 1,
+          "count": 14976,
+          "pct": 74.76
+        },
+        {
+          "label": "Large",
+          "value": 2,
+          "count": 2607,
+          "pct": 13.01
+        }
+      ],
+      "health": [
+        {
+          "label": "Healthy",
+          "value": 0,
+          "count": 4257,
+          "pct": 21.25
+        },
+        {
+          "label": "Flagged",
+          "value": 1,
+          "count": 15776,
+          "pct": 78.75
+        }
+      ],
+      "floating": [
+        {
+          "label": "Sinks",
+          "value": 0,
+          "count": 16896,
+          "pct": 84.34
+        },
+        {
+          "label": "Floats",
+          "value": 1,
+          "count": 3137,
+          "pct": 15.66
+        }
+      ],
+      "bloodPct": 7.26,
+      "mucusPct": 20.66,
+      "painAvg": 1.06,
+      "smellAvg": 1.22
+    },
+    "6": {
+      "n": 23392,
+      "color": [
+        {
+          "label": "Black",
+          "value": 0,
+          "count": 568,
+          "pct": 2.43
+        },
+        {
+          "label": "White",
+          "value": 1,
+          "count": null,
+          "pct": null
+        },
+        {
+          "label": "Green",
+          "value": 2,
+          "count": 662,
+          "pct": 2.83
+        },
+        {
+          "label": "Yellow",
+          "value": 3,
+          "count": 1190,
+          "pct": 5.09
+        },
+        {
+          "label": "Red",
+          "value": 4,
+          "count": 221,
+          "pct": 0.94
+        },
+        {
+          "label": "Brown",
+          "value": 5,
+          "count": 20133,
+          "pct": 86.07
+        },
+        {
+          "label": "Orange",
+          "value": 6,
+          "count": 611,
+          "pct": 2.61
+        }
+      ],
+      "consistency": [
+        {
+          "label": "Hard",
+          "value": 0,
+          "count": 1599,
+          "pct": 6.84
+        },
+        {
+          "label": "Soft",
+          "value": 1,
+          "count": 16774,
+          "pct": 71.71
+        },
+        {
+          "label": "Normal",
+          "value": 2,
+          "count": 3810,
+          "pct": 16.29
+        },
+        {
+          "label": "Liquid",
+          "value": 3,
+          "count": 1209,
+          "pct": 5.17
+        }
+      ],
+      "shape": [
+        {
+          "label": "Sausage",
+          "value": 0,
+          "count": 4066,
+          "pct": 17.38
+        },
+        {
+          "label": "Lumpy",
+          "value": 1,
+          "count": 2179,
+          "pct": 9.32
+        },
+        {
+          "label": "Flat",
+          "value": 2,
+          "count": null,
+          "pct": null
+        },
+        {
+          "label": "Blob",
+          "value": 3,
+          "count": 16363,
+          "pct": 69.95
+        },
+        {
+          "label": "Liquid",
+          "value": 4,
+          "count": 741,
+          "pct": 3.17
+        }
+      ],
+      "quantity": [
+        {
+          "label": "Small",
+          "value": 0,
+          "count": 1921,
+          "pct": 8.21
+        },
+        {
+          "label": "Normal",
+          "value": 1,
+          "count": 17714,
+          "pct": 75.73
+        },
+        {
+          "label": "Large",
+          "value": 2,
+          "count": 3757,
+          "pct": 16.06
+        }
+      ],
+      "health": [
+        {
+          "label": "Healthy",
+          "value": 0,
+          "count": 3817,
+          "pct": 16.32
+        },
+        {
+          "label": "Flagged",
+          "value": 1,
+          "count": 19575,
+          "pct": 83.68
+        }
+      ],
+      "floating": [
+        {
+          "label": "Sinks",
+          "value": 0,
+          "count": 20268,
+          "pct": 86.65
+        },
+        {
+          "label": "Floats",
+          "value": 1,
+          "count": 3124,
+          "pct": 13.35
+        }
+      ],
+      "bloodPct": 9.06,
+      "mucusPct": 23.97,
+      "painAvg": 1.07,
+      "smellAvg": 1.28
+    },
+    "7": {
+      "n": 4226,
+      "color": [
+        {
+          "label": "Black",
+          "value": 0,
+          "count": 93,
+          "pct": 2.2
+        },
+        {
+          "label": "White",
+          "value": 1,
+          "count": null,
+          "pct": null
+        },
+        {
+          "label": "Green",
+          "value": 2,
+          "count": 170,
+          "pct": 4.02
+        },
+        {
+          "label": "Yellow",
+          "value": 3,
+          "count": 723,
+          "pct": 17.11
+        },
+        {
+          "label": "Red",
+          "value": 4,
+          "count": null,
+          "pct": null
+        },
+        {
+          "label": "Brown",
+          "value": 5,
+          "count": 3059,
+          "pct": 72.39
+        },
+        {
+          "label": "Orange",
+          "value": 6,
+          "count": 149,
+          "pct": 3.53
+        }
+      ],
+      "consistency": [
+        {
+          "label": "Hard",
+          "value": 0,
+          "count": 114,
+          "pct": 2.7
+        },
+        {
+          "label": "Soft",
+          "value": 1,
+          "count": 1414,
+          "pct": 33.46
+        },
+        {
+          "label": "Normal",
+          "value": 2,
+          "count": 572,
+          "pct": 13.54
+        },
+        {
+          "label": "Liquid",
+          "value": 3,
+          "count": 2126,
+          "pct": 50.31
+        }
+      ],
+      "shape": [
+        {
+          "label": "Sausage",
+          "value": 0,
+          "count": 586,
+          "pct": 13.87
+        },
+        {
+          "label": "Lumpy",
+          "value": 1,
+          "count": 131,
+          "pct": 3.1
+        },
+        {
+          "label": "Flat",
+          "value": 2,
+          "count": null,
+          "pct": null
+        },
+        {
+          "label": "Blob",
+          "value": 3,
+          "count": 1782,
+          "pct": 42.17
+        },
+        {
+          "label": "Liquid",
+          "value": 4,
+          "count": 1722,
+          "pct": 40.75
+        }
+      ],
+      "quantity": [
+        {
+          "label": "Small",
+          "value": 0,
+          "count": 888,
+          "pct": 21.01
+        },
+        {
+          "label": "Normal",
+          "value": 1,
+          "count": 3118,
+          "pct": 73.78
+        },
+        {
+          "label": "Large",
+          "value": 2,
+          "count": 220,
+          "pct": 5.21
+        }
+      ],
+      "health": [
+        {
+          "label": "Healthy",
+          "value": 0,
+          "count": 569,
+          "pct": 13.46
+        },
+        {
+          "label": "Flagged",
+          "value": 1,
+          "count": 3657,
+          "pct": 86.54
+        }
+      ],
+      "floating": [
+        {
+          "label": "Sinks",
+          "value": 0,
+          "count": 3064,
+          "pct": 72.5
+        },
+        {
+          "label": "Floats",
+          "value": 1,
+          "count": 1162,
+          "pct": 27.5
+        }
+      ],
+      "bloodPct": 3.67,
+      "mucusPct": 20.8,
+      "painAvg": 1.19,
+      "smellAvg": 1.35
+    }
+  }
+}

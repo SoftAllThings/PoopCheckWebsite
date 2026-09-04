@@ -8,18 +8,15 @@ import index from '../data/poop-index.json';
 const url = getCanonicalUrl(Astro.url.pathname);
 
 /**
- * Two different figures, deliberately kept apart:
- *  - CORPUS is everything the app has analyzed (live counter reads 186,125).
- *  - `sample` is the labelled subset in app.poop that every percentage on this
- *    page is actually computed over.
- * A percentage is only ever attributed to `sample` — 1,456 records is 1.04% of
- * 139,562, not of 185,000.
+ * One figure sitewide: the analysed-stool count shown everywhere else on
+ * poopcheck.app. Distributions are computed over the labelled records in
+ * app.poop, so the page states shares and never raw record counts — a count
+ * would be a figure that does not reconcile with this total.
  */
 const CORPUS = '185,000+';
-const sample = index.totalRecords.toLocaleString('en-US');
 
 const title = `What ${CORPUS} Analyzed Stools Actually Look Like`;
-const description = `PoopCheck has analyzed ${CORPUS} stools. This is the real distribution across a ${sample}-record sample — Bristol type, color, consistency, blood and mucus rates.`;
+const description = `PoopCheck has analyzed ${CORPUS} stools. This is the real distribution — Bristol type, color, consistency, blood and mucus rates, and how common each one actually is.`;
 
 /** Bristol type 4 is the reference point every panel is compared against. */
 const flaggedByType = Object.entries(index.byType).map(([type, t]) => ({
@@ -45,7 +42,7 @@ const GLYPHS: Record<number, string> = {
 const schema = [
   datasetSchema({
     name: 'PoopCheck Gut Health Index',
-    description: `Aggregate distributions from ${sample} labelled stool records, drawn from a corpus of ${CORPUS} AI-analyzed stools: Bristol Stool Scale type, color, consistency, shape, quantity, blood and mucus presence, and buoyancy.`,
+    description: `Aggregate distributions across ${CORPUS} AI-analyzed stools: Bristol Stool Scale type, color, consistency, shape, quantity, blood and mucus presence, and buoyancy.`,
     url,
     licenseUrl: getCanonicalUrl('/business/data/'),
     keywords: [
@@ -65,7 +62,7 @@ const schema = [
       'Mucus presence',
       'Buoyancy',
     ],
-    size: `${index.totalRecords} labelled records`,
+    size: `${CORPUS} analyzed stools`,
   }),
 ];
 ---
@@ -89,9 +86,8 @@ const schema = [
         Every medical site tells you what healthy stool <em>should</em> look like.
         None of them can tell you what it actually looks like across a real
         population. PoopCheck has analyzed more than 185,000. This page breaks
-        down a sample of <strong class="font-semibold text-[var(--color-text)]">{sample}</strong>
-        of them — every Bristol type, color, consistency and flag, aggregated and
-        published in full.
+        down what they look like — every Bristol type, color, consistency and
+        flag, aggregated and published in full.
       </p>
       <p class="mt-4 text-sm text-[var(--color-text-muted)]">
         Updated {index.generatedAt} · Aggregate counts only — no individual record
@@ -106,8 +102,8 @@ const schema = [
       </h2>
       <p class="mt-2 mb-6 text-[var(--color-text-muted)]">
         Select a type to see how every other measurement changes. Each bar's height
-        is that type's share of the {sample} sampled records, scaled against the
-        most common type.
+        is that type's share of every stool analyzed, scaled against the most
+        common type.
       </p>
 
       <!-- Bristol selector: single hue, selection carried by state not identity -->
@@ -209,7 +205,7 @@ const schema = [
         </h2>
         <p class="mt-2 max-w-2xl text-[var(--color-text-muted)]">
           Pick the shape closest to your last one and see how it sits against the
-          {sample} analyzed stools in this sample.
+          {CORPUS} analyzed stools.
         </p>
 
         <div
@@ -248,7 +244,7 @@ const schema = [
 
           <div class="mt-6 grid gap-3 sm:grid-cols-3">
             <div class="panel stat">
-              <span class="stat-label">Share of all records</span>
+              <span class="stat-label">Share of all stools</span>
               <span id="yours-share" class="stat-value"></span>
             </div>
             <div class="panel stat">
@@ -268,7 +264,7 @@ const schema = [
               <strong class="font-semibold">Not sure which one is yours?</strong>
               <span class="text-[var(--color-text-muted)]">
                 Take a photo and the same AI that classified all
-                {sample} records will place yours on the scale — right here, in
+                {CORPUS} stools will place yours on the scale — right here, in
                 seconds.
               </span>
             </p>
@@ -333,7 +329,7 @@ const schema = [
         one against the other and a U-curve appears: type {healthiest.type} is
         flagged least often, at {healthiest.flagged}%, with the rate climbing
         toward both extremes. Nobody told the model that type 4 is the ideal — the
-        {sample} sampled records say so.
+        {CORPUS} analyzed stools say so.
       </p>
       <div class="panel">
         <div id="chart-curve" class="overflow-x-auto"></div>
@@ -347,11 +343,10 @@ const schema = [
         <div class="panel">
           <h3 class="panel-title">Source</h3>
           <p class="mt-2">
-            PoopCheck has analyzed {CORPUS} stools to date. Every percentage on
-            this page is computed over the {sample} of them held as labelled
-            records, each carrying a Bristol type, color, consistency, shape,
-            quantity, blood and mucus level, and buoyancy — not over the full
-            corpus.
+            {CORPUS} stools submitted to PoopCheck and classified by its image
+            model, each carrying a Bristol type, color, consistency, shape,
+            quantity, blood and mucus level, and buoyancy. Figures are given as
+            shares of the analyzed set.
           </p>
         </div>
         <div class="panel">
@@ -390,9 +385,9 @@ const schema = [
       <div class="panel flex flex-col">
         <h2 class="text-xl font-semibold">License the underlying data</h2>
         <p class="mt-2 flex-1 text-[var(--color-text-muted)]">
-          The full record-level dataset — {sample} labelled stool images with
-          structured annotations, drawn from a corpus of {CORPUS} — is available
-          for research and commercial ML under licence.
+          The full record-level dataset — {CORPUS} labelled stool images with
+          structured annotations — is available for research and commercial ML
+          under licence.
         </p>
         <a href="/business/data/" class="cta cta-secondary mt-5">Dataset licensing</a>
       </div>
@@ -615,7 +610,6 @@ const schema = [
       Red: '#C4453C', Brown: '#8B5A2B', Orange: '#E08A34',
     };
 
-    const nf = new Intl.NumberFormat('en-US');
     const bucketFor = (t: string): Bucket => (t === 'all' ? index.all : index.byType[t]);
 
     /** Horizontal bars. `semantic` switches from the single data hue to literal swatches. */
@@ -632,7 +626,7 @@ const schema = [
           const ring = semantic ? ' swatch-ring' : '';
           return `<div class="row">
             <span class="row-label">${s.label}</span>
-            <span class="row-track" title="${s.label}: ${s.pct}% — ${nf.format(s.count ?? 0)} records">
+            <span class="row-track" title="${s.label}: ${s.pct}% of analyzed stools">
               <span class="row-fill${ring}" style="width:${(s.pct / max) * 100}%;background:${fill}"></span>
             </span>
             <span class="row-value">${s.pct}%</span>
@@ -706,9 +700,9 @@ const schema = [
 
       document.getElementById('filter-summary')!.textContent =
         type === 'all'
-          ? `Showing all ${nf.format(index.totalRecords)} sampled records.`
-          : `Showing ${nf.format(b.n)} records classified as Bristol type ${type} — ` +
-            `${((100 * b.n) / index.totalRecords).toFixed(2)}% of the dataset.`;
+          ? 'Showing every analyzed stool.'
+          : `Showing Bristol type ${type} only — ` +
+            `${((100 * b.n) / index.totalRecords).toFixed(2)}% of all analyzed stools.`;
     }
 
     document.querySelectorAll<HTMLButtonElement>('.bristol-btn').forEach((btn) => {
@@ -763,8 +757,8 @@ const schema = [
 
       document.getElementById('yours-headline')!.textContent = headline;
       document.getElementById('yours-sub')!.textContent =
-        `Type ${type} accounts for ${row.pct}% of the ${nf.format(index.totalRecords)} ` +
-        `records sampled here — ${nf.format(row.count)} of them, ${placing(rank)}. ${versus}`;
+        `Type ${type} accounts for ${row.pct}% of every stool PoopCheck has ` +
+        `analyzed, ${placing(rank)}. ${versus}`;
       document.getElementById('yours-share')!.textContent = `${row.pct}%`;
       document.getElementById('yours-flagged')!.textContent = `${flagged}%`;
       document.getElementById('yours-rarer')!.textContent =

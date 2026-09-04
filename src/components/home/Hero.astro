@@ -1,8 +1,8 @@
 ---
+import LiveStats from '../layout/LiveStats.astro';
 import { STATS } from '../../utils/seo';
 import PlaygroundApp from '../playground/PlaygroundApp.tsx';
 
-const STATS_ENDPOINT = 'https://us-central1-poopmania-prod.cloudfunctions.net/getPublicStats';
 ---
 
 <section class="relative overflow-hidden">
@@ -99,22 +99,4 @@ const STATS_ENDPOINT = 'https://us-central1-poopmania-prod.cloudfunctions.net/ge
   </div>
 </section>
 
-<script is:inline define:vars={{ STATS_ENDPOINT }}>
-  const format = (n) => {
-    if (typeof n !== 'number' || !isFinite(n)) return null;
-    if (n >= 1_000_000) return (n / 1_000_000).toFixed(n >= 10_000_000 ? 0 : 1).replace(/\.0$/, '') + 'M+';
-    if (n >= 1_000) return Math.floor(n / 1_000) + 'K+';
-    return String(n);
-  };
-  const apply = (data) => {
-    document.querySelectorAll('[data-live-stat]').forEach((el) => {
-      const key = el.getAttribute('data-live-stat');
-      const formatted = format(data?.[key]);
-      if (formatted) el.textContent = formatted;
-    });
-  };
-  fetch(STATS_ENDPOINT)
-    .then((r) => (r.ok ? r.json() : null))
-    .then((data) => data && apply(data))
-    .catch(() => {});
-</script>
+<LiveStats />

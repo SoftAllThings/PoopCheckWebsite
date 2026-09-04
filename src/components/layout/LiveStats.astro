@@ -1,0 +1,40 @@
+---
+/**
+ * Hydrates every `[data-live-stat]` on the page from the app's public counter,
+ * so the analysed-stool and user figures track production instead of drifting
+ * from whatever was hardcoded at build time.
+ *
+ * Server-rendered markup keeps the static `STATS` fallback, which is what ships
+ * in the HTML, the meta tags and the crawler's view — the live value only ever
+ * replaces it after the fetch resolves. A failed or slow request leaves the
+ * fallback in place.
+ *
+ * `data-live-stat="totalPoops|totalUsers"` picks the figure.
+ * `data-live-stat-format="long"` renders "186,000+" instead of "186K+".
+ */
+const STATS_ENDPOINT = 'https://us-central1-poopmania-prod.cloudfunctions.net/getPublicStats';
+---
+
+<script is:inline define:vars={{ STATS_ENDPOINT }}>
+  const short = (n) => {
+    if (n >= 1_000_000) return (n / 1_000_000).toFixed(n >= 10_000_000 ? 0 : 1).replace(/\.0$/, '') + 'M+';
+    if (n >= 1_000) return Math.floor(n / 1_000) + 'K+';
+    return String(n);
+  };
+  // Round down to the thousand so the claim stays true between refreshes.
+  const long = (n) =>
+    n >= 1_000 ? (Math.floor(n / 1_000) * 1_000).toLocaleString('en-US') + '+' : String(n);
+
+  const apply = (data) => {
+    document.querySelectorAll('[data-live-stat]').forEach((el) => {
+      const value = data?.[el.getAttribute('data-live-stat')];
+      if (typeof value !== 'number' || !isFinite(value)) return;
+      el.textContent = el.getAttribute('data-live-stat-format') === 'long' ? long(value) : short(value);
+    });
+  };
+
+  fetch(STATS_ENDPOINT)
+    .then((r) => (r.ok ? r.json() : null))
+    .then((data) => data && apply(data))
+    .catch(() => {});
+</script>

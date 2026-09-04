@@ -2,18 +2,23 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import { datasetSchema } from '../utils/schema';
-import { getCanonicalUrl } from '../utils/seo';
+import { getCanonicalUrl, STATS } from '../utils/seo';
 import index from '../data/poop-index.json';
+import LiveStats from '../components/layout/LiveStats.astro';
 
 const url = getCanonicalUrl(Astro.url.pathname);
 
 /**
- * One figure sitewide: the analysed-stool count shown everywhere else on
- * poopcheck.app. Distributions are computed over the labelled records in
- * app.poop, so the page states shares and never raw record counts — a count
- * would be a figure that does not reconcile with this total.
+ * One figure sitewide, and a live one: `STATS.analyses.long` is the
+ * server-rendered fallback, and <LiveStats /> swaps every `[data-live-stat]`
+ * for the app's real counter on load, so this page reads the same number the
+ * homepage does rather than drifting from it.
+ *
+ * Distributions are computed over the labelled records in app.poop, so the page
+ * states shares and never raw record counts — a count would be a figure that
+ * does not reconcile with this total.
  */
-const CORPUS = '185,000+';
+const CORPUS = STATS.analyses.long;
 
 const title = `What ${CORPUS} Analyzed Stools Actually Look Like`;
 const description = `PoopCheck has analyzed ${CORPUS} stools. This is the real distribution — Bristol type, color, consistency, blood and mucus rates, and how common each one actually is.`;
@@ -79,13 +84,13 @@ const schema = [
         The Gut Health Index
       </p>
       <h1 class="mt-3 text-4xl md:text-6xl font-bold leading-[1.05]">
-        What <span class="gradient-text">{CORPUS}</span> analyzed stools
+        What <span class="gradient-text"><span data-live-stat="totalPoops" data-live-stat-format="long">{CORPUS}</span></span> analyzed stools
         actually look like
       </h1>
       <p class="mt-5 max-w-2xl text-lg text-[var(--color-text-muted)]">
         Every medical site tells you what healthy stool <em>should</em> look like.
         None of them can tell you what it actually looks like across a real
-        population. PoopCheck has analyzed more than 185,000. This page breaks
+        population. PoopCheck has analyzed <span data-live-stat="totalPoops" data-live-stat-format="long">{CORPUS}</span>. This page breaks
         down what they look like — every Bristol type, color, consistency and
         flag, aggregated and published in full.
       </p>
@@ -205,7 +210,7 @@ const schema = [
         </h2>
         <p class="mt-2 max-w-2xl text-[var(--color-text-muted)]">
           Pick the shape closest to your last one and see how it sits against the
-          {CORPUS} analyzed stools.
+          <span data-live-stat="totalPoops" data-live-stat-format="long">{CORPUS}</span> analyzed stools.
         </p>
 
         <div
@@ -264,7 +269,7 @@ const schema = [
               <strong class="font-semibold">Not sure which one is yours?</strong>
               <span class="text-[var(--color-text-muted)]">
                 Take a photo and the same AI that classified all
-                {CORPUS} stools will place yours on the scale — right here, in
+                <span data-live-stat="totalPoops" data-live-stat-format="long">{CORPUS}</span> stools will place yours on the scale — right here, in
                 seconds.
               </span>
             </p>
@@ -329,7 +334,7 @@ const schema = [
         one against the other and a U-curve appears: type {healthiest.type} is
         flagged least often, at {healthiest.flagged}%, with the rate climbing
         toward both extremes. Nobody told the model that type 4 is the ideal — the
-        {CORPUS} analyzed stools say so.
+        <span data-live-stat="totalPoops" data-live-stat-format="long">{CORPUS}</span> analyzed stools say so.
       </p>
       <div class="panel">
         <div id="chart-curve" class="overflow-x-auto"></div>
@@ -343,7 +348,7 @@ const schema = [
         <div class="panel">
           <h3 class="panel-title">Source</h3>
           <p class="mt-2">
-            {CORPUS} stools submitted to PoopCheck and classified by its image
+            <span data-live-stat="totalPoops" data-live-stat-format="long">{CORPUS}</span> stools submitted to PoopCheck and classified by its image
             model, each carrying a Bristol type, color, consistency, shape,
             quantity, blood and mucus level, and buoyancy. Figures are given as
             shares of the analyzed set.
@@ -385,7 +390,7 @@ const schema = [
       <div class="panel flex flex-col">
         <h2 class="text-xl font-semibold">License the underlying data</h2>
         <p class="mt-2 flex-1 text-[var(--color-text-muted)]">
-          The full record-level dataset — {CORPUS} labelled stool images with
+          The full record-level dataset — <span data-live-stat="totalPoops" data-live-stat-format="long">{CORPUS}</span> labelled stool images with
           structured annotations — is available for research and commercial ML
           under licence.
         </p>
@@ -393,6 +398,8 @@ const schema = [
       </div>
     </section>
   </div>
+
+  <LiveStats />
 
   <script id="poop-index-data" type="application/json" set:html={JSON.stringify(index)}></script>
 </PageLayout>

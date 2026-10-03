@@ -37,8 +37,8 @@ const useCases = [
 const faqs = [
   { question: 'How is the dataset licensed?', answer: 'We offer research licenses for academic use (with publication rights) and commercial licenses for product development. Terms vary by use case — contact us and we\'ll scope a license that fits.' },
   { question: 'How is the data delivered?', answer: 'Default delivery is a signed S3 bucket with images and JSON label files, plus a schema document. We can accommodate custom formats (COCO, CSV, per-label folders) on request.' },
-  { question: 'Can we get a custom subset?', answer: 'Yes. Common requests include "only Types 3–5", "only flagged samples", balanced gender/age splits, or pediatric-only subsets. We can scope these from the master dataset.' },
-  { question: 'How is the data de-identified?', answer: 'Images contain no PHI by design — we collect only the stool photo and app-side analysis metadata. Our annotation and delivery pipelines include additional scrubbing to ensure no identifying information leaks through metadata or file names.' },
+  { question: 'Can we get a custom subset?', answer: 'Yes. Common requests include "only Types 3–5", "only flagged samples", or balanced gender/age splits. We can scope these from the master dataset.' },
+  { question: 'How is the data de-identified?', answer: 'Standard deliveries contain only the stool photo and its labels: no names, emails, account IDs or timestamps. Every image is re-encoded to strip camera and location metadata, and files are renamed so nothing identifying leaks through file names.' },
   { question: 'What are the usage restrictions?', answer: 'Standard restrictions: no redistribution outside your organization, no resale, and no use that would enable re-identification. Full terms are in the license agreement we send before delivery.' },
   { question: 'How is it priced?', answer: 'Pricing depends on subset size, annotation depth, and whether the license is research or commercial. Contact us with the specifics of your need and we\'ll send a quote.' },
 ];
@@ -169,9 +169,9 @@ const schemas = [
           <div class="gradient-border p-8">
             <h2 class="text-xl md:text-2xl font-bold mb-3">Annotation methodology</h2>
             <p class="text-[var(--color-text-muted)] leading-relaxed text-sm">
-              Labels are produced by trained annotators against the Bristol Stool Scale and a standardized color/pathology rubric,
-              with a portion of the set double-labeled for QA. Disagreements are resolved by senior review. The same labeling
-              pipeline feeds our production model's training data.
+              Labels are machine-generated: three vision models (our in-house model plus two frontier models) vote on every
+              label, and each label ships with a confidence score, so you can decide how strictly to filter for training
+              versus evaluation.
             </p>
           </div>
           <div class="gradient-border p-8">

@@ -1,6 +1,7 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import ReviewWorkflow from '../../components/business/ReviewWorkflow.astro';
 import { serviceSchema } from '../../utils/schema';
 import { SITE, STATS } from '../../utils/seo';
 
@@ -136,6 +137,8 @@ const dataBullets = [
           </div>
         </a>
       </div>
+
+      <ReviewWorkflow class="mt-20" />
 
       <!-- Why PoopCheck -->
       <div class="mt-20 max-w-3xl">

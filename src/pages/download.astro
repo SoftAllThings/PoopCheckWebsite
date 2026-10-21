@@ -1,7 +1,8 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
-import { SITE, STATS } from '../utils/seo';
+import { STATS } from '../utils/seo';
 import { softwareApplicationSchema } from '../utils/schema';
+import { appStoreUrl, playStoreUrl } from '../utils/storeLinks';
 ---
 
 <PageLayout
@@ -26,9 +27,10 @@ import { softwareApplicationSchema } from '../utils/schema';
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
         <a
-          href={SITE.appStore}
+          href={appStoreUrl(Astro.url.pathname)}
+          data-store="ios"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           class="inline-flex items-center px-8 py-4 rounded-2xl bg-[var(--color-text)] text-[var(--color-bg)] font-semibold hover:opacity-90 transition-opacity"
         >
           <svg class="w-8 h-8 mr-4" viewBox="0 0 24 24" fill="currentColor">
@@ -40,9 +42,10 @@ import { softwareApplicationSchema } from '../utils/schema';
           </div>
         </a>
         <a
-          href={SITE.playStore}
+          href={playStoreUrl(Astro.url.pathname)}
+          data-store="android"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           class="inline-flex items-center px-8 py-4 rounded-2xl bg-[var(--color-text)] text-[var(--color-bg)] font-semibold hover:opacity-90 transition-opacity"
         >
           <svg class="w-8 h-8 mr-4" viewBox="0 0 24 24" fill="currentColor">
@@ -72,3 +75,20 @@ import { softwareApplicationSchema } from '../utils/schema';
     </div>
   </div>
 </PageLayout>
+
+<script>
+  import { appStoreUrl, playStoreUrl } from '../utils/storeLinks';
+
+  // Most CTAs on the site link here rather than to the stores, so credit the
+  // download to the page whose CTA brought the visitor (same-origin referrers
+  // carry the full path). Direct and external visits stay on /download's tags.
+  const referrer = document.referrer ? new URL(document.referrer) : null;
+  if (referrer?.origin === location.origin && referrer.pathname !== location.pathname) {
+    document.querySelectorAll<HTMLAnchorElement>('a[data-store="ios"]').forEach(link => {
+      link.href = appStoreUrl(referrer.pathname);
+    });
+    document.querySelectorAll<HTMLAnchorElement>('a[data-store="android"]').forEach(link => {
+      link.href = playStoreUrl(referrer.pathname);
+    });
+  }
+</script>

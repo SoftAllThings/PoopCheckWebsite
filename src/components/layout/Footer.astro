@@ -1,5 +1,5 @@
 ---
-import { SITE } from '../../utils/seo';
+import { appStoreUrl, playStoreUrl } from '../../utils/storeLinks';
 
 const footerLinks = {
   Product: [
@@ -59,9 +59,9 @@ const footerLinks = {
         -->
         <div data-hide-sticky-cta data-track-location="footer" class="mt-6 flex flex-wrap gap-3">
           <a
-            href={SITE.appStore}
+            href={appStoreUrl(Astro.url.pathname)}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             class="inline-flex items-center px-4 py-2 rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)] text-sm font-medium hover:border-[var(--color-text-muted)] transition-colors"
             aria-label="Download on the App Store"
           >
@@ -71,9 +71,9 @@ const footerLinks = {
             App Store
           </a>
           <a
-            href={SITE.playStore}
+            href={playStoreUrl(Astro.url.pathname)}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             class="inline-flex items-center px-4 py-2 rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)] text-sm font-medium hover:border-[var(--color-text-muted)] transition-colors"
             aria-label="Get it on Google Play"
           >

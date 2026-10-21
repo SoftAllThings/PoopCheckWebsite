@@ -5,6 +5,7 @@ import JsonLd from '../components/seo/JsonLd.astro';
 import Analytics from '../components/seo/Analytics.astro';
 import { organizationSchema } from '../utils/schema';
 import type { SEOProps } from '../utils/seo';
+import { APP_STORE_ID } from '../utils/storeLinks';
 
 interface Props {
   seo: SEOProps;
@@ -26,6 +27,8 @@ const { seo, schema } = Astro.props;
     <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
     <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#FAFAF8" media="(prefers-color-scheme: light)" />
+    <!-- Safari on iOS shows an Open/Get banner for the app above the page -->
+    <meta name="apple-itunes-app" content={`app-id=${APP_STORE_ID}`} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <SEO {...seo} />
     <JsonLd schema={organizationSchema()} />

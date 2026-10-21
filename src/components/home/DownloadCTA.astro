@@ -1,5 +1,5 @@
 ---
-import { SITE } from '../../utils/seo';
+import { appStoreUrl, playStoreUrl } from '../../utils/storeLinks';
 ---
 
 <section class="py-12 md:py-16" data-hide-sticky-cta>
@@ -20,9 +20,9 @@ import { SITE } from '../../utils/seo';
 
         <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href={SITE.appStore}
+            href={appStoreUrl(Astro.url.pathname)}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             class="inline-flex items-center px-6 py-3 rounded-xl bg-[var(--color-text)] text-[var(--color-bg)] font-semibold hover:opacity-90 transition-opacity"
           >
             <svg class="w-6 h-6 mr-3" viewBox="0 0 24 24" fill="currentColor">
@@ -34,9 +34,9 @@ import { SITE } from '../../utils/seo';
             </div>
           </a>
           <a
-            href={SITE.playStore}
+            href={playStoreUrl(Astro.url.pathname)}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             class="inline-flex items-center px-6 py-3 rounded-xl bg-[var(--color-text)] text-[var(--color-bg)] font-semibold hover:opacity-90 transition-opacity"
           >
             <svg class="w-6 h-6 mr-3" viewBox="0 0 24 24" fill="currentColor">

@@ -9,9 +9,9 @@ const schemas = [
   serviceSchema({
     name: 'Stool Analysis API',
     description:
-      'REST API for AI stool analysis — Bristol Stool Scale classification, color analysis, and health screenings. Powers digestive-health apps, telehealth platforms, and clinical tools.',
+      'REST API for AI stool analysis — Bristol Stool Scale classification, color analysis, and wellness indicators. Powers digestive-wellness apps and research.',
     url: `${SITE.url}/business/api/`,
-    serviceType: 'Medical AI API',
+    serviceType: 'AI image analysis API',
   }),
   serviceSchema({
     name: 'Annotated Stool Dataset',
@@ -25,7 +25,7 @@ const schemas = [
 const apiBullets = [
   'Bristol Stool Scale classification (Types 1–7)',
   'Color, consistency, and shape analysis',
-  'Health screenings for mucus, blood, and anomalies',
+  'Wellness indicators for mucus and visible blood',
 ];
 
 const dataBullets = [
@@ -69,7 +69,7 @@ const dataBullets = [
         </div>
         <div>
           <div class="text-3xl md:text-4xl font-bold gradient-text">{STATS.analyses.short}</div>
-          <div class="mt-1 text-sm text-[var(--color-text-muted)]">Annotated samples</div>
+          <div class="mt-1 text-sm text-[var(--color-text-muted)]">Photos analysed</div>
         </div>
         <div>
           <div class="text-3xl md:text-4xl font-bold gradient-text">{STATS.rating}★</div>

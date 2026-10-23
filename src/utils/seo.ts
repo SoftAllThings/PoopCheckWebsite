@@ -39,8 +39,9 @@ export const SITE = {
 export const STATS = {
   users: { short: '28K+', long: '28,000+' },
   analyses: { short: '185K+', long: '185,000+' },
-  reviews: { short: '2.4K+', long: '2,400+' },
-  rating: '4.8',
+  reviews: { short: '120+', long: '120+' },
+  // US App Store average (36 ratings), checked 2026-10-23. Update from the stores; never estimate.
+  rating: '4.4',
 };
 
 export function formatTitle(pageTitle?: string): string {

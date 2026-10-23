@@ -30,14 +30,14 @@ const useCases = [
 const returns = [
   { title: 'Bristol Stool Scale type', desc: 'Classification from Type 1 (hard lumps) to Type 7 (liquid), with a confidence score.' },
   { title: 'Color analysis', desc: 'Stool color identification plus flags for patterns that may warrant attention.' },
-  { title: 'Health screenings', desc: 'Checks for consistency, mucus, blood indicators, and shape anomalies.' },
+  { title: 'Wellness indicators', desc: 'Checks for consistency, mucus, blood indicators, and shape anomalies.' },
   { title: 'Actionable insights', desc: 'AI-generated narrative summary and recommendations tailored to the result.' },
 ];
 
 const faqs = [
   { question: 'How is the API priced?', answer: 'Pricing is tailored to volume and deployment model — we offer per-call, monthly commit, and enterprise licensing. Contact us with expected monthly volume and we\'ll send a quote the same day.' },
-  { question: 'How fast is a single analysis?', answer: 'Typical end-to-end latency is 2–5 seconds for a single image, including the full Bristol classification, color analysis, and health screening pipeline. The endpoint streams progress events so you can show a responsive UX.' },
-  { question: 'Is the API HIPAA-compliant?', answer: 'We support HIPAA-aligned deployments on request, including signed BAAs for qualifying customers. Reach out about your compliance requirements and we\'ll walk you through options.' },
+  { question: 'How fast is a single analysis?', answer: 'Typical end-to-end latency is 2–5 seconds for a single image, including the full Bristol classification, color analysis, and wellness indicators. The endpoint streams progress events so you can show a responsive UX.' },
+  { question: 'Is the API HIPAA-compliant?', answer: 'No. The API is a wellness tool, not a medical service, so it is not offered under HIPAA and we do not sign business associate agreements. Images travel over encrypted connections, and you can delete a user\'s data through the API.' },
   { question: 'Do you offer an SLA?', answer: 'Enterprise customers get a 99.9% uptime SLA and priority incident support. Standard accounts run on the same production infrastructure but without contractual guarantees.' },
   { question: 'Can you train a custom model for our use case?', answer: 'Yes. If your product needs specialized labels (e.g. pediatric, veterinary, post-surgical) or a domain-specific output schema, we can fine-tune on your data or ours. Typical timelines are 4–8 weeks.' },
   { question: 'Where is data processed?', answer: 'Our default region is US-based edge infrastructure. EU-region processing is available on request for data-residency requirements.' },
@@ -47,9 +47,9 @@ const schemas = [
   serviceSchema({
     name: 'Stool Analysis API',
     description:
-      'REST API for AI stool analysis — Bristol Stool Scale classification, color analysis, and health screenings. Built for digestive-health apps, telehealth platforms, clinical research, and veterinary products.',
+      'REST API for AI stool analysis — Bristol Stool Scale classification, color analysis, and wellness indicators. Built for digestive-wellness apps, research teams, and veterinary products.',
     url: `${SITE.url}/business/api/`,
-    serviceType: 'Medical AI API',
+    serviceType: 'AI image analysis API',
   }),
   faqSchema(faqs),
 ];
@@ -57,9 +57,9 @@ const schemas = [
 
 <PageLayout
   seo={{
-    title: 'Stool Analysis API — Bristol Scale Classification & Health Screening',
+    title: 'Stool Analysis API — Bristol Scale Classification & Wellness Indicators',
     description:
-      'Integrate PoopCheck\'s AI stool analysis API: Bristol Stool Scale classification, color analysis, and health screenings in a single REST call. Request access for your app or research.',
+      'Integrate PoopCheck\'s AI stool analysis API: Bristol Stool Scale classification, color analysis, and wellness indicators in a single REST call. Request access for your app or research.',
     canonical: `${SITE.url}/business/api/`,
   }}
   schema={schemas}

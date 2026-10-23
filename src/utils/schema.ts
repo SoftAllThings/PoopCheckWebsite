@@ -71,13 +71,6 @@ export function softwareApplicationSchema() {
     name: 'PoopCheck: AI Stool Tracker',
     operatingSystem: 'iOS, Android',
     applicationCategory: 'HealthApplication',
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      ratingCount: '80',
-      bestRating: '5',
-      worstRating: '1',
-    },
     offers: [
       {
         '@type': 'Offer',

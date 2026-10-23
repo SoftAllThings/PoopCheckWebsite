@@ -1,50 +1,32 @@
 ---
-import JsonLd from '../seo/JsonLd.astro';
-
-const aggregateSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: 'PoopCheck: AI Stool Tracker',
-  operatingSystem: 'iOS, Android',
-  applicationCategory: 'HealthApplication',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.8',
-    ratingCount: '2400',
-    bestRating: '5',
-    worstRating: '1',
-  },
-};
 
 const testimonials = [
   {
-    quote: "I found my IBS trigger in 2 weeks. Dairy — obvious in hindsight, but the pattern only clicked once I had 14 days of data side-by-side.",
-    author: 'Sarah M.',
-    role: '34 · IBS tracker, 6 months in',
-    initials: 'SM',
+    quote: "Super helpful app and easy to use! The tracking/storage features are great to be able to easily access and save info I need",
+    author: 'EllePNW',
+    role: 'App Store review · Feb 2025',
+    initials: 'E',
   },
   {
-    quote: "Brought 3 months of reports to my gastro appointment. He skipped 20 minutes of questions because he could just read the data. Best GI visit I've ever had.",
-    author: 'James K.',
-    role: '42 · IBD patient',
-    initials: 'JK',
+    quote: "Simple to use and it gives some interesting info with just a picture.",
+    author: 'Em1lyP',
+    role: 'App Store review · Dec 2024',
+    initials: 'E',
   },
   {
-    quote: "My daily gut score went from 58 to 84 in 8 weeks. Not because I did anything heroic — the app just kept pointing at the same three habits until I fixed them.",
-    author: 'Maria L.',
-    role: '29 · Wellness tracker',
-    initials: 'ML',
+    quote: "I love it! Great information given for free! Perfect way to store photos you don’t want to store on your phone’s library. ❤️",
+    author: 'ServeNTat',
+    role: 'App Store review · Dec 2024',
+    initials: 'S',
   },
 ];
 ---
-
-<JsonLd schema={aggregateSchema} />
 
 <section class="py-12 md:py-16 bg-[var(--color-surface)]">
   <div class="max-w-7xl mx-auto px-5">
     <!-- Testimonials -->
     <div class="text-center mb-12">
-      <p class="text-[var(--color-primary)] font-semibold text-sm uppercase tracking-wider mb-3">Testimonials</p>
+      <p class="text-[var(--color-primary)] font-semibold text-sm uppercase tracking-wider mb-3">App Store reviews</p>
       <h2 class="text-3xl md:text-4xl font-bold">
         Loved by people who care about their
         <span class="gradient-text">health</span>

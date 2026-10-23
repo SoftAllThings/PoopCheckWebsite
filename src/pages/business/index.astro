@@ -16,7 +16,7 @@ const schemas = [
   serviceSchema({
     name: 'Annotated Stool Dataset',
     description:
-      'High-quality, multi-label annotated stool image dataset for training computer vision models, academic research, and clinical validation.',
+      'Real-world stool photo dataset with AI labels for training computer vision models and academic research.',
     url: `${SITE.url}/business/data/`,
     serviceType: 'Medical Imaging Dataset',
   }),
@@ -30,7 +30,7 @@ const apiBullets = [
 
 const dataBullets = [
   `${STATS.analyses.long} labeled stool images`,
-  'Multi-label annotations: Bristol class, color, pathology flags',
+  'AI labels: Bristol type, colour, blood and mucus',
   'Custom subsets and formats on request',
 ];
 ---
@@ -56,7 +56,7 @@ const dataBullets = [
           The <span class="gradient-text">data & inference layer</span> for gut-health products
         </h1>
         <p class="mt-5 text-lg text-[var(--color-text-muted)] leading-relaxed">
-          PoopCheck powers AI stool analysis for consumer apps, telehealth platforms, clinical tools, and research teams.
+          PoopCheck powers AI stool analysis for consumer apps, wellness programs, and research teams.
           Integrate our API, or license the labeled dataset it was built on.
         </p>
       </div>
@@ -144,10 +144,9 @@ const dataBullets = [
       <div class="mt-20 max-w-3xl">
         <h2 class="text-2xl md:text-3xl font-bold mb-4">Why teams build on PoopCheck</h2>
         <p class="text-[var(--color-text-muted)] leading-relaxed">
-          We've been shipping stool-analysis AI to real users since 2023. Our models are trained on one of the largest consumer
-          stool image datasets in existence, validated against the Bristol Stool Scale, and hardened by millions of in-the-wild
-          photos taken at every angle, lighting, and camera you can imagine. That's the engine you'd be plugging into — or the
-          data you'd be training on.
+          We've been shipping stool-analysis AI to real users since 2024. Every photo goes through three AI models that vote on the
+          result, and our database holds real-world stool photos taken at every angle, in every light and on every kind of phone.
+          That's the engine you'd be plugging into, or the data you'd be learning from.
         </p>
       </div>
 

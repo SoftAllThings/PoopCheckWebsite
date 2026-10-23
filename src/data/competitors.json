@@ -69,7 +69,7 @@
         { "name": "Gut-brain / breathing exercises", "balloon": true, "poopcheck": false },
         { "name": "Daily gut-health score", "balloon": false, "poopcheck": true },
         { "name": "AI digestive chat assistant", "balloon": false, "poopcheck": "SOFTie (Premium)" },
-        { "name": "App-store rating", "balloon": "Highly rated in roundups", "poopcheck": "4.8★ combined (~80 reviews)" }
+        { "name": "App-store rating", "balloon": "Highly rated in roundups", "poopcheck": "4.4★ US App Store (36 ratings)" }
       ],
       "strengths": "Balloon's protocols are its genuine strength — if you want structured guidance (elimination diet, relaxation techniques for gut-brain), Balloon walks you through step by step. UX is polished and approachable.",
       "weaknesses_for_user": "Balloon is prescriptive. If you don't want to follow a program and just want objective tracking, it can feel like hand-holding. Also, it doesn't do AI visual analysis of stool — you log everything manually.",
@@ -98,7 +98,7 @@
         { "name": "AI digestive chat assistant", "bowelle": false, "poopcheck": "SOFTie (Premium)" },
         { "name": "On-device data storage (privacy-first)", "bowelle": true, "poopcheck": "Cloud-synced with account controls" },
         { "name": "Android availability", "bowelle": false, "poopcheck": true, "note": "Bowelle is iOS-only; PoopCheck ships on both iOS and Android." },
-        { "name": "App Store rating", "bowelle": "4.7★ (~2.2k ratings)", "poopcheck": "4.8★ combined (~80 reviews)" }
+        { "name": "App Store rating", "bowelle": "4.7★ (~2.2k ratings)", "poopcheck": "4.4★ US App Store (36 ratings)" }
       ],
       "strengths": "Bowelle is a focused, well-loved IBS diary with a long track record on iOS and a loyal user base. The custom-fields system (text, number, tags) is unusually flexible for a symptom tracker, and the on-device privacy model is a genuine differentiator for users who don't want their gut data in the cloud.",
       "weaknesses_for_user": "Bowelle is manual end-to-end — you tap in every food, mood, stress level and bowel movement by hand, which works for diligent users but thins out over weeks. It's iOS-only (no Android), has no AI visual analysis of stool, and no single daily score that summarises your gut day at a glance.",
@@ -166,7 +166,7 @@
         { "name": "Cloud storage with HIPAA & GDPR compliance", "mysymptoms": true, "poopcheck": true, "note": "Both apps describe encrypted, regulation-aligned cloud storage." },
         { "name": "iOS + Android availability", "mysymptoms": true, "poopcheck": true, "note": "Both apps ship on iOS and Android." },
         { "name": "Free tier without paywalled correlation insights", "mysymptoms": "Trial then paid; correlations behind premium", "poopcheck": "Free, no ads — Premium is optional" },
-        { "name": "App store rating", "mysymptoms": "≈4.6★ iOS / ≈4.0★ Android (App Store & Google Play listings)", "poopcheck": "4.8★ combined (~80 reviews)" }
+        { "name": "App store rating", "mysymptoms": "≈4.6★ iOS / ≈4.0★ Android (App Store & Google Play listings)", "poopcheck": "4.4★ US App Store (36 ratings)" }
       ],
       "strengths": "mySymptoms has had a decade-plus to mature its food-and-symptom diary, and it shows: the food database, barcode scanner, and customisable factors make it one of the most complete manual loggers in this category. The \"Top Suspects\" correlation engine is genuinely useful for surfacing delayed food→symptom links that you'd never spot by eye, and the mySymptoms Clinic web portal gives you a clean, share-with-your-doctor workflow that few consumer trackers offer.",
       "weaknesses_for_user": "mySymptoms is manual end-to-end — every meal, symptom and bowel movement is tapped in by hand, and recent user reviews flag both \"tedious symptom entry\" and a barcode scanner that often returns generic items rather than the specific brand. The correlation insights that make the app worthwhile sit behind a paid subscription after a 7-day trial, and the app's own FAQ confirms it does not integrate with Apple Health, so daily steps, sleep and other HealthKit data won't flow in automatically.",
@@ -242,7 +242,7 @@
         { "name": "iOS + Android availability", "bearable": true, "poopcheck": true, "note": "Both apps ship on iOS and Android." },
         { "name": "Free tier", "bearable": "Extensive free tier; correlations and history beyond 30 days need Premium", "poopcheck": "Free, no ads — Premium is optional" },
         { "name": "Premium pricing", "bearable": "$6.99/mo or $34.99/yr (often discounted to ~$18.99/yr)", "poopcheck": "$6.99/mo or $49.99/yr" },
-        { "name": "App store rating", "bearable": "4.8★ iOS (~4k) / 4.7★ Android (~8.6k)", "poopcheck": "4.8★ combined (~80 reviews)" }
+        { "name": "App store rating", "bearable": "4.8★ iOS (~4k) / 4.7★ Android (~8.6k)", "poopcheck": "4.4★ US App Store (36 ratings)" }
       ],
       "strengths": "Bearable is one of the most flexible health trackers available. You can log mood, sleep, energy, pain, medication, nutrition and any number of custom factors, then let its correlation engine surface what's actually moving your symptoms — and it added a dedicated Bristol-chart bowel-movement section with timestamped entries and tags for color, urgency and pain, so gut symptoms slot neatly into the bigger picture. It's mature and well-loved (4.8★ on iOS across roughly 4,000 ratings, 4.7★ on Android across about 8,600), integrates with Apple Health, Fitbit, Garmin, Oura and more, and runs on both platforms.",
       "weaknesses_for_user": "Bearable is manual end-to-end: you tap in every bowel movement, pick the Bristol type yourself from example images, and add tags by hand — there's no AI that reads a photo for you. Gut tracking is one module among dozens, so it isn't built to go deep on stool the way a dedicated app is — no automatic color or consistency analysis, and no single gut-health score that summarises your day at a glance. The correlation reports and access to history older than 30 days that make the app worthwhile sit behind the Premium subscription.",
@@ -283,12 +283,12 @@
         { "name": "iOS + Android availability", "clever_poop": true, "poopcheck": true, "note": "Both apps ship on iOS and Android." },
         { "name": "Free tier without ads", "clever_poop": "Free download with in-app purchases; public listings don't flag ads", "poopcheck": "Free, no ads — Premium is optional" },
         { "name": "Premium pricing transparency", "clever_poop": "Subscription + lifetime tiers exist; prices not published on the public site", "poopcheck": "$6.99/mo or $49.99/yr, listed publicly" },
-        { "name": "App store rating", "clever_poop": "~4.4★ on the US App Store (small review base — roughly 11 ratings)", "poopcheck": "4.8★ combined (~80 reviews across iOS and Android)" }
+        { "name": "App store rating", "clever_poop": "~4.4★ on the US App Store (small review base — roughly 11 ratings)", "poopcheck": "4.4★ US App Store (36 ratings)" }
       ],
       "strengths": "CleverPoop's most distinctive feature is how broadly it correlates poop with the rest of your day — food, mood, menstrual cycle and lifestyle inputs all feed the same view, so users who suspect hormone- or stress-driven gut changes have a built-in way to see them. The advanced symptom fields (IBS type, bloating, pain level, duration) give it more depth than most wellness-leaning trackers, and the weekly Gut Gazette — published in five languages with clinician and researcher input — is genuine editorial work, not just push notifications.",
       "weaknesses_for_user": "CleverPoop is a young indie app: the US App Store review base is small (about a dozen ratings at the time of writing), the long-term roadmap is unproven, and public pricing isn't transparent — you have to start a checkout flow to see the subscription and lifetime tiers. There's no documented Apple Health integration, so sleep, steps and HealthKit data don't flow in automatically, and there's no AI chat assistant for asking follow-up questions about a result.",
       "when_competitor_is_better": "If you want an AI stool tracker that explicitly tracks menstrual cycle alongside food and mood, an in-app community of public and private groups to compare stats with friends, and editorial gut-health content in your language (Spanish, French, Portuguese or Hindi as well as English), CleverPoop is the better fit. It's also the right pick if a wellness-first, lower-key tone resonates more than a data-dashboard tone.",
-      "when_poopcheck_is_better": "If you want transparent published pricing ($6.99/mo or $49.99/yr), Apple Health integration, an AI digestive chat assistant (SOFTie) that contextualises your results, or the reassurance of a larger review base (4.8★ across roughly 80 combined iOS and Android reviews), PoopCheck is the more proven, more transparent everyday app.",
+      "when_poopcheck_is_better": "If you want transparent published pricing ($6.99/mo or $49.99/yr), Apple Health integration, an AI digestive chat assistant (SOFTie) that contextualises your results, or the reassurance of a larger review base (4.4★ across 36 US App Store ratings), PoopCheck is the more proven, more transparent everyday app.",
       "sources": [
         { "title": "CleverPoop — Gentle AI poop analysis for everyday gut wellness (official site)", "url": "https://www.cleverpoop.com/" },
         { "title": "CleverPoop on the US App Store", "url": "https://apps.apple.com/us/app/cleverpoop/id6743215191" },
@@ -322,7 +322,7 @@
         { "name": "Community + leaderboard", "poop_scanner": false, "poopcheck": true },
         { "name": "Personalised reports + export", "poop_scanner": "Not documented", "poopcheck": "Export detailed reports (Premium)" },
         { "name": "Premium subscription pricing", "poop_scanner": "$4.99/week, $14.99/month, $34.99/year", "poopcheck": "$6.99/month or $49.99/year (no weekly plan)" },
-        { "name": "App-store rating", "poop_scanner": "Small review base on the US App Store", "poopcheck": "4.8★ combined (~80 reviews across iOS and Android)" }
+        { "name": "App-store rating", "poop_scanner": "Small review base on the US App Store", "poopcheck": "4.4★ US App Store (36 ratings)" }
       ],
       "strengths": "Poop Scanner: AI Identifier does one thing and tries to do it fast: open the camera, snap the stool, get an AI-generated Bristol identification. If all you want is a lightweight single-purpose scanner on a recent iPhone, and you don't need long-term tracking, community features or a chat assistant, the workflow is intentionally minimal. Owl Apps also supports macOS on Apple Silicon and visionOS 2, which is unusual for a category dominated by mobile-only apps.",
       "weaknesses_for_user": "The app is iOS-only and requires iOS 18.0 or later, so anyone on Android or an older iPhone can't run it. Pricing is subscription-heavy — the weekly $4.99 plan works out to more than $250 a year — and the App Store listing doesn't surface a durable free tier, an AI chat, color or consistency analysis, or a trending gut-health score. Public information about the developer and long-term roadmap is thin.",

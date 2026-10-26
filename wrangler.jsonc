@@ -3,5 +3,14 @@
 // CI builds fail on any day past the binary's max supported date.
 // Bump this only when bumping wrangler/miniflare/workerd in lockstep.
 {
-  "compatibility_date": "2026-04-23"
+  "compatibility_date": "2026-04-23",
+  // Per-IP cap on /api/support/ submissions. Counters are per Cloudflare
+  // location, so this is a burst limit, not a precise global quota.
+  "ratelimits": [
+    {
+      "name": "SUPPORT_RATE_LIMITER",
+      "namespace_id": "4271",
+      "simple": { "limit": 3, "period": 60 }
+    }
+  ]
 }

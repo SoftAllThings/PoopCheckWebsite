@@ -214,6 +214,12 @@ const schemas = [
           </p>
 
           <form id="business-form" class="space-y-5" data-form-kind="api">
+            <!-- Honeypot: off-screen for people, bots fill it in -->
+            <div class="absolute -left-[9999px] w-px h-px overflow-hidden" aria-hidden="true">
+              <label for="business-website">Website</label>
+              <input type="text" id="business-website" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+
             <div>
               <label for="business-email" class="block text-sm font-semibold mb-2">Work email</label>
               <input
@@ -245,6 +251,7 @@ const schemas = [
                 id="business-message"
                 name="message"
                 required
+                minlength="10"
                 maxlength="2000"
                 rows="6"
                 placeholder="What are you building, and what's your expected monthly volume?"
@@ -289,6 +296,7 @@ const schemas = [
 </PageLayout>
 
 <script>
+  const loadedAt = Date.now();
   const form = document.getElementById('business-form') as HTMLFormElement | null;
   const textarea = document.getElementById('business-message') as HTMLTextAreaElement | null;
   const charCount = document.getElementById('char-count') as HTMLSpanElement | null;
@@ -313,6 +321,7 @@ const schemas = [
     const email = (document.getElementById('business-email') as HTMLInputElement).value;
     const subject = (document.getElementById('business-subject') as HTMLSelectElement).value;
     const message = textarea.value;
+    const website = (document.getElementById('business-website') as HTMLInputElement | null)?.value ?? '';
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending...';
@@ -321,7 +330,7 @@ const schemas = [
       const res = await fetch('/api/support/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, subject, message }),
+        body: JSON.stringify({ email, subject, message, website, t: Date.now() - loadedAt }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed to send inquiry');

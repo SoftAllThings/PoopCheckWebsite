@@ -1,5 +1,6 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+import TurnstileWidget from '../../components/ui/TurnstileWidget.astro';
 import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
 import ReviewWorkflow from '../../components/business/ReviewWorkflow.astro';
 import { serviceSchema, faqSchema, datasetSchema } from '../../utils/schema';
@@ -285,6 +286,8 @@ const schemas = [
               </div>
             </div>
 
+            <TurnstileWidget />
+
             <button
               type="submit"
               id="submit-btn"
@@ -345,6 +348,7 @@ const schemas = [
     const subject = (document.getElementById('business-subject') as HTMLSelectElement).value;
     const message = textarea.value;
     const website = (document.getElementById('business-website') as HTMLInputElement | null)?.value ?? '';
+    const turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') as HTMLInputElement | null)?.value ?? '';
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending...';
@@ -353,7 +357,7 @@ const schemas = [
       const res = await fetch('/api/support/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, subject, message, website, t: Date.now() - loadedAt }),
+        body: JSON.stringify({ email, subject, message, website, t: Date.now() - loadedAt, turnstileToken }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed to send inquiry');
@@ -366,6 +370,7 @@ const schemas = [
       errorEl.textContent = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
       form.querySelector('.text-\\[var\\(--color-error\\)\\]')?.remove();
       form.appendChild(errorEl);
+      (window as unknown as { turnstile?: { reset: () => void } }).turnstile?.reset();
       submitBtn.disabled = false;
       submitBtn.textContent = 'Send inquiry';
     }

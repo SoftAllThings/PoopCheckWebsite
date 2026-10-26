@@ -33,3 +33,6 @@ jobs:
           # existed in a local .env. Inert until the secrets are set.
           PUBLIC_POSTHOG_KEY: ${{ secrets.PUBLIC_POSTHOG_KEY }}
           PUBLIC_POSTHOG_HOST: ${{ secrets.PUBLIC_POSTHOG_HOST }}
+          # Turnstile widget on the support/business forms. Inert until set;
+          # /api/support/ also needs the TURNSTILE_SECRET_KEY Worker secret.
+          PUBLIC_CF_TURNSTILE_SITEKEY: ${{ secrets.PUBLIC_CF_TURNSTILE_SITEKEY }}

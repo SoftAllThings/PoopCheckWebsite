@@ -1,0 +1,14 @@
+---
+// Cloudflare Turnstile bot check for forms that post to /api/support/.
+// Renders nothing until PUBLIC_CF_TURNSTILE_SITEKEY is set at build time. The
+// widget injects a hidden `cf-turnstile-response` input into the parent form,
+// which the page script sends along as `turnstileToken`.
+const siteKey = import.meta.env.PUBLIC_CF_TURNSTILE_SITEKEY;
+---
+
+{siteKey && (
+  <>
+    <div class="cf-turnstile" data-sitekey={siteKey} data-theme="auto" data-size="flexible"></div>
+    <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  </>
+)}

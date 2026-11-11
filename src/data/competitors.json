@@ -336,6 +336,41 @@
         { "title": "Bristol MK, Heaton KW. Stool form scale as a useful guide to intestinal transit time. Scand J Gastroenterol. 1997 — Bristol Stool Scale foundational reference", "url": "https://pubmed.ncbi.nlm.nih.gov/9299672/" }
       ],
       "last_verified": "2026-07-08"
+    },
+    {
+      "slug": "poopid",
+      "name": "PoopID",
+      "tagline": "iOS AI stool scanner that classifies photos on the Bristol Stool Scale and emits a 0-100 gut-health score across consistency, hydration, comfort, and safety.",
+      "website_url": "https://apps.apple.com/us/app/id6765519694",
+      "positioning": "PoopID, by Mobixoft LLC, calls itself \"the AI poop scanner that turns every bathroom break into a real wellness signal.\" It takes a photo, classifies it on the Bristol Stool Scale (Types 1-7), and produces a 0-100 score across four dimensions: consistency, hydration, comfort, and safety. The listing frames the score as \"a nudge, not a diagnosis\" and markets a BlurShield feature that blurs saved images in history and the app switcher.",
+      "pricing_notes": "PoopID is free with in-app purchases; the App Store listing shows a $5.99 weekly plan and a $49.99 annual plan that together unlock full AI analysis, trend tracking, PDF export, and red-flag detection. The weekly plan works out to roughly $311 a year — more than six times the annual plan — so anyone keeping the app beyond a few weeks should go annual. Check the App Store page for the current prices in your region.",
+      "features": [
+        { "name": "AI photo analysis of stool", "poopid": true, "poopcheck": true, "note": "Both apps classify stool directly from a photo. PoopCheck ships on iOS and Android; PoopID is iOS / iPadOS 18.5+ only (plus macOS 15.5+ on Apple Silicon and visionOS 2.5+)." },
+        { "name": "Bristol Stool Scale classification", "poopid": "Automatic from photo", "poopcheck": "Automatic from photo" },
+        { "name": "Daily gut-health score", "poopid": "0-100 across 4 dimensions (consistency, hydration, comfort, safety)", "poopcheck": "Daily gut-health score", "note": "Scoring frameworks differ — PoopID exposes four sub-dimensions; PoopCheck surfaces a single daily score with color and consistency breakouts." },
+        { "name": "Red-flag / warning detection", "poopid": true, "poopcheck": "Color analysis flags red-flag colours (black, red, pale)" },
+        { "name": "30-day visual trend timeline", "poopid": true, "poopcheck": "Trend history + long-term charts (advanced analytics on Premium)" },
+        { "name": "Doctor-shareable PDF export", "poopid": true, "poopcheck": "Export detailed reports (Premium)" },
+        { "name": "Privacy — image blurring in history", "poopid": "BlurShield automatic blur in history and app switcher", "poopcheck": "Photos processed securely, not shared with third parties", "note": "PoopID explicitly brands the auto-blur. PoopCheck's privacy copy is on retention + non-sharing; see poopcheck.app/privacy." },
+        { "name": "iOS availability", "poopid": "iOS / iPadOS 18.5+ only (also macOS 15.5+ on Apple Silicon and visionOS 2.5+)", "poopcheck": "iOS 15.0+", "note": "PoopID's listing requires iOS 18.5 or later — older iPhones cannot install it." },
+        { "name": "Android availability", "poopid": false, "poopcheck": true, "note": "PoopCheck ships on Google Play; PoopID has no Android release on its App Store listing." },
+        { "name": "AI digestive chat assistant", "poopid": false, "poopcheck": "SOFTie (Premium)" },
+        { "name": "Community + leaderboard", "poopid": false, "poopcheck": true },
+        { "name": "Free tier that keeps working without a paywall", "poopid": "Trial-style — full AI analysis, trend tracking, PDF export, and red-flag detection sit behind the subscription", "poopcheck": "Free tier keeps AI analysis, Bristol classification, colour + consistency, basic tracking, community, and the daily gut-health score with no time-limited trial" },
+        { "name": "Premium subscription pricing", "poopid": "$5.99/week or $49.99/year (no monthly plan)", "poopcheck": "$6.99/month or $49.99/year (no weekly plan)" },
+        { "name": "App-store rating", "poopid": "Listing shows \"not enough ratings or reviews\" on the US App Store", "poopcheck": "4.4★ US App Store (36 ratings)" }
+      ],
+      "strengths": "PoopID is tightly scoped and privacy-forward. The four-dimension scoring (consistency, hydration, comfort, safety) is clearer than most single-number apps, the explicit BlurShield blur in history and in the app switcher is a genuinely considered privacy touch, and the PDF export is set up to hand to a clinician. On recent iPhones, iPads, Apple Silicon Macs, and Vision Pro, the app covers the Apple device matrix end to end.",
+      "weaknesses_for_user": "PoopID is iOS-only and needs iOS 18.5 or later, so anyone on Android or an older iPhone can't install it. The free tier is trial-style — the App Store listing says full AI analysis, trend tracking, PDF export, and red-flag detection sit behind the subscription — and the weekly $5.99 plan is nearly $311 a year if you don't notice the toggle. The listing also has no ratings overview yet, so there's little independent signal on day-to-day accuracy.",
+      "when_competitor_is_better": "If you're on a recent iPhone, iPad, Apple Silicon Mac, or Vision Pro, you want a four-dimensional gut-health score with explicit image blurring in history, and you'd rather have one focused scanner than a feature-wide tracker, PoopID is a fair fit. The annual plan is reasonable; the weekly plan isn't.",
+      "when_poopcheck_is_better": "If you're on Android or an older iPhone, you want a genuine free tier that keeps the AI analysis without a weekly subscription timer, an AI digestive chat assistant (SOFTie), community features, and transparent monthly or annual pricing ($6.99/month or $49.99/year), PoopCheck is the broader, lower-friction everyday app — and still exports reports when you want to share with a clinician.",
+      "sources": [
+        { "title": "PoopID: AI Stool Scanner on the US App Store (Mobixoft LLC)", "url": "https://apps.apple.com/us/app/id6765519694" },
+        { "title": "PoopCheck: AI Stool Tracker on the US App Store (feature + pricing reference)", "url": "https://apps.apple.com/us/app/id6737857695" },
+        { "title": "PoopCheck privacy policy (data handling reference)", "url": "https://poopcheck.app/privacy/" },
+        { "title": "Bristol MK, Heaton KW. Stool form scale as a useful guide to intestinal transit time. Scand J Gastroenterol. 1997 — Bristol Stool Scale foundational reference", "url": "https://pubmed.ncbi.nlm.nih.gov/9299672/" }
+      ],
+      "last_verified": "2026-11-11"
     }
   ]
 }
